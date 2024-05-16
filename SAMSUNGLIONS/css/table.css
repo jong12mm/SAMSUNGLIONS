@@ -6,6 +6,10 @@
 body{margin:0;}
 ul{ margin:0px; padding :0; list-style: none;}
 a{ text-decoration: none; color:black;}
+table{
+    border-collapse: collapse;
+}
+
 
 /*  */
 .wrapper{
@@ -14,11 +18,8 @@ a{ text-decoration: none; color:black;}
 
 /* header */
 .wrapper>header{
-    margin-top: 20px;
-    background: linear-gradient(white 100px , rgb(76, 79, 247) 100px,rgb(76, 79, 247));
     border : 1px solid;
     height:100px;
-    overflow: hidden;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -26,16 +27,16 @@ a{ text-decoration: none; color:black;}
 /* header>.logo */
 .wrapper>header>.header-left{
     width:200px;
-    justify-content: center;
-    align-items: center;
+    height : 100%;
 
     display:flex;
-
+    justify-content: center;
+    align-items: center;
 }
 .wrapper>header>.header-left>img{
     border : 1px solid;
-    width:50px;
-    height:100px;
+    width:80%;
+    height:80%;
 }
 
 .wrapper>header>.header-right{
@@ -59,7 +60,6 @@ a{ text-decoration: none; color:black;}
     background-color: white;
 }
 .wrapper>header>.header-right>nav>.menu>li{
-    height: 30px;
     border : 1px solid orange;
     flex-grow: 1;
     flex-shrink: 0;
@@ -72,10 +72,6 @@ a{ text-decoration: none; color:black;}
     border : 1px solid;
     display:block;
 }
-
-
-
-
 .wrapper>header>.header-right>nav>.menu>li>.submenu{
     background-color: white;
     position:absolute;
@@ -86,7 +82,7 @@ a{ text-decoration: none; color:black;}
     display:none;
 }
 .wrapper>header>.header-right>nav>.menu>li>.submenu>li{
-   
+
     height:35px;
     line-height:35px;
 }
@@ -142,21 +138,19 @@ a{ text-decoration: none; color:black;}
 
 
 /* main */
+/* main - nav */
 .wrapper>main{
-    border : 1px solid;
+    
     /* height : 700px; */
 }
 
-
 .wrapper>main>section{
     align-items: center;
-    height:500px;
-    border : 1px solid;
+    
+    
 }
-
-
 .wrapper>main>section>.section-nav{
-    border: 1px solid orange;
+    border-bottom: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,21 +159,62 @@ a{ text-decoration: none; color:black;}
 .wrapper>main>section>.section-nav>li{
     
     margin-right: 50px;
-    border: 1px solid blue;
+    
     justify-content: center;
     align-items: center;
 }
-.wrapper>main>.section>.section-nav>li>a{
+.wrapper>main>section>.section-nav>li>a{
 
+    font-size: 25px;
+}
+.wrapper>main>section>.section-nav>li>a:hover{
+
+    color: red;
+}
+
+/* table CSS */
+.wrapper>main>section>.board_list_wrap{
+    
+    margin-top: 100px;
+    display: flex;
+    padding: 50px;
+
+}
+.wrapper>main>section>.board_list_wrap>img{
+    
+    width:  250px;
+    height: 500px;
+    margin-left: 200px;
+    border: 1px solid;
+}
+
+.wrapper>main>section>.board_list_wrap>.board_list{
+    margin-left: 150px;
+    
+    width: 900px;
+    border-top: 2px solid navy;
+}
+.wrapper>main>section>.board_list_wrap>.board_list th ,.board_list td{
+
+    padding: 10px;
+    font-size: 14px;
     
 
 }
-.wrapper>main>.section6>article{
-    flex-grow:4;
-    flex-shrink:1;
-    flex-basis : 100%;
-    align-self :stretch;
+.wrapper>main>section>.board_list_wrap>.board_list td{
+
+    text-align: center;
+
 }
+.wrapper>main>section>.board_list_wrap>.board_list tr {
+    border-bottom: 1px solid #ccc;
+}
+.wrapper>main>section>.board_list_wrap>.board_list tbody tr td:nth-child(2):hover {
+    
+    text-decoration: underline;
+
+}
+
 
 
 /* footer */

@@ -7,6 +7,16 @@ body{margin:0;}
 ul{ margin:0px; padding :0; list-style: none;}
 a{ text-decoration: none; color:black;}
 
+/* 구글 아이콘 */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+
 /*  */
 .wrapper{
     border : 1px solid;
@@ -14,11 +24,8 @@ a{ text-decoration: none; color:black;}
 
 /* header */
 .wrapper>header{
-    margin-top: 20px;
-    background: linear-gradient(white 100px , rgb(76, 79, 247) 100px,rgb(76, 79, 247));
     border : 1px solid;
     height:100px;
-    overflow: hidden;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -26,16 +33,16 @@ a{ text-decoration: none; color:black;}
 /* header>.logo */
 .wrapper>header>.header-left{
     width:200px;
-    justify-content: center;
-    align-items: center;
+    height : 100%;
 
     display:flex;
-
+    justify-content: center;
+    align-items: center;
 }
 .wrapper>header>.header-left>img{
     border : 1px solid;
-    width:50px;
-    height:100px;
+    width:80%;
+    height:80%;
 }
 
 .wrapper>header>.header-right{
@@ -59,8 +66,7 @@ a{ text-decoration: none; color:black;}
     background-color: white;
 }
 .wrapper>header>.header-right>nav>.menu>li{
-    height: 30px;
-    border : 1px solid orange;
+    border : 1px solid;
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis:120px;
@@ -72,10 +78,6 @@ a{ text-decoration: none; color:black;}
     border : 1px solid;
     display:block;
 }
-
-
-
-
 .wrapper>header>.header-right>nav>.menu>li>.submenu{
     background-color: white;
     position:absolute;
@@ -86,7 +88,7 @@ a{ text-decoration: none; color:black;}
     display:none;
 }
 .wrapper>header>.header-right>nav>.menu>li>.submenu>li{
-   
+
     height:35px;
     line-height:35px;
 }
@@ -143,20 +145,18 @@ a{ text-decoration: none; color:black;}
 
 /* main */
 .wrapper>main{
-    border : 1px solid;
+    
     /* height : 700px; */
 }
 
 
 .wrapper>main>section{
     align-items: center;
-    height:500px;
-    border : 1px solid;
+    
+    
 }
-
-
 .wrapper>main>section>.section-nav{
-    border: 1px solid orange;
+    border-bottom: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,25 +165,88 @@ a{ text-decoration: none; color:black;}
 .wrapper>main>section>.section-nav>li{
     
     margin-right: 50px;
-    border: 1px solid blue;
+    
     justify-content: center;
     align-items: center;
 }
-.wrapper>main>.section>.section-nav>li>a{
+.wrapper>main>section>.section-nav>li>a{
 
+    font-size: 25px;
+}
+.wrapper>main>section>.section-nav>li>a:hover{
+
+    color: red;
+}
+
+/* Section 좌석 배치도랑 지도 */
+
+.wrapper>main>section>.main-section{
     
+    display: flex;
+}
+.wrapper>main>section>.main-section>.main-left{
+    margin-top: 90px;
+    margin-left: 100px;
 
 }
-.wrapper>main>.section6>article{
-    flex-grow:4;
-    flex-shrink:1;
-    flex-basis : 100%;
-    align-self :stretch;
+.wrapper>main>section>.main-section>.main-left>img{
+    
+    border-radius: 15%;
+    width: 800px;
+    height: 550px;
+
 }
+.wrapper>main>section>.main-section>.main-right{
+
+    margin-top: 90px;
+    margin-left: 80px;
+
+}
+/* 오시는 길 */
+.wrapper>main>section>.main-session2{
+    width: 1600px;
+    margin-left: 120px;
+    margin-top: 150px;
+    height: 60px;
+    border-radius: 15px;
+
+}
+.wrapper>main>section>.main-session2>.session2-top{
+    
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px;
+    background-color:rgb(104, 179, 248);
+    color: black;
+    
+}
+.wrapper>main>section>.main-session2>.session2-bottom{
+    border: 1px solid;
+    display: none;
+    border-radius: 15px;
+}
+
+.wrapper>main>section>.main-session2>.session2-bottom>Ul>h3{
+    color: red;
+}
+
+.wrapper>main>section>.main-session2>.session2-bottom.active{
+    
+    display: block;
+
+}
+/* 아이콘 회전 */
+.session2-toggle-btn span.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease;
+}
+
 
 
 /* footer */
 .wrapper>footer{
+
     height : 300px;
+
 }
 
