@@ -1,0 +1,211 @@
+*{
+    margin : 5px;
+    border : 0px solid;
+    box-sizing: border-box;
+}
+body{margin:0;}
+ul{ margin:0px; padding :0; list-style: none;}
+a{ text-decoration: none; color:black;}
+
+/*  */
+.wrapper{
+    border : 0px solid;
+}
+
+/* header */
+.wrapper>header{
+    border : 0px solid;
+    height:100px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* header>.logo */
+.wrapper>header>.header-left{
+    width:200px;
+    height : 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper>header>.header-left>img{
+    border : 1px solid;
+    width:80%;
+    height:80%;
+}
+
+.wrapper>header>.header-right{
+    width:100%;
+}
+
+/*  */
+.wrapper>header>.header-right>nav{
+    height :45px;
+    display : flex;
+    justify-content: space-between;
+
+}
+.wrapper>header>.header-right>nav>.menu{
+    width: 800px;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    border : 0;
+    background-color: white;
+}
+.wrapper>header>.header-right>nav>.menu>li{
+    border : 1px solid orange;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis:120px;
+    text-align: center;
+    position:relative;
+    
+}
+.wrapper>header>.header-right>nav>.menu>li>a{
+    border : 0px solid;
+    display:block;
+}
+.wrapper>header>.header-right>nav>.menu>li>.submenu{
+    background-color: white;
+    position:absolute;
+    left:0px;
+    top:35px;
+    width:100%;
+    border : 1px solid;
+    display:none;
+}
+.wrapper>header>.header-right>nav>.menu>li>.submenu>li{
+   
+    height:35px;
+    line-height:35px;
+}
+.wrapper>header>.header-right>nav>.menu>li>.submenu>li>a{
+    
+}
+
+.wrapper>header>.header-right>nav>.menu:hover .submenu{
+    display:block;
+    background-color: white;
+}
+/* nav > rightmenu  로그인 | 회원가입  */
+.wrapper>header>.header-right>nav>.rightmenu{
+
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    border : 0 ;
+    height: auto;
+    
+
+}
+.wrapper>header>.header-right>nav>.rightmenu>li{
+    border : 0;
+    position:relative;
+    
+    width:auto;
+    text-align: center;
+    font-size:0.8rem;
+    
+    border: 0px solid;
+}
+.wrapper>header>.header-right>nav>.rightmenu>li:nth-child(2){
+    width:10px;
+
+}
+.wrapper>header>.header-right>nav>.rightmenu>li::after{
+   
+   position:absolute;
+   left:0;
+   top:0;   
+   
+}
+.wrapper>header>.header-right>nav>.rightmenu>li:first-child::after{
+    content:"";
+   
+}
+.wrapper>header>.header-right>nav>.rightmenu>li>a{
+    border : 0;
+    border: 0px solid;
+}
+
+
+/* main */
+.wrapper>main{
+    /* width: auto;
+    height : 1000px;
+    background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 100%, 100% 100%; 
+    background-position:0px 0px ,0px 0px; */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('/img/오승환.jpg') left top no-repeat,
+                url('/img/구자욱.jpg') right top no-repeat,
+                url('/img/backgroundex1.jpg');
+
+    background-color: rgb(255, 255, 255,0.7);
+
+
+    background-size: auto 100%;
+    /* display: flex;
+    justify-content:space-between;
+    align-items: center;
+     */
+}
+
+.wrapper>main>article{
+    width: 950px;
+    margin: auto;
+    
+    display: flex;
+    justify-content: center;
+    text-align: center;
+   
+}
+.wrapper>main>article>.children_join{}
+.wrapper>main>article>.children_join>.join-block{
+    padding: 10px;
+}
+.wrapper>main>article>.children_join>.join-block>div input::placeholder{
+    transition: .1s;
+}
+.wrapper>main>article>.children_join>.join-block>div input:focus::placeholder{
+    position:absolute;
+    left:15px;
+    top:5px;
+    font-size:0.6rem;
+
+}
+.wrapper>main>article>.children_join>.join-block>h2{}
+.wrapper>main>article>.children_join>.join-block>.info{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    
+}
+.wrapper>main>article>.children_join>.join-block>.id{
+    display: flex;
+}
+.wrapper>main>article>.children_join>.join-block>.password{}
+.wrapper>main>article>.children_join>.join-block>.passwordok{}
+.wrapper>main>article>.children_join>.join-block>.name{}
+.wrapper>main>article>.children_join>.join-block>.birthday{}
+.wrapper>main>article>.children_join>.join-block>.gender{}
+.wrapper>main>article>.children_join>.join-block>.email{}
+.wrapper>main>article>.children_join>.join-block>.phone{}
+.wrapper>main>article>.children_join>.join-block>label{}
+.wrapper>main>article>.children_join>.join-block>.btn{}
+
+
+
+
+/* footer */
+.wrapper>footer{
+    height : 300px;
+}
+
