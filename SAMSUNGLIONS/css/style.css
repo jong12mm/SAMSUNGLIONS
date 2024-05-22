@@ -122,6 +122,7 @@ a {
     align-items: center;
     flex-wrap: wrap;
     border: 0;
+    padding-left : 2rem;
 }
 
 .wrapper>header>.header-right>nav>.menu>li {
@@ -151,7 +152,7 @@ a {
     background-color: white;
     position: absolute;
     left: 0px;
-    top: 105px;
+    top: 100px;
     width: 100%;
     /* padding-top: 10px; */
     z-index: 2;
@@ -204,6 +205,8 @@ a {
     text-align: center;
     font-size: 0.8rem;
     border: 0px solid;
+    color:white;
+    
 }
 
 .wrapper>header>.header-right>nav>.rightmenu>li:nth-child(2) {
@@ -224,11 +227,13 @@ a {
     background-color: #fff;
     z-index: 1;
     display: none;
-    transition: all 0.3s linear;
+    transition: all 3s linear;
+    
 }
 
 .show-hideback {
     display: block;
+    
 }
 
 /*메인*/
