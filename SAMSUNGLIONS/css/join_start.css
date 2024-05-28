@@ -259,46 +259,47 @@ a {
     
 }
 
-.wrapper>main>article{
-    width: 950px;
+.wrapper>main>section{
     margin: auto;
-    
-    display: flex;
-    justify-content: center;
-    text-align: center;
    
 }
 
-.wrapper>main>article>.join{
-    background-color: rgba(255, 255, 255, 0.9);
-    border:0px solid blue;
+.wrapper>main>section>.join{
+    width:750px;
+    height:750px;
+    margin :auto;
+    margin-top: 50px;
+    
+    
+    
+    padding : 60px 68px 40px;
     border-radius: 10px;
-    margin:auto;
-    margin-top: 100px;
+    color: rgb(7, 7, 82);
+    background-color: rgb(255, 255, 255,0.7);
     
    
 }
 
-.wrapper>main>article>.join>h1{
+.wrapper>main>section>.join>h1{
     text-align: center;
     font-size: 2.7rem;
 }
 
-.wrapper>main>article>.join>.title-box{
+.wrapper>main>section>.join>.title-box{
     text-align: center;
 }
 
-.wrapper>main>article>.join>.title-box>h2{}
-.wrapper>main>article>.join>.title-box>p{}
+.wrapper>main>section>.join>.title-box>h2{}
+.wrapper>main>section>.join>.title-box>p{}
 
-.wrapper>main>article>.join>.input-form{}
+.wrapper>main>section>.join>.input-form{}
 
-.wrapper>main>article>.join>.input-form>.title{}
+.wrapper>main>section>.join>.input-form>.title{}
 
-.wrapper>main>article>.join>.input-form>.line-box{
+.wrapper>main>section>.join>.input-form>.line-box{
     
 }
-.wrapper>main>article>.join>.input-form>.line-box>ul{
+.wrapper>main>section>.join>.input-form>.line-box>ul{
     background-color: gray;
     color:aliceblue;
     padding: 20px;
@@ -307,57 +308,55 @@ a {
     display: flex;
     justify-content: flex;
     border-radius: 10px;
-    margin: 50px;
+    margin-top: 5px;
     
 }
 
-.wrapper>main>article>.join>.input-form>.line-box>ul>li{
+.wrapper>main>section>.join>.input-form>.line-box>ul>li{
     margin:auto 0;
 
     
     
 }
 
-.wrapper>main>article>.join>.input-form>.line-box>ul>li>strong{
+.wrapper>main>section>.join>.input-form>.line-box>ul>li>strong{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     z-index: 4;
 }
 
-.wrapper>main>article>.join>.input-form>.line-box>ul>li>span{
+.wrapper>main>section>.join>.input-form>.line-box>ul>li>span{
     display: flex;
     align-items: center;
     justify-content: flex-start;
     z-index: 4;
 }
 
-.wrapper>main>article>.join>.input-form>.info-text{
+.wrapper>main>section>.join>.input-form>.info-text{
     display:flex;
     text-align: left;
     margin: 50px;
 }
 
-.wrapper>main>article>.join>.input-form>.info-text>span:nth-child(1){
+.wrapper>main>section>.join>.input-form>.info-text>span:nth-child(1){
     font-size: 80%;
 }
-.wrapper>main>article>.join>.input-form>.info-text>span:nth-child(2){}
+.wrapper>main>section>.join>.input-form>.info-text>span:nth-child(2){}
 
-.wrapper>main>article>.join>.input-form>.btn{
+.wrapper>main>section>.join>.input-form>.btn{
     display: flex;
     justify-content: space-between;
     text-align: center;
     margin: auto;
-    width: 800px;
+    width: 100%;
     height: 100px;
     border-radius: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 30px;
+
     
 }
-.wrapper>main>article>.join>.input-form>.btn>.btn1a{
-    width: 350px;
+.wrapper>main>section>.join>.input-form>.btn>.btn1a{
+    width: 300px;
     background-color: rgba(18, 205, 252, 0.5);
     font-size :1rem;
     border-radius: 10px;
@@ -368,15 +367,15 @@ a {
 
 }
 
-.wrapper>main>article>.join>.input-form>.btn>.btn1a{
+.wrapper>main>section>.join>.input-form>.btn>.btn1a{
     
 }
-.wrapper>main>article>.join>.input-form>.btn>.btn1a>span{
+.wrapper>main>section>.join>.input-form>.btn>.btn1a>span{
     
 }
-.wrapper>main>article>.join>.input-form>.btn>.btn2a{
+.wrapper>main>section>.join>.input-form>.btn>.btn2a{
 
-    width: 350px;
+    width: 300px;
     background-color: rgba(0, 38, 255, 0.5);
     font-size :1rem;
     border-radius: 10px;
@@ -385,17 +384,50 @@ a {
     align-items: center;
 }
 
-.wrapper>main>article>.join>.input-form>.btn>.btn2a{
+.wrapper>main>section>.join>.input-form>.btn>.btn2a{
 }
-.wrapper>main>article>.join>.input-form>.btn>.btn1a>span{}
+.wrapper>main>section>.join>.input-form>.btn>.btn1a>span{}
 
 
 
 
 
 
-/* footer */
-.wrapper>footer{
-    height : 300px;
+/* 푸터 */
+footer {
+    width: 100%;
+    background-color: #ececec;;
+    padding: 3rem 0 3rem 0;
 }
-
+.footer-in{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.footerlogo{
+    margin-bottom: 2rem;
+}
+.footer-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.footer-left>p{
+    font-family: 'PreM';
+    font-size: 15px;
+    margin-bottom: 1rem;
+}
+.footer-left>span{
+    display: block;
+    font-family: 'PreSB';
+    font-size: 13px;
+    color: #a8a8a8;
+}
+.footer-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 18%;
+}
+.footer-right>img{
+    cursor:pointer;
+}
