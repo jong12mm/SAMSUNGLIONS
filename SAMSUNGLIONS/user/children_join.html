@@ -83,7 +83,7 @@
                     </ul>
                     <ul class="rightmenu">
                         <li><a href="/user/login.html">로그인</a></li>
-                        <li>|</li>
+                         <li>|</li>
                         <li><a href="/user/join_start.html">회원가입</a></li>
                     </ul>
                 </nav>
@@ -93,26 +93,27 @@
         <main>
             <section>
                 <div class="children_join">
+                    <div class="join" > 
+                        <h4>어린이 회원가입</h4> 
+                    </div>
+                    <br>
                         
                     <div class="join-block">
-                        <div class="join" > 
-                            <h4>어린이 회원가입</h4> 
-                        </div>
                         <div>
                             <label for=""  class="form-label text-label">아이디</label>
-                            <input type="text" placeholder="4~20자리/영문,숫자,특수문자'_'사용가능" class="form-control">
+                            <input type="text" placeholder="  4~20자리/영문,숫자,특수문자'_'사용가능" class="form-control">
                         </div>
                         <div>
                             <label for=""  class="form-label text-label">비밀번호</label>
-                            <input type="text" placeholder="8~16자리/영문 대소문자,숫자,특수문자 조합" class="form-control">
+                            <input type="text" placeholder="  8~16자리/영문 대소문자,숫자,특수문자 조합" class="form-control">
                         </div>
                         <div>
                             <label for=""  class="form-label text-label">이름</label>
-                            <input type="text" placeholder="이름 입력" class="form-control">
+                            <input type="text" placeholder="  이름 입력" class="form-control">
                         </div>
                         <div>
                             <label for=""  class="form-label text-label">생년월일</label>
-                            <input type="text" placeholder="YYYYMMDD" class="form-control">
+                            <input type="text" placeholder="  YYYYMMDD" class="form-control">
                         </div>
                         <div class="gender">
                             <label for="" >성별</label>
@@ -123,14 +124,14 @@
                         </div>
                         <div>
                             <label for=""  class="form-label text-label">보호자 휴대폰번호</label>
-                            <input type="text" placeholder=" '-' 빼고 숫자만 입력" class="form-control">
+                            <input type="text" placeholder="  '-' 빼고 숫자만 입력" class="form-control">
                         </div>
                         <div>
                             <label for=""  class="form-label text-label">이메일</label>
-                            <input type="text" placeholder="example@example.com" class="form-control">
+                            <input type="text" placeholder="  example@example.com" class="form-control">
                         </div>
                         <div class="clause">
-                            <label for=""  class="form-label text-label">약관</label>
+                            <label for=""  class="form-label text-label clause">약관</label>
                             <div>
                                 
                                 <hr>
@@ -184,6 +185,19 @@
             </div>
         </footer>
         <!--//footer-->
+        <script>
+            /*header*/
+            document.querySelectorAll('.menu > li').forEach(menuItem => {
+                menuItem.addEventListener('mouseenter', () => {
+                    document.querySelector('.hideback').classList.add('show-hideback');
+                });
+    
+                menuItem.addEventListener('mouseleave', () => {
+                    document.querySelector('.hideback').classList.remove('show-hideback');
+                });
+            });
+            /*//header*/
+        </script>
     </div>
 
 </body>

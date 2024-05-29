@@ -87,7 +87,7 @@ a {
     border: 0px solid;
     height: 100px;
     /* justify-content: space-between; */
-    position: fixed;
+    position: relative;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -235,8 +235,6 @@ a {
 }
 
 
-
-
 /* main */
 .wrapper>main{
     /* width: auto;
@@ -256,77 +254,127 @@ a {
 
 
     background-size: auto 100%;
-    /* display: flex;
+    display: flex;
     justify-content:space-between;
     align-items: center;
-     */
+    
 }
 
 .wrapper>main>section{
-    width: 950px;
     margin: auto;
-    
-    display: flex;
-    justify-content: center;
-    text-align: left;
    
 }
-.wrapper>main>section>.children_join{}
-.wrapper>main>section>.children_join>.join-block{
+.wrapper>main>section>.adult_join{
+    width:800px;
+    height:850px;
+    margin :auto;
+    
+    
+    
+    padding : 60px 68px 40px;
+    border-radius: 10px;
+    color: rgb(7, 7, 82);
+    background-color: rgb(255, 255, 255,0.7);
+}
+.wrapper>main>section>.adult_join>.join-block{
     padding: 10px;
 }
-.wrapper>main>section>.children_join>.join-block>div input::placeholder{
-    transition: .1s;
+.wrapper>main>section>.adult_join>.join-block>div{
+    margin-left: 40px;
+    margin-bottom: 10px;
 }
-.wrapper>main>section>.children_join>.join-block>div input:focus::placeholder{
-    position:absolute;
+.wrapper>main>section>.adult_join>.join-block>div input::placeholder{
+    transition: .1s;
+    outline : 0;
+    
+}
+.wrapper>main>section>.adult_join>.join-block>div input:focus::placeholder{
+    opacity: 0;
     left:15px;
     top:5px;
     font-size:0.6rem;
+    
+    
 
 }
-.wrapper>main>section>.children_join>.join-block>h2{}
-.wrapper>main>section>.children_join>.join-block>.join{
+.wrapper>main>section>.adult_join>.join-block>h2{}
+.wrapper>main>section>.adult_join>.join{
     text-align:center;
+    font-size: 2rem;
 }
-.wrapper>main>section>.children_join>.join-block>.info{
+.wrapper>main>section>.adult_join>.join-block>.info{
     display:flex;
     justify-content: center;
     align-items: center;
     border: 1px solid;
     
 }
-.wrapper>main>section>.children_join>.join-block>.id{
-    display: flex;
-}
-.wrapper>main>section>.children_join>.join-block>div>.form-label{
+.wrapper>main>section>.adult_join>.join-block>div>.form-label{
     margin: 0;
-    margin-top: 2;
+    display: inline-block;
+    width: 160px;
+    font-family: PreR;
 }
-.wrapper>main>section>.children_join>.join-block>.clause{
-    border : 1px solid lightgray;
+.wrapper>main>section>.adult_join>.join-block>div>.form-control{
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #81ecec;
+}
+.wrapper>main>section>.adult_join>.join-block>.clause{
+    border : 1px solid #81ecec;
     border-radius:5px;
     padding:10px;
-    margin-top:10px;
-
-}
-.wrapper>main>section>.children_join>.join-block>div>.btn{
-    width: 100%;
-    margin-top: 4;
-
-}
-.wrapper>main>section>.children_join>.join-block>.birthday{}
-.wrapper>main>section>.children_join>.join-block>.gender>.radio{
-    display: flex;
-
-}
-.wrapper>main>section>.children_join>.join-block>.gender>.radio>input{
+    margin-top:30px;
     
 }
-.wrapper>main>section>.children_join>.join-block>.email{}
-.wrapper>main>section>.children_join>.join-block>.phone{}
-.wrapper>main>section>.children_join>.join-block>label{}
-.wrapper>main>section>.children_join>.join-block>.btn{}
+.wrapper>main>section>.adult_join>.join-block>.clause>div>div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.wrapper>main>section>.adult_join>.join-block>.clause>.clause{
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.wrapper>main>section>.adult_join>.join-block>div>.btn{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width:80%;
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    justify-content: center;
+    border-radius: 5px;
+}
+.wrapper>main>section>.adult_join>.join-block>.birthday{}
+.wrapper>main>section>.adult_join>.join-block>.gender>.radio{
+    display: flex;
+    margin-left : 10px;
+    
+    
+}
+.wrapper>main>section>.adult_join>.join-block>.gender{
+    display:flex;
+
+
+    
+}
+.wrapper>main>section>.adult_join>.join-block>.email{}
+.wrapper>main>section>.adult_join>.join-block>.phone{}
+.wrapper>main>section>.adult_join>.join-block>label{}
+.wrapper>main>section>.adult_join>.join-block>.btn{}
 
 
 

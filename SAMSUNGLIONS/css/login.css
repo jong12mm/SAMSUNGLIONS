@@ -326,11 +326,14 @@ a {
     background-color: rgb(81, 211, 243);
     border-radius: 5px;
     border: 0px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
     
 
 }
 .wrapper>main>section>.login>.login-body>form>div>button>a{
-    color:rgb(2, 0, 128);
+    color: white;
     font-size: 1rem;
     
 }
