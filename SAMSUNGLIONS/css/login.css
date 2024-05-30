@@ -93,6 +93,7 @@ a {
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
+    margin-top: -100px;
     
 }
 
@@ -256,10 +257,14 @@ a {
     display: flex;
     justify-content:space-between;
     align-items: center;
+    margin-top: 100px;
+    
+    
     
 }
 .wrapper>main>section{
     margin: auto;
+    
    
 }
 
@@ -268,6 +273,7 @@ a {
     width:450px;
     height:660px;
     margin :auto;
+    
     
     
     
@@ -321,7 +327,9 @@ a {
     font-size:0.6rem;
 
 }
-.wrapper>main>section>.login>.login-body>form>div>button{
+.wrapper>main>section>.login>.login-body>form>div>a{
+    display: inline-block;
+    position:relative;
     width: 100%;
     background-color: rgb(81, 211, 243);
     border-radius: 5px;
@@ -329,12 +337,20 @@ a {
     background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
     background-position: left;
     background-size: 200%;
-    
-
-}
-.wrapper>main>section>.login>.login-body>form>div>button>a{
     color: white;
     font-size: 1rem;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+}
+.wrapper>main>section>.login>.login-body>form>div>a>span{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform : translate(-50%, -50%);
+}
+.wrapper>main>section>.login>.login-body>form>div>button>a{
+
     
 }
 

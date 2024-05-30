@@ -86,7 +86,7 @@ a {
 }
 
 /* 헤더 */
-.wrapper>header {
+.wrapper>.navbar {
     width: 100%;
     border: 0px solid;
     height: 100px;
@@ -96,7 +96,12 @@ a {
     display: flex;
     align-items: center;
     z-index: 999;
-    background: rgb(0 102 179 / 90%);
+    background-color: rgb(0 102 179 / 90%);
+    margin-top: -100px;
+    transition: background-color 0.3s ease;
+}
+.navbar.navbar-opaque {
+    background-color: rgba(0, 0, 0, 1); /* 스크롤 이후에는 완전히 불투명하게 */
 }
 
 .wrapper>header>.header-left {
@@ -243,6 +248,7 @@ a {
 /*메인*/
 .main {
     width: 100%;
+    margin-top: 100px;
 }
 
 .m_visual {
@@ -255,7 +261,11 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    border: 3px solid black;
+    /* padding-bottom: 56.25%; */
+    /* height: 0; */
 }
+
 .main::after {
     content:'';
     position: absolute;
