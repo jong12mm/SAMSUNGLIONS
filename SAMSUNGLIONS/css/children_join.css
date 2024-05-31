@@ -93,13 +93,13 @@ a {
     border: 0px solid;
     height: 100px;
     /* justify-content: space-between; */
-    position: relative;
+    position: fixed;
     margin: 0 auto;
     display: flex;
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
-
+    margin-top: -100px;
 }
 
 .wrapper>header>.header-left {
@@ -263,7 +263,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    margin-top: 100px;
 }
 
 .wrapper>main>section {
@@ -383,17 +383,7 @@ a {
     transform: translate(-50%, -50%);
 }
 
-.wrapper>main>section>.children_join>.join-block>.input[type='date']::before {
-    content: attr(data-placeholder);
-    width: 100%;
-}
-
-.wrapper>main>section>.children_join>.join-block>.input[type='date']:focus::before,
-input[type='date']:valid::before {
-    display: none;
-}
-
-    {}
+.wrapper>main>section>.children_join>.join-block>.birthday {}
 
 .wrapper>main>section>.children_join>.join-block>.gender>.radio {
     display: flex;
