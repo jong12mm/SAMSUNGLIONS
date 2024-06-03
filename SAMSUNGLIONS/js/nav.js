@@ -15,12 +15,3 @@ window.addEventListener('scroll', function () {
     }
 });
 
-document.querySelectorAll('.menu > li').forEach(menuItem => {
-    menuItem.addEventListener('mouseenter', () => {
-        document.querySelector('.hideback').classList.add('show-hideback');
-    });
-
-    menuItem.addEventListener('mouseleave', () => {
-        document.querySelector('.hideback').classList.remove('show-hideback');
-    });
-});
