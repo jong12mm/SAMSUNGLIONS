@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 @font-face {
     font-family: 'PreT';
     font-weight: 100;
@@ -9,6 +10,7 @@
         url('../font/Pretendard-Thin.woff2') format('woff2'),
         url('../font/Pretendard-Thin.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'Pre';
     font-weight: 300;
@@ -19,6 +21,7 @@
         url('../font/Pretendard-Light.woff2') format('woff2'),
         url('../font/Pretendard-Light.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreR';
     font-weight: 400;
@@ -29,6 +32,7 @@
         url('../font/Pretendard-Regular.woff2') format('woff2'),
         url('../font/Pretendard-Regular.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreM';
     font-weight: 600;
@@ -39,6 +43,7 @@
         url('../font/Pretendard-Medium.woff2') format('woff2'),
         url('../font/Pretendard-Medium.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreSB';
     font-weight: 700;
@@ -49,6 +54,7 @@
         url('../font/Pretendard-SemiBold.woff2') format('woff2'),
         url('../font/Pretendard-SemiBold.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreEB';
     font-weight: 900;
@@ -93,8 +99,8 @@ a {
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
-    /* margin-top: -100px; */
-    
+    margin-top: -100px;
+
 }
 
 .wrapper>header>.header-left>a {
@@ -110,8 +116,8 @@ a {
     display: flex;
     align-items: center;
     /* padding-right: 80px; */
-    height:100px;
-    
+    height: 100px;
+
 }
 
 .wrapper>header>.header-right>nav>.menu {
@@ -121,8 +127,8 @@ a {
     align-items: center;
     flex-wrap: wrap;
     border: 0;
-    margin :0;
-    padding-left : 2rem;
+    margin: 0;
+    padding-left: 2rem;
 }
 
 .wrapper>header>.header-right>nav>.menu>li {
@@ -142,7 +148,7 @@ a {
     color: #fff;
     font-family: 'PreEB';
     transition: all 0.2s linear;
-    
+
 }
 
 .wrapper>header>.header-right>nav>.menu>li>a:hover {
@@ -196,8 +202,8 @@ a {
     border: 0;
     height: auto;
     padding-left: 450px;
-    margin:0;
-    
+    margin: 0;
+
 }
 
 .wrapper>header>.header-right>nav>.rightmenu>li {
@@ -236,190 +242,157 @@ a {
 }
 
 
-/* main */
-
-/* section - nav */
-
-.wrapper>main{
-    scroll-behavior: smooth;   
-    /* height : 700px; */
-}
-.wrapper>main>section{
-    
-}
-.wrapper>main>section>div{
-    align-items: center;
+.wrapper>main {
+    /* width: auto;
+    height : 1000px;
+    background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 100%, 100% 100%; 
+    background-position:0px 0px ,0px 0px; */
+    margin: 0;
+    padding: 0;
     height: 100vh;
-    
-    
-    
-}
-/* section-main */
+    background: url('/img/오승환.jpg') left top no-repeat,
+        url('/img/구자욱.jpg') right top no-repeat,
+        url('/img/backgroundex1.jpg');
 
-.wrapper>main>section>.section-main1{
-    height: 100vh;
+    background-color: rgb(255, 255, 255, 0.7);
 
-}
-.section-main1 {
+
+    background-size: auto 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%; 
-}
-
-.section-main1 img {
-    max-width: 100%;
-    height: auto; 
-}
-
-.section-main1 h1 {
-    margin: 0; 
-    font-size: 2em;
-}
-
-.section-main1 h2 {
-    margin: 0; 
-    font-size: 5rem;
-}
-
-
-.image-wrapper {
-    display: flex;
-    /* flex-direction: column; */
     justify-content: space-between;
     align-items: center;
-    /* width: 1280px; */
-}
-.text-wrapper{
-    width: 800px;
-    justify-content: center;
-    /* align-items: center; */
-    display: block;
-}
-.text-wrapper>span{
-    display: flex;
-    justify-content: center;
-    font-size: 3rem;
-}
-.description {
-    /* display: flex; */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* text-align: left; */
-}
-.description:nth-child(1){
-    /* text-align: left; */
-}
-.section-main2 {
-    height: 100vh;
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 100px;
+
+
+
 }
 
-.content-wrapper {
+.wrapper>main>section {
+    margin: auto;
+
+
+}
+
+
+.wrapper>main>section>.book-title {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 가로 좌측 정렬 */
-    justify-content: center; /* 세로 중앙 정렬 */
-    height: 100%; /* 부모 요소인 section의 높이를 상속받기 위해 */
-    padding-left: 20px; /* 원하는 간격으로 왼쪽 여백 추가 */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-
-.image-wrapper img {
-    width: 400px;
-    border-radius: 15px;
+.wrapper>main>section>.book-title>h2 {
+    margin: 0;
+    font-size: 2rem;
 }
 
-.text-wrapper {
-    margin-top: 20px;
+.wrapper>main>section>.book-title>.long {
+    border: 3px solid blue;
+    width: 60px;
+
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
-
-.section-main2 {
-    height: 100vh;
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-}
-
-
-.wrapper>main>section>.section-main3{
-    
+.book-text{
     display: flex;
     align-items: center;
-
-
+    justify-content: center;
 }
-.wrapper>main>section>.section-main3{
-
-    background-color: rgb(69, 128, 253);
-    font-size: 20px;
-    width: 100%;
-    
-    
-    
-}
-.wrapper>main>section>.section-main3>div{
-    margin-left: 250px;
-    margin-right:90px;
-}
-.wrapper>main>section>.section-main3>img{
-
+.book-btn{
+    /* border: 2px solid black; */
     width: 500px;
-    margin-left: 120px;
-    border-radius: 15px;
-
-}
-
-
-
-
-
-/* footer */
-footer {
-
-
-
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
     
+}
+.btn{
+       
     width: 100%;
-    background-color: #ececec;;
-    padding: 3rem 0 3rem 0;
+    background-color: rgba(118, 138, 255);
+    border: 5px solid rgba(0, 38, 255);
+    font-size :1rem;
+    height: 300px;
+    
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    
+    
+    
+    border-radius: 50px;
+}
+.btn-logo{
+    margin-left: 50px;
+}
+.btn-text{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-text>span{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.btn-text>div{
+    border: 1px solid blue;
+    width: 100px;
+}
+.btn:hover{
+    background-color: rgb(144, 228, 253);
     
 }
-.footer-in{
+
+/* 푸터 */
+footer {
+    width: 100%;
+    background-color: #ececec;
+    ;
+    padding: 3rem 0 3rem 0;
+}
+
+.footer-in {
     max-width: 1200px;
     margin: 0 auto;
 }
-.footerlogo{
+
+.footerlogo {
     margin-bottom: 2rem;
 }
-.footer-con{
+
+.footer-con {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
-.footer-left>p{
+
+.footer-left>p {
     font-family: 'PreM';
     font-size: 15px;
     margin-bottom: 1rem;
 }
-.footer-left>span{
+
+.footer-left>span {
     display: block;
     font-family: 'PreSB';
     font-size: 13px;
     color: #a8a8a8;
 }
-.footer-right{
+
+.footer-right {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 18%;
 }
-.footer-right>img{
-    cursor:pointer;
+
+.footer-right>img {
+    cursor: pointer;
 }
