@@ -245,8 +245,10 @@ a {
     /* height : 700px; */
 }
 
-.wrapper>main>section{
+.wrapper>main>section>div{
     align-items: center;
+    height: 100vh;
+    
     
     
 }
@@ -275,72 +277,75 @@ a {
 
 /* section-main */
 
-.wrapper>main>section>.section-main{
-    margin-left: -30px;
+.wrapper>main>section>.section-main1{
+    height: 100vh;
 }
-.wrapper>main>section>.section-main>h1{
-
-    font-size: 35px;
-}
-.wrapper>main>section>.section-main>.section-main1{
+.wrapper>main>section>.section-main1>div{
     margin-top: 100px;
     display: block;
 
 }
-.wrapper>main>section>.section-main>.section-main1>img{
+.wrapper>main>section>.section-main1>div>img{
 
     margin-top: 160px;
     margin-left: 750px;
 
 }
-.wrapper>main>section>.section-main>.section-main1>h1{
+.wrapper>main>section>.section-main1>div>h1{
     margin-left: 550px;
     margin-top: 50px;
     font-size: 30px;
 
 }
-.wrapper>main>section>.section-main>.section-main1>h2{
+.wrapper>main>section>.section-main1>div>h2{
 
     margin-left: 730px;
     font-size: 70px;
 
 }
-.wrapper>main>section>.section-main>div{
-
+.wrapper>main>section>.section-main2{
+    height: 100vh;
     display: flex;
     align-items: center;
 
 
 }
-.wrapper>main>section>.section-main>.section-main2{
+.wrapper>main>section>.section-main2{
 
     background-color: rgb(146, 176, 240);
     font-size: 20px;
-    width: 120%;
-    height: 400px;
-    margin-top: 320px;
+    width: 100%;
+    
+    
 
 }
-.wrapper>main>section>.section-main>.section-main2>img{
+.wrapper>main>section>.section-main2>img{
 
     width: 500px;
     margin-right:90px;
     border-radius: 15px;
 }
-.wrapper>main>section>.section-main>.section-main3{
+.wrapper>main>section>.section-main3{
+    
+    display: flex;
+    align-items: center;
+
+
+}
+.wrapper>main>section>.section-main3{
 
     background-color: rgb(69, 128, 253);
     font-size: 20px;
-    width: 120%;
-    height: 400px;
-    margin-top: 400px;
+    width: 100%;
+    
+    
     
 }
-.wrapper>main>section>.section-main>.section-main3>div{
+.wrapper>main>section>.section-main3>div{
     margin-left: 250px;
     margin-right:90px;
 }
-.wrapper>main>section>.section-main>.section-main3>img{
+.wrapper>main>section>.section-main3>img{
 
     width: 500px;
     margin-left: 120px;
@@ -357,7 +362,7 @@ footer {
 
 
 
-    margin-top: 200px;
+    
     width: 100%;
     background-color: #ececec;;
     padding: 3rem 0 3rem 0;
