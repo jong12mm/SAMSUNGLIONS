@@ -253,7 +253,9 @@ a {
     margin: 0;
     padding: 0;
     height: 100vh;
-
+    background: url('/img/오승환.jpg') left top no-repeat,
+                    url('/img/구자욱.jpg') right top no-repeat,
+                    url('/img/backgroundex1.jpg');
 
     background-color: rgb(255, 255, 255,0.7);
     
