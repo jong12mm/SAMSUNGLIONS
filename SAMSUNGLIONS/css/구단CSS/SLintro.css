@@ -1,64 +1,71 @@
 @charset "utf-8";
+
 @font-face {
     font-family: 'PreT';
     font-weight: 100;
     font-style: normal;
-    src: url('../font/Pretendard-Thin.eot');
+    src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('../font/Pretendard-Thin.woff') format('woff'),
-        url('../font/Pretendard-Thin.woff2') format('woff2'),
-        url('../font/Pretendard-Thin.otf') format('opentype');
+        url('/font/Pretendard-Thin.woff') format('woff'),
+        url('/font/Pretendard-Thin.woff2') format('woff2'),
+        url('/font/Pretendard-Thin.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'Pre';
     font-weight: 300;
     font-style: normal;
-    src: url('../font/Pretendard-Light.eot');
+    src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('../font/Pretendard-Light.woff') format('woff'),
-        url('../font/Pretendard-Light.woff2') format('woff2'),
-        url('../font/Pretendard-Light.otf') format('opentype');
+        url('/font/Pretendard-Light.woff') format('woff'),
+        url('/font/Pretendard-Light.woff2') format('woff2'),
+        url('/font/Pretendard-Light.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreR';
     font-weight: 400;
     font-style: normal;
-    src: url('../font/Pretendard-Regular.eot');
+    src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('../font/Pretendard-Regular.woff') format('woff'),
-        url('../font/Pretendard-Regular.woff2') format('woff2'),
-        url('../font/Pretendard-Regular.otf') format('opentype');
+        url('/font/Pretendard-Regular.woff') format('woff'),
+        url('/font/Pretendard-Regular.woff2') format('woff2'),
+        url('/font/Pretendard-Regular.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreM';
     font-weight: 600;
     font-style: normal;
-    src: url('../font/Pretendard-Medium.eot');
+    src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('../font/Pretendard-Medium.woff') format('woff'),
-        url('../font/Pretendard-Medium.woff2') format('woff2'),
-        url('../font/Pretendard-Medium.otf') format('opentype');
+        url('/font/Pretendard-Medium.woff') format('woff'),
+        url('/font/Pretendard-Medium.woff2') format('woff2'),
+        url('/font/Pretendard-Medium.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreSB';
     font-weight: 700;
     font-style: normal;
-    src: url('../font/Pretendard-SemiBold.eot');
+    src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('../font/Pretendard-SemiBold.woff') format('woff'),
-        url('../font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('../font/Pretendard-SemiBold.otf') format('opentype');
+        url('/font/Pretendard-SemiBold.woff') format('woff'),
+        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+        url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreEB';
     font-weight: 900;
     font-style: normal;
-    src: url('../font/Pretendard-ExtraBold.eot');
+    src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('../font/Pretendard-ExtraBold.woff') format('woff'),
-        url('../font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('../font/Pretendard-ExtraBold.otf') format('opentype');
+        url('/font/Pretendard-ExtraBold.woff') format('woff'),
+        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+        url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
+
 
 * {
     margin: 0;
@@ -93,7 +100,7 @@ a {
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
-    margin-top: -100px;
+    /* margin-top: -100px; */
     
 }
 
@@ -241,106 +248,134 @@ a {
 /* section - nav */
 
 .wrapper>main{
-    
+    scroll-behavior: smooth;   
     /* height : 700px; */
 }
-
 .wrapper>main>section{
+    
+}
+.wrapper>main>section>div{
     align-items: center;
+    height: 100vh;
     
     
-}
-.wrapper>main>section>.section-nav{
-    border-bottom: 2px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.wrapper>main>section>.section-nav>li{
     
-    margin-right: 50px;
-    
-    justify-content: center;
-    align-items: center;
 }
-.wrapper>main>section>.section-nav>li>a{
-
-    font-size: 25px;
-}
-.wrapper>main>section>.section-nav>li>a:hover{
-
-    color: red;
-}
-
 /* section-main */
 
-.wrapper>main>section>.section-main{
-    margin-left: -30px;
-}
-.wrapper>main>section>.section-main>h1{
+.wrapper>main>section>.section-main1{
+    height: 100vh;
 
-    font-size: 35px;
 }
-.wrapper>main>section>.section-main>.section-main1{
-    margin-top: 100px;
+.section-main1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%; 
+}
+
+.section-main1 img {
+    max-width: 100%;
+    height: auto; 
+}
+
+.section-main1 h1 {
+    margin: 0; 
+    font-size: 2em;
+}
+
+.section-main1 h2 {
+    margin: 0; 
+    font-size: 5rem;
+}
+
+
+.image-wrapper {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
+    /* width: 1280px; */
+}
+.text-wrapper{
+    width: 800px;
+    justify-content: center;
+    /* align-items: center; */
     display: block;
-
 }
-.wrapper>main>section>.section-main>.section-main1>img{
-
-    margin-top: 160px;
-    margin-left: 750px;
-
+.text-wrapper>span{
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
 }
-.wrapper>main>section>.section-main>.section-main1>h1{
-    margin-left: 550px;
-    margin-top: 50px;
-    font-size: 30px;
-
+.description {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* text-align: left; */
 }
-.wrapper>main>section>.section-main>.section-main1>h2{
-
-    margin-left: 730px;
-    font-size: 70px;
-
+.description:nth-child(1){
+    /* text-align: left; */
 }
-.wrapper>main>section>.section-main>div{
+.section-main2 {
+    height: 100vh;
+    background-color: rgb(146, 176, 240);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 가로 좌측 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    height: 100%; /* 부모 요소인 section의 높이를 상속받기 위해 */
+    padding-left: 20px; /* 원하는 간격으로 왼쪽 여백 추가 */
+}
+
+
+.image-wrapper img {
+    width: 400px;
+    border-radius: 15px;
+}
+
+.text-wrapper {
+    margin-top: 20px;
+}
+
+.section-main2 {
+    height: 100vh;
+    background-color: rgb(146, 176, 240);
+    font-size: 20px;
+}
+
+
+.wrapper>main>section>.section-main3{
+    
     display: flex;
     align-items: center;
 
 
 }
-.wrapper>main>section>.section-main>.section-main2{
-
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-    width: 120%;
-    height: 400px;
-    margin-top: 320px;
-
-}
-.wrapper>main>section>.section-main>.section-main2>img{
-
-    width: 500px;
-    margin-right:90px;
-    border-radius: 15px;
-}
-.wrapper>main>section>.section-main>.section-main3{
+.wrapper>main>section>.section-main3{
 
     background-color: rgb(69, 128, 253);
     font-size: 20px;
-    width: 120%;
-    height: 400px;
-    margin-top: 400px;
+    width: 100%;
+    
+    
     
 }
-.wrapper>main>section>.section-main>.section-main3>div{
+.wrapper>main>section>.section-main3>div{
     margin-left: 250px;
     margin-right:90px;
 }
-.wrapper>main>section>.section-main>.section-main3>img{
+.wrapper>main>section>.section-main3>img{
 
     width: 500px;
     margin-left: 120px;
@@ -357,7 +392,7 @@ footer {
 
 
 
-    margin-top: 200px;
+    
     width: 100%;
     background-color: #ececec;;
     padding: 3rem 0 3rem 0;
