@@ -469,8 +469,8 @@ a {
 .player{
     margin-bottom: 10rem;
     overflow: hidden;
-    max-width: 1400px;
-    margin-left: 170px;
+    max-width: 1600px;
+    margin-left: 160px;
 }
 .player-in{
     padding-top: 100px;
@@ -512,7 +512,7 @@ a {
     display: none;
 }
 .playerbox>img{
-    height: 65vh;
+    height: 70vh;
     padding: 0;
 }
 .playerbox:hover .overlay{
@@ -540,7 +540,7 @@ a {
     display: block;
 }
 .playerbox2>img{
-    height: 65vh;
+    height: 70vh;
     padding: 0;
 }
 @keyframes slidePlayer {
@@ -794,7 +794,7 @@ a {
 .gallery{
     width: 100%;
     background-color: #1e1e1e;
-    padding: 11.5rem 0 11.5rem 0;
+    padding: 14.2rem 0 14.2rem 0;
 }
 .gallery-in{
     max-width: 1200px;
