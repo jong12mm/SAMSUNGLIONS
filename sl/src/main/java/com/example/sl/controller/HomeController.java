@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Slf4j
 public class HomeController {
 
-    @GetMapping("/")
-    public String home() {
+    @GetMapping("/samsung")
+    public String samsung() {
         log.info("GET /");
         return "samsung";
     }

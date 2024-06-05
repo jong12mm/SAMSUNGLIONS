@@ -100,12 +100,12 @@ a {
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
-    /* margin-top: -100px; */
+    margin-top: -100px;
     
 }
 
 .wrapper>header>.header-left>a {
-    background: url(/img/logo.png) no-repeat 0 0;
+    background: url('/img/logo.png') no-repeat 0 0;
     display: block;
     width: 100px;
     height: 64px;
@@ -225,6 +225,7 @@ a {
     border: 0;
     border: 0px solid;
 }
+
 .hideback {
     position: absolute;
     top: 100px;
@@ -243,255 +244,95 @@ a {
 
 
 /* main */
+/* main - nav */
 
-/* section - nav */
-
-.wrapper>main{
-    scroll-behavior: smooth;   
-    /* height : 700px; */
-}
-.wrapper>main>section{
-    
-}
-.wrapper>main>section>div{
-    align-items: center;
-
+section{
+    background-image:url('https://i.namu.wiki/i/_vEBH38ZzkB3t8nbxGw-xpJ0qhILOkw2kKv98D6bYZO_toZDsTHjV60fgATuN6KDZaahiJnGMdQqCVjpsYV3orMIk9n9vrd8wYX8qYq6pdDY_76qX9HJsgTJdMyjmhXGzX6taDZ1MOivfiedZPKx2A.webp');
+    background-size: cover;
+    width: 1900px;
+    height: 1200px;
     margin-top: 100px;
-    
+
 }
-.wrapper>main>section>.section-nav{
+
+.section-nav{
+
+    
     border-bottom: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-.wrapper>main>section>.section-nav>li{
+.section-nav>li{
     
     margin-right: 50px;
     
     justify-content: center;
     align-items: center;
 }
-.wrapper>main>section>.section-nav>li>a{
+.section-nav>li>a{
 
     font-size: 25px;
 }
-.wrapper>main>section>.section-nav>li>a:hover{
+.section-nav>li>a:hover{
 
     color: red;
 }
-/* section {
-    height: 100vh;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em; */
-    
-   
-/* section-main */
+.section-main{
+}
 
+/* table CSS */
+.board_list_wrap{
+    
 
-/* .wrapper>main>section>.section-main{
-    margin-left: -30px;
-    
-} */
-.wrapper>main>section>.section-main1{
-    
-    display: block;
-    height: 100vh;
+    position: absolute;
+    width: 1300px;
+    height: 700px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 100px auto 0; /* 상단 마진 적용 */
+    padding: 50px;
+    margin-top: 250px;
+    margin-left: 300px;
+    border-radius: 30px;
     
 
 }
-.wrapper>main>section>.section-main1>div>img{
 
-    margin-top: 160px;
-    margin-left: 750px;
-
-}
-.wrapper>main>section>.section-main1>div>h1{
-    margin-left: 550px;
-    margin-top: 50px;
-    font-size: 30px;
-
-}
-.wrapper>main>section>.section-main1>div>h2{
-
-    margin-left: 730px;
-    font-size: 70px;
-
-}
-.wrapper>main>section>.section-main2{
-
-    height: 100vh;
+.board_list_wrap>.board_list{
     
     
+    width: 1200px;
+    height: 500px;
     
+    
+    border-top: 3px solid black;
 }
-/* section-main */
+.board_list_wrap>.board_list th ,.board_list td{
 
-.wrapper>main>section>.section-main1{
-    height: 100vh;
+    padding: 10px;
+    font-size: 14px;
+    
 
 }
-.section-main1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.board_list_wrap>.board_list td{
+
     text-align: center;
-    height: 100%; 
-}
 
-.section-main1 img {
-    max-width: 100%;
-    height: auto; 
 }
-
-.section-main1 h1 {
-    margin: 0; 
-    font-size: 2em;
+.board_list_wrap>.board_list tr {
+    border-bottom: 1px solid #ccc;
 }
-
-.section-main1 h2 {
-    margin: 0; 
-    font-size: 5rem;
-}
-
-
-.image-wrapper {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: space-between;
-    align-items: center;
-    /* width: 1280px; */
-}
-.text-wrapper{
-    width: 800px;
-    justify-content: center;
-    /* align-items: center; */
-    display: block;
-}
-.text-wrapper>span{
-    display: flex;
-    justify-content: center;
-    font-size: 3rem;
-}
-.description {
-    /* display: flex; */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* text-align: left; */
-}
-.description:nth-child(1){
-    /* text-align: left; */
-}
-.section-main2 {
-    height: 100vh;
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 가로 좌측 정렬 */
-    justify-content: center; /* 세로 중앙 정렬 */
-    height: 100%; /* 부모 요소인 section의 높이를 상속받기 위해 */
-    padding-left: 20px; /* 원하는 간격으로 왼쪽 여백 추가 */
-}
-
-
-.image-wrapper img {
-    width: 400px;
-    border-radius: 15px;
-}
-
-.text-wrapper {
-    margin-top: 20px;
-}
-
-.section-main2 {
-    height: 100vh;
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-}
-
-
-.wrapper>main>section>.section-main3{
+.board_list_wrap>.board_list tbody tr td:nth-child(2):hover {
     
-    display: flex;
-    align-items: center;
-    
-
+    text-decoration: underline;
 
 }
-
-.wrapper>main>section>.section-main2{
-
-    background-color: rgb(146, 176, 240);
-    font-size: 20px;
-    width: 120%;
-    height: 100vh;
-    
-
-}
-.wrapper>main>section>.section-main2>img{
-
-    width: 500px;
-    margin-right:90px;
-    border-radius: 15px;
-}
-.wrapper>main>section>.section-main3{
-
-    display: flex;
-    align-items: center;
-    
-
-
-}
-
-.wrapper>main>section>.section-main3{
-
-    background-color: rgb(69, 128, 253);
-    font-size: 20px;
-
-    width: 120%;
-    height: 100vh;
-
-    width: 100%;
-    
-
-    
-    
-}
-.wrapper>main>section>.section-main3>div{
-    margin-left: 250px;
-    margin-right:90px;
-}
-.wrapper>main>section>.section-main3>img{
-
-    width: 500px;
-    margin-left: 120px;
-    border-radius: 15px;
-
-}
-
-
 
 
 
 /* footer */
 footer {
-
-
-
-    
     width: 100%;
     background-color: #ececec;;
     padding: 3rem 0 3rem 0;
@@ -529,3 +370,4 @@ footer {
 .footer-right>img{
     cursor:pointer;
 }
+

@@ -66,7 +66,6 @@
         url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -81,7 +80,6 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
 /* header */
 .wrapper {
     position: relative;
@@ -100,12 +98,12 @@ a {
     align-items: center;
     z-index: 999;
     background: rgb(0 102 179 / 90%);
-    /* margin-top: -100px; */
+    margin-top: -100px;
     
 }
 
 .wrapper>header>.header-left>a {
-    background: url('../img/logo.png') no-repeat 0 0;
+    background: url('/img/logo.png') no-repeat 0 0;
     display: block;
     width: 100px;
     height: 64px;
@@ -243,280 +241,124 @@ a {
 }
 
 
+
 /* main */
-.section-main{
-
-    display: flex;
+/* main - nav */
+.wrapper>main{
     
-
-
-}
-.section-mid{
-
-background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20230418/pngtree-clouds-sky-blue-aesthetic-pastel-image_2403934.jpg');
-margin-top: 100px;
-margin-left: 400px;
-width: 1200px;
-background-size: 1200px;
-
+    /* height : 700px; */
 }
 
+.section-table{
 
-
-
-
-
-
-/* main-mid */
-
-/* Section 좌석 배치도랑 지도 */
-
-
-
-.main-section1{
-    background-color: rgb(255, 255, 255,0.7);
-    border-radius: 10px 10px 0px 0px;
     
-    display: flex;
-    width: 1098px;
-    
-    
-    
-}
-.main-section1>.main-left{
-    margin-top: 10px;
-    margin-left: 140px;
-    
-}
-.main-section1>.main-left>h1{
+    background-image: url('/img/slnewsbg.jpg');
 
-
-    margin-bottom: 60px;
-    margin-left: -20px;
-
-}
-.main-section1>.main-left>h3{
-
-    margin-top: -20px;
+    height: 1300px;
 }
 
 
 
-.main-section1>.main-left>img{
-    
-    border-radius: 15%;
-    width: 350px;
-    height: 350px;
 
-}
-.main-section1>.main-right{
-    display: flex;
 
-    margin-top: 150px;
-    margin-left: 80px;
-
-}
-.main-section1>.main-right>img{
-
-    border-radius: 15%;
-    width: 370px;
-    height: 370px;
-    margin-top: 15px;
-    
-
-}
-
-/* 오시는 길 */
 .main-section2 {
-
-    background-color: rgb(255, 255, 255,0.8);
-    width: 1200px;
-    
+    transition: height 0.3s ease; /* 높이 변화를 0.3초 동안 부드럽게 적용 */
 }
-.main-section2>h1{
-
-    margin-left: 130px;
-    margin-bottom: 30px;
+.wrapper>main>section{
+    align-items: center;
+    margin-top: 100px;
     
     
-
-}
-.section2-map{
-
-
-
-    margin-left: 150px;
 }
 
 
+.wrapper>main>section>.section-nav{
 
-.section2-top {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 15px;
-    background-color: rgb(0 102 179 / 90%);
-    color: black;
-    width: 850px;
-    height: 55px;
-}
-
-.section2-top>h1{
-    color: white;
-
-
-}
-
-.section2-bottom{
-    border: 1px solid;
-    /* display: none; */
-    border-radius: 15px;
-    width: 850px; 
-}
-
-.section2-bottom>ul{
-
-}
-
-.section2-bottom > ul > h3 {
-    color: red;
-}
-
-.section2-bottom.active{
-    display: block;
-}
-
-/* 아이콘 회전 */
-.section2-toggle-btn span.rotate-180 {
-    transform: rotate(180deg);
-    transition: transform 0.5s ease;
-}
-
-.section2-mid{
-
-    background-color: rgb(255, 255, 255,0.8);
-    width: 1200px;
-    height: 1150px;
-}
-.section2-mid2{
-
-    margin-left: 150px;
-    
-}
-
-.section2-mid2>h1{
-    
-    margin-left: -20px;
-    margin-bottom: 40px;
-    
-
-}
-
-
-/* section-mid-nav 부분 */
-
-.section-nav{
-    background-color: rgb(255, 255, 255,0.8);
-    border-bottom: 1px solid;
+    margin-top: 100px;
+    border-bottom: 2px solid;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
-}
-.section-nav>li{
 
-    margin-right: 60px;
+}
+.wrapper>main>section>.section-nav>li{
+    
+    margin-right: 50px;
     justify-content: center;
     align-items: center;
-
 }
-.section-nav>li>a{
+.wrapper>main>section>.section-nav>li>a{
 
-    font-size: 20px;
+    font-size: 25px;
 }
-.section-nav>li>a:hover{
-
-    color: red;
-}
-.section-nav>li>a:hover{
+.wrapper>main>section>.section-nav>li>a:hover{
 
     color: red;
 }
 
-
-
-
-.section-left{
-
-
-    background-image: url(https://blog.kakaocdn.net/dn/bdVbHo/btszcHtvOkW/DtFwuCm7otuaKbkxfvejyK/img.jpg);
-    background-size: 400px 865px;
-    position: fixed;
+/* table CSS */
+.board_list_wrap{
+    position: absolute;
+    background-color:rgba(255, 255, 255, 0.9);
+    margin-top: 300px;
+    margin-left: 220px;
+    padding: 50px;
+    width: 1500px;
+    border-radius: 15px;
+    height: 750px;
     
-    width: 400px;
-    height: 865px;
-    margin-top: 100px;
-    
-
-}
-.section-right{
-
-    background-image: url(https://blog.kakaocdn.net/dn/CpoZG/btszgntOiaM/KGnOqbJj6RcR8UzyW5VTJ0/img.jpg);
-    background-size: 400px 865px;
-
-    margin-left: 1500px;
-    position: fixed;
-    
-    width: 400px;
-    height: 200px;
-    height: 865px;
-    margin-top: 100px;
 
 
 }
+.board_list_wrap>.board_list{
 
-.section2-map{
-
-max-width: 900px;
+    width: 1400px;
+    height: 300px;
+    border-top: 2px solid navy;
 
 
 }
-.section-left{}
+.board_list_wrap>.board_list th ,.board_list td{
 
+    padding: 10px;
+    font-size: 14px;
+    
 
+}
+.board_list_wrap>.board_list td{
 
+    text-align: center;
 
+}
+.board_list_wrap>.board_list tr {
+    border-bottom: 1px solid #ccc;
+}
+.board_list_wrap>.board_list tbody tr td:nth-child(2):hover {
+    
+    text-decoration: underline;
 
+}
 /* footer */
 
-.footer-in{
+footer {
 
-    
-        
-        
-        width: 100%;
-        background-color: #ececec;
-        padding: 3rem 0;
-        max-width: 1100px;
-        /* 기존에 있던 margin: 0 auto;를 제거 */
+    width: 100%;
+    background-color: #ececec;;
+    padding: 3rem 0 3rem 0;
     
 }
+.footer-in{
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .footerlogo{
-    margin-bottom: 1.5rem;
-    margin-left: 80px;
+    margin-bottom: 2rem;
 }
 .footer-con{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
-.footer-left{
-
-
-
-    margin-left: 70px;
-}
-
-
 .footer-left>p{
     font-family: 'PreM';
     font-size: 15px;
@@ -533,12 +375,8 @@ max-width: 900px;
     justify-content: space-between;
     align-items: center;
     width: 18%;
-    margin-right: 60px;
-
 }
 .footer-right>img{
-    
     cursor:pointer;
 }
-
 

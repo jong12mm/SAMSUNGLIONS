@@ -218,7 +218,7 @@ a {
     font-size: 0.8rem;
     border: 0px solid;
     color:white;
-    
+
 }
 
 .wrapper>header>.header-right>nav>.rightmenu>li:nth-child(2) {
@@ -240,12 +240,12 @@ a {
     z-index: 1;
     display: none;
     transition: all 3s linear;
-    
+
 }
 
 .show-hideback {
     display: block;
-    
+
 }
 
 .section{
@@ -257,7 +257,7 @@ a {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
-    
+
 }
 /*메인*/
 .main {
@@ -278,8 +278,8 @@ a {
     border: 3px solid black;
     /* padding-bottom: 56.25%; */
     /* height: 0; */
-    
-    
+
+
 }
 
 .m_visual iframe {

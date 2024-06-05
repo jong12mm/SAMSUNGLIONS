@@ -270,7 +270,7 @@ a {
     margin: auto;
    
 }
-.wrapper>main>section>.adult_join{
+.wrapper>main>section>.children_join{
     width:800px;
     height:850px;
     margin :auto;
@@ -282,19 +282,19 @@ a {
     color: rgb(7, 7, 82);
     background-color: rgb(255, 255, 255,0.7);
 }
-.wrapper>main>section>.adult_join>.join-block{
+.wrapper>main>section>.children_join>.join-block{
     padding: 10px;
 }
-.wrapper>main>section>.adult_join>.join-block>div{
+.wrapper>main>section>.children_join>.join-block>div{
     margin-left: 40px;
     margin-bottom: 10px;
 }
-.wrapper>main>section>.adult_join>.join-block>div input::placeholder{
+.wrapper>main>section>.children_join>.join-block>div input::placeholder{
     transition: .1s;
     outline : 0;
     
 }
-.wrapper>main>section>.adult_join>.join-block>div input:focus::placeholder{
+.wrapper>main>section>.children_join>.join-block>div input:focus::placeholder{
     opacity: 0;
     left:15px;
     top:5px;
@@ -303,48 +303,48 @@ a {
     
 
 }
-.wrapper>main>section>.adult_join>.join-block>h2{}
-.wrapper>main>section>.adult_join>.join{
+.wrapper>main>section>.children_join>.join-block>h2{}
+.wrapper>main>section>.children_join>.join{
     text-align:center;
     font-size: 2rem;
 }
-.wrapper>main>section>.adult_join>.join-block>.info{
+.wrapper>main>section>.children_join>.join-block>.info{
     display:flex;
     justify-content: center;
     align-items: center;
     border: 1px solid;
     
 }
-.wrapper>main>section>.adult_join>.join-block>div>.form-label{
+.wrapper>main>section>.children_join>.join-block>div>.form-label{
     margin: 0;
     display: inline-block;
     width: 160px;
     font-family: PreR;
 }
-.wrapper>main>section>.adult_join>.join-block>div>.form-control{
+.wrapper>main>section>.children_join>.join-block>div>.form-control{
     width: 400px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #81ecec;
 }
-.wrapper>main>section>.adult_join>.join-block>.clause{
+.wrapper>main>section>.children_join>.join-block>.clause{
     border : 1px solid #81ecec;
     border-radius:5px;
     padding:10px;
     margin-top:30px;
     
 }
-.wrapper>main>section>.adult_join>.join-block>.clause>div>div{
+.wrapper>main>section>.children_join>.join-block>.clause>div>div{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.wrapper>main>section>.adult_join>.join-block>.clause>.clause{
+.wrapper>main>section>.children_join>.join-block>.clause>.clause{
     text-align: center;
     display: inline-block;
     width: 100%;
     margin-bottom: 10px;
 }
-.wrapper>main>section>.adult_join>.join-block>div>.btn{
+.wrapper>main>section>.children_join>.join-block>div>.btn{
     display: inline-block;
     position:relative;
     width: 100%;
@@ -361,31 +361,25 @@ a {
     align-items: center;
     margin-top: 30px;
 }
-.wrapper>main>section>.adult_join>.join-block>div>.btn>.btn_text{
+.wrapper>main>section>.children_join>.join-block>div>.btn>.btn_text{
     position:absolute;
     top: 50%;
     left: 50%;
     transform : translate(-50%, -50%);
 }
-.wrapper>main>section>.adult_join>.join-block>.birthday{}
-.wrapper>main>section>.adult_join>.join-block>.gender>.radio{
+.wrapper>main>section>.children_join>.join-block>.birthday{}
+.wrapper>main>section>.children_join>.join-block>.gender>.radio{
     display: flex;
     margin-left : 10px;
     
     
 }
-.wrapper>main>section>.adult_join>.join-block>.gender{
+.wrapper>main>section>.children_join>.join-block>.gender{
     display:flex;
 
 
     
 }
-.wrapper>main>section>.adult_join>.join-block>.email{}
-.wrapper>main>section>.adult_join>.join-block>.phone{}
-.wrapper>main>section>.adult_join>.join-block>label{}
-.wrapper>main>section>.adult_join>.join-block>.btn{}
-
-
 
 
 /* 푸터 */
