@@ -84,7 +84,7 @@ a {
 
 /* header */
 .wrapper {
-    position: relative;
+
     width: 100%;
     margin: 0;
 }
@@ -99,7 +99,7 @@ a {
     display: flex;
     align-items: center;
     z-index: 999;
-    background: rgb(0 102 179 / 90%);
+    background: rgb(0 102 179);
     margin-top: -100px;
     
 }
@@ -245,89 +245,84 @@ a {
 
 /* main */
 /* main - nav */
+main{
+height: 100%;}
 
 section{
-    background-image:url('https://i.namu.wiki/i/_vEBH38ZzkB3t8nbxGw-xpJ0qhILOkw2kKv98D6bYZO_toZDsTHjV60fgATuN6KDZaahiJnGMdQqCVjpsYV3orMIk9n9vrd8wYX8qYq6pdDY_76qX9HJsgTJdMyjmhXGzX6taDZ1MOivfiedZPKx2A.webp');
-    background-size: cover;
+        background: /*url('/img/오승환.jpg') left top no-repeat,
+                    url('/img/구자욱.jpg') right top no-repeat, */
+                    url('/img/ㅇㅇ.jpg') no-repeat;
+
+        background-color: rgb(0, 0, 0,0.3);
+
+
+        background-size: 100%;
+
     width: 1900px;
-    height: 1200px;
+
     margin-top: 100px;
+    height:100%;
+    padding : 100px;
 
 }
 
-.section-nav{
-
-    
-    border-bottom: 2px solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.section-nav>li{
-    
-    margin-right: 50px;
-    
-    justify-content: center;
-    align-items: center;
-}
-.section-nav>li>a{
-
-    font-size: 25px;
-}
-.section-nav>li>a:hover{
-
-    color: red;
-}
 .section-main{
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
 }
 
 /* table CSS */
-.board_list_wrap{
-    
+    .board_list_wrap {
 
-    position: absolute;
-    width: 1300px;
-    height: 700px;
+       padding: 50px;
+
+
+    width: 100%;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.8);
-    margin: 100px auto 0; /* 상단 마진 적용 */
-    padding: 50px;
-    margin-top: 250px;
-    margin-left: 300px;
+    // margin: 100px auto 0; /* 상단 마진 적용 */
+    border: 1px solid #81ecec;
+
     border-radius: 30px;
-    
+    }
 
-}
+    .board_list {
+        width: 100%;
+        border-collapse: collapse;
 
-.board_list_wrap>.board_list{
-    
-    
-    width: 1200px;
-    height: 500px;
-    
-    
-    border-top: 3px solid black;
-}
-.board_list_wrap>.board_list th ,.board_list td{
+    }
 
-    padding: 10px;
-    font-size: 14px;
-    
+    .board_list th, .board_list td {
+        font-family : 'PreR'
+        padding: 8px;
+        text-align: center;
+        border: 1px solid #81ecec;
+        height: 40px;
+    }
 
-}
-.board_list_wrap>.board_list td{
+    .board_list th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
 
-    text-align: center;
+    .board_list tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 
-}
-.board_list_wrap>.board_list tr {
-    border-bottom: 1px solid #ccc;
-}
-.board_list_wrap>.board_list tbody tr td:nth-child(2):hover {
-    
-    text-decoration: underline;
+    .board_list tbody tr:hover {
+        background-color: #f2f2f2;
+    }
 
-}
+    .board_list a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .board_list a:hover {
+        text-decoration: underline;
+    }
 
 
 

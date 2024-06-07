@@ -98,7 +98,7 @@ a {
     display: flex;
     align-items: center;
     z-index: 999;
-    background: rgb(0 102 179 / 90%);
+    background: rgb(0 102 179);
     margin-top: -100px;
     
 }
