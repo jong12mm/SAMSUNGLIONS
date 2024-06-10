@@ -5,9 +5,9 @@
     font-style: normal;
     src: url('../font/Pretendard-Thin.eot');
     src: local('��'),
-        url('../font/Pretendard-Thin.woff') format('woff'),
-        url('../font/Pretendard-Thin.woff2') format('woff2'),
-        url('../font/Pretendard-Thin.otf') format('opentype');
+    url('../font/Pretendard-Thin.woff') format('woff'),
+    url('../font/Pretendard-Thin.woff2') format('woff2'),
+    url('../font/Pretendard-Thin.otf') format('opentype');
 }
 @font-face {
     font-family: 'Pre';
@@ -15,9 +15,9 @@
     font-style: normal;
     src: url('../font/Pretendard-Light.eot');
     src: local('��'),
-        url('../font/Pretendard-Light.woff') format('woff'),
-        url('../font/Pretendard-Light.woff2') format('woff2'),
-        url('../font/Pretendard-Light.otf') format('opentype');
+    url('../font/Pretendard-Light.woff') format('woff'),
+    url('../font/Pretendard-Light.woff2') format('woff2'),
+    url('../font/Pretendard-Light.otf') format('opentype');
 }
 @font-face {
     font-family: 'PreR';
@@ -25,9 +25,9 @@
     font-style: normal;
     src: url('../font/Pretendard-Regular.eot');
     src: local('��'),
-        url('../font/Pretendard-Regular.woff') format('woff'),
-        url('../font/Pretendard-Regular.woff2') format('woff2'),
-        url('../font/Pretendard-Regular.otf') format('opentype');
+    url('../font/Pretendard-Regular.woff') format('woff'),
+    url('../font/Pretendard-Regular.woff2') format('woff2'),
+    url('../font/Pretendard-Regular.otf') format('opentype');
 }
 @font-face {
     font-family: 'PreM';
@@ -35,9 +35,9 @@
     font-style: normal;
     src: url('../font/Pretendard-Medium.eot');
     src: local('��'),
-        url('../font/Pretendard-Medium.woff') format('woff'),
-        url('../font/Pretendard-Medium.woff2') format('woff2'),
-        url('../font/Pretendard-Medium.otf') format('opentype');
+    url('../font/Pretendard-Medium.woff') format('woff'),
+    url('../font/Pretendard-Medium.woff2') format('woff2'),
+    url('../font/Pretendard-Medium.otf') format('opentype');
 }
 @font-face {
     font-family: 'PreSB';
@@ -45,9 +45,9 @@
     font-style: normal;
     src: url('../font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('../font/Pretendard-SemiBold.woff') format('woff'),
-        url('../font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('../font/Pretendard-SemiBold.otf') format('opentype');
+    url('../font/Pretendard-SemiBold.woff') format('woff'),
+    url('../font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('../font/Pretendard-SemiBold.otf') format('opentype');
 }
 @font-face {
     font-family: 'PreEB';
@@ -55,9 +55,9 @@
     font-style: normal;
     src: url('../font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('../font/Pretendard-ExtraBold.woff') format('woff'),
-        url('../font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('../font/Pretendard-ExtraBold.otf') format('opentype');
+    url('../font/Pretendard-ExtraBold.woff') format('woff'),
+    url('../font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('../font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
 
@@ -99,7 +99,7 @@ a {
     align-items: center;
     z-index: 999;
     background-color: rgb(0 102 179 / 90%);
-    margin-top: -100px;
+    /*margin-top: -100px;*/
     transition: background-color 0.3s ease;
 }
 .navbar.navbar-opaque {
@@ -244,8 +244,8 @@ a {
 }
 
 .section{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 .section.main{
     pointer-events: none;
@@ -258,20 +258,23 @@ a {
 /*메인*/
 .main {
     width: 100%;
-    margin-top: 100px;
+    /*margin-top: 100px;*/
+    padding-top: 100px;
 }
 
 .m_visual {
     /* background: url(../img/main.jpg); */
     width: 100%;
-    height: 955px;
+    height: 100%;
     overflow: hidden;
     text-align: center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    border: 3px solid black;
+    border: 1px solid black;
+
+
     /* padding-bottom: 56.25%; */
     /* height: 0; */
 
@@ -279,13 +282,13 @@ a {
 }
 
 .m_visual iframe {
-        width: 100%;
-        height: 100%;
-        border: none; /* 기본 테두리 제거 */
-        position: absolute;
-        top: 0;
-        left: 0;
-        pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: none; /* 기본 테두리 제거 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }
 
 
@@ -466,26 +469,38 @@ a {
     font-family: 'PreSB';
 }
 /*선수소개*/
+.psection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("/img/backgroundex1.jpg") no-repeat;
+    background-size: 100% 100%;
+
+}
 .player{
-    margin-bottom: 10rem;
+    /*margin-bottom: 10rem;*/
     overflow: hidden;
     max-width: 1600px;
-    margin-left: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*margin-left: 160px;*/
+    padding-top: 100px;
 }
 .player-in{
-    padding-top: 100px;
+
 
 
 }
 .player-in>h2{
     font-family: 'PreSB';
     color: #000;
-    font-size: 2rem;
-    text-align: left;
-    max-width: 1200px;
+    font-size: 3rem;
+    text-align: center;
+    max-width: 1300px;
     margin: 0 auto 5rem auto;
     margin-top: 20px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
     padding-bottom: 20px;
 }
 .playerall{
@@ -502,8 +517,9 @@ a {
     transition: all 0.3s linear;
     overflow: hidden;
     cursor: pointer;
+
 }
-  .playerbox>.overlay{
+.playerbox>.overlay{
     background: #00000062;
     width: 100%;
     position: absolute;
@@ -512,7 +528,8 @@ a {
     display: none;
 }
 .playerbox>img{
-    height: 70vh;
+    width: 100%;
+    height: 100%;
     padding: 0;
 }
 .playerbox:hover .overlay{
@@ -522,7 +539,7 @@ a {
     width: 273px;
     flex: 0 0 auto; /* 이 부분 추가 */
     margin-right: 20px; /* 각 playerbox 사이의 간격을 설정 */
-    padding-top: 5rem;
+    /*padding-top: 5rem;*/
     position: relative;
     transition: all 0.3s linear;
     overflow: hidden;
@@ -540,7 +557,8 @@ a {
     display: block;
 }
 .playerbox2>img{
-    height: 70vh;
+    width: 100%;
+    height: 100%;
     padding: 0;
 }
 @keyframes slidePlayer {
@@ -560,6 +578,7 @@ a {
     width: 100%;
     background-color: #ececec;
     padding: 7rem 0 7rem 0;
+    padding-top: 150px;
 
 }
 .lionstv-in{
@@ -659,7 +678,7 @@ a {
 }
 .lions-news>.win{
     display: block;
-    margin: 0 auto 5rem auto;
+    margin: 2rem auto 5rem auto;
 }
 .news-in{
     max-width: 1200px;
@@ -784,7 +803,7 @@ a {
 }
 .news-ribot>.letter>li>h4:hover{
     text-decoration: underline;
-    cursor: s;
+    cursor: pointer;
 }
 .news-ribot>.letter>li>p{
     font-family: 'PreSB';
@@ -799,12 +818,14 @@ a {
 .gallery-in{
     max-width: 1200px;
     margin: 0 auto;
+
 }
 .gallery-in>h2{
     font-family: 'PreSB';
     color: #fff;
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 3rem;
+    text-align: center;
 }
 .gallerycon{
     width: 100%;
@@ -870,6 +891,6 @@ footer {
     cursor:pointer;
 }
 
-/* .footer-right a:hover img {
+.footer-right a:hover img {
     transform: scale(1.1);
-} */
+}
