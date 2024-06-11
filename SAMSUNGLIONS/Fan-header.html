@@ -11,40 +11,32 @@
 </head>
 <body>
 
-
     <div class="wrapper">
         <header class="navbar" id="navbar">
             <script type="text/javascript" src="js/nav.js"></script>
             <div class="logo header-left">
                 <a href="/samsung.html"></a>
-                <!-- img src="img/logo.png" alt="LOGO" -->
             </div>
             <div class="header-right">
                 <nav>
                     <ul class="menu">
                         <li>
-                            <a class=menu1 href="">구단</a>
-                            
+                            <a class="menu1" href="#">구단</a>
                         </li>
                         <li>
-                            <a class=menu2 href="">선수단</a>
-                            
+                            <a class="menu2" href="#">선수단</a>
                         </li>
                         <li>
-                            <a class=menu3 href="">기록</a>
-                            
+                            <a class="menu3" href="#">기록</a>
                         </li>
                         <li>
-                            <a class=menu4 href="">팬</a>
-                            
+                            <a class="menu4" href="#">팬</a>
                         </li>
                         <li>
-                            <a class=menu5 href="">예매</a>
-                            
+                            <a class="menu5" href="#">예매</a>
                         </li>
                         <li>
-                            <a class=menu6 href="">쇼핑</a>
-                            
+                            <a class="menu6" href="#">쇼핑</a>
                         </li>
                     </ul>
                     <ul class="rightmenu">
@@ -53,140 +45,59 @@
                         <li><a href="/user/join_start.html">회원가입</a></li>
                     </ul>
                 </nav>
-                
             </div>
             <div class="hideback"></div>
         </header>
         <div class="buffer-delete"></div>
         <div class="fan-nav" id="fan-nav">
             <div class="firstnav">
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
             </div>
         </div>
         <div class="fan-nav2" id="fan-nav2">
             <div class="secondnav">
-                <li><a href="">22</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
+                <li><a href="#">22</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
             </div>
         </div>
         <div class="fan-nav3" id="fan-nav3">
             <div class="thirdnav">
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
+                <li><a href="#">ㅁㅁ</a></li>
             </div>
         </div>
         <div class="fan-nav4" id="fan-nav4">
             <div class="fourthnav">
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
-                <li><a href="">ㅁㅁ</a></li>
+                <li><a href="/Fan-story.html">라이온즈스토리</a></li>
+                <li><a href="/Fan-gallery.html">갤러리</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="/Fan-cheer.html">응원단</a></li>
+                <li><a href="#">자유게시판</a></li>
             </div>
         </div>
         <div class="fan-nav5" id="fan-nav5">
             <div class="fifthnav">
-                <li><a href="">ㅁㅁ</a></li>
-
+                <li><a href="#">ㅁㅁ</a></li>
             </div>
         </div>
         <div class="fan-nav6" id="fan-nav6">
             <div class="sixthnav">
-                <li><a href="">ㅁㅁ</a></li>
-
+                <li><a href="#">ㅁㅁ</a></li>
             </div>
         </div>
-        
-
         
         <main>
             <section></section>
         </main>
         <footer></footer>
     </div>
-    <script>
-        /*header*/
-        // document.querySelectorAll('.menu > li').forEach(menuItem => {
-        //     menuItem.addEventListener('mouseenter', () => {
-        //         document.querySelector('.hideback').classList.add('show-hideback');
-        //     });
-
-        //     menuItem.addEventListener('mouseleave', () => {
-        //         document.querySelector('.hideback').classList.remove('show-hideback');
-        //     });
-        // });
-        /*//header*/
-        
-          
-        
-            const fanNav = document.querySelector('.fan-nav');
-            const menu1 = document.querySelector('.menu1'); 
-
-            menu1.addEventListener('mouseover', (event) => {
-                fanNav.style.visibility = 'visible';
-            });
-
-            menu1.addEventListener('mouseleave', (event) => {
-                fanNav.style.visibility = 'hidden';
-            });
-            const fanNav2 = document.querySelector('.fan-nav2');
-            const menu2 = document.querySelector('.menu2'); 
-
-            menu2.addEventListener('mouseover', (event) => {
-                fanNav2.style.visibility = 'visible';
-            });
-
-            menu2.addEventListener('mouseleave', (event) => {
-                fanNav2.style.visibility = 'hidden';
-            });
-            const fanNav3 = document.querySelector('.fan-nav3');
-            const menu3 = document.querySelector('.menu3'); 
-
-            menu3.addEventListener('mouseover', (event) => {
-                fanNav3.style.visibility = 'visible';
-            });
-
-            menu3.addEventListener('mouseleave', (event) => {
-                fanNav3.style.visibility = 'hidden';
-            });
-            const fanNav4 = document.querySelector('.fan-nav4');
-            const menu4 = document.querySelector('.menu4'); 
-
-            menu4.addEventListener('mouseover', (event) => {
-                fanNav4.style.visibility = 'visible';
-            });
-
-            menu4.addEventListener('mouseleave', (event) => {
-                fanNav4.style.visibility = 'hidden';
-            });
-            const fanNav5 = document.querySelector('.fan-nav5');
-            const menu5 = document.querySelector('.menu5'); 
-
-            menu5.addEventListener('mouseover', (event) => {
-                fanNav5.style.visibility = 'visible';
-            });
-
-            menu5.addEventListener('mouseleave', (event) => {
-                fanNav5.style.visibility = 'hidden';
-            });
-            const fanNav6 = document.querySelector('.fan-nav6');
-            const menu6 = document.querySelector('.menu6'); 
-
-            menu6.addEventListener('mouseover', (event) => {
-                fanNav6.style.visibility = 'visible';
-            });
-
-            menu6.addEventListener('mouseleave', (event) => {
-                fanNav6.style.visibility = 'hidden';
-            });
-            
-        
-    </script>
+    <script src="js/fan-header.js"></script>
 </body>
 </html>
