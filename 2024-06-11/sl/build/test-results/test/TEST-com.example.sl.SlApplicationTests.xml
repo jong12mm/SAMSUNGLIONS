@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.sl.SlApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-06-11T14:57:33" hostname="DESKTOP-H4MR7OU" time="0.681">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.example.sl.SlApplicationTests" time="0.681"/>
+  <system-out><![CDATA[23:57:25.729 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.sl.SlApplicationTests]: SlApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:57:25.881 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.sl.SlApplication for test class com.example.sl.SlApplicationTests
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2024-06-11T23:57:26.470+09:00  INFO 141316 --- [sl] [    Test worker] com.example.sl.SlApplicationTests        : Starting SlApplicationTests using Java 21.0.3 with PID 141316 (started by 82109 in C:\Users\82109\Desktop\2024-06-10\sl)
+2024-06-11T23:57:26.472+09:00  INFO 141316 --- [sl] [    Test worker] com.example.sl.SlApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-06-11T23:57:27.553+09:00  INFO 141316 --- [sl] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-11T23:57:27.635+09:00  INFO 141316 --- [sl] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 1 JPA repository interface.
+2024-06-11T23:57:28.314+09:00  INFO 141316 --- [sl] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-11T23:57:28.468+09:00  INFO 141316 --- [sl] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-11T23:57:28.540+09:00  INFO 141316 --- [sl] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-06-11T23:57:29.179+09:00  INFO 141316 --- [sl] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-11T23:57:29.232+09:00  INFO 141316 --- [sl] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-11T23:57:29.726+09:00  INFO 141316 --- [sl] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7742a276
+2024-06-11T23:57:29.730+09:00  INFO 141316 --- [sl] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-11T23:57:31.345+09:00  INFO 141316 --- [sl] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-11T23:57:31.426+09:00  INFO 141316 --- [sl] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-11T23:57:31.810+09:00  INFO 141316 --- [sl] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-06-11T23:57:32.471+09:00  WARN 141316 --- [sl] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-11T23:57:33.310+09:00  INFO 141316 --- [sl] [    Test worker] com.example.sl.SlApplicationTests        : Started SlApplicationTests in 7.216 seconds (process running for 10.104)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\82109\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.16\4a451ee6484abac3a498df0f3b33ed00a6fced4d\byte-buddy-agent-1.14.16.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
