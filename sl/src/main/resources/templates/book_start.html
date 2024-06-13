@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야구 경기 예매</title>
+</head>
+<body>
+<h1>야구 경기 예매</h1>
+<form id="bookForm">
+    <label for="seat">좌석:</label>
+    <input type="text" id="seat" name="seat" required><br>
+
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="gameinfoId">게임 정보 ID:</label>
+    <input type="text" id="gameinfoId" name="gameinfoId" required><br>
+
+    <label for="payid">결제 방법:</label>
+    <input type="text" id="payid" name="payid" required><br>
+
+    <button type="submit">예매하기</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+    document.getElementById('bookForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const seat = document.getElementById('seat').value;
+        const name = document.getElementById('name').value;
+        const gameinfoId = document.getElementById('gameinfoId').value;
+        const payid = document.getElementById('payid').value;
+
+        fetch('/book/make', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                seat: seat,
+                name: name,
+                gameinfoId: gameinfoId,
+                payid: payid
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.bookid) {
+                    document.getElementById('response').textContent = '예매 성공! 예약 ID: ' + data.bookid;
+                } else {
+                    document.getElementById('response').textContent = '예매 실패! 다시 시도하세요.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = '오류 발생: ' + error.message;
+            });
+    });
+</script>
+</body>
+</html>

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long bookid;
     private String seat;
     private String name;
     private String gameinfo;

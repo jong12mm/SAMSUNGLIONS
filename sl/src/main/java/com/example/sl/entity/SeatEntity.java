@@ -14,7 +14,7 @@ import jakarta.persistence.*;
 public class SeatEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long seatid;
     private String seatNumber;
     private boolean reserved;
 

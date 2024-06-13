@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>야구 경기 예매</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>야구 경기 예매</h1>
+    <form id="bookForm">
+        <label for="seat">좌석:</label>
+        <input type="text" id="seat" name="seat" required>
+
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="gameinfoId">게임 정보 ID:</label>
+        <input type="number" id="gameinfoId" name="gameinfoId" required>
+
+        <label for="payid">결제 방법:</label>
+        <input type="text" id="payid" name="payid" required>
+
+        <button type="submit">예매하기</button>
+    </form>
+    <div id="response" class="response"></div>
+</div>
+
+<script>
+    document.getElementById('bookForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const seat = document.getElementById('seat').value;
+        const name = document.getElementById('name').value;
+        const gameinfoId = document.getElementById('gameinfoId').value;
+        const payid = document.getElementById('payid').value;
+
+        fetch('/book/make', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                seat: seat,
+                name: name,
+                gameinfoId: gameinfoId,
+                payid: payid
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.bookid) {
+                    document.getElementById('response').textContent = '예매 성공! 예약 ID: ' + data.bookid;
+                } else {
+                    document.getElementById('response').textContent = '예매 실패! 다시 시도하세요.';
+                }
+            })
+            .catch(error => {
+                document.getElementById('response').textContent = '오류 발생: ' + error.message;
+            });
+    });
+</script>
+</body>
+</html>
