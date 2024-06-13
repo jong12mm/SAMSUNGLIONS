@@ -1,95 +1,135 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모든 예약 조회</title>
+    <title>예약 목록</title>
     <style>
+        /* CSS 스타일링 */
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        h1 {
-            text-align: center;
-            color: #333;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-
-        .book-info {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
         }
-
-        .book-info p {
-            margin: 5px 0;
-        }
-
-        .book-info hr {
-            margin: 10px 0;
-            border: none;
-            border-top: 1px solid #ddd;
+        th {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>모든 예약 조회</h1>
+<h1>예약 목록</h1>
 
-    <div id="bookList" class="book-list">
-        <h2>예약 목록</h2>
-        <!-- Thymeleaf 반복문을 이용해 예약 목록을 동적으로 추가 -->
-        <div th:each="book : ${books}" class="book-info">
-            <p><strong>예약 ID:</strong> <span th:text="${book.bookid}"></span></p>
-            <p><strong>좌석:</strong> <span th:text="${book.seat}"></span></p>
-            <p><strong>이름:</strong> <span th:text="${book.name}"></span></p>
-            <p><strong>게임 정보:</strong> <span th:text="${book.gameinfo}"></span></p>
-            <p><strong>예약 상태:</strong> <span th:text="${book.bookstatus}"></span></p>
-            <hr>
-        </div>
-        <!-- 예약 목록이 없을 경우 메시지 표시 -->
-        <div th:if="${#lists.isEmpty(books)}">
-            <p>예약된 항목이 없습니다.</p>
-        </div>
-    </div>
+<!-- 예약 정보 입력 폼 -->
+<form id="bookingForm">
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="seat">좌석:</label>
+    <input type="text" id="seat" name="seat" required><br><br>
+    <label for="gameinfo">게임 정보:</label>
+    <input type="text" id="gameinfo" name="gameinfo" required><br><br>
+    <label for="bookstatus">예약 상태:</label>
+    <select id="bookstatus" name="bookstatus" required>
+        <option value="예약됨">예약됨</option>
+        <option value="취소됨">취소됨</option>
+    </select><br><br>
+    <button type="submit">예약 추가</button>
+</form>
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var books = /*[[${books}]]*/ [];  // Thymeleaf에서 서버에서 전달받은 예약 목록 데이터를 JavaScript 변수에 할당
+<!-- 예약 목록 표시 -->
+<h2>예약 목록</h2>
+<table id="bookList">
+    <thead>
+    <tr>
+        <th>예약 ID</th>
+        <th>이름</th>
+        <th>좌석</th>
+        <th>게임 정보</th>
+        <th>예약 상태</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 예약 정보는 JavaScript에서 동적으로 추가됩니다 -->
+    </tbody>
+</table>
 
-        const bookList = document.getElementById('bookList');
-        if (books.length > 0) {
-            books.forEach(book => {
-                const bookInfo = document.createElement('div');
-                bookInfo.classList.add('book-info');
-                bookInfo.innerHTML = `
-                    <p><strong>예약 ID:</strong> ${book.bookid}</p>
-                    <p><strong>좌석:</strong> ${book.seat}</p>
-                    <p><strong>이름:</strong> ${book.name}</p>
-                    <p><strong>게임 정보:</strong> ${book.gameinfo}</p>
-                    <p><strong>예약 상태:</strong> ${book.bookstatus}</p>
-                    <hr>
-                `;
-                bookList.appendChild(bookInfo);
+<script>
+    // 서버에 예약 정보를 전송하는 함수
+    async function addBooking(event) {
+        event.preventDefault(); // 폼의 기본 동작을 막음
+
+        const formData = new FormData(document.getElementById('bookingForm'));
+        const name = formData.get('name');
+        const seat = formData.get('seat');
+        const gameinfo = formData.get('gameinfo');
+        const bookstatus = formData.get('bookstatus');
+
+        try {
+            const response = await fetch('/book/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, seat, gameinfo, bookstatus })
             });
-        } else {
-            bookList.innerHTML = '<p>예약된 항목이 없습니다.</p>';
+
+            if (!response.ok) {
+                throw new Error('예약 추가 중 오류 발생');
+            }
+
+            const responseData = await response.json();
+            displayBooking(responseData); // 추가된 예약을 화면에 표시
+        } catch (error) {
+            console.error('예약 추가 오류:', error);
+            alert('예약 추가 중 오류가 발생했습니다.');
         }
-        /*]]>*/
-    </script>
-</div>
+    }
+
+    // 서버에서 예약 목록을 가져와서 표시하는 함수
+    async function fetchBookings() {
+        try {
+            const response = await fetch('/book/list');
+
+            if (!response.ok) {
+                throw new Error('예약 목록을 불러오는 중 오류 발생');
+            }
+
+            const bookings = await response.json();
+            bookings.forEach(booking => displayBooking(booking));
+        } catch (error) {
+            console.error('예약 목록 불러오기 오류:', error);
+            alert('예약 목록을 불러오는 중 오류가 발생했습니다.');
+        }
+    }
+
+    // 표에 예약 정보를 표시하는 함수
+    function displayBooking(booking) {
+        const tableBody = document.querySelector('#bookList tbody');
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+                <td>${booking.bookid}</td>
+                <td>${booking.name}</td>
+                <td>${booking.seat}</td>
+                <td>${booking.gameinfo}</td>
+                <td>${booking.bookstatus}</td>
+            `;
+        tableBody.appendChild(newRow);
+    }
+
+    // 페이지 로드 후 초기 예약 목록을 가져와서 표시
+    window.addEventListener('DOMContentLoaded', () => {
+        fetchBookings();
+        document.getElementById('bookingForm').addEventListener('submit', addBooking);
+    });
+</script>
 </body>
 </html>
