@@ -1,50 +1,68 @@
 package com.example.sl.controller;
 
-import com.example.sl.domain.dto.BookDto;
-import com.example.sl.domain.service.BookService;
-import com.example.sl.entity.BookEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.sl.domain.dto.BookDto;
+import com.example.sl.entity.BookEntity;
+import com.example.sl.domain.service.BookService;
+
 @Controller
 @Slf4j
 @RequestMapping("/book")
 public class BookController {
 
-    @GetMapping("/book_start")
-    public void books(){
-
-    }
-    @GetMapping("/book1")
-    public void book1(){
-
-    }
-    @GetMapping("/book2")
-    public void book2(){
-
-    }
-    @GetMapping("/book_finish")
-    public void bookf(){
-
-    }
+    private final BookService bookService;
 
     @Autowired
-    private BookService bookService;
-
-    // 예매 생성 API
-    @PostMapping("/make")
-    public ResponseEntity<BookEntity> makeBook(@RequestBody BookDto bookDto) {
-        BookEntity bookEntity = bookService.makeReservation(bookDto);
-        return ResponseEntity.ok(bookEntity);
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
-    // 예매 취소 API
+    @GetMapping("/book_start")
+    public void books() {
+        // 시작 페이지와 관련된 작업을 처리
+    }
+
+    @GetMapping("/book1")
+    public void book1() {
+        // 첫 번째 책과 관련된 작업을 처리
+    }
+
+    @GetMapping("/book2")
+    public void book2() {
+        // 두 번째 책과 관련된 작업을 처리
+    }
+
+    @GetMapping("/book_finish")
+    public void bookf() {
+        // 마무리 페이지와 관련된 작업을 처리
+    }
+
+    // 예약 생성 API
+    @PostMapping("/make")
+    public ResponseEntity<BookEntity> makeBook(@RequestBody BookDto bookDto) {
+        try {
+            BookEntity bookEntity = bookService.makeBook(bookDto);
+            return ResponseEntity.ok(bookEntity);
+        } catch (Exception e) {
+            log.error("예약 생성 중 오류 발생: ", e);
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    // 예약 취소 API
     @PostMapping("/cancel/{id}")
     public ResponseEntity<BookEntity> cancelBook(@PathVariable("id") String id) {
-        BookEntity bookEntity = bookService.cancelReservation(id);
-        return ResponseEntity.ok(bookEntity);
+        try {
+            BookEntity bookEntity = bookService.cancelBook(id);
+            return ResponseEntity.ok(bookEntity);
+        } catch (Exception e) {
+            log.error("예약 취소 중 오류 발생: ", e);
+            return ResponseEntity.status(500).body(null);
+        }
     }
 }

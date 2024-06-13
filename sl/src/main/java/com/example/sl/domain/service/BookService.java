@@ -5,8 +5,8 @@ import com.example.sl.domain.dto.BookDto;
 import com.example.sl.entity.BookEntity;
 
 public interface BookService {
-    BookEntity makeReservation(BookDto bookDto);
-    BookEntity cancelReservation(String bookid);
+    BookEntity makeBook(BookDto bookDto);
+    BookEntity cancelBook(String bookid);
 
 
 }

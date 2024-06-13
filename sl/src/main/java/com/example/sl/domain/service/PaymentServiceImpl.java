@@ -23,7 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
         // PaymentDTO에서 필요한 정보를 추출하여 Payment 객체 생성
         PaymentEntity paymentEntity = new PaymentEntity();
         // reservationId를 사용하여 실제 Reservation 객체를 조회하고 연결
-        BookEntity reservation = bookRepository.findById(Long.valueOf(paymentDto.getBookid()))
+        BookEntity bookEntity = bookRepository.findById(Long.valueOf(paymentDto.getBookid()))
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookid"));
         paymentEntity.setBookEntity(paymentEntity.getBookEntity());
         paymentEntity.setAmount(paymentDto.getAmount());
