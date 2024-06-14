@@ -5,131 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 목록</title>
     <style>
-        /* CSS 스타일링 */
+        /* 전체 페이지 스타일 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             padding: 20px;
+            background-color: #f9f9f9;
+            margin: 0;
         }
+
+        /* 헤더 스타일 */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 테이블 스타일 */
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-top: 20px;
         }
+
         th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: #f2f2f2;
+            color: #333;
+        }
+
+        /* 짝수 행 배경색 */
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* 홀수 행 배경색 */
+        tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        /* 테이블 반응형 스타일 */
+        @media screen and (max-width: 600px) {
+            table {
+                box-shadow: none;
+                border: 0;
+            }
+
+            th, td {
+                border: 0;
+                padding: 8px;
+                display: block;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f9f9f9;
+                color: #333;
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tbody tr:nth-child(odd) {
+                background-color: #ffffff;
+            }
         }
     </style>
 </head>
 <body>
 <h1>예약 목록</h1>
 
-<!-- 예약 정보 입력 폼 -->
-<form id="bookingForm">
-    <label for="name">이름:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="seat">좌석:</label>
-    <input type="text" id="seat" name="seat" required><br><br>
-    <label for="gameinfo">게임 정보:</label>
-    <input type="text" id="gameinfo" name="gameinfo" required><br><br>
-    <label for="bookstatus">예약 상태:</label>
-    <select id="bookstatus" name="bookstatus" required>
-        <option value="예약됨">예약됨</option>
-        <option value="취소됨">취소됨</option>
-    </select><br><br>
-    <button type="submit">예약 추가</button>
-</form>
-
-<!-- 예약 목록 표시 -->
-<h2>예약 목록</h2>
-<table id="bookList">
+<table>
     <thead>
     <tr>
         <th>예약 ID</th>
-        <th>이름</th>
         <th>좌석</th>
+        <th>이름</th>
         <th>게임 정보</th>
         <th>예약 상태</th>
+        <th>결제 ID</th>
+        <th>예약 일시</th>
     </tr>
     </thead>
     <tbody>
-    <!-- 예약 정보는 JavaScript에서 동적으로 추가됩니다 -->
+    <!-- 예약 목록 표시 -->
+    <tr th:each="book : ${bookList}">
+        <td th:text="${book.bookid}"></td>
+        <td th:text="${book.seat}"></td>
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.gameinfo}"></td>
+        <td th:text="${book.bookstatus}"></td>
+        <td th:text="${book.payid}"></td>
+        <td th:text="${book.date}"></td>
+    </tr>
     </tbody>
 </table>
 
-<script>
-    // 서버에 예약 정보를 전송하는 함수
-    async function addBooking(event) {
-        event.preventDefault(); // 폼의 기본 동작을 막음
-
-        const formData = new FormData(document.getElementById('bookingForm'));
-        const name = formData.get('name');
-        const seat = formData.get('seat');
-        const gameinfo = formData.get('gameinfo');
-        const bookstatus = formData.get('bookstatus');
-
-        try {
-            const response = await fetch('/book/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, seat, gameinfo, bookstatus })
-            });
-
-            if (!response.ok) {
-                throw new Error('예약 추가 중 오류 발생');
-            }
-
-            const responseData = await response.json();
-            displayBooking(responseData); // 추가된 예약을 화면에 표시
-        } catch (error) {
-            console.error('예약 추가 오류:', error);
-            alert('예약 추가 중 오류가 발생했습니다.');
-        }
-    }
-
-    // 서버에서 예약 목록을 가져와서 표시하는 함수
-    async function fetchBookings() {
-        try {
-            const response = await fetch('/book/list');
-
-            if (!response.ok) {
-                throw new Error('예약 목록을 불러오는 중 오류 발생');
-            }
-
-            const bookings = await response.json();
-            bookings.forEach(booking => displayBooking(booking));
-        } catch (error) {
-            console.error('예약 목록 불러오기 오류:', error);
-            alert('예약 목록을 불러오는 중 오류가 발생했습니다.');
-        }
-    }
-
-    // 표에 예약 정보를 표시하는 함수
-    function displayBooking(booking) {
-        const tableBody = document.querySelector('#bookList tbody');
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-                <td>${booking.bookid}</td>
-                <td>${booking.name}</td>
-                <td>${booking.seat}</td>
-                <td>${booking.gameinfo}</td>
-                <td>${booking.bookstatus}</td>
-            `;
-        tableBody.appendChild(newRow);
-    }
-
-    // 페이지 로드 후 초기 예약 목록을 가져와서 표시
-    window.addEventListener('DOMContentLoaded', () => {
-        fetchBookings();
-        document.getElementById('bookingForm').addEventListener('submit', addBooking);
-    });
-</script>
 </body>
 </html>

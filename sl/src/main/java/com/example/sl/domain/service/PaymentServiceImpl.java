@@ -7,11 +7,15 @@ import com.example.sl.repository.BookRepository;
 import com.example.sl.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.time.LocalDateTime;
 
 @Service
+@Transactional
 public class PaymentServiceImpl implements PaymentService {
+
     @Autowired
     private PaymentRepository paymentRepository;
 
@@ -20,33 +24,26 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentEntity makePayment(PaymentDto paymentDto) {
-        // PaymentDTO에서 필요한 정보를 추출하여 Payment 객체 생성
-        PaymentEntity paymentEntity = new PaymentEntity();
-        // reservationId를 사용하여 실제 Reservation 객체를 조회하고 연결
-        BookEntity bookEntity = bookRepository.findById(Long.valueOf(paymentDto.getBookid()))
-                .orElseThrow(() -> new IllegalArgumentException("Invalid bookid"));
-        paymentEntity.setBookEntity(paymentEntity.getBookEntity());
-        paymentEntity.setAmount(paymentDto.getAmount());
-        paymentEntity.setPaymentMethod(paymentDto.getPaymentMethod());
-        paymentEntity.setPaymentDateTime(LocalDateTime.now());
-        paymentEntity.setPaymentStatus("성공");
+        BookEntity bookEntity = bookRepository.findById(paymentDto.getBookId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
 
-        // 결제 정보 저장
+        PaymentEntity paymentEntity = new PaymentEntity();
+        paymentEntity.setAmount(paymentDto.getAmount());
+        paymentEntity.setPaymentDateTime(LocalDateTime.now());
+        paymentEntity.setPaymentMethod(paymentDto.getPaymentMethod());
+        paymentEntity.setPaymentStatus("성공");
+        paymentEntity.setBookEntity(bookEntity);
+
         return paymentRepository.save(paymentEntity);
     }
 
     @Override
-    public PaymentEntity cancelPayment(String paymentId) {
-        // paymentId를 사용하여 결제 정보를 조회
+    public PaymentEntity cancelPayment(Long paymentId) {
         PaymentEntity paymentEntity = paymentRepository.findById(paymentId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid paymentId"));
 
-        // 결제 상태를 "실패"로 변경
         paymentEntity.setPaymentStatus("실패");
 
-        // 변경된 결제 정보 저장
-        paymentRepository.save(paymentEntity);
-
-        return paymentEntity;
+        return paymentRepository.save(paymentEntity);
     }
 }

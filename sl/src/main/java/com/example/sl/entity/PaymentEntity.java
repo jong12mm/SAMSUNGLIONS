@@ -13,7 +13,7 @@ public class PaymentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId; // Long 타입으로 변경
+    private Long paymentId;
 
     private BigDecimal amount;
     private LocalDateTime paymentDateTime;
@@ -21,7 +21,7 @@ public class PaymentEntity {
     private String paymentStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bookid")
+    @JoinColumn(name = "book_id")
     private BookEntity bookEntity;
 
     // getters and setters

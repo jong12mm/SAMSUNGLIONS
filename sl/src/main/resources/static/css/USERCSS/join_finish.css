@@ -274,17 +274,17 @@ a {
 }
 
 .wrapper>main>section>.join{
-    width:750px;
-    height:650px;
-    margin :auto;
+    width: 750px;
+    height: 600px;
+    margin: auto;
+    padding: 40px;
 
-    
-    
-    padding : 60px 68px 40px;
     border-radius: 10px;
     color: rgb(7, 7, 82);
-    background-color: rgb(255, 255, 255,0.7);
-    
+    background-color: rgb(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
    
 }
 
@@ -302,10 +302,16 @@ a {
 
 .wrapper>main>section>.join>.input-form{}
 
-.wrapper>main>section>.join>.input-form>.title{}
+.wrapper>main>section>.join>.input-form>.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    z-index: 4;
+}
 
 .wrapper>main>section>.join>.input-form>.line-box{
-    
+    margin-bottom: 5px;
 }
 .wrapper>main>section>.join>.input-form>.line-box>ul{
     background-color: gray;
@@ -370,12 +376,13 @@ a {
     border-radius: 10px;
     display: flex;
     border: 2px solid rgba(18, 205, 252);
-    
+
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* 요소의 크기를 보더와 패딩을 포함한 값으로 설정 */
     /* /* border: 2px solid transparent; */
     outline: 2px solid transparent;
+    transition: background-color 0.7s ease;
     
 
 }
@@ -384,7 +391,7 @@ a {
     
 }
 .wrapper>main>section>.join>.input-form>.btn>.btn2a{
-    
+
     width: 300px;
     background-color: rgba(118, 138, 255, 0.5);
     border: 2px solid rgba(0, 38, 255);
@@ -396,9 +403,10 @@ a {
     box-sizing: border-box; /* 요소의 크기를 보더와 패딩을 포함한 값으로 설정 */
     /* border: 2px solid transparent; */
     outline: 2px solid transparent; /* 아웃라인 초기화 */
+    transition: background-color 0.7s ease;
 }
 .wrapper > main > section > .join > .input-form > .btn > .btn1a:hover {
-    background: linear-gradient(125deg,#81ecec,#bcb3ff,#81ecec,#bcb3ff,#81ecec);
+    background-color: rgba(18, 205, 252, 0.9);
     border: 2px double white; /* 안쪽 선 */
     outline: 2px solid rgba(18, 205, 252); /* 바깥쪽 선 */
     color: white;
@@ -406,7 +414,7 @@ a {
 }
 
 .wrapper > main > section > .join > .input-form > .btn > .btn2a:hover {
-    background: linear-gradient(125deg,#bcb3ff,#81ecec,#bcb3ff,#81ecec,#bcb3ff);
+    background-color: rgba(0, 38, 255, 0.9);
     border: 2px double white; /* 안쪽 선 */
     outline: 2px solid rgba(0, 38, 255);; /* 바깥쪽 선 */
     color: white;

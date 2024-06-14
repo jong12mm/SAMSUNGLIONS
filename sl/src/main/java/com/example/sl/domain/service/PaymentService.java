@@ -5,5 +5,5 @@ import com.example.sl.entity.PaymentEntity;
 
 public interface PaymentService {
     PaymentEntity makePayment(PaymentDto paymentDto);
-    PaymentEntity cancelPayment(String payId);
+    PaymentEntity cancelPayment(Long paymentId);
 }

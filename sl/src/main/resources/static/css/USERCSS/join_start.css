@@ -408,7 +408,7 @@ a {
     transition: background-color 0.7s ease;
 }
 .wrapper > main > section > .join > .input-form > .btn > .btn1a:hover {
-    background: linear-gradient(125deg,#81ecec,#bcb3ff,#81ecec,#bcb3ff,#81ecec);
+    background-color: rgba(18, 205, 252, 0.9);
     border: 2px double white; /* 안쪽 선 */
     outline: 2px solid rgba(18, 205, 252); /* 바깥쪽 선 */
     color: white;
@@ -416,7 +416,7 @@ a {
 }
 
 .wrapper > main > section > .join > .input-form > .btn > .btn2a:hover {
-    background: linear-gradient(125deg,#bcb3ff,#81ecec,#bcb3ff,#81ecec,#bcb3ff);
+    background-color: rgba(0, 38, 255, 0.9);
     border: 2px double white; /* 안쪽 선 */
     outline: 2px solid rgba(0, 38, 255);; /* 바깥쪽 선 */
     color: white;

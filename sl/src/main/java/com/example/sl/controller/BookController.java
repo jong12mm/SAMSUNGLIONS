@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.sl.domain.dto.BookDto;
@@ -36,6 +37,9 @@ public class BookController {
 
     @GetMapping("/book_finish")
     public void bookf() {
+    }
+    @GetMapping("/book_real_start")
+    public void bookr() {
     }
 
     @GetMapping("/book_start")
@@ -73,13 +77,9 @@ public class BookController {
     }
     // 모든 예약 정보 조회 API
     @GetMapping("/list")
-    public ResponseEntity<List<BookEntity>> getAllBooks() {
-        try {
-            List<BookEntity> bookList = bookService.getAllBooks();
-            return ResponseEntity.ok(bookList);
-        } catch (Exception e) {
-            log.error("예약 정보 조회 중 오류 발생: ", e);
-            return ResponseEntity.status(500).body(null);
-        }
+    public String getAllBooks(Model model) {
+        List<BookEntity> bookList = bookService.getAllBooks();
+        model.addAttribute("bookList", bookList);
+        return "booklist";
     }
 }
