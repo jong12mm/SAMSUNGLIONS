@@ -59,6 +59,7 @@
     </style>
 </head>
 <body>
+<div id="navbar-container"></div>
 <div class="container">
     <h1>야구 경기 예매</h1>
     <form id="bookForm">
@@ -78,7 +79,7 @@
     </form>
     <div id="response" class="response"></div>
 </div>
-
+<div id="footer-container"></div>
 <script>
     document.getElementById('bookForm').addEventListener('submit', function(event) {
         event.preventDefault();
@@ -112,6 +113,21 @@
                 document.getElementById('response').textContent = '오류 발생: ' + error.message;
             });
     });
+</script>
+<script>
+    // 네비게이션 로드
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+        });
+
+    // 푸터 로드
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        });
 </script>
 </body>
 </html>

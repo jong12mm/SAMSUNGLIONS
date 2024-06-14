@@ -13,4 +13,15 @@ public class HomeController {
         log.info("GET /");
         return "samsung";
     }
+
+    @GetMapping("/navbar")
+    public String navbar() {
+        log.info("GET /");
+        return "navbar";
+    }
+    @GetMapping("/footer")
+    public String footer() {
+        log.info("GET /");
+        return "footer";
+    }
 }

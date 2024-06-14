@@ -9,7 +9,7 @@
     <script src="script.js"></script>
 
     <!--css-->
-    <link rel="stylesheet" type="text/css" href="/css/bookcss/book_start.css">
+    <link rel="stylesheet" type="text/css" href="/css/bookcss/book_real_start.css">
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
 
@@ -24,75 +24,7 @@
 <body>
 
 <div class="wrapper">
-    <header class="navbar" id="navbar">
-        <script type="text/javascript" src="/js/nav.js"></script>
-        <div class="logo header-left">
-            <a href="/samsung"></a>
-            <!-- img src="img/logo.png" alt="LOGO" -->
-        </div>
-        <div class="header-right">
-            <nav>
-                <ul class="menu">
-                    <li>
-                        <a href="">구단</a>
-                        <ul class="submenu">
-                            <li><a href="/club/slintro">구단소개말</a></li>
-                            <li><a href="/club/announcement">공지사항</a></li>
-                            <li><a href="/club/slnews">구단소식</a></li>
-                            <li><a href="/club/slhistory">구단히스토리</a></li>
-                            <li><a href="/club/lionsPark">라이온즈파크</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">선수단</a>
-                        <ul class="submenu">
-                            <li><a href="">코칭스태프</a></li>
-                            <li><a href="">투수</a></li>
-                            <li><a href="">타자</a></li>
-                            <li><a href="">군입대선수</a></li>
-                            <li><a href="">신입단선수</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">기록</a>
-                        <ul class="submenu">
-                            <li><a href="">팀순위</a></li>
-                            <li><a href="">선수기록</a></li>
-                            <li><a href="">역대기록</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">팬</a>
-                        <ul class="submenu">
-                            <li><a href="">라이온즈스토리</a></li>
-                            <li><a href="">갤러리</a></li>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">응원단</a></li>
-                            <li><a href="">자유게시판</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/book/book_real_start">예매</a>
-                        <ul class="submenu">
-                            <li><a href="/book/book_real_start">예매</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">쇼핑</a>
-                        <ul class="submenu">
-                            <li><a href="https://samsunglionsmall.com/">쇼핑</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="rightmenu">
-                    <li><a href="/user/login">로그인</a></li>
-                    <li>|</li>
-                    <li><a href="/user/join_start">회원가입</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="hideback"></div>
-    </header>
+    <div id="navbar-container"></div>
     <main>
         <section>
             <div class="book-title">
@@ -106,7 +38,7 @@
             </div>
             <div class="book-btn">
 
-                <a href="/book/book1" class="btn">
+                <a href="/book/book_game_info" class="btn">
                     <div class="btn-logo">
                         <img src="/img/logoblue.png" alt="">
                     </div>
@@ -162,6 +94,21 @@
             });
         });
         /*//header*/
+    </script>
+    <script>
+        // 네비게이션 로드
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        // 푸터 로드
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
     </script>
 </div>
 

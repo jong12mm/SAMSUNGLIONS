@@ -4,110 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 목록</title>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="script.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/bookcss/booklist.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/slick.js"></script>
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+
     <style>
-        /* 전체 페이지 스타일 */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            background-color: #f9f9f9;
-            margin: 0;
-        }
+        /*!* 전체 페이지 스타일 *!*/
+        /*body {*/
+        /*    font-family: 'Arial', sans-serif;*/
+        /*    line-height: 1.6;*/
+        /*    padding: 20px;*/
+        /*    background-color: #f9f9f9;*/
+        /*    margin: 0;*/
+        /*}*/
 
-        /* 헤더 스타일 */
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
+        /*!* 헤더 스타일 *!*/
+        /*h1 {*/
+        /*    text-align: center;*/
+        /*    margin-bottom: 20px;*/
+        /*    color: #333;*/
+        /*}*/
 
-        /* 테이블 스타일 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-top: 20px;
-        }
+        /*!* 테이블 스타일 *!*/
+        /*table {*/
+        /*    width: 100%;*/
+        /*    border-collapse: collapse;*/
+        /*    background-color: #fff;*/
+        /*    box-shadow: 0 4px 8px rgba(0,0,0,0.1);*/
+        /*    margin-top: 20px;*/
+        /*}*/
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
+        /*th, td {*/
+        /*    border: 1px solid #ddd;*/
+        /*    padding: 12px;*/
+        /*    text-align: left;*/
+        /*}*/
 
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
+        /*th {*/
+        /*    background-color: #f2f2f2;*/
+        /*    color: #333;*/
+        /*}*/
 
-        /* 짝수 행 배경색 */
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+        /*!* 짝수 행 배경색 *!*/
+        /*tbody tr:nth-child(even) {*/
+        /*    background-color: #f9f9f9;*/
+        /*}*/
 
-        /* 홀수 행 배경색 */
-        tbody tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
+        /*!* 홀수 행 배경색 *!*/
+        /*tbody tr:nth-child(odd) {*/
+        /*    background-color: #ffffff;*/
+        /*}*/
 
-        /* 테이블 반응형 스타일 */
-        @media screen and (max-width: 600px) {
-            table {
-                box-shadow: none;
-                border: 0;
-            }
+        /*!* 테이블 반응형 스타일 *!*/
+        /*@media screen and (max-width: 600px) {*/
+        /*    table {*/
+        /*        box-shadow: none;*/
+        /*        border: 0;*/
+        /*    }*/
 
-            th, td {
-                border: 0;
-                padding: 8px;
-                display: block;
-                text-align: left;
-            }
+        /*    th, td {*/
+        /*        border: 0;*/
+        /*        padding: 8px;*/
+        /*        display: block;*/
+        /*        text-align: left;*/
+        /*    }*/
 
-            th {
-                background-color: #f9f9f9;
-                color: #333;
-            }
+        /*    th {*/
+        /*        background-color: #f9f9f9;*/
+        /*        color: #333;*/
+        /*    }*/
 
-            tbody tr:nth-child(even) {
-                background-color: #f9f9f9;
-            }
+        /*    tbody tr:nth-child(even) {*/
+        /*        background-color: #f9f9f9;*/
+        /*    }*/
 
-            tbody tr:nth-child(odd) {
-                background-color: #ffffff;
-            }
-        }
+        /*    tbody tr:nth-child(odd) {*/
+        /*        background-color: #ffffff;*/
+        /*    }*/
+        /*}*/
     </style>
 </head>
 <body>
-<h1>예약 목록</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>예약 ID</th>
-        <th>좌석</th>
-        <th>이름</th>
-        <th>게임 정보</th>
-        <th>예약 상태</th>
-        <th>결제 ID</th>
-        <th>예약 일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- 예약 목록 표시 -->
-    <tr th:each="book : ${bookList}">
-        <td th:text="${book.bookid}"></td>
-        <td th:text="${book.seat}"></td>
-        <td th:text="${book.name}"></td>
-        <td th:text="${book.gameinfo}"></td>
-        <td th:text="${book.bookstatus}"></td>
-        <td th:text="${book.payid}"></td>
-        <td th:text="${book.date}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="wrapper">
+    <div id="navbar-container"></div>
+    <main>
+        <section>
+            <div class="listlist">
+                <h1>예매 목록</h1>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>예매 ID</th>
+                        <th>좌석</th>
+                        <th>이름</th>
+                        <th>게임 정보</th>
+                        <th>예매 상태</th>
+                        <th>결제 ID</th>
+                        <th>예매 일시</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 예약 목록 표시 -->
+                    <tr th:each="book : ${bookList}">
+                        <td th:text="${book.bookid}"></td>
+                        <td th:text="${book.seat}"></td>
+                        <td th:text="${book.name}"></td>
+                        <td th:text="${book.gameinfo}"></td>
+                        <td th:text="${book.bookstatus}"></td>
+                        <td th:text="${book.payid}"></td>
+                        <td th:text="${book.date}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+        </section>
+    </main>
+    <!--footer-->
+    <div id="footer-container"></div>
+    <!--//footer-->
+    <script>
+        /*header*/
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /*//header*/
+    </script>
+    <script>
+        // 네비게이션 로드
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+
+        // 푸터 로드
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+</div>
+
+
 
 </body>
 </html>

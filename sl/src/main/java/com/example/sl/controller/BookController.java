@@ -27,8 +27,8 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/book1")
-    public void book1() {
+    @GetMapping("/book_game_info")
+    public void bookg() {
     }
 
     @GetMapping("/book2")
