@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 
 @Data
 public class BookDto {
-    private String bookid;
+    private Long bookid;
+    private Long seatid; // 좌석 ID 추가
     private String seat;
     private String name;
     private String gameinfoId;

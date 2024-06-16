@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
 <body>
 
 <div class="wrapper">
-    <div id="navbar-container"></div>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
 
     <!--메인-->
     <section>
@@ -551,7 +551,7 @@
     <!--//갤러리-->
 
     <!--footer-->
-    <div id="footer-container"></div>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <!--//footer-->
 </div>
 
@@ -647,35 +647,17 @@
     };
 </script>
 <script>
-    // 네비게이션 불러오기
-    fetch('/fragments/navbar.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('네비게이션을 불러오는 중 오류가 발생했습니다.');
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+    /*header*/
+    document.querySelectorAll('.menu > li').forEach(menuItem => {
+        menuItem.addEventListener('mouseenter', () => {
+            document.querySelector('.hideback').classList.add('show-hideback');
         });
 
-    // 푸터 불러오기
-    fetch('/fragments/footer.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('푸터를 불러오는 중 오류가 발생했습니다.');
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        menuItem.addEventListener('mouseleave', () => {
+            document.querySelector('.hideback').classList.remove('show-hideback');
         });
+    });
+    /*//header*/
 </script>
 
 </body>

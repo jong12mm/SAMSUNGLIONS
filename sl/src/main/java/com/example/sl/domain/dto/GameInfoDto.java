@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameInfoDto {
-    private int gameInfoId;
+    private Long gameInfoId;
     private String gameName;
     private String stadium;
     private LocalDateTime startTime;

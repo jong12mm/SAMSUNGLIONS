@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <title>Nav Fragment</title>
 </head>
 <body>
-<header class="navbar" id="navbar">
+<header th:fragment="navFragment" class="navbar" id="navbar" >
     <script type="text/javascript" src="/js/nav.js"></script>
     <div class="logo header-left">
         <a href="/samsung"></a>
@@ -62,7 +60,7 @@
                 <li>
                     <a href="">쇼핑</a>
                     <ul class="submenu">
-                        <li><a href="https://samsunglionsmall.com/">쇼핑</a></li>
+                        <li><a href="https://samsunglionsmall.com/" target="_blank">쇼핑</a></li>
                     </ul>
                 </li>
             </ul>
@@ -75,18 +73,5 @@
     </div>
     <div class="hideback"></div>
 </header>
-<script>
-    /*header*/
-    document.querySelectorAll('.menu > li').forEach(menuItem => {
-        menuItem.addEventListener('mouseenter', () => {
-            document.querySelector('.hideback').classList.add('show-hideback');
-        });
-
-        menuItem.addEventListener('mouseleave', () => {
-            document.querySelector('.hideback').classList.remove('show-hideback');
-        });
-    });
-    /*//header*/
-</script>
 </body>
 </html>

@@ -2,14 +2,14 @@ package com.example.sl.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
 @Entity
 public class SeatEntity {
     @Id
@@ -17,6 +17,5 @@ public class SeatEntity {
     private Long seatid;
     private String seatNumber;
     private boolean reserved;
-
-
+    private BigDecimal price; // 가격 필드 추가
 }

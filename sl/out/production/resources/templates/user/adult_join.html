@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
 <body>
 
 <div class="wrapper">
-    <div id="navbar-container"></div>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
         <section>
             <div class="adult_join">
@@ -105,7 +105,7 @@
         </section>
     </main>
     <!--footer-->
-    <div id="footer-container"></div>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <!--//footer-->
     <script>
         /*header*/
@@ -127,21 +127,6 @@
                 $('.check').prop('checked',this.checked);
             });
         });
-    </script>
-    <script>
-        // 네비게이션 로드
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-            });
-
-        // 푸터 로드
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-container').innerHTML = data;
-            });
     </script>
 </div>
 

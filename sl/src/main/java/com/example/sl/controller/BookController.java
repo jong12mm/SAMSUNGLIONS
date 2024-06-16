@@ -1,5 +1,6 @@
 package com.example.sl.controller;
 
+import com.example.sl.entity.SeatEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,8 +44,10 @@ public class BookController {
     }
 
     @GetMapping("/book_start")
-    public String showBookingPage() {
-        return "book_start";
+    public String showBookingPage(Model model) {
+        List<SeatEntity> availableSeats = bookService.getAvailableSeats();
+        model.addAttribute("availableSeats", availableSeats);
+        return "book_start"; // 좌석 선택 페이지로 이동
     }
 
     @PostMapping("/make")

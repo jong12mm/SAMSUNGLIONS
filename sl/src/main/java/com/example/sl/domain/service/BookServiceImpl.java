@@ -3,8 +3,10 @@ package com.example.sl.domain.service;
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.GameInfoEntity;
+import com.example.sl.entity.SeatEntity;
 import com.example.sl.repository.BookRepository;
 import com.example.sl.repository.GameInfoRepository;
+import com.example.sl.repository.SeatRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,13 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final GameInfoRepository gameInfoRepository;
+    private final SeatRepository seatRepository;
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository, GameInfoRepository gameInfoRepository) {
+    public BookServiceImpl(BookRepository bookRepository, GameInfoRepository gameInfoRepository, SeatRepository seatRepository) {
         this.bookRepository = bookRepository;
         this.gameInfoRepository = gameInfoRepository;
+        this.seatRepository = seatRepository;
     }
 
     @Override
@@ -53,8 +57,13 @@ public class BookServiceImpl implements BookService {
 
         return bookRepository.save(bookEntity);
     }
+
     @Override
     public List<BookEntity> getAllBooks() {
         return bookRepository.findAll();
+    }
+    @Override
+    public List<SeatEntity> getAvailableSeats() {
+        return seatRepository.findByReservedFalse();
     }
 }

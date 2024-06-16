@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class GameInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int gameInfoId;
+    private Long gameInfoId;
     private String gameName;
     private String stadium;
     private LocalDateTime startTime;

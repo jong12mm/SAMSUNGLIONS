@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,30 +19,37 @@
     <script type="text/javascript" src="/js/slick.min.js"></script>
 </head>
 <body>
-<div class="wrapper">
-    <div id="navbar-container"></div>
+<div class="wrapper" >
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
         <section>
             <div class="bookstart">
                 <div class="join">
                     <h4>예매 페이지</h4>
                 </div>
-                <form id="bookForm" class="bookForm" >
+                <form id="bookForm" class="bookForm">
                     <div>
                         <label for="seat" class="form-label text-label">좌석</label>
-                        <input type="text" id="seat" name="seat" class="form-control"><br>
+                        <select id="seat" name="seat" class="form-control" required>
+                            <option value="">좌석 선택</option>
+                            <!-- 가용한 좌석이 여기에 추가됩니다 -->
+                        </select><br>
+                    </div>
+                    <div>
+                        <label for="price" class="form-label text-label">가격</label>
+                        <span id="price" class="form-control"></span><br>
                     </div>
                     <div>
                         <label for="name" class="form-label text-label">이름</label>
-                        <input type="text" id="name" name="name" class="form-control"><br>
+                        <input type="text" id="name" name="name" class="form-control" required><br>
                     </div>
                     <div>
                         <label for="gameinfoId" class="form-label text-label">게임 정보 ID</label>
-                        <input type="text" id="gameinfoId" name="gameinfoId" class="form-control"><br>
+                        <input type="text" id="gameinfoId" name="gameinfoId" class="form-control" required><br>
                     </div>
                     <div>
                         <label for="payid" class="form-label text-label">결제 방법</label>
-                        <input type="text" id="payid" name="payid" class="form-control"><br>
+                        <input type="text" id="payid" name="payid" class="form-control" required><br>
                     </div>
                     <div id="response" style="height:30px;z-index: 99"></div>
                     <div class="btn">
@@ -61,36 +68,43 @@
                             </div>
                         </a>
                     </div>
-
                 </form>
-
-
             </div>
-
-
         </section>
     </main>
     <!--footer-->
-    <div id="footer-container"></div>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <!--//footer-->
     <script>
-        /*header*/
-        document.querySelectorAll('.menu > li').forEach(menuItem => {
-            menuItem.addEventListener('mouseenter', () => {
-                document.querySelector('.hideback').classList.add('show-hideback');
-            });
+        // 좌석 데이터를 가져와서 드롭다운에 추가
+        function loadSeats() {
+            fetch('/seats/available')  // 사용 가능한 좌석 정보를 제공하는 엔드포인트
+                .then(response => response.json())
+                .then(data => {
+                    const seatSelect = document.getElementById('seat');
+                    data.forEach(seat => {
+                        const option = document.createElement('option');
+                        option.value = seat.id;
+                        option.text = `${seat.seatNumber} - ${seat.price}원`;
+                        option.setAttribute('data-price', seat.price);
+                        seatSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('좌석 정보를 가져오는 중 오류 발생:', error);
+                });
+        }
 
-            menuItem.addEventListener('mouseleave', () => {
-                document.querySelector('.hideback').classList.remove('show-hideback');
-            });
+        document.getElementById('seat').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            document.getElementById('price').textContent = price ? price + '원' : '';
         });
-        /*//header*/
-    </script>
-    <script>
+
         document.getElementById('bookForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const seat = document.getElementById('seat').value;
+            const seatId = document.getElementById('seat').value;
             const name = document.getElementById('name').value;
             const gameinfoId = document.getElementById('gameinfoId').value;
             const payid = document.getElementById('payid').value;
@@ -101,7 +115,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    seat: seat,
+                    seatid: seatId,
                     name: name,
                     gameinfoId: gameinfoId,
                     payid: payid
@@ -126,23 +140,22 @@
                     document.getElementById('response').textContent = '오류 발생: ' + error.message;
                 });
         });
+        // 페이지 로드 시 좌석 데이터 로드
+        window.onload = loadSeats;
     </script>
     <script>
-        // 네비게이션 로드
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
+        /*header*/
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
             });
 
-        // 푸터 로드
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-container').innerHTML = data;
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
             });
+        });
+        /*//header*/
     </script>
 </div>
-
 </body>
 </html>
