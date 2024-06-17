@@ -209,14 +209,12 @@ C:.
     │      │          slick.min.js
     │      │
     │      └─templates
-    │          │  booklist.html
-    │          │  book_start.html
-    │          │  samsung.html
-    │          │
     │          ├─book
     │          │      book_finish.html
     │          │      book_game_info.html
     │          │      book_real_start.html
+    │          │      booklist.html
+    │          │      book_start.html
     │          │
     │          ├─club
     │          │      announcement.html
@@ -236,7 +234,9 @@ C:.
     │          │      join_start.html
     │          │      login.html
     │          │
-    │          └─기록
+    │          ├─기록
+    │          │  samsung.html
+    │          │
     └─ test
         └─ java
             └─ com
