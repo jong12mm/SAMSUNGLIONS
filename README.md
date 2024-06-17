@@ -62,14 +62,13 @@ END POINT DOC
 |/user/login|GET/POST|---|---|---|
 |/user/logout|POST|---|---|---|
 |---|---|---|---|---|
-|/seeker/join|---|---|---|---|
-|/seeker/remove|---|---|---|---|
-|/seeker/resume/add|---|---|---|---|
-|/seeker/resume/list|---|---|---|---|
+|/book/add|---|---|---|---|
+|/book/list|---|---|---|---|
+|book/cancel/{id}|---|---|---|---|
 |---|---|---|---|---|
-|/offer/join|---|---|---|---|
-|/offer/remove|---|---|---|---|
-|/offer/company/read|---|---|---|---|
+|/club/join|---|---|---|---|
+|/club/remove|---|---|---|---|
+|/club/gameInfo/read|---|---|---|---|
 |---|---|---|---|---|
 
 DEPENDENCIES LIST
