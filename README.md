@@ -1,15 +1,16 @@
-# SAMSUNGLIONS 홈페이지
+# SAMSUNGLIONS 통합 예매 웹 프로젝트
 
 DEVELOPMENT MOTIVATION
 ---
-> 삼성라이온즈 홈페이지 -
-> > -- 개발동기 적는부분<br> 
-> > -- 에 의 불편함에 의해 ~~ <br> 
+> 삼성라이온즈 홈페이지
+> > 야구 티켓 예매를 하려면 티켓링크라는 사이트에 따로 들어가서 예매를 해야하는 불편함이 있는데, 이를 하나의 플랫폼에서 예매할 수 있는 서비스를 개발하고 싶었습니다.
+> > 이런 서비스는 사용자가 다양한 서비스를 즐기며 예매도 같이하는데 도움을 줄 것입니다.
+> > 또, 사용자들의 편의를 위해 티켓 예매 과정을 간편하고 효율적으로 만들고, 다양한 옵션과 혜택을 제공하여 사용자들에게 더 나은 서비스를 제공할 것입니다.<br> 
  
 
-HISTORY
+branch
 ---
-[TOTAL](DOCUMENT/HISTORY/TOTAL) | [이종일](DOCUMENT/HISTORY/이종일) | [정대민](DOCUMENT/HISTORY/정대민) | [이건무](DOCUMENT/HISTORY/이건무) |  [강현우](DOCUMENT/HISTORY/강현우) | 
+[이종일](http://github.com/jong12mm/SAMSUNGLIONS/tree/이종일) | [정대민](http://github.com/jong12mm/SAMSUNGLIONS/tree/정대민) | [강현우](http://github.com/jong12mm/SAMSUNGLIONS/tree/강현우) | [이건무](http://github.com/jong12mm/SAMSUNGLIONS/tree/이건무) | 
 
 
 PLANS
@@ -18,7 +19,7 @@ PLANS
  |-|-|-|-|
  |JAVA|-|-|-|
  |JSP/SERVLET|2024/04/24 - 2024/04/28|-|-|
- |SPRING STS3|-|-|-|
+ |SPRING STS3|2024/04/29 ~ 2024/05/03|-|-|
  |SPRING BOOT|2024/06/01 - 2024/06/30|-|-|
  
 
@@ -26,11 +27,11 @@ MEMBERERS
 --- 
 |NAME|ROLE|DETAILS|DESCRIPTION| 
 |---|---|---|---|
-|정우균|FN| FrontController / Docment 관리 / Dependencies  관리 |---|
-|정대민|BN| admin - 회원가입 / 회원탈퇴 / CRUD|---|
-|이종일|BN| 유저공통 - 로그인 / 로그아웃|---|
-|이건무|BN| member 회원가입 / 회원탈퇴 /  CRUD|---|
-|강현우|FN| 모든 PAGE와 서버간 REQ / RESP |---|
+|Together|---| FrontController / Document 관리 / Dependencies  관리 |---|
+|이종일|조장| USER - 회원가입 / 회원탈퇴 / 예매 C.U.|---|
+|정대민|조원| USER - 회원가입 / 회원탈퇴 / 예매 R.D.|---|
+|강현우|조원| 유저공통 - 로그인 / 로그아웃|---|
+|이건무|조원| MANAGER 회원가입 회원탈퇴|---|
 
 SKILLS
 ---
@@ -58,7 +59,7 @@ END POINT DOC
 ---
 |URI|REQUEST METHOD|REQUEST PARAMETER TYPE|RESPONSE VALUE TYPE|DESCRIPTION|
 |---|---|---|---|---|
-|/movie/add|POST|bookid : Long<br>bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 추가|
+|/book/add|POST|bookid : Long<br>bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 추가|
 |/book/list|GET|type : String<br>keyword : String<br>pageNo : String|JSON|예매 목록 조회|
 |/book/read|GET|---|JSON|예매 상세 정보 조회|
 |/book/update|POST|updateIdStr :  Long<br>bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 정보 업데이트|
