@@ -84,12 +84,12 @@ DEPENDENCIES LIST
 |DEVOPS|-|-|-|-|-|
 
 
-ERD[KoreaJobDb]
+ERD[samsungdb]
 ---
 ![20240425155554](https://github.com/jungwoogyun/EM-01-PROJECTS/assets/84259104/8631169d-3c85-4be4-a097-613bf1e5b7e0)
 
 
-FILE TREES[JSP/SERVLET]
+FILE TREES[SPRING BOOT]
 --- 
 ```
 C:.
