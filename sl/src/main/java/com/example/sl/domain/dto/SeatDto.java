@@ -10,8 +10,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SeatDto {
-    private Long id;
-    private String seatNumber;
+    private Long seatid;
+    private String seat_number;
+    private String zone; // 구역 필드 추가
     private boolean reserved;
-    private BigDecimal price; // 가격 필드 추가
+    private BigDecimal price;
 }

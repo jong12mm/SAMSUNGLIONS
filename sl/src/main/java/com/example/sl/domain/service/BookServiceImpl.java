@@ -1,6 +1,7 @@
 package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.BookDto;
+import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.GameInfoEntity;
 import com.example.sl.entity.SeatEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -40,7 +42,7 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setSeat(bookDto.getSeat());
         bookEntity.setName(bookDto.getName());
-        bookEntity.setGameinfo(gameInfoEntity.getGameName()); // game_name 사용
+        bookEntity.setGameinfo(gameInfoEntity.getGameName());
         bookEntity.setDate(LocalDateTime.now());
         bookEntity.setBookstatus("예약됨");
 
@@ -62,8 +64,21 @@ public class BookServiceImpl implements BookService {
     public List<BookEntity> getAllBooks() {
         return bookRepository.findAll();
     }
+
     @Override
-    public List<SeatEntity> getAvailableSeats() {
-        return seatRepository.findByReservedFalse();
+    public List<String> getZones() {
+        return seatRepository.findAll()
+                .stream()
+                .map(SeatEntity::getZone)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SeatDto> getAvailableSeatsByZone(String zone) {
+        return seatRepository.findByZoneAndReservedFalse(zone)
+                .stream()
+                .map(seat -> new SeatDto(seat.getSeatid(), seat.getSeat_number(), seat.getZone(), seat.isReserved(), seat.getPrice()))
+                .collect(Collectors.toList());
     }
 }

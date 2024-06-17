@@ -1,16 +1,15 @@
 package com.example.sl.controller;
 
-import com.example.sl.entity.SeatEntity;
+import com.example.sl.domain.dto.BookDto;
+import com.example.sl.domain.dto.SeatDto;
+import com.example.sl.domain.service.BookService;
+import com.example.sl.entity.BookEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.sl.domain.dto.BookDto;
-import com.example.sl.entity.BookEntity;
-import com.example.sl.domain.service.BookService;
 
 import java.util.List;
 
@@ -19,35 +18,26 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
 
-
     private final BookService bookService;
-
 
     @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @GetMapping("/book_game_info")
-    public void bookg() {
-    }
-
-    @GetMapping("/book2")
-    public void book2() {
-    }
-
-    @GetMapping("/book_finish")
-    public void bookf() {
-    }
-    @GetMapping("/book_real_start")
-    public void bookr() {
-    }
-
     @GetMapping("/book_start")
     public String showBookingPage(Model model) {
-        List<SeatEntity> availableSeats = bookService.getAvailableSeats();
+        List<String> zones = bookService.getZones();
+        model.addAttribute("zones", zones);
+        return "book_start";
+    }
+
+    @GetMapping("/seats/{zone}")
+    public String getSeatsByZone(@PathVariable("zone") String zone, Model model) {
+        log.info("Fetching seats for zone: {}", zone);
+        List<SeatDto> availableSeats = bookService.getAvailableSeatsByZone(zone);
         model.addAttribute("availableSeats", availableSeats);
-        return "book_start"; // 좌석 선택 페이지로 이동
+        return "seats_modal :: seatList";
     }
 
     @PostMapping("/make")
@@ -66,9 +56,8 @@ public class BookController {
         }
     }
 
-
     @PostMapping("/cancel/{id}")
-    @ResponseBody // JSON 응답을 위해 필요
+    @ResponseBody
     public ResponseEntity<?> cancelBook(@PathVariable("id") String id) {
         try {
             BookEntity bookEntity = bookService.cancelBook(id);
@@ -78,7 +67,7 @@ public class BookController {
             return ResponseEntity.status(500).body("예약 취소 중 오류 발생: " + e.getMessage());
         }
     }
-    // 모든 예약 정보 조회 API
+
     @GetMapping("/list")
     public String getAllBooks(Model model) {
         List<BookEntity> bookList = bookService.getAllBooks();

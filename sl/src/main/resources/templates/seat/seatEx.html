@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>야구 좌석 예매</title>
+
+    <!-- CSS -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,49 +32,13 @@
             margin-bottom: 20px;
         }
 
-        .zone-selection {
-            text-align: center;
+        .screen {
+            background-color: #ccc;
+            height: 50px;
             margin-bottom: 20px;
-        }
-
-        .zone-selection select {
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
+            text-align: center;
+            line-height: 50px;
             font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         .seat-container {
@@ -150,78 +116,63 @@
         <h1>야구 좌석 예매</h1>
     </header>
     <main>
-        <div class="zone-selection">
-            <select id="zoneSelect">
-                <option value="">구역 선택</option>
-                <th:block th:each="zone : ${zones}">
-                    <option th:value="${zone}" th:text="${zone}"></option>
-                </th:block>
-            </select>
+        <div class="screen">경기장</div>
+        <div class="seat-container" id="seatContainer"></div>
+        <div class="summary">
+            <p id="selectedSeats">선택된 좌석: 없음</p>
+            <p id="totalPrice">총 가격: 0원</p>
         </div>
-        <div id="seatModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <div class="screen">경기장</div>
-                <div class="seat-container" id="seatContainer"></div>
-                <div class="summary">
-                    <p id="selectedSeats">선택된 좌석: 없음</p>
-                    <p id="totalPrice">총 가격: 0원</p>
-                </div>
-                <form id="bookingForm" class="booking-form">
-                    <div class="form-group">
-                        <label for="name" class="form-label">이름</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gameinfoId" class="form-label">게임 정보 ID</label>
-                        <input type="text" id="gameinfoId" name="gameinfoId" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="payid" class="form-label">결제 방법</label>
-                        <select id="payid" name="payid" class="form-control" required>
-                            <option value="">결제 방법 선택</option>
-                            <option value="card">카드</option>
-                            <option value="bank">은행 이체</option>
-                            <option value="mobile">모바일 결제</option>
-                        </select>
-                    </div>
-                    <div id="response"></div>
-                    <button type="submit" class="btn">예매완료</button>
-                </form>
+        <form id="bookingForm" class="booking-form">
+            <div class="form-group">
+                <label for="name" class="form-label">이름</label>
+                <input type="text" id="name" name="name" class="form-control" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="gameinfoId" class="form-label">게임 정보 ID</label>
+                <input type="text" id="gameinfoId" name="gameinfoId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="payid" class="form-label">결제 방법</label>
+                <select id="payid" name="payid" class="form-control" required>
+                    <option value="">결제 방법 선택</option>
+                    <option value="card">카드</option>
+                    <option value="bank">은행 이체</option>
+                    <option value="mobile">모바일 결제</option>
+                </select>
+            </div>
+            <div id="response"></div>
+            <button type="submit" class="btn">예매완료</button>
+        </form>
     </main>
     <footer>
         <p>© 2024 야구 예매 시스템</p>
     </footer>
 </div>
 
+<!-- JS -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const seatContainer = document.getElementById('seatContainer');
         const selectedSeatsDisplay = document.getElementById('selectedSeats');
         const totalPriceDisplay = document.getElementById('totalPrice');
         const bookingForm = document.getElementById('bookingForm');
-        const zoneSelect = document.getElementById('zoneSelect');
-        const seatModal = document.getElementById('seatModal');
 
-        zoneSelect.addEventListener('change', function () {
-            if (this.value) {
-                fetch(`/book/seats/${this.value}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(html => {
-                        seatContainer.innerHTML = html;
-                        seatModal.style.display = 'block';
-                    })
-                    .catch(error => console.error('Error fetching seat data:', error));
-            }
-        });
+        const seatCount = 100;
+        const seatsPerRow = 10;
+        const seatPrice = 10000;
 
+        // 좌석 생성
+        for (let i = 0; i < seatCount; i++) {
+            const row = Math.floor(i / seatsPerRow) + 1;
+            const seatNumber = (i % seatsPerRow) + 1;
+            const seat = document.createElement('div');
+            seat.classList.add('seat');
+            seat.setAttribute('data-seat', `R${row}S${seatNumber}`);
+            seat.setAttribute('data-price', seatPrice);
+            seatContainer.appendChild(seat);
+        }
+
+        // 좌석 클릭 이벤트
         seatContainer.addEventListener('click', (e) => {
             if (e.target.classList.contains('seat') && !e.target.classList.contains('reserved')) {
                 e.target.classList.toggle('selected');
@@ -229,19 +180,17 @@
             }
         });
 
-        function closeModal() {
-            seatModal.style.display = 'none';
-        }
-
+        // 선택된 좌석 업데이트
         function updateSelectedSeats() {
             const selectedSeats = document.querySelectorAll('.seat.selected');
             const selectedSeatsArr = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat'));
-            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc + parseFloat(seat.getAttribute('data-price')), 0);
+            const totalPrice = selectedSeatsArr.length * seatPrice;
 
             selectedSeatsDisplay.textContent = `선택된 좌석: ${selectedSeatsArr.length > 0 ? selectedSeatsArr.join(', ') : '없음'}`;
             totalPriceDisplay.textContent = `총 가격: ${totalPrice}원`;
         }
 
+        // 예매 폼 제출 이벤트
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -282,12 +231,6 @@
                     alert('오류가 발생했습니다. 다시 시도하세요.');
                 });
         });
-
-        window.onclick = function(event) {
-            if (event.target == seatModal) {
-                closeModal();
-            }
-        }
     });
 </script>
 </body>
