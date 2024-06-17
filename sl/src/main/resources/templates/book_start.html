@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <label for="price" class="form-label text-label">가격</label>
-                        <span id="price" class="form-control"></span><br>
+                        <span id="price" name="price" class="form-control"></span><br>
                     </div>
                     <div>
                         <label for="name" class="form-label text-label">이름</label>
@@ -73,7 +73,7 @@
         </section>
     </main>
     <!--footer-->
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
     <!--//footer-->
     <script>
         // 좌석 데이터를 가져와서 드롭다운에 추가
