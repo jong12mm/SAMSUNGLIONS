@@ -8,8 +8,8 @@
 <div id="seatList">
     <th:block th:each="seat : ${availableSeats}">
         <div class="seat" th:classappend="${seat.reserved ? ' reserved' : ''}"
-             th:data-seat="${seat.seat_number}" th:data-price="${seat.price}">
-            <span th:text="${seat.seat_number} + ' - ' + ${seat.price} + '원'"></span>
+             th:data-seat="${seat.seatNumber}" th:data-price="${seat.price}">
+            <span th:text="${seat.seatNumber} + ' - ' + ${seat.price} + '원'"></span>
         </div>
     </th:block>
 </div>

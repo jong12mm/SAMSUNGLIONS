@@ -13,4 +13,6 @@ public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
 
     @Query("SELECT DISTINCT s.zone FROM SeatEntity s")
     List<String> findDistinctZones();
+
+    List<SeatEntity> findByZone(String zone);
 }

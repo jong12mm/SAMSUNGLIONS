@@ -40,41 +40,6 @@
             font-size: 16px;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
         .seat-container {
             display: flex;
             flex-wrap: wrap;
@@ -158,38 +123,32 @@
                 </th:block>
             </select>
         </div>
-        <div id="seatModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="screen">경기장</div>
-                <div class="seat-container" id="seatContainer"></div>
-                <div class="summary">
-                    <p id="selectedSeats">선택된 좌석: 없음</p>
-                    <p id="totalPrice">총 가격: 0원</p>
-                </div>
-                <form id="bookingForm" class="booking-form">
-                    <div class="form-group">
-                        <label for="name" class="form-label">이름</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gameinfoId" class="form-label">게임 정보 ID</label>
-                        <input type="text" id="gameinfoId" name="gameinfoId" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="payid" class="form-label">결제 방법</label>
-                        <select id="payid" name="payid" class="form-control" required>
-                            <option value="">결제 방법 선택</option>
-                            <option value="card">카드</option>
-                            <option value="bank">은행 이체</option>
-                            <option value="mobile">모바일 결제</option>
-                        </select>
-                    </div>
-                    <div id="response"></div>
-                    <button type="submit" class="btn">예매완료</button>
-                </form>
-            </div>
+        <div class="seat-container" id="seatContainer"></div>
+        <div class="summary">
+            <p id="selectedSeats">선택된 좌석: 없음</p>
+            <p id="totalPrice">총 가격: 0원</p>
         </div>
+        <form id="bookingForm" class="booking-form">
+            <div class="form-group">
+                <label for="name" class="form-label">이름</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="gameinfoId" class="form-label">게임 정보 ID</label>
+                <input type="text" id="gameinfoId" name="gameinfoId" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="payid" class="form-label">결제 방법</label>
+                <select id="payid" name="payid" class="form-control" required>
+                    <option value="">결제 방법 선택</option>
+                    <option value="card">카드</option>
+                    <option value="bank">은행 이체</option>
+                    <option value="mobile">모바일 결제</option>
+                </select>
+            </div>
+            <div id="response"></div>
+            <button type="submit" class="btn">예매완료</button>
+        </form>
     </main>
     <footer>
         <p>© 2024 야구 예매 시스템</p>
@@ -203,29 +162,29 @@
         const totalPriceDisplay = document.getElementById('totalPrice');
         const bookingForm = document.getElementById('bookingForm');
         const zoneSelect = document.getElementById('zoneSelect');
-        const seatModal = document.getElementById('seatModal');
-        const closeBtn = document.querySelector('.close');
-
-        function closeModal() {
-            seatModal.style.display = 'none';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
 
         zoneSelect.addEventListener('change', function () {
             if (this.value) {
-                console.log(`Selected zone: ${this.value}`);
                 fetch(`/book/seats/${this.value}`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
-                        return response.text();
+                        return response.json();
                     })
-                    .then(html => {
-                        console.log('Received HTML:', html);
-                        seatContainer.innerHTML = html;
-                        seatModal.style.display = 'block';
+                    .then(data => {
+                        seatContainer.innerHTML = '';
+                        data.forEach(seat => {
+                            const seatElement = document.createElement('div');
+                            seatElement.classList.add('seat');
+                            if (seat.reserved) {
+                                seatElement.classList.add('reserved');
+                            }
+                            seatElement.setAttribute('data-seat', seat.seat_number);
+                            seatElement.setAttribute('data-price', seat.price);
+                            seatElement.textContent = seat.seat_number;
+                            seatContainer.appendChild(seatElement);
+                        });
                     })
                     .catch(error => console.error('Error fetching seat data:', error));
             }
@@ -287,12 +246,6 @@
                     alert('오류가 발생했습니다. 다시 시도하세요.');
                 });
         });
-
-        window.onclick = function(event) {
-            if (event.target == seatModal) {
-                closeModal();
-            }
-        }
     });
 </script>
 </body>

@@ -4,6 +4,7 @@ import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.entity.BookEntity;
+import com.example.sl.entity.SeatEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -38,6 +40,7 @@ public class BookController {
 
     }
 
+
     @GetMapping("/book_start")
     public String showBookingPage(Model model) {
         List<String> zones = bookService.getZones();
@@ -46,11 +49,13 @@ public class BookController {
     }
 
     @GetMapping("/seats/{zone}")
-    public String getSeatsByZone(@PathVariable("zone") String zone, Model model) {
+    @ResponseBody
+    public List<SeatDto> getSeatsByZone(@PathVariable("zone") String zone) {
         log.info("Fetching seats for zone: {}", zone);
-        List<SeatDto> availableSeats = bookService.getAvailableSeatsByZone(zone);
-        model.addAttribute("availableSeats", availableSeats);
-        return "seats_modal :: seatList";
+        List<SeatEntity> seats = bookService.getAvailableSeatsByZone(zone);
+        return seats.stream()
+                .map(seat -> new SeatDto(seat.getSeatid(), seat.getSeat_number(), seat.getZone(), seat.isReserved(), seat.getPrice()))
+                .collect(Collectors.toList());
     }
 
     @PostMapping("/make")

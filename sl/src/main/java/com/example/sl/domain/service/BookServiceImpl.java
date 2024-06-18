@@ -1,7 +1,6 @@
 package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.BookDto;
-import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.GameInfoEntity;
 import com.example.sl.entity.SeatEntity;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -71,10 +69,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<SeatDto> getAvailableSeatsByZone(String zone) {
-        List<SeatEntity> seats = seatRepository.findByZoneAndReservedFalse(zone);
-        return seats.stream()
-                .map(seat -> new SeatDto(seat.getSeatid(), seat.getSeat_number(), seat.getZone(), seat.isReserved(), seat.getPrice()))
-                .collect(Collectors.toList());
+    public List<SeatEntity> getAvailableSeatsByZone(String zone) {
+        return seatRepository.findByZone(zone);
     }
 }
