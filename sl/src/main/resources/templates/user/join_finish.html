@@ -6,25 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMSUNG LIONS</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="script.js"></script>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/usercss/join_finish.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-
 
 </head>
-
 <body>
-
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
@@ -34,10 +26,8 @@
                 <br>
                 <div class="title-box">
                     <h2>
-
                         <p>한국 최고의 프로야구단 라이온즈의 회원이 되신 것을<br>진심으로 환영합니다!
                             <br><br><br></p>
-
                     </h2>
                 </div>
                 <div class="input-form">
@@ -68,23 +58,19 @@
     </main>
     <!--footer-->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--//footer-->
+    <!--footer-->
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
             });
-
             menuItem.addEventListener('mouseleave', () => {
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
-
 </div>
-
 </body>
-
 </html>

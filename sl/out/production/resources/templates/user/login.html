@@ -1,44 +1,30 @@
 <!DOCTYPE html>
-<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMSUNG LIONS</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="script.js"></script>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/usercss/login.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-
-
 
 </head>
-
 <body>
-
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
-    <style>
-        main{
-
-        }
-    </style>
     <main>
         <section>
             <div class="login">
                 <div class="title">
                     로그인
                 </div>
-
                 <div class="login-body">
                     <form action="">
                         <div>
@@ -67,29 +53,25 @@
                     <span>이 페이지는 Google reCAPTCHA의 보호를 받아 사용자가 로봇이 아님을 확인합니다.</span>
                     <a href="">자세히 알아보기.</a>
                 </div>
-
                 <div class="login-bg"></div>
             </div>
         </section>
     </main>
     <!--footer-->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--//footer-->
+    <!--footer-->
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
             });
-
             menuItem.addEventListener('mouseleave', () => {
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
-
 </div>
-
 </body>
 </html>

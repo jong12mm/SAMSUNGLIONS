@@ -6,20 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMSUNG LIONS</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="script.js"></script>
+
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/bookcss/book_game_info.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-
 
 </head>
 
@@ -31,7 +26,6 @@
         <section>
             <div class="match_list">
                 <h1>경기선택<br></h1>
-
                 <div class="match-tabs">
                     <table class="table table-hover text-center table-striped " style="background-color: #f8f8f8;">
                         <span style="font-weight: 600;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">&nbsp;</span>
@@ -142,9 +136,9 @@
     </main>
     <!--footer-->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--//footer-->
+    <!--footer-->
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
@@ -154,7 +148,7 @@
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
 
 </div>

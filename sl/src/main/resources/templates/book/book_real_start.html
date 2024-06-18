@@ -6,25 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMSUNG LIONS</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="script.js"></script>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/bookcss/book_real_start.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-
 
 </head>
-
 <body>
-
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
@@ -39,7 +31,6 @@
                 <h1>구매하실 티켓을 선택해주세요.</h1>
             </div>
             <div class="book-btn">
-
                 <a href="/book/book_game_info" class="btn">
                     <div class="btn-logo">
                         <img src="/img/teamlogo/logoblue.png" alt="">
@@ -52,17 +43,14 @@
                     </div>
                     <div style="width: 50px; height: 40px;"></div>
                 </a>
-
             </div>
-
-
         </section>
     </main>
     <!--footer-->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--//footer-->
+    <!--footer-->
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
@@ -72,10 +60,8 @@
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
-
 </div>
-
 </body>
 </html>

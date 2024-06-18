@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAMSUNG LIONS</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="script.js"></script>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/usercss/join_start.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
 
 </head>
-
 <body>
-
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
@@ -36,12 +30,9 @@
                         <br>
                     <h1><br>지금 삼성라이온즈의 최강 10번타자가 되어보세요!</h1><br><br>
                     </p>
-
-
                 </div>
                 <div class="input-form">
                     <p class="title">*홈페이지 무료회원 가입안내*</p>
-
                     <div class="line-box">
                         <ul>
                             <li>
@@ -62,12 +53,10 @@
                         <a href="/user/children_join" class="btn1a">
                             <span>어린이회원</span>
                             <span>(14세 미만)</span>
-
                         </a>
                         <a href="/user/adult_join" class="btn2a">
                             <span>성인회원</span>
                             <span>(14세이상)</span>
-
                         </a>
                     </div>
                 </div>
@@ -76,23 +65,19 @@
     </main>
     <!--footer-->
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--//footer-->
+    <!--footer-->
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
             });
-
             menuItem.addEventListener('mouseleave', () => {
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
-
 </div>
-
 </body>
-
 </html>

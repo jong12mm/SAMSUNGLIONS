@@ -12,15 +12,11 @@
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/clubcss/slintro.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
 
 <body>
 
@@ -36,8 +32,6 @@
             <h1>WIN OR WOW</h1>
         </section>
         <section>
-
-
             <div class="section1">
                 <div class="section1-main">
                     <div class="section1-main2">
@@ -56,11 +50,8 @@
                     </div>
                 </div>
             </div>
-
         </section>
         <section>
-
-
             <div class="section2">
                 <div class="section2-main">
                     <div class="section2-main2">
@@ -79,23 +70,17 @@
                     </div>
                 </div>
             </div>
-
-
         </section>
     </main>
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 </div>
-
-
 </body>
-
 <script>
     /*header*/
     document.querySelectorAll('.menu > li').forEach(menuItem => {
         menuItem.addEventListener('mouseenter', () => {
             document.querySelector('.hideback').classList.add('show-hideback');
         });
-
         menuItem.addEventListener('mouseleave', () => {
             document.querySelector('.hideback').classList.remove('show-hideback');
         });
@@ -104,55 +89,57 @@
 </script>
 <script>
     window.onload = function () {
-      const elm = document.querySelectorAll("section");
-      const elmCount = elm.length;
-      elm.forEach(function (item, index) {
-        item.addEventListener("mousewheel", function (event) {
-          event.preventDefault();
-          let delta = 0;
-          if (!event) event = window.event;
-          if (event.wheelDelta) {
-            delta = event.wheelDelta / 120;
-            if (window.opera) delta = -delta;
-          } else if (event.detail) delta = -event.detail / 3;
+        const elm = document.querySelectorAll("section");
+        const elmCount = elm.length;
+        elm.forEach(function (item, index) {
+            item.addEventListener("mousewheel", function (event) {
+                event.preventDefault();
+                let delta = 0;
+                if (!event) event = window.event;
+                if (event.wheelDelta) {
+                    delta = event.wheelDelta / 120;
+                    if (window.opera) delta = -delta;
+                } else if (event.detail) delta = -event.detail / 3;
 
-          let moveTop = window.scrollY;
-          let elmSelector = elm[index];
+                let moveTop = window.scrollY;
+                let elmSelector = elm[index];
 
-          // wheel down : move to next section
-          if (delta < 0) {
-            // 이동할 섹션이 더 있는지 확인
-            if (index !== elmCount - 1) {
-              try {
-                moveTop =
-                  window.pageYOffset +
-                  elmSelector.nextElementSibling.getBoundingClientRect().top;
-              } catch (e) {}
-            } else {
-              // 마지막 섹션인 경우 페이지 끝으로 스크롤
-              moveTop = document.body.scrollHeight;
-            }
-          }
+                // wheel down : move to next section
+                if (delta < 0) {
+                    // 이동할 섹션이 더 있는지 확인
+                    if (index !== elmCount - 1) {
+                        try {
+                            moveTop =
+                                window.pageYOffset +
+                                elmSelector.nextElementSibling.getBoundingClientRect().top;
+                        } catch (e) {
+                        }
+                    } else {
+                        // 마지막 섹션인 경우 페이지 끝으로 스크롤
+                        moveTop = document.body.scrollHeight;
+                    }
+                }
 
-          // wheel up : move to previous section
-          else {
-            // 이동할 섹션이 있는지 확인
-            if (index !== 0) {
-              try {
-                moveTop =
-                  window.pageYOffset +
-                  elmSelector.previousElementSibling.getBoundingClientRect().top;
-              } catch (e) {}
-            } else {
-              // 첫 번째 섹션인 경우 페이지 상단으로 스크롤
-              moveTop = 0;
-            }
-          }
+                // wheel up : move to previous section
+                else {
+                    // 이동할 섹션이 있는지 확인
+                    if (index !== 0) {
+                        try {
+                            moveTop =
+                                window.pageYOffset +
+                                elmSelector.previousElementSibling.getBoundingClientRect().top;
+                        } catch (e) {
+                        }
+                    } else {
+                        // 첫 번째 섹션인 경우 페이지 상단으로 스크롤
+                        moveTop = 0;
+                    }
+                }
 
-          const body = document.querySelector("html");
-          window.scrollTo({ top: moveTop, left: 0, behavior: "smooth" });
+                const body = document.querySelector("html");
+                window.scrollTo({top: moveTop, left: 0, behavior: "smooth"});
+            });
         });
-      });
     };
 </script>
 

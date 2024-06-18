@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
 
     <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+
     <link rel="stylesheet" type="text/css" href="/css/fancss/fan_main.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick.css">
-    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/slick.js"></script>
-    <script type="text/javascript" src="/js/slick.min.js"></script>
-
 
 </head>
 <body>
 <div class="wrapper">
-
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
         <section>
@@ -70,19 +65,17 @@
     </main>
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
     <script>
-        /*header*/
+        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
             });
-
             menuItem.addEventListener('mouseleave', () => {
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /*//header*/
+        /* header */
     </script>
 </div>
-
 </body>
 </html>
