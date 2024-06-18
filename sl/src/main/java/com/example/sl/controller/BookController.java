@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,13 +65,13 @@ public class BookController {
         log.info("Received booking request: {}", bookDto);
         try {
             BookEntity bookEntity = bookService.makeBook(bookDto);
-            return ResponseEntity.ok(bookEntity);
+            return ResponseEntity.ok(Collections.singletonMap("bookId", bookEntity.getBookid()));
         } catch (IllegalArgumentException e) {
             log.error("Invalid gameInfoId provided: {}", bookDto.getGameinfoId(), e);
-            return ResponseEntity.badRequest().body("Invalid gameInfoId provided: " + bookDto.getGameinfoId());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("success", false));
         } catch (Exception e) {
             log.error("예약 생성 중 오류 발생: ", e);
-            return ResponseEntity.status(500).body("예약 생성 중 오류 발생: " + e.getMessage());
+            return ResponseEntity.status(500).body(Collections.singletonMap("success", false));
         }
     }
 

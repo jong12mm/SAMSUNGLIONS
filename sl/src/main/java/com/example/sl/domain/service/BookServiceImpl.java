@@ -43,6 +43,7 @@ public class BookServiceImpl implements BookService {
         bookEntity.setGameinfo(gameInfoEntity.getGameName());
         bookEntity.setDate(LocalDateTime.now());
         bookEntity.setBookstatus("예약됨");
+        bookEntity.setPayid(bookDto.getPayid());
 
         return bookRepository.save(bookEntity);
     }
