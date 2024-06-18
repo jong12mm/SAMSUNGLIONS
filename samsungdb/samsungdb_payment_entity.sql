@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `payment_entity`;
 CREATE TABLE `payment_entity` (
   `payment_id` bigint NOT NULL AUTO_INCREMENT,
   `amount` decimal(38,2) DEFAULT NULL,
-  `payment_date_time` datetime(6) DEFAULT NULL,
+  `payment_date_time` datetime DEFAULT NULL,
   `payment_method` varchar(255) DEFAULT NULL,
   `payment_status` varchar(255) DEFAULT NULL,
   `book_id` bigint DEFAULT NULL,
   PRIMARY KEY (`payment_id`),
-  KEY `FKcty5cjs5mjj3ymbgh5rgyq9e` (`book_id`),
-  CONSTRAINT `FKcty5cjs5mjj3ymbgh5rgyq9e` FOREIGN KEY (`book_id`) REFERENCES `book_entity` (`bookid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK_BOOK_PAYMENT` (`book_id`),
+  CONSTRAINT `FK_BOOK_PAYMENT` FOREIGN KEY (`book_id`) REFERENCES `book_entity` (`bookid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `payment_entity` (
 
 LOCK TABLES `payment_entity` WRITE;
 /*!40000 ALTER TABLE `payment_entity` DISABLE KEYS */;
+INSERT INTO `payment_entity` VALUES (1,80000.00,'2024-06-18 15:22:11','bank','성공',5),(2,200000.00,'2024-06-18 16:54:58','card','성공',6);
 /*!40000 ALTER TABLE `payment_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 17:49:09
+-- Dump completed on 2024-06-18 17:40:44

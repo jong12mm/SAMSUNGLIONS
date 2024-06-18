@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/fancss/fan_free.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/slick.js"></script>
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section class="titlebox-freeboard">
+            <div class=titlearea-freeboard><h1>자유게시판</h1></div>
+        </section>
+        <section>
+            <div class="tablebox-freeboard">
+                <table border="1" width="400px" height="300px" align="center">
+                    <tr>
+                        <th>열이름1</th>
+                        <th>열이름2</th>
+                        <th>열이름3</th>
+                    </tr>
+                    <tr>
+                        <td>Value1</td>
+                        <td>Value2</td>
+                        <td>Value3</td>
+                    </tr>
+                    <tr>
+                        <td>Value1</td>
+                        <td>Value2</td>
+                        <td>Value3</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <script>
+        /*header*/
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /*//header*/
+    </script>
+</div>
+
+</body>
+</html>

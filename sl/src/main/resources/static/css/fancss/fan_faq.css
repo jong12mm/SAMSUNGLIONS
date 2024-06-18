@@ -1,0 +1,40 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+
+
+.wrapper>main{
+    /* width: auto;
+    height : 1000px;
+    background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 100%, 100% 100%;
+    background-position:0px 0px ,0px 0px; */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background:
+    /*        url('/img/player/오승환.jpg') left top no-repeat,*/
+    /*url('/img/player/구자욱.jpg') right top no-repeat,*/
+    url('/img/backgroundex1.jpg');
+
+    background-color: rgb(255, 255, 255,0.7);
+
+
+    background-size: auto 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 100px;
+
+
+
+}
+.wrapper>main>section{
+    margin: auto;
+
+
+}

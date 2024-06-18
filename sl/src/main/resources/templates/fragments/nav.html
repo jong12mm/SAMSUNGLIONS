@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Nav Fragment</title>
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+
 </head>
 <body>
 <header th:fragment="navFragment" class="navbar" id="navbar" >
@@ -42,13 +44,13 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="">팬</a>
+                    <a href="/fan/fan/fan_main">팬</a>
                     <ul class="submenu">
-                        <li><a href="">라이온즈스토리</a></li>
-                        <li><a href="">갤러리</a></li>
-                        <li><a href="">FAQ</a></li>
-                        <li><a href="">응원단</a></li>
-                        <li><a href="">자유게시판</a></li>
+                        <li><a href="/fan/fan_story">라이온즈스토리</a></li>
+                        <li><a href="/fan/fan_gallery">갤러리</a></li>
+                        <li><a href="/fan/fan_faq">FAQ</a></li>
+                        <li><a href="/fan/fan_cheermain">응원단</a></li>
+                        <li><a href="/fan/fan_free">자유게시판</a></li>
                     </ul>
                 </li>
                 <li>

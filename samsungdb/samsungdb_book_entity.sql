@@ -31,7 +31,7 @@ CREATE TABLE `book_entity` (
   `payid` varchar(255) DEFAULT NULL,
   `seat` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`bookid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `book_entity` (
 
 LOCK TABLES `book_entity` WRITE;
 /*!40000 ALTER TABLE `book_entity` DISABLE KEYS */;
-INSERT INTO `book_entity` VALUES (1,'예약됨','2024-06-17 16:23:44.646612','KBO Team 2','ㅇㅁㄴㅇㄹ',NULL,NULL);
+INSERT INTO `book_entity` VALUES (1,'예약됨','2024-06-18 14:45:52.144232','NC다이노스','이종일',NULL,NULL),(2,'예약됨','2024-06-18 15:06:50.648922','SSG랜더스','sdf',NULL,NULL),(3,'예약됨','2024-06-18 15:09:05.451854','SSG랜더스','sdf',NULL,NULL),(4,'예약됨','2024-06-18 15:20:13.387278','SSG랜더스','이종일','bank',NULL),(5,'예약됨','2024-06-18 15:22:10.889732','NC다이노스','이종일','bank',NULL),(6,'예약됨','2024-06-18 16:54:57.905095','SSG랜더스','이종일','card',NULL);
 /*!40000 ALTER TABLE `book_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 17:49:09
+-- Dump completed on 2024-06-18 17:40:44

@@ -107,7 +107,7 @@ a {
 }
 
 .wrapper>header>.header-left>a {
-    background: url(../img/logo.png) no-repeat 0 0;
+    background: url(../img/teamlogo/logo.png) no-repeat 0 0;
     display: block;
     width: 100px;
     height: 64px;

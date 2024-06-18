@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/fancss/fan_story.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/slick.js"></script>
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+
+
+</head>
+<body>
+<!-- 공통 헤더 삽입 -->
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+
+    <main>
+        <section>
+            <div class=toparea>
+                <div class="topimg"></div>
+                <div class="topcontent"></div>
+            </div>
+        </section>
+        <section class="writesection">
+            <div><h1>라이온즈 스토리</h1></div>
+        </section>
+        <section class="storysection">
+            <div class="storybox">
+                <div class="storycontent">
+                    <img src="/img/lions_story.jpg">
+                </div>
+            </div>
+        </section>
+        <section class="boxsection">
+            <div class="layoutbox">
+                <div class="storyimg">
+                    <a href="">
+                        <img src="/img/gal/gal1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="storyletter">blarblarblar</div>
+            </div>
+        </section>
+        <section class="boxsection">
+            <div class="layoutbox">
+                <div class="storyimg">
+                    <a href="">
+                        <img src="/img/gal/gal2.jpg" alt="">
+                    </a>
+                </div>
+                <div class="storyletter">blarblarblar</div>
+            </div>
+        </section>
+    </main>
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <script>
+        /*header*/
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /*//header*/
+    </script>
+</div>
+</body>
+</html>
