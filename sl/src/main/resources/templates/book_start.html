@@ -160,7 +160,7 @@
         </div>
         <div id="seatModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="close">&times;</span>
                 <div class="screen">경기장</div>
                 <div class="seat-container" id="seatContainer"></div>
                 <div class="summary">
@@ -204,9 +204,17 @@
         const bookingForm = document.getElementById('bookingForm');
         const zoneSelect = document.getElementById('zoneSelect');
         const seatModal = document.getElementById('seatModal');
+        const closeBtn = document.querySelector('.close');
+
+        function closeModal() {
+            seatModal.style.display = 'none';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
 
         zoneSelect.addEventListener('change', function () {
             if (this.value) {
+                console.log(`Selected zone: ${this.value}`);
                 fetch(`/book/seats/${this.value}`)
                     .then(response => {
                         if (!response.ok) {
@@ -215,6 +223,7 @@
                         return response.text();
                     })
                     .then(html => {
+                        console.log('Received HTML:', html);
                         seatContainer.innerHTML = html;
                         seatModal.style.display = 'block';
                     })
@@ -228,10 +237,6 @@
                 updateSelectedSeats();
             }
         });
-
-        function closeModal() {
-            seatModal.style.display = 'none';
-        }
 
         function updateSelectedSeats() {
             const selectedSeats = document.querySelectorAll('.seat.selected');

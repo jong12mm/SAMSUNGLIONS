@@ -25,6 +25,19 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @GetMapping("/book_real_start")
+    public void bookr(){
+
+    }
+    @GetMapping("/book_game_info")
+    public void bookg(){
+
+    }
+    @GetMapping("/book_finish")
+    public void bookf(){
+
+    }
+
     @GetMapping("/book_start")
     public String showBookingPage(Model model) {
         List<String> zones = bookService.getZones();

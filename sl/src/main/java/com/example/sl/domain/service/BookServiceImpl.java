@@ -67,17 +67,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<String> getZones() {
-        return seatRepository.findAll()
-                .stream()
-                .map(SeatEntity::getZone)
-                .distinct()
-                .collect(Collectors.toList());
+        return seatRepository.findDistinctZones();
     }
 
     @Override
     public List<SeatDto> getAvailableSeatsByZone(String zone) {
-        return seatRepository.findByZoneAndReservedFalse(zone)
-                .stream()
+        List<SeatEntity> seats = seatRepository.findByZoneAndReservedFalse(zone);
+        return seats.stream()
                 .map(seat -> new SeatDto(seat.getSeatid(), seat.getSeat_number(), seat.getZone(), seat.isReserved(), seat.getPrice()))
                 .collect(Collectors.toList());
     }
