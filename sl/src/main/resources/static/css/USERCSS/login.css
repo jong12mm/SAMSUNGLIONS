@@ -4,11 +4,11 @@
     font-family: 'PreT';
     font-weight: 100;
     font-style: normal;
-    src: url('/font/Pretendard-Thin.eot');
+    src: url('../../font/Pretendard-Thin.eot');
     src: local('��'),
-    url('/font/Pretendard-Thin.woff') format('woff'),
-    url('/font/Pretendard-Thin.woff2') format('woff2'),
-    url('/font/Pretendard-Thin.otf') format('opentype');
+    url('../../font/Pretendard-Thin.woff') format('woff'),
+    url('../../font/Pretendard-Thin.woff2') format('woff2'),
+    url('../../font/Pretendard-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -100,9 +100,9 @@ a {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: url('/img/player/오승환.jpg') left top no-repeat,
-    url('/img/player/구자욱.jpg') right top no-repeat,
-    url('/img/backgroundex1.jpg');
+    background: url('../../img/player/오승환.jpg') left top no-repeat,
+    url('../../img/player/구자욱.jpg') right top no-repeat,
+    url('../../img/backgroundex1.jpg');
 
     background-color: rgb(255, 255, 255, 0.7);
 

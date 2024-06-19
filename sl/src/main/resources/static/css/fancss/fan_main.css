@@ -66,7 +66,6 @@
 }
 
 
-
 * {
     margin: 0;
     padding: 0;
@@ -89,37 +88,114 @@ a {
     margin: 0;
 }
 
-
-
-.wrapper>main{
-    /* width: auto;
-    height : 1000px;
-    background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
-    background-repeat: no-repeat;
-    background-size:100% 100%, 100% 100%;
-    background-position:0px 0px ,0px 0px; */
-    margin: 0;
+.wrapper > main {
     padding: 0;
-    height: 100vh;
-    background:
-    /*        url('/img/player/오승환.jpg') left top no-repeat,*/
-    /*url('/img/player/구자욱.jpg') right top no-repeat,*/
-    url('/img/backgroundex1.jpg');
+    height: 1600px;
+    background: url('../../img/하늘2.jpg') left top no-repeat,
+    url('../../img/하늘1.jpg') right top no-repeat;
+    /*url('../../img/backgroundex1.jpg') no-repeat ;*/
 
-    background-color: rgb(255, 255, 255,0.7);
-
-
-    background-size: auto 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    background-size: 220px 100%, 220px 100%, 100% 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 100px;
-
-
-
+    margin: 100px 0 0;
 }
-.wrapper>main>section{
+
+section {
     margin: auto;
+    margin-top: 0;
+    width: 100%;
+    margin-left: 220px;
+    margin-right: 220px;
+}
 
+.banner {
+    width: 1463px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner > img {
 
 }
+
+section > div > div > div > a > img {
+    width: 400px;
+    height: 300px;
+}
+
+section > div > div > div > a {
+    display: block;
+    width: 400px;
+    height: 300px;
+    z-index: 4;
+}
+
+.span {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+span {
+    font-family: 'PreM';
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 2rem;
+}
+
+.subtext {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.fmain_top {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+
+.fmain_bottom {
+    display: flex;
+    justify-content: space-around;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.fmain_board {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.fmain_board > .board_main {
+    width: 1200px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fmain_board > .board_main > .span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fmain_board > .board_main > .board {
+    border: 1px solid black;
+    height: 300px;
+    width: 1200px;
+}
+

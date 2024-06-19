@@ -23,10 +23,10 @@ public class FanController {
     public void fanf(){
 
     }
-    @GetMapping("/fan_gallery")
-    public void fang(){
-
-    }
+//    @GetMapping("/fan_gallery")
+//    public void fang(){
+//
+//    }
     @GetMapping("/fan_main")
     public void fanm(){
 
