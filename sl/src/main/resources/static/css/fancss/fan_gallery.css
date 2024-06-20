@@ -91,8 +91,8 @@ a {
     padding: 0;
     min-height: 100vh;
     background: url('../../img/하늘2.jpg') left top repeat-y,
-    url('../../img/하늘1.jpg') right top repeat-y,
-    url('../../img/backgroundex1.jpg') repeat;
+    url('../../img/하늘1.jpg') right top repeat-y;
+    /*url('../../img/backgroundex1.jpg') repeat;*/
     background-color: rgba(255, 255, 255, 0.7);
     background-size: 220px auto, 220px auto, auto 100%;
     display: flex;
@@ -109,7 +109,7 @@ a {
     padding-bottom: 20px;
 }
 
-section > .gallerytitle > h2 {
+.gallerytitle-inner > h2 {
     text-align: center;
     color: #333;
     font-size: 2.5rem;
@@ -117,35 +117,65 @@ section > .gallerytitle > h2 {
 }
 
 .gallerytitle {
-    /*background-color: #A1F0F4;*/
     padding: 20px;
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px; /* 추가한 여백 */
+}
+
+.gallerytitle-inner {
+    background-color: #e0f7fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.form1{
+    display: flex;
+    justify-content: space-around;
     margin-bottom: 20px;
-    margin-top: 20px;
+    text-align: center;
 }
 
 .form2 {
-
+    display: flex;
     margin-bottom: 20px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
-.form1{
+
+.form1>div{
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
     text-align: center;
+    align-items: center;
 }
 
 label {
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-input[type="text"], input[type="file"] {
+input[type="text"]{
     margin-right: 10px;
-    padding: 10px;
+    padding: 5px 5px 5px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    height:36px;
+}
+
+
+input[type="file"] {
+    margin-right: 10px;
+    padding: 5px 5px 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
 }
 
 button {
@@ -163,7 +193,7 @@ button {
     outline: 2px solid transparent; /* 아웃라인 초기화 */
     transition: background-color 0.7s ease;
     padding: 5px 10px;
-    margin-top: 10px;
+
 }
 
 button:hover {
@@ -182,16 +212,23 @@ button:hover {
 }
 
 .gallery-item {
-    background-color: white;
-    border: 1px solid #ccc;
+    padding: 20px; /* 패딩 추가 */
+    background-color: #e0f7fa; /* 패딩 영역 배경색 */
     border-radius: 10px;
+}
+
+.gallery-item-inner {
+    background-color: white; /* 내부 콘텐츠 배경색 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure button stays at the bottom */
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
+    height :300px;
 }
 
 .gallery-item h2 {

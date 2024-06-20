@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fan Lions Story</title>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
@@ -12,48 +12,43 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
+
+
 </head>
 <body>
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
-
     <main>
-        <div>
-            <div class=toparea>
-                <div class="topimg"></div>
-                <div class="topcontent"></div>
-            </div>
-        </div>
-        <div class="writesection">
-            <div><h1>라이온즈 스토리</h1></div>
-        </div>
-        <div class="storysection">
-            <div class="storybox">
-                <div class="storycontent">
-                    <img src="/img/fan/lions_story.jpg">
+        <section>
+            <div class="container">
+                <h1>Fan Stories</h1>
+                <div id="story-list" class="story-list">
+                    <!-- 동적으로 채워질 이야기 목록 -->
                 </div>
+                <button class="add-story-btn" onclick="showForm()">Add Story</button>
+                <div id="error-message" class="error-message" style="display: none;"></div>
             </div>
-        </div>
-        <div class="boxsection">
-            <div class="layoutbox">
-                <div class="storyimg">
-                    <a href="">
-                        <img src="/img/gal/gal1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="storyletter">blarblarblar</div>
+
+            <div id="story-form" class="story-form" style="display: none;">
+                <h2 id="form-title">Add Story</h2>
+                <form id="storyForm" enctype="multipart/form-data">
+                    <input type="hidden" id="storyId">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required><br>
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required><br>
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image"><br>
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" required></textarea><br>
+                    <button type="submit">Submit</button>
+                    <button type="button" onclick="hideForm()">Cancel</button>
+                </form>
             </div>
-        </div>
-        <div class="boxsection">
-            <div class="layoutbox">
-                <div class="storyimg">
-                    <a href="">
-                        <img src="/img/gal/gal2.jpg" alt="">
-                    </a>
-                </div>
-                <div class="storyletter">blarblarblar</div>
-            </div>
-        </div>
+
+
+
+        </section>
     </main>
     <th:block th:replace="fragments/footer :: footerFragment"></th:block>
     <script>
@@ -68,6 +63,117 @@
             });
         });
         /*//header*/
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadStories();
+
+            document.getElementById("storyForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                submitForm();
+            });
+        });
+
+        function loadStories() {
+            fetch("/fan/stories")
+                .then(response => response.json())
+                .then(data => {
+                    const storyList = document.getElementById("story-list");
+                    storyList.innerHTML = "";
+                    data.forEach(story => {
+                        storyList.innerHTML += `
+                    <div class="story">
+                        <div class="story-image"><img src="/images/${story.image}" alt="Story Image"></div>
+                        <div class="story-content">
+                            <h2>${story.title}</h2>
+                            <p>${story.content}</p>
+                            <div class="story-footer">
+                                <span>Author: ${story.author}</span>
+                                <span>Views: ${story.views}</span>
+                                <span class="edit" onclick="editStory(${story.id})">Edit</span>
+                                <span class="delete" onclick="deleteStory(${story.id})">Delete</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    });
+                })
+                .catch(error => displayError("Failed to load stories. " + error.message));
+        }
+
+        function showForm() {
+            document.getElementById("story-form").style.display = "block";
+            document.getElementById("form-title").innerText = "Add Story";
+            document.getElementById("storyForm").reset();
+        }
+
+        function hideForm() {
+            document.getElementById("story-form").style.display = "none";
+        }
+
+        function submitForm() {
+            const form = document.getElementById("storyForm");
+            const formData = new FormData(form);
+            const storyId = document.getElementById("storyId").value;
+
+            const url = storyId ? `/fan/story/${storyId}` : "/fan/story";
+            const method = storyId ? "PUT" : "POST";
+
+            fetch(url, {
+                method: method,
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.message); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    hideForm();
+                    loadStories();
+                })
+                .catch(error => displayError("Failed to submit story. " + error.message));
+        }
+
+        function editStory(id) {
+            fetch(`/fan/story/${id}`)
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.message); });
+                    }
+                    return response.json();
+                })
+                .then(story => {
+                    document.getElementById("storyId").value = story.id;
+                    document.getElementById("title").value = story.title;
+                    document.getElementById("author").value = story.author;
+                    document.getElementById("content").value = story.content;
+                    document.getElementById("form-title").innerText = "Edit Story";
+                    document.getElementById("story-form").style.display = "block";
+                })
+                .catch(error => displayError("Failed to load story for editing. " + error.message));
+        }
+
+        function deleteStory(id) {
+            fetch(`/fan/story/${id}`, {
+                method: "DELETE"
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(err.message); });
+                    }
+                    loadStories();
+                })
+                .catch(error => displayError("Failed to delete story. " + error.message));
+        }
+
+        function displayError(message) {
+            const errorMessage = document.getElementById("error-message");
+            errorMessage.style.display = "block";
+            errorMessage.innerText = message;
+        }
+
     </script>
 </div>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gallery 저장</title>
+    <title>Admin Fan Gallery</title>
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/fancss/fan_gallery.css">
@@ -41,24 +41,35 @@
     <main>
         <section>
             <div class="gallerytitle">
-                <h2>갤러리</h2>
-                <form action="/fan/fan_gallery/add" method="post" enctype="multipart/form-data"
-                      onsubmit="return validateUpload(this)" class="form1">
-                    <label for="name">이름 :</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="title">제목 :</label>
-                    <input type="text" id="title" name="title" required>
-                    <label for="file">사진등록 :</label>
-                    <input type="file" id="file" name="file" required onchange="validateFileSize(this)">
-                    <button type="submit">등록하기</button>
-                </form>
+                <div class="gallerytitle-inner">
+                    <h2>갤러리</h2>
+                    <form action="/fan/fan_gallery/add" method="post" enctype="multipart/form-data"
+                          onsubmit="return validateUpload(this)" class="form1">
+                        <div>
+                            <label for="name">이름 :</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="title">제목 :</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div>
+                            <label for="file">사진등록 :</label>
+                            <input type="file" id="file" name="file" required onchange="validateFileSize(this)">
+                            <button type="submit">등록하기</button>
+                        </div>
+                    </form>
+                </div>
             </div>
+
 
             <div class="gallery">
                 <div th:each="image : ${images}" class="gallery-item">
-                    <h2 th:text="${image.title}"></h2>
-                    <img th:src="@{/fan/fan_gallery/image/{id}(id=${image.id})}" alt="Image">
-                    <a th:href="@{/fan/fan_gallery/download/{id}(id=${image.id})}" class="download-button">Download</a>
+                    <div class="gallery-item-inner">
+                        <h2 th:text="${image.title}"></h2>
+                        <img th:src="@{/fan/fan_gallery/image/{id}(id=${image.id})}" alt="Image">
+                        <a th:href="@{/fan/fan_gallery/download/{id}(id=${image.id})}" class="download-button">Download</a>
+                    </div>
                 </div>
             </div>
             <div class="pagination">
@@ -67,7 +78,9 @@
                 </span>
                 <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
                     <a th:href="@{/fan/fan_gallery(page=${i})}" th:text="${i + 1}"
-                       th:classappend="${i} == ${currentPage} ? 'active' : ''"></a>
+                       th:classappend="${i == currentPage} ? ' active' : ''"></a>
+
+
                 </span>
                 <span th:if="${currentPage < totalPages - 1}">
                     <a th:href="@{/fan/fan_gallery(page=${currentPage + 1})}" class="arrow-button">&raquo;</a>
