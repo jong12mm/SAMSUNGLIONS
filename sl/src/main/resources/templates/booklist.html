@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 목록</title>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/bookcss/booklist.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="listlist">
+                <h1>예매 목록</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>예매 ID</th>
+                        <th>좌석</th>
+                        <th>이름</th>
+                        <th>게임 정보</th>
+                        <th>예매 상태</th>
+                        <th>결제 ID</th>
+                        <th>예매 일시</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 예약 목록 표시 -->
+                    <tr th:each="book : ${bookList}">
+                        <td th:text="${book.bookid}"></td>
+                        <td th:text="${book.seat}"></td>
+                        <td th:text="${book.name}"></td>
+                        <td th:text="${book.gameinfo}"></td>
+                        <td th:text="${book.bookstatus}"></td>
+                        <td th:text="${book.payid}"></td>
+                        <td th:text="${book.date}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <!--footer-->
+    <script>
+        /* header */
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /* header */
+    </script>
+</div>
+</body>
+</html>
