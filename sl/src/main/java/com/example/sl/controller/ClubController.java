@@ -11,23 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClubController {
 
     @GetMapping("/announcement")
-    public void announcement(){
-
+    public String announcement(){
+        return "club/announcement";
     }
     @GetMapping("/lionsPark")
-    public void lionsPark(){
-
+    public String lionsPark(){
+        return "club/lionsPark";
     }
     @GetMapping("/slhistory")
-    public void slhistory(){
-
+    public String slhistory(){
+        return "club/slhistory";
     }
     @GetMapping("/slintro")
-    public void slintro(){
-
+    public String slintro(){
+        return "club/slintro";
     }
     @GetMapping("/slnews")
-    public void slnews(){
-
+    public String slnews(){
+        return "club/slnews";
     }
 }

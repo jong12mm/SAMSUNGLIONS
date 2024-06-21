@@ -22,96 +22,30 @@ public class FanController {
     private StoryService storyService;
 
     @GetMapping("/fan_cheerdetails")
-    public void fancm(){
-
+    public String fancm(){
+        return "fan/fan_cheerdetails";
     }
     @GetMapping("/fan_cheermain")
-    public void fancd(){
-
+    public String fancd(){
+        return "fan/fan_cheermain";
     }
     @GetMapping("/fan_faq")
-    public void fanfq(){
-
+    public String fanfq(){
+        return "fan/fan_faq";
     }
     @GetMapping("/fan_free")
-    public void fanf(){
-
+    public String fanf(){
+        return "fan/fan_free";
     }
     @GetMapping("/fan_main")
-    public void fanm(){
-
+    public String fanm(){
+        return "fan/fan_main";
     }
     @GetMapping("/fan_story")
-    public String fanStoryPage() {
+    public String fStory() {
         return "fan/fan_story";
     }
 
 
-    @GetMapping("/stories")
-    public ResponseEntity<List<StoryEntity>> getStories() {
-        return ResponseEntity.ok(storyService.findAll());
-    }
 
-    @PostMapping("/story")
-    public ResponseEntity<?> addStory(@RequestParam("title") String title, @RequestParam("author") String author,
-                                      @RequestParam("content") String content, @RequestParam("image") MultipartFile image) {
-        try {
-            StoryEntity story = storyService.save(title, author, content, image);
-            return ResponseEntity.ok(story);
-        } catch (Exception e) {
-            e.printStackTrace();  // 오류를 콘솔에 출력합니다.
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Failed to add story.");
-            return ResponseEntity.badRequest().body(errorResponse);
-        }
-    }
-
-    @PutMapping("/story/{id}")
-    public ResponseEntity<?> updateStory(@PathVariable Long id, @RequestParam("title") String title,
-                                         @RequestParam("author") String author, @RequestParam("content") String content,
-                                         @RequestParam("image") MultipartFile image) {
-        try {
-            StoryEntity story = storyService.update(id, title, author, content, image);
-            return ResponseEntity.ok(story);
-        } catch (com.example.sl.exception.ResourceNotFoundException e) {
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Story not found.");
-            return ResponseEntity.status(404).body(errorResponse);
-        } catch (Exception e) {
-            e.printStackTrace();  // 오류를 콘솔에 출력합니다.
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Failed to update story.");
-            return ResponseEntity.badRequest().body(errorResponse);
-        }
-    }
-
-    @DeleteMapping("/story/{id}")
-    public ResponseEntity<?> deleteStory(@PathVariable Long id) {
-        try {
-            storyService.delete(id);
-            Map<String, String> successResponse = new HashMap<>();
-            successResponse.put("message", "Story deleted successfully.");
-            return ResponseEntity.ok(successResponse);
-        } catch (com.example.sl.exception.ResourceNotFoundException e) {
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Story not found.");
-            return ResponseEntity.status(404).body(errorResponse);
-        } catch (Exception e) {
-            e.printStackTrace();  // 오류를 콘솔에 출력합니다.
-            Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Failed to delete story.");
-            return ResponseEntity.badRequest().body(errorResponse);
-        }
-    }
-
-    @GetMapping("/story/{id}")
-    public ResponseEntity<?> getStory(@PathVariable Long id) {
-        Optional<StoryEntity> story = storyService.findById(id);
-        return story.map(storyEntity -> ResponseEntity.ok().body(storyEntity))
-                .orElseGet(() -> {
-                    Map<String, String> errorResponse = new HashMap<>();
-                    errorResponse.put("message", "Story not found.");
-                    return ResponseEntity.status(404).body(errorResponse);
-                });
-    }
 }
