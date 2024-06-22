@@ -19,13 +19,10 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/LionsPark.js"></script>
 
-
 </head>
-
 <body>
-
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
 
@@ -153,7 +150,7 @@
 
 
                     <!--footer-->
-                    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+                    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
                     <!--//footer-->
                 </div>
                 <div class="section-right"></div>

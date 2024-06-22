@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
             <div class="titlebox-cheer">
@@ -31,7 +31,7 @@
                     <div class="leadereng">Kim Sang-heon</div>
                 </div>
                 <div class="leaderphoto">
-                    <a href="/detail/KimSangheon">자세히 보기</a>
+                    <a href="/detail/cheer/KimSangheon">자세히 보기</a>
                     <img src="/img/fan/KimSangheon2.png" alt="김상헌">
                 </div>
                 <div class="leaderdetails">
@@ -54,7 +54,7 @@
                             <div class="engname">Lee Su-jin</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/LeeSujin">자세히 보기</a>
+                            <a href="/detail/cheer/LeeSujin">자세히 보기</a>
                             <img src="/img/fan/LeeSujin.png" alt="이수진">
                         </div>
                         <div class="cheerdetails">
@@ -75,7 +75,7 @@
                             <div class="engname">Kim Ha-yeon</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/KimHayeon">자세히 보기</a>
+                            <a href="/detail/cheer/KimHayeon">자세히 보기</a>
                             <img src="/img/fan/KimHayeon.png" alt="김하연">
                         </div>
                         <div class="cheerdetails">
@@ -96,7 +96,7 @@
                             <div class="engname">Jeong Yu-mi</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/JeongYumi">자세히 보기</a>
+                            <a href="/detail/cheer/JeongYumi">자세히 보기</a>
                             <img src="/img/fan/JeongYumi.png" alt="정유미">
                         </div>
                         <div class="cheerdetails">
@@ -119,7 +119,7 @@
                             <div class="engname">Kim Ga-hyeon</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/KimGahyeon">자세히 보기</a>
+                            <a href="/detail/cheer/KimGahyeon">자세히 보기</a>
                             <img src="/img/fan/KimGahyun.png" alt="김가현">
                         </div>
                         <div class="cheerdetails">
@@ -140,7 +140,7 @@
                             <div class="engname">Lee So-hyeon</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/LeeSohyeon">자세히 보기</a>
+                            <a href="/detail/cheer/LeeSohyeon">자세히 보기</a>
                             <img src="/img/fan/LeeSohyeon.png" alt="이소현">
                         </div>
                         <div class="cheerdetails">
@@ -161,7 +161,7 @@
                             <div class="engname">Kim Mi-so</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/KimMiso">자세히 보기</a>
+                            <a href="/detail/cheer/KimMiso">자세히 보기</a>
                             <img src="/img/fan/KimMiso.png" alt="김미소">
                         </div>
                         <div class="cheerdetails">
@@ -184,7 +184,7 @@
                             <div class="engname">Kwon Ga-young</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/KwonGayoung">자세히 보기</a>
+                            <a href="/detail/cheer/KwonGayoung">자세히 보기</a>
                             <img src="/img/fan/KwonGayoung.png" alt="권가영">
                         </div>
                         <div class="cheerdetails">
@@ -205,7 +205,7 @@
                             <div class="engname">Kim Yu-jung</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/KimYujung">자세히 보기</a>
+                            <a href="/detail/cheer/KimYujung">자세히 보기</a>
                             <img src="/img/fan/KimYujung.png" alt="김유정">
                         </div>
                         <div class="cheerdetails">
@@ -226,7 +226,7 @@
                             <div class="engname">Seong Hyo-ryeon</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/SeongHyoryeon">자세히 보기</a>
+                            <a href="/detail/cheer/SeongHyoryeon">자세히 보기</a>
                             <img src="/img/fan/SungHyoryun.png" alt="성효련">
                         </div>
                         <div class="cheerdetails">
@@ -249,7 +249,7 @@
                             <div class="engname">Song Yea-eun</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/SongYeaeun">자세히 보기</a>
+                            <a href="/detail/cheer/SongYeaeun">자세히 보기</a>
                             <img src="/img/fan/SongYeeun.png" alt="송예은">
                         </div>
                         <div class="cheerdetails">
@@ -270,7 +270,7 @@
                             <div class="engname">Cha Hyo-min</div>
                         </div>
                         <div class="photo">
-                            <a href="/detail/ChaHyomin">자세히 보기</a>
+                            <a href="/detail/cheer/ChaHyomin">자세히 보기</a>
                             <img src="/img/fan/ChaHyomin.png" alt="차효민">
                         </div>
                         <div class="cheerdetails">
@@ -292,7 +292,7 @@
             </div>
         </section>
     </main>
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <script>
         /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {

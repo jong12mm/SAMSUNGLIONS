@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section class="titlebox-freeboard">
             <div class=titlearea-freeboard><h1>자유게시판</h1></div>
@@ -45,7 +45,7 @@
             </div>
         </section>
     </main>
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <script>
         /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {

@@ -1,10 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Player Hitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fan Cheer Main</title>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/playercss/hittermain.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+    <style>
+
+
+    </style>
 </head>
 <body>
+<div class="wrapper">
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+    <main>
+        <section>
+            <div id="html1" class="content active">
+                <div class="titlebox">
+                    <div class="titlearea"><h2>투수진</h2><br>
+                        <h1>SAMSUNG LIONS 마운드를 빛내 주는 투수진들을 소개합니다</h1></div>
+                </div>
+                <div class="navbut">
+                    <button onclick="showContent('html1')">내야수</button>
+                    <button onclick="showContent('html2')">외야수</button>
+                    <button onclick="showContent('html3')">포수</button>
+                </div>
+                <div class="player">
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">오승환</div>
+                                <div class="engname">Oh Seung-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/OhSeunghwan">자세히 보기</a>
+                                <img src="/img/player/pitcher/오승환.png" alt="오승환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>'끝판대장' 마운드의 마지막 투수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">임창민</div>
+                                <div class="engname">Lim Chang-min</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/LimChangmin">자세히 보기</a>
+                                <img src="/img/player/pitcher/임창민.png" alt="임창민">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>베테랑의 품격을 지닌 삼성의 새로운 철벽</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">백정현</div>
+                                <div class="engname">Baek Jung-hyun</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/BaekJunghyun">자세히 보기</a>
+                                <img src="/img/player/pitcher/백정현.png" alt="백정현">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포커페이스로 상대 타자를 잡아낸다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">오승환</div>
+                                <div class="engname">Oh Seung-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/OhSeunghwan">자세히 보기</a>
+                                <img src="/img/player/pitcher/오승환.png" alt="오승환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>'끝판대장' 마운드의 마지막 투수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">임창민</div>
+                                <div class="engname">Lim Chang-min</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/LimChangmin">자세히 보기</a>
+                                <img src="/img/player/pitcher/임창민.png" alt="임창민">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>베테랑의 품격을 지닌 삼성의 새로운 철벽</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">백정현</div>
+                                <div class="engname">Baek Jung-hyun</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/BaekJunghyun">자세히 보기</a>
+                                <img src="/img/player/pitcher/백정현.png" alt="백정현">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포커페이스로 상대 타자를 잡아낸다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all">
+                    <img src="/img/win.png" alt="">
+                </div>
+            </div>
 
+            <div id="html2" class="content">
+                <div class="titlebox">
+                    <div class="titlearea"><h2>외야수</h2><br>
+                        <h1>SAMSUNG LIONS 마운드를 빛내 주는 외야수들을 소개합니다</h1></div>
+                </div>
+                <div class="navbut">
+                    <button onclick="showContent('html1')">내야수</button>
+                    <button onclick="showContent('html2')">외야수</button>
+                    <button onclick="showContent('html3')">포수</button>
+                </div>
+                <div class="player">
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">오승환</div>
+                                <div class="engname">Oh Seung-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/OhSeunghwan">자세히 보기</a>
+                                <img src="/img/player/pitcher/오승환.png" alt="오승환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>'끝판대장' 마운드의 마지막 투수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">임창민</div>
+                                <div class="engname">Lim Chang-min</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/LimChangmin">자세히 보기</a>
+                                <img src="/img/player/pitcher/임창민.png" alt="임창민">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>베테랑의 품격을 지닌 삼성의 새로운 철벽</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">백정현</div>
+                                <div class="engname">Baek Jung-hyun</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/BaekJunghyun">자세히 보기</a>
+                                <img src="/img/player/pitcher/백정현.png" alt="백정현">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포커페이스로 상대 타자를 잡아낸다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">오승환</div>
+                                <div class="engname">Oh Seung-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/OhSeunghwan">자세히 보기</a>
+                                <img src="/img/player/pitcher/오승환.png" alt="오승환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>'끝판대장' 마운드의 마지막 투수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">임창민</div>
+                                <div class="engname">Lim Chang-min</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/LimChangmin">자세히 보기</a>
+                                <img src="/img/player/pitcher/임창민.png" alt="임창민">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>베테랑의 품격을 지닌 삼성의 새로운 철벽</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">백정현</div>
+                                <div class="engname">Baek Jung-hyun</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/BaekJunghyun">자세히 보기</a>
+                                <img src="/img/player/pitcher/백정현.png" alt="백정현">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포커페이스로 상대 타자를 잡아낸다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">오승환</div>
+                                <div class="engname">Oh Seung-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/OhSeunghwan">자세히 보기</a>
+                                <img src="/img/player/pitcher/오승환.png" alt="오승환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>'끝판대장' 마운드의 마지막 투수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">임창민</div>
+                                <div class="engname">Lim Chang-min</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/LimChangmin">자세히 보기</a>
+                                <img src="/img/player/pitcher/임창민.png" alt="임창민">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>베테랑의 품격을 지닌 삼성의 새로운 철벽</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">백정현</div>
+                                <div class="engname">Baek Jung-hyun</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/pitcher/BaekJunghyun">자세히 보기</a>
+                                <img src="/img/player/pitcher/백정현.png" alt="백정현">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포커페이스로 상대 타자를 잡아낸다</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all">
+                    <img src="/img/win.png" alt="">
+                </div>
+            </div>
+
+            <div id="html3" class="content">
+                <div class="titlebox">
+                    <div class="titlearea"><h2>포수</h2><br>
+                        <h1>SAMSUNG LIONS 마운드를 빛내 주는 포수들을 소개합니다</h1></div>
+                </div>
+                <div class="navbtn">
+                    <button onclick="showContent('html1')">내야수</button>
+                    <button onclick="showContent('html2')">외야수</button>
+                    <button onclick="showContent('html3')">포수</button>
+                </div>
+                <div class="player">
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">강민호</div>
+                                <div class="engname">Kang Min-ho</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/catcher/KangMinho">자세히 보기</a>
+                                <img src="/img/player/hitter/catcher/강민호.png" alt="강민호">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>사자 군단을 지키는 안방마님</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">김재성</div>
+                                <div class="engname">Kim Jae-seong</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/catcher/KimJaeseong">자세히 보기</a>
+                                <img src="/img/player/hitter/catcher/김재성.png" alt="김재성">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>포수의 위대한 면모를 보여줄 선수</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">이병헌</div>
+                                <div class="engname">Lee Byung-heon</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/catcher/LeeByungheon">자세히 보기</a>
+                                <img src="/img/player/hitter/catcher/이병헌.png" alt="이병헌">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>강민호를 이을 공격형 안방마님</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="playersection">
+                        <div class="playerbox">
+                            <div class="playerinfo">
+                                <div class="name">김도환</div>
+                                <div class="engname">Kim Do-hwan</div>
+                            </div>
+                            <div class="photo">
+                                <a href="/detail/catcher/KimDohwan">자세히 보기</a>
+                                <img src="/img/player/hitter/catcher/김도환.png" alt="김도환">
+                            </div>
+                            <div class="playerdetails">
+                                <div class="motto">
+                                    <div>당장 선발도 가능한 수비형 포수</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all">
+                    <img src="/img/타올디자인.jpg" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</div>
+
+<script>
+    /* header */
+    document.querySelectorAll('.menu > li').forEach(menuItem => {
+        menuItem.addEventListener('mouseenter', () => {
+            document.querySelector('.hideback').classList.add('show-hideback');
+        });
+        menuItem.addEventListener('mouseleave', () => {
+            document.querySelector('.hideback').classList.remove('show-hideback');
+        });
+    });
+    /* header */
+
+    function showContent(id) {
+        var contents = document.querySelectorAll('.content');
+        contents.forEach(function(content) {
+            content.classList.remove('active');
+        });
+        document.getElementById(id).classList.add('active');
+    }
+</script>
 </body>
 </html>

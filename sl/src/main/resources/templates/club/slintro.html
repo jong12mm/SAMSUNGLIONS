@@ -21,7 +21,7 @@
 <body>
 
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
 
     <!-- main -->
     <main>
@@ -72,7 +72,7 @@
             </div>
         </section>
     </main>
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
 </div>
 </body>
 <script>

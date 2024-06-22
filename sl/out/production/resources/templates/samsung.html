@@ -23,7 +23,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
 
     <!--메인-->
     <section>
@@ -550,7 +550,7 @@
     <!--//갤러리-->
 
     <!--footer-->
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <!--//footer-->
 </div>
 

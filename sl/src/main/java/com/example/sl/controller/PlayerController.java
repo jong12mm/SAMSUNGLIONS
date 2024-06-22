@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PlayerController {
 
     @GetMapping("/player_main")
-    public void pmain() {
-
+    public String player_main() {
+        return "player/player_main";
     }
     @GetMapping("/staff")
-    public void pstaff() {
-
+    public String staff() {
+        return "player/staff";
     }
     @GetMapping("/pitcher")
-    public void ppitcher() {
-
+    public String pitcher() {
+        return "player/pitcher";
     }
     @GetMapping("/hitter")
-    public void phitter() {
-
+    public String hitter() {
+        return "player/hitter";
     }
     @GetMapping("/army")
-    public void parmy() {
-
+    public String army() {
+        return "player/army";
     }
     @GetMapping("/newplayer")
-    public void pnewplayer() {
-
+    public String newplayer() {
+        return "player/newplayer";
     }
 }
