@@ -119,9 +119,10 @@ a {
 }
 .navbtn {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 10px;
     margin-bottom: 20px;
+    width: 600px;
 }
 
 .navbtn>button {
@@ -132,6 +133,8 @@ a {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    width: 90px;
+    height: 40px;
 }
 
 .navbtn>button:hover {

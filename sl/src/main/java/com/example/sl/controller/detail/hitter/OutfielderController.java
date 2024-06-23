@@ -14,9 +14,9 @@ public class OutfielderController {
         return "detail/hitter/outfielder/KimHeongon";
     }
 
-    @GetMapping("/KimDongYub")
-    public String KimDongYub() {
-        return "detail/hitter/outfielder/KimDongYub";
+    @GetMapping("/KimDongyub")
+    public String KimDongyub() {
+        return "detail/hitter/outfielder/KimDongyub";
     }
 
     @GetMapping("/KooJawook")
