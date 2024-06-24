@@ -29,6 +29,8 @@
                     <tr>
                         <th>예매 ID</th>
                         <th>좌석</th>
+                        <th>메인존</th>
+                        <th>존</th>
                         <th>이름</th>
                         <th>게임 정보</th>
                         <th>예매 상태</th>
@@ -41,6 +43,8 @@
                     <tr th:each="book : ${bookList}">
                         <td th:text="${book.bookid}"></td>
                         <td th:text="${book.seat}"></td>
+                        <td th:text="${book.mainZone}"></td> <!-- 메인존 추가 -->
+                        <td th:text="${book.zone}"></td>     <!-- 존 추가 -->
                         <td th:text="${book.name}"></td>
                         <td th:text="${book.gameinfo}"></td>
                         <td th:text="${book.bookstatus}"></td>

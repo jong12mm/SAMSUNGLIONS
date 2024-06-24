@@ -46,6 +46,10 @@ public class FanController {
         return "fan/fan_story";
     }
 
+    @GetMapping("/fan_gallery_user")
+    public String fan_gallery_user() {
+        return "fan/fan_gallery_user";
+    }
 
 
 }

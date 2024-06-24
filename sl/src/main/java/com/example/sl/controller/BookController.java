@@ -1,7 +1,6 @@
 package com.example.sl.controller;
 
 import com.example.sl.domain.dto.BookDto;
-import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.SeatEntity;
@@ -29,34 +28,34 @@ public class BookController {
     }
 
     @GetMapping("/book_real_start")
-    public void bookr(){
-
+    public void bookr() {
     }
+
     @GetMapping("/book_game_info")
-    public void bookg(){
-
+    public void bookg() {
     }
+
     @GetMapping("/book_finish")
-    public void bookf(){
-
+    public void bookf() {
     }
-
 
     @GetMapping("/book_start")
-    public String showBookingPage(Model model) {
-        List<String> zones = bookService.getZones();
-        model.addAttribute("zones", zones);
+    public String showBookingPage() {
         return "book_start";
     }
 
-    @GetMapping("/seats/{zone}")
+    @GetMapping("/zones/{mainZone}")
     @ResponseBody
-    public List<SeatDto> getSeatsByZone(@PathVariable("zone") String zone) {
-        log.info("Fetching seats for zone: {}", zone);
-        List<SeatEntity> seats = bookService.getAvailableSeatsByZone(zone);
-        return seats.stream()
-                .map(seat -> new SeatDto(seat.getSeatid(), seat.getSeat_number(), seat.getZone(), seat.isReserved(), seat.getPrice()))
-                .collect(Collectors.toList());
+    public List<String> getZonesByMainZone(@PathVariable("mainZone") String mainZone) {
+        log.info("Fetching zones for mainZone: {}", mainZone);
+        return bookService.getZonesByMainZone(mainZone);
+    }
+
+    @GetMapping("/seats/{mainZone}/{zone}")
+    @ResponseBody
+    public List<SeatEntity> getSeatsByMainZoneAndZone(@PathVariable("mainZone") String mainZone, @PathVariable("zone") String zone) {
+        log.info("Fetching seats for mainZone: {} and zone: {}", mainZone, zone);
+        return bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
     }
 
     @PostMapping("/make")

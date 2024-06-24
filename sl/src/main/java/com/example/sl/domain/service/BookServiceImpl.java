@@ -30,9 +30,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookEntity makeBook(BookDto bookDto) {
-        log.info("Creating booking with gameinfoId: {}", bookDto.getGameinfoId());
-
-        // Validate gameinfoId
         Long gameInfoId = Long.valueOf(bookDto.getGameinfoId());
         GameInfoEntity gameInfoEntity = gameInfoRepository.findById(gameInfoId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid gameInfoId"));
@@ -43,19 +40,17 @@ public class BookServiceImpl implements BookService {
         bookEntity.setGameinfo(gameInfoEntity.getGameName());
         bookEntity.setDate(LocalDateTime.now());
         bookEntity.setBookstatus("예약됨");
-        bookEntity.setPayid(bookDto.getPayid());
+        bookEntity.setMainZone(bookDto.getMainZone());  // 메인존 설정
+        bookEntity.setZone(bookDto.getZone());          // 존 설정
 
         return bookRepository.save(bookEntity);
     }
 
     @Override
     public BookEntity cancelBook(String bookid) {
-        log.info("Cancelling booking with id: {}", bookid);
         BookEntity bookEntity = bookRepository.findById(Long.valueOf(bookid))
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookid"));
-
         bookEntity.setBookstatus("취소됨");
-
         return bookRepository.save(bookEntity);
     }
 
@@ -70,7 +65,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<String> getZonesByMainZone(String mainZone) {
+        return seatRepository.findDistinctZonesByMainZone(mainZone);
+    }
+
+    @Override
     public List<SeatEntity> getAvailableSeatsByZone(String zone) {
-        return seatRepository.findByZone(zone);
+        return seatRepository.findByZoneAndReservedFalse(zone);
+    }
+
+    @Override
+    public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
+        return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
     }
 }

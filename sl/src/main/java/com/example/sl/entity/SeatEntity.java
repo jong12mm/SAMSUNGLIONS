@@ -16,7 +16,8 @@ public class SeatEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatid;
     private String seat_number;
-    private String zone; // 구역 필드 추가
+    private String zone;
     private boolean reserved;
     private BigDecimal price;
+    private String mainZone; // 여기 필드 이름을 mainZone으로 정의
 }

@@ -1,15 +1,16 @@
 package com.example.sl.entity;
 
-
-// DB의 테이블 역할을 하는 클래스
-
-
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class BookEntity {
     @Id
@@ -21,4 +22,6 @@ public class BookEntity {
     private LocalDateTime date;
     private String bookstatus;
     private String payid;
+    private String mainZone;  // 메인존 추가
+    private String zone;      // 존 추가
 }
