@@ -14,4 +14,5 @@ public interface BookService {
     List<String> getZonesByMainZone(String mainZone);
     List<SeatEntity> getAvailableSeatsByZone(String zone);
     List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone); // 새로운 메서드
+
 }

@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 public class SeatDto {
     private Long seatid;
     private String seat_number;
-    private String zone; // 구역 필드 추가
+    private String zone;
     private boolean reserved;
     private BigDecimal price;
+    private String mainZone;
 }

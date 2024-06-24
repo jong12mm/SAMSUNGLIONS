@@ -40,8 +40,6 @@ public class BookServiceImpl implements BookService {
         bookEntity.setGameinfo(gameInfoEntity.getGameName());
         bookEntity.setDate(LocalDateTime.now());
         bookEntity.setBookstatus("예약됨");
-        bookEntity.setMainZone(bookDto.getMainZone());  // 메인존 설정
-        bookEntity.setZone(bookDto.getZone());          // 존 설정
 
         return bookRepository.save(bookEntity);
     }
@@ -78,4 +76,6 @@ public class BookServiceImpl implements BookService {
     public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
         return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
     }
+
+
 }
