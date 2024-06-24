@@ -1,7 +1,10 @@
 package com.example.sl.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -9,19 +12,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/samsung")
-    public String samsung() {
-        log.info("GET /");
+    public String home(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails != null) {
+            model.addAttribute("username", userDetails.getUsername());
+//            model.addAttribute("userDetails",userDetails);
+        }
         return "samsung";
     }
 
-    @GetMapping("/navbar")
-    public String navbar() {
-        log.info("GET /");
-        return "navbar";
-    }
-    @GetMapping("/footer")
-    public String footer() {
-        log.info("GET /");
-        return "footer";
-    }
+//    @GetMapping("/navbar")
+//    public String navbar() {
+//        log.info("GET /");
+//        return "navbar";
+//    }
+//    @GetMapping("/footer")
+//    public String footer() {
+//        log.info("GET /");
+//        return "footer";
+//    }
 }

@@ -38,7 +38,7 @@ public class CustomLogoutHandler implements LogoutHandler {
     private PersistentTokenRepository persistentTokenRepository;
 
     @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication auth) {
         System.out.println("CustomLogoutHandler's logout()...persistentTokenRepository : " + persistentTokenRepository);
 
 
@@ -53,29 +53,47 @@ public class CustomLogoutHandler implements LogoutHandler {
                 .filter(cookie->cookie.getName().equals(JwtProperties.COOKIE_NAME)).findFirst()
                 .map(cookie -> cookie.getValue())
                 .orElse(null);
-        if(token!=null)
-            authentication = jwtTokenProvider.getAuthentication(token);
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+////        persistentTokenRepository.removeUserTokens(authentication.getName());
+//        if (request.getCookies() != null) {
+//            for (jakarta.servlet.http.Cookie cookie : request.getCookies()) {
+//                if ("JSESSIONID".equals(cookie.getName())) {
+//                    cookie.setValue(null);
+//                    cookie.setPath("/");
+//                    cookie.setMaxAge(0);
+//                    response.addCookie(cookie);
+//                }
+//            }
+//        }
+//        request.getSession().invalidate();
 
+        HttpSession session = request.getSession(false);
+        if(session!=null)
+            session.invalidate();
         PrincipalDetails principalDetails= (PrincipalDetails)authentication.getPrincipal();
-        String accessToken = principalDetails.getAccessToken();
         String provider =  principalDetails.getOauserDto().getProvider(); //kakao,google,naver
 
         //---------------------------------
         //REMEMBERME_DELETE
         //---------------------------------
-        persistentTokenRepository.removeUserTokens(principalDetails.getOauserDto().getUsername());
 
 
 
 
-        System.out.println("PROVIDER : " + provider + " ACCESSTOKEN : " + accessToken);
+
+
 
 
         if(provider!=null && provider.startsWith("kakao")){
+
+            String accessToken = principalDetails.getAccessToken();
+
+
             //1)URL
             String url="https://kapi.kakao.com/v1/user/logout";
             //2)HEADER
             HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type","application/x-www-form-urlencoded");
             headers.add("Authorization","Bearer "+accessToken);
             //3)PARAMS
             MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
@@ -89,6 +107,7 @@ public class CustomLogoutHandler implements LogoutHandler {
                     rt.exchange(url, HttpMethod.POST,entity,String.class);
 
         }else if(provider!=null && provider.startsWith("naver")){
+            String accessToken = principalDetails.getAccessToken();
             //URL
             String url="https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+NAVER_CLIENT_ID+"&client_secret="+NAVER_CLIENT_SECRET+"&access_token="+accessToken;
             //HEADER
@@ -106,6 +125,7 @@ public class CustomLogoutHandler implements LogoutHandler {
             //RESPONSE
             System.out.println(resp.getBody());
         }else if(provider!=null && provider.startsWith("google")){
+            String accessToken = principalDetails.getAccessToken();
             //URL
             String url="https://accounts.google.com/o/oauth2/revoke?token="+accessToken;
             //HEADER
@@ -126,9 +146,7 @@ public class CustomLogoutHandler implements LogoutHandler {
 
         }
 
-        HttpSession session = request.getSession(false);
-        if(session!=null)
-            session.invalidate();
+
 
         //6)RESPONSE
 

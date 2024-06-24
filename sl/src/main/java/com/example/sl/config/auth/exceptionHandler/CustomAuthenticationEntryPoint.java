@@ -14,7 +14,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         System.out.println("CustomAuthenticationEntryPoint commence()...");
         //response.sendError(HttpServletResponse.SC_NOT_FOUND,"Page Not Pound");
-        response.sendRedirect("/login?error="+authException.getMessage());
+        response.sendRedirect("/user/login");
 
     }
 }

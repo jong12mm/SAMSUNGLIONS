@@ -11,6 +11,7 @@ import com.example.sl.config.auth.loginHandler.CustomLoginSuccessHandler;
 import com.example.sl.config.auth.loginHandler.OAuth2JwtLoginSuccessHandler;
 import com.example.sl.config.auth.logoutHandler.CustomLogoutHandler;
 import com.example.sl.config.auth.logoutHandler.CustomLogoutSuccessHandler;
+import com.example.sl.config.auth.logoutHandler.SessionCookieClearingLogoutHandler;
 import com.example.sl.domain.repository.UserRepository;
 
 import com.zaxxer.hikari.HikariDataSource;
@@ -21,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,17 +31,23 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.sql.DataSource;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+
+    @Autowired
+    private HikariDataSource dataSource;
 
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     private UserRepository userRepository;
+
+
 
 
     //웹요청 처리
@@ -53,9 +61,11 @@ public class SecurityConfig {
 
         //요청 URL별 접근 제한
         http.authorizeHttpRequests((auth)->{
-            auth.requestMatchers("/samsung","/user/adult_join","/user/child_join","/user/join_start","/user/join_finish","/user/login","/**").permitAll();
-            auth.requestMatchers("/book/**").hasRole("USER");
+//            auth.requestMatchers("/favicon.ico").permitAll();
             auth.requestMatchers("/admin").hasRole("ADMIN");
+            auth.requestMatchers("/book/**","/book_start","/booklist").hasRole("USER");
+            auth.requestMatchers("/samsung","/user/adult_join","/user/child_join","/user/join_start","/user/join_finish","/user/login","/**").permitAll();
+
             auth.anyRequest().authenticated();
         });
 
@@ -72,6 +82,7 @@ public class SecurityConfig {
             logout.permitAll();
             logout.logoutUrl("/user/logout");
             logout.addLogoutHandler(customLogoutHandler());
+//            logout.addLogoutHandler(sessionCookieClearingLogoutHandler());
             logout.logoutSuccessHandler(customLogoutSuccessHandler());
             //JWT
             logout.deleteCookies("JSESSIONID", JwtProperties.COOKIE_NAME);
@@ -88,9 +99,10 @@ public class SecurityConfig {
         http.rememberMe((rm)->{
             rm.key("rememberMeKey");
             rm.rememberMeParameter("remember-me");
-            rm.alwaysRemember(false);
-            rm.tokenValiditySeconds(30*30);
+            rm.tokenValiditySeconds(60*60*24*7);
             rm.tokenRepository(tokenRepository());
+            rm.alwaysRemember(false);
+
         });
 
         //OAUTH2-CLIENT
@@ -117,8 +129,7 @@ public class SecurityConfig {
 
 
 
-    @Autowired
-    private DataSource dataSource;
+
 
     @Bean
     public PersistentTokenRepository tokenRepository(){
@@ -126,6 +137,9 @@ public class SecurityConfig {
         repo.setDataSource(dataSource);
         return repo;
     }
+
+
+
 
 
 

@@ -18,6 +18,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    private int a;
 
     @GetMapping("/join_start")
     public void t4() {
