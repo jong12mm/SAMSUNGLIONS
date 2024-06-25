@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMSUNG LIONS</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/clubcss/announcement.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="section-main">
+                <div class="board_list_wrap">
+                    <table class="board_list">
+                        <h1>공지사항<br><br></h1>
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>글쓴이</th>
+                            <th>작성일</th>
+                            <th>조회</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <a href="">삼성라이온즈 공지</a>
+                            </td>
+                            <td>관리자</td>
+                            <td>2019-11-20</td>
+                            <td>555</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <!--//footer-->
+    <script>
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+    </script>
+
+</div>
+
+</body>
+</html>
