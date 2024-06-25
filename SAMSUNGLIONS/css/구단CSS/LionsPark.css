@@ -1,64 +1,71 @@
 @charset "utf-8";
+
 @font-face {
     font-family: 'PreT';
     font-weight: 100;
     font-style: normal;
-    src: url('../font/Pretendard-Thin.eot');
+    src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('../font/Pretendard-Thin.woff') format('woff'),
-        url('../font/Pretendard-Thin.woff2') format('woff2'),
-        url('../font/Pretendard-Thin.otf') format('opentype');
+        url('/font/Pretendard-Thin.woff') format('woff'),
+        url('/font/Pretendard-Thin.woff2') format('woff2'),
+        url('/font/Pretendard-Thin.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'Pre';
     font-weight: 300;
     font-style: normal;
-    src: url('../font/Pretendard-Light.eot');
+    src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('../font/Pretendard-Light.woff') format('woff'),
-        url('../font/Pretendard-Light.woff2') format('woff2'),
-        url('../font/Pretendard-Light.otf') format('opentype');
+        url('/font/Pretendard-Light.woff') format('woff'),
+        url('/font/Pretendard-Light.woff2') format('woff2'),
+        url('/font/Pretendard-Light.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreR';
     font-weight: 400;
     font-style: normal;
-    src: url('../font/Pretendard-Regular.eot');
+    src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('../font/Pretendard-Regular.woff') format('woff'),
-        url('../font/Pretendard-Regular.woff2') format('woff2'),
-        url('../font/Pretendard-Regular.otf') format('opentype');
+        url('/font/Pretendard-Regular.woff') format('woff'),
+        url('/font/Pretendard-Regular.woff2') format('woff2'),
+        url('/font/Pretendard-Regular.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreM';
     font-weight: 600;
     font-style: normal;
-    src: url('../font/Pretendard-Medium.eot');
+    src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('../font/Pretendard-Medium.woff') format('woff'),
-        url('../font/Pretendard-Medium.woff2') format('woff2'),
-        url('../font/Pretendard-Medium.otf') format('opentype');
+        url('/font/Pretendard-Medium.woff') format('woff'),
+        url('/font/Pretendard-Medium.woff2') format('woff2'),
+        url('/font/Pretendard-Medium.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreSB';
     font-weight: 700;
     font-style: normal;
-    src: url('../font/Pretendard-SemiBold.eot');
+    src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('../font/Pretendard-SemiBold.woff') format('woff'),
-        url('../font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('../font/Pretendard-SemiBold.otf') format('opentype');
+        url('/font/Pretendard-SemiBold.woff') format('woff'),
+        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+        url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreEB';
     font-weight: 900;
     font-style: normal;
-    src: url('../font/Pretendard-ExtraBold.eot');
+    src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('../font/Pretendard-ExtraBold.woff') format('woff'),
-        url('../font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('../font/Pretendard-ExtraBold.otf') format('opentype');
+        url('/font/Pretendard-ExtraBold.woff') format('woff'),
+        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+        url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
+
 
 * {
     margin: 0;
@@ -351,8 +358,6 @@ background-size: 1200px;
     color: black;
     width: 850px;
     height: 55px;
-    padding-left: 20px;
-    padding-top: 10px;
 }
 
 .section2-top>h1{
@@ -374,19 +379,11 @@ background-size: 1200px;
 
 .section2-bottom > ul > h3 {
     color: red;
-    padding-left: 20px;
 }
-.section2-bottom > ul > h4 {
-    padding-left: 20px;
-}
-.section2-bottom > ul > p {
-    padding-left: 20px;
-} 
 
 .section2-bottom.active{
     display: block;
 }
-
 
 /* 아이콘 회전 */
 .section2-toggle-btn span.rotate-180 {

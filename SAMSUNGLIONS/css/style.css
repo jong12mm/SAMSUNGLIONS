@@ -1,64 +1,71 @@
 @charset "utf-8";
+
 @font-face {
     font-family: 'PreT';
     font-weight: 100;
     font-style: normal;
-    src: url('../font/Pretendard-Thin.eot');
+    src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('../font/Pretendard-Thin.woff') format('woff'),
-        url('../font/Pretendard-Thin.woff2') format('woff2'),
-        url('../font/Pretendard-Thin.otf') format('opentype');
+        url('/font/Pretendard-Thin.woff') format('woff'),
+        url('/font/Pretendard-Thin.woff2') format('woff2'),
+        url('/font/Pretendard-Thin.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'Pre';
     font-weight: 300;
     font-style: normal;
-    src: url('../font/Pretendard-Light.eot');
+    src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('../font/Pretendard-Light.woff') format('woff'),
-        url('../font/Pretendard-Light.woff2') format('woff2'),
-        url('../font/Pretendard-Light.otf') format('opentype');
+        url('/font/Pretendard-Light.woff') format('woff'),
+        url('/font/Pretendard-Light.woff2') format('woff2'),
+        url('/font/Pretendard-Light.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreR';
     font-weight: 400;
     font-style: normal;
-    src: url('../font/Pretendard-Regular.eot');
+    src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('../font/Pretendard-Regular.woff') format('woff'),
-        url('../font/Pretendard-Regular.woff2') format('woff2'),
-        url('../font/Pretendard-Regular.otf') format('opentype');
+        url('/font/Pretendard-Regular.woff') format('woff'),
+        url('/font/Pretendard-Regular.woff2') format('woff2'),
+        url('/font/Pretendard-Regular.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreM';
     font-weight: 600;
     font-style: normal;
-    src: url('../font/Pretendard-Medium.eot');
+    src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('../font/Pretendard-Medium.woff') format('woff'),
-        url('../font/Pretendard-Medium.woff2') format('woff2'),
-        url('../font/Pretendard-Medium.otf') format('opentype');
+        url('/font/Pretendard-Medium.woff') format('woff'),
+        url('/font/Pretendard-Medium.woff2') format('woff2'),
+        url('/font/Pretendard-Medium.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreSB';
     font-weight: 700;
     font-style: normal;
-    src: url('../font/Pretendard-SemiBold.eot');
+    src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('../font/Pretendard-SemiBold.woff') format('woff'),
-        url('../font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('../font/Pretendard-SemiBold.otf') format('opentype');
+        url('/font/Pretendard-SemiBold.woff') format('woff'),
+        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+        url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
+
 @font-face {
     font-family: 'PreEB';
     font-weight: 900;
     font-style: normal;
-    src: url('../font/Pretendard-ExtraBold.eot');
+    src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('../font/Pretendard-ExtraBold.woff') format('woff'),
-        url('../font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('../font/Pretendard-ExtraBold.otf') format('opentype');
+        url('/font/Pretendard-ExtraBold.woff') format('woff'),
+        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+        url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
+
 
 
 
@@ -86,8 +93,6 @@ a {
 }
 
 /* 헤더 */
-
-
 .wrapper>.navbar {
     width: 100%;
     border: 0px solid;
@@ -244,7 +249,7 @@ a {
 }
 
 .section{
-    width: 100%;    
+    width: 100%;
     height: 100%;
 }
 .section.main{
@@ -254,7 +259,6 @@ a {
     -moz-user-select: none;
     
 }
-
 /*메인*/
 .main {
     width: 100%;
@@ -298,7 +302,6 @@ a {
 .schedule-in{
     max-width: 1200px;
     margin: 0 auto;
-    padding-top: 200px;
 }
 .schedule-in>h2{
     font-family: 'PreSB';
@@ -469,13 +472,6 @@ a {
 .player{
     margin-bottom: 10rem;
     overflow: hidden;
-    max-width: 1600px;
-    margin-left: 160px;
-}
-.player-in{
-    padding-top: 100px;
-   
-    
 }
 .player-in>h2{
     font-family: 'PreSB';
@@ -484,9 +480,6 @@ a {
     text-align: left;
     max-width: 1200px;
     margin: 0 auto 5rem auto;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    padding-bottom: 20px;
 }
 .playerall{
     display: flex;
@@ -495,7 +488,7 @@ a {
     animation: slidePlayer 30s linear infinite;
 }
 .playerbox{
-    width: 273px;
+    width: 400px;
     flex: 0 0 auto; /* 이 부분 추가 */
     margin-right: 20px; /* 각 playerbox 사이의 간격을 설정 */
     position: relative;
@@ -503,7 +496,7 @@ a {
     overflow: hidden;
     cursor: pointer;
 }
-  .playerbox>.overlay{
+.playerbox>.overlay{
     background: #00000062;
     width: 100%;
     position: absolute;
@@ -512,14 +505,13 @@ a {
     display: none;
 }
 .playerbox>img{
-    height: 70vh;
-    padding: 0;
+    width: 100%;
 }
 .playerbox:hover .overlay{
     display: block;
-} 
+}
 .playerbox2{
-    width: 273px;
+    width: 400px;
     flex: 0 0 auto; /* 이 부분 추가 */
     margin-right: 20px; /* 각 playerbox 사이의 간격을 설정 */
     padding-top: 5rem;
@@ -540,8 +532,7 @@ a {
     display: block;
 }
 .playerbox2>img{
-    height: 70vh;
-    padding: 0;
+    width: 100%;
 }
 @keyframes slidePlayer {
     0% {
@@ -560,19 +551,16 @@ a {
     width: 100%;
     background-color: #ececec;
     padding: 7rem 0 7rem 0;
-   
-}  
+}
 .lionstv-in{
     max-width: 1200px;
     margin: 0 auto;
- 
 }
 .lions-tit{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-
+    margin-bottom: 3rem;
 }
 .lions-tit>h2{
     font-family: 'PreSB';
@@ -655,7 +643,7 @@ a {
 .lions-news{
     width: 100%;
     background: #1f5cae;
-    padding: 9rem 0 9rem 0;
+    padding: 7rem 0 7rem 0;
 }
 .lions-news>.win{
     display: block;
@@ -794,7 +782,7 @@ a {
 .gallery{
     width: 100%;
     background-color: #1e1e1e;
-    padding: 14.2rem 0 14.2rem 0;
+    padding: 7rem 0 7rem 0;
 }
 .gallery-in{
     max-width: 1200px;
