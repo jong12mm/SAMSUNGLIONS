@@ -86,10 +86,11 @@ public class JwtTokenProvider {
                 .compact();
 
         // Refresh Token 생성
-        String refreshToken = Jwts.builder()
-                .setExpiration(new Date(now + 24 * 60 * 60 * 1000))    //1일: 24 * 60 * 60 * 1000 = 86400000
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
+        String refreshToken = generateRefreshToken(authentication.getName());
+//        String refreshToken = Jwts.builder()
+//                .setExpiration(new Date(now + 24 * 60 * 60 * 1000))    //1일: 24 * 60 * 60 * 1000 = 86400000
+//                .signWith(key, SignatureAlgorithm.HS256)
+//                .compact();
 
         System.out.println("JwtTokenProvider.generateToken.accessToken : " + accessToken);
         System.out.println("JwtTokenProvider.generateToken.refreshToken : " + refreshToken);
@@ -99,6 +100,17 @@ public class JwtTokenProvider {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
+    }
+    // Refresh Token 생성
+    private String generateRefreshToken(String username) {
+        long now = System.currentTimeMillis();
+        Date refreshTokenExpiresIn = new Date(now + 24 * 60 * 60 * 1000); // 1일 후 만료
+
+        return Jwts.builder()
+                .setSubject(username)
+                .setExpiration(refreshTokenExpiresIn)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
     }
 
 
@@ -168,5 +180,34 @@ public class JwtTokenProvider {
             log.info("JWT claims string is empty.", e);
         }
         return false;
+    }
+    // Refresh Token의 유효성 검사 메서드
+    public boolean validateRefreshToken(String refreshToken) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(refreshToken);
+            return true;
+        } catch (ExpiredJwtException e) {
+            log.info("Expired Refresh Token", e);
+        } catch (JwtException | IllegalArgumentException e) {
+            log.info("Invalid Refresh Token", e);
+        }
+        return false;
+    }
+
+    // Refresh Token을 사용하여 새로운 Access Token을 생성하는 메서드
+    public String generateAccessTokenFromRefreshToken(String refreshToken) {
+        Claims claims = parseClaims(refreshToken);
+        String username = claims.getSubject();
+
+        // Access Token 생성
+        Date accessTokenExpiresIn = new Date(System.currentTimeMillis() + 60 * 1000); // 60초 후 만료
+        String newAccessToken = Jwts.builder()
+                .setSubject(username)
+                .claim("userName", username)
+                .setExpiration(accessTokenExpiresIn)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+        return newAccessToken;
     }
 }

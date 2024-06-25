@@ -58,9 +58,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             {
                 System.out.println("[JWTAUTHORIZATIONFILTER] : ...ExpiredJwtException ...."+e.getMessage());
                 //토큰 만료시 처리(Refresh-token으로 갱신처리는 안함-쿠키에서 제거)
-                Cookie cookie = new Cookie(JwtProperties.COOKIE_NAME, null);
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
+                handleTokenExpiration(request,response);
+//                Cookie cookie = new Cookie(JwtProperties.COOKIE_NAME, null);
+//                cookie.setMaxAge(0);
+//                response.addCookie(cookie);
 
             }catch(Exception e2){
 
@@ -84,6 +85,29 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             return authentication;
         }
         return null; // 유저가 없으면 NULL
+    }
+
+    private void handleTokenExpiration(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Refresh Token을 검사하여 새로운 Access Token 발급 로직 추가
+        Cookie refreshTokenCookie = Arrays.stream(request.getCookies())
+                .filter(cookie -> cookie.getName().equals(JwtProperties.REFRESH_COOKIE_NAME)).findFirst()
+                .orElse(null);
+
+        if (refreshTokenCookie != null) {
+            String refreshToken = refreshTokenCookie.getValue();
+            if (jwtTokenProvider.validateRefreshToken(refreshToken)) {
+                // Refresh Token 유효성 검증 성공 시, 새로운 Access Token 발급
+                String newAccessToken = jwtTokenProvider.generateAccessTokenFromRefreshToken(refreshToken);
+                // 새로운 Access Token을 Response의 Header나 Cookie 등에 설정
+                response.setHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+newAccessToken);
+            } else {
+                // Refresh Token 유효성 검증 실패 시, 로그아웃 처리 등 추가 작업 수행
+                // 예시: Refresh Token을 삭제하여 로그아웃 처리
+                Cookie cookie = new Cookie(JwtProperties.REFRESH_COOKIE_NAME, null);
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
     }
 
 

@@ -17,6 +17,8 @@ public class HomeController {
             model.addAttribute("username", userDetails.getUsername());
 //            model.addAttribute("userDetails",userDetails);
         }
+
+        System.out.println("USERDETAILS : " + userDetails);
         return "samsung";
     }
 
