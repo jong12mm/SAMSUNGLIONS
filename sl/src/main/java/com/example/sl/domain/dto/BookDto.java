@@ -14,5 +14,7 @@ public class BookDto {
     private LocalDateTime date;
     private String bookstatus;
     private String payid;
+    private String mainZone;  // 메인존 추가
+    private String zone;      // 존 추가
     private String impUid;
 }

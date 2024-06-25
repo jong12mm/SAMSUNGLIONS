@@ -112,6 +112,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
+        return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
+    }
+    @Override
+    public List<String> getZonesByMainZone(String mainZone) {
+        return seatRepository.findDistinctZonesByMainZone(mainZone);
+    }
+    @Override
     public PaymentEntity savePayment(PaymentDto paymentDto) {
         BookEntity bookEntity = bookRepository.findById(paymentDto.getBookId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));

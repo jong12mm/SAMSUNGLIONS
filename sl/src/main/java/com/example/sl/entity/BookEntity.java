@@ -20,5 +20,8 @@ public class BookEntity {
     private String bookstatus;
     private String payid;
     private String impUid;
+    private String mainZone;  // 메인존 추가
+    private String zone;      // 존 추가
+
     private BigDecimal price;
 }

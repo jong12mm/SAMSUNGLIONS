@@ -15,6 +15,9 @@ public interface BookService {
     BookEntity cancelBook(String bookId) throws IOException, IamportResponseException;
     List<BookEntity> getAllBooks();
     List<String> getZones();
+    List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone); // 새로운 메서드
+    List<String> getZonesByMainZone(String mainZone);
+
     List<SeatEntity> getAvailableSeatsByZone(String zone);
     PaymentEntity savePayment(PaymentDto paymentDto);
     BookEntity updateImpUid(Long bookId, String impUid);
