@@ -1,55 +1,95 @@
 package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.BookDto;
+import com.example.sl.domain.dto.PaymentDto;
 import com.example.sl.entity.BookEntity;
-import com.example.sl.entity.GameInfoEntity;
+import com.example.sl.entity.PaymentEntity;
 import com.example.sl.entity.SeatEntity;
 import com.example.sl.repository.BookRepository;
-import com.example.sl.repository.GameInfoRepository;
+import com.example.sl.repository.PaymentRepository;
 import com.example.sl.repository.SeatRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.siot.IamportRestClient.exception.IamportResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@Slf4j
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
-    private final BookRepository bookRepository;
-    private final GameInfoRepository gameInfoRepository;
-    private final SeatRepository seatRepository;
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository, GameInfoRepository gameInfoRepository, SeatRepository seatRepository) {
-        this.bookRepository = bookRepository;
-        this.gameInfoRepository = gameInfoRepository;
-        this.seatRepository = seatRepository;
-    }
+    private BookRepository bookRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @Override
     public BookEntity makeBook(BookDto bookDto) {
-        Long gameInfoId = Long.valueOf(bookDto.getGameinfoId());
-        GameInfoEntity gameInfoEntity = gameInfoRepository.findById(gameInfoId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid gameInfoId"));
+        if (bookDto.getSeatid() == null) {
+            throw new IllegalArgumentException("seatid must not be null");
+        }
+
+        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookDto.getSeatid());
+        if (!seatEntityOptional.isPresent()) {
+            throw new IllegalArgumentException("Invalid seatId");
+        }
+        SeatEntity seatEntity = seatEntityOptional.get();
+        seatEntity.setReserved(true);
 
         BookEntity bookEntity = new BookEntity();
+        bookEntity.setSeatid(bookDto.getSeatid());
         bookEntity.setSeat(bookDto.getSeat());
         bookEntity.setName(bookDto.getName());
-        bookEntity.setGameinfo(gameInfoEntity.getGameName());
+        bookEntity.setGameinfo(bookDto.getGameinfoId());
         bookEntity.setDate(LocalDateTime.now());
-        bookEntity.setBookstatus("예약됨");
+        bookEntity.setBookstatus("BOOKED");
+        bookEntity.setPayid(bookDto.getPayid());
+        bookEntity.setPrice(seatEntity.getPrice());
+        bookEntity.setImpUid(bookDto.getImpUid());
+
+        seatRepository.save(seatEntity);
+        return bookRepository.save(bookEntity);
+    }
+
+    @Override
+    public BookEntity cancelBook(String bookId) throws IOException, IamportResponseException {
+        Optional<BookEntity> bookEntityOptional = bookRepository.findById(Long.parseLong(bookId));
+        if (!bookEntityOptional.isPresent()) {
+            throw new IllegalArgumentException("Invalid bookId");
+        }
+
+        BookEntity bookEntity = bookEntityOptional.get();
+        bookEntity.setBookstatus("CANCELLED");
+
+        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
+        if (seatEntityOptional.isPresent()) {
+            SeatEntity seatEntity = seatEntityOptional.get();
+            seatEntity.setReserved(false);
+            seatRepository.save(seatEntity);
+        }
+
+        PaymentDto paymentDto = new PaymentDto();
+        paymentDto.setCancelRequestAmount(bookEntity.getPrice());
+        paymentService.cancelPayment(bookEntity.getImpUid(), paymentDto);
 
         return bookRepository.save(bookEntity);
     }
 
     @Override
-    public BookEntity cancelBook(String bookid) {
-        BookEntity bookEntity = bookRepository.findById(Long.valueOf(bookid))
-                .orElseThrow(() -> new IllegalArgumentException("Invalid bookid"));
-        bookEntity.setBookstatus("취소됨");
-        return bookRepository.save(bookEntity);
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
     }
 
     @Override
@@ -59,12 +99,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<String> getZones() {
-        return seatRepository.findDistinctZones();
-    }
-
-    @Override
-    public List<String> getZonesByMainZone(String mainZone) {
-        return seatRepository.findDistinctZonesByMainZone(mainZone);
+        return seatRepository.findAll()
+                .stream()
+                .map(SeatEntity::getZone)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -76,6 +115,37 @@ public class BookServiceImpl implements BookService {
     public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
         return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
     }
+    @Override
+    public List<String> getZonesByMainZone(String mainZone) {
+        return seatRepository.findDistinctZonesByMainZone(mainZone);
+    }
+    @Override
+    public PaymentEntity savePayment(PaymentDto paymentDto) {
+        BookEntity bookEntity = bookRepository.findById(paymentDto.getBookId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
 
+        PaymentEntity paymentEntity = new PaymentEntity();
+        paymentEntity.setAmount(paymentDto.getAmount());
+        paymentEntity.setPaymentDateTime(paymentDto.getPaymentDateTime());
+        paymentEntity.setPaymentMethod(paymentDto.getPaymentMethod());
+        paymentEntity.setPaymentStatus(paymentDto.getPaymentStatus());
+        paymentEntity.setImpUid(paymentDto.getImpUid());
+        paymentEntity.setMerchantUid(paymentDto.getMerchantUid());
+        paymentEntity.setBookEntity(bookEntity);
 
+        return paymentRepository.save(paymentEntity);
+    }
+
+    @Override
+    public BookEntity updateImpUid(Long bookId, String impUid) {
+        Optional<BookEntity> bookEntityOptional = bookRepository.findById(bookId);
+        if (!bookEntityOptional.isPresent()) {
+            throw new IllegalArgumentException("Invalid bookId");
+        }
+
+        BookEntity bookEntity = bookEntityOptional.get();
+        bookEntity.setImpUid(impUid);
+
+        return bookRepository.save(bookEntity);
+    }
 }

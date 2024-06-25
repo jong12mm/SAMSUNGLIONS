@@ -179,7 +179,9 @@ a {
     font-size: 2rem;
     font-family: 'PreR';
 }
-
+.info1{
+    width:120px;
+}
 
 .birth, .height, .school, .spec, .pay{
     margin-bottom: 10px;
