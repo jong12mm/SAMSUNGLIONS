@@ -6,9 +6,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('/font/Pretendard-Thin.woff') format('woff'),
-        url('/font/Pretendard-Thin.woff2') format('woff2'),
-        url('/font/Pretendard-Thin.otf') format('opentype');
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -17,9 +17,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('/font/Pretendard-Light.woff') format('woff'),
-        url('/font/Pretendard-Light.woff2') format('woff2'),
-        url('/font/Pretendard-Light.otf') format('opentype');
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
 }
 
 @font-face {
@@ -28,9 +28,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('/font/Pretendard-Regular.woff') format('woff'),
-        url('/font/Pretendard-Regular.woff2') format('woff2'),
-        url('/font/Pretendard-Regular.otf') format('opentype');
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -39,9 +39,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('/font/Pretendard-Medium.woff') format('woff'),
-        url('/font/Pretendard-Medium.woff2') format('woff2'),
-        url('/font/Pretendard-Medium.otf') format('opentype');
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
 }
 
 @font-face {
@@ -50,9 +50,9 @@
     font-style: normal;
     src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('/font/Pretendard-SemiBold.woff') format('woff'),
-        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('/font/Pretendard-SemiBold.otf') format('opentype');
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
 
 @font-face {
@@ -61,9 +61,9 @@
     font-style: normal;
     src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('/font/Pretendard-ExtraBold.woff') format('woff'),
-        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('/font/Pretendard-ExtraBold.otf') format('opentype');
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
 
@@ -96,13 +96,14 @@ a {
     height : 1000px;
     background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
     background-repeat: no-repeat;
-    background-size:100% 100%, 100% 100%; 
+    background-size:100% 100%, 100% 100%;
     background-position:0px 0px ,0px 0px; */
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: url('../../img/player/오승환.jpg') left top no-repeat,
-    url('../../img/player/구자욱.jpg') right top no-repeat,
+    background:
+    /*        url('../../img/player/오승환.jpg') left top no-repeat,*/
+    /*url('../../img/player/구자욱.jpg') right top no-repeat,*/
     url('../../img/backgroundex1.jpg');
 
 
@@ -111,7 +112,7 @@ a {
 
     background-size: auto 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;
     margin-top: 100px;
 
@@ -123,25 +124,8 @@ a {
 
 
 }
- body {
-     font-family: Arial, sans-serif;
-     background-color: #f4f4f4;
-     margin: 0;
-     padding: 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 100vh;
- }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    width: 100%;
-}
+
 
 header {
     text-align: center;
@@ -149,6 +133,9 @@ header {
 }
 
 .zone-selection {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -156,6 +143,11 @@ header {
 .zone-selection select {
     padding: 10px;
     font-size: 16px;
+}
+
+.zoneSelect{
+    width:300px;
+    height: 50px;
 }
 
 .modal {
@@ -197,24 +189,36 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 500px; /* 한 줄에 10개씩 배치하기 위해 전체 너비를 제한 */
 }
 
 .seat {
-    width: 30px;
-    height: 30px;
-    background-color: #444;
-    margin: 5px;
+    width: 40px; /* 좌석의 가로 길이 고정 */
+    height: 40px; /* 좌석의 세로 길이 고정 */
+    background-color: #6feaf6;
+    margin: 5px; /* 좌석 간의 간격 */
     cursor: pointer;
     border-radius: 5px;
+    box-sizing: border-box; /* padding과 border를 포함한 전체 크기를 지정 */
+    display: flex; /* 내부 텍스트 중앙 정렬을 위해 flexbox 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    color: white; /* 좌석번호 색상 */
 }
 
 .seat.selected {
-    background-color: #6feaf6;
+    background-color: rgb(47, 106, 112);
 }
 
 .seat.reserved {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .summary {
@@ -254,9 +258,4 @@ header {
 
 .btn:hover {
     background-color: #0056b3;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
 }

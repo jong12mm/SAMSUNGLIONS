@@ -1,7 +1,9 @@
 package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.PaymentDto;
+import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.PaymentEntity;
+import com.example.sl.repository.BookRepository;
 import com.example.sl.repository.PaymentRepository;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -27,6 +29,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
+    private BookRepository bookRepository;
+
     private final IamportClient iamportClient;
 
     @Autowired
@@ -36,6 +41,10 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentEntity makePayment(PaymentDto paymentDto) throws IamportResponseException, IOException {
+        // BookEntity를 bookId로 조회하여 설정
+        BookEntity bookEntity = bookRepository.findById(paymentDto.getBookId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
+
         PaymentEntity paymentEntity = new PaymentEntity();
         paymentEntity.setAmount(paymentDto.getAmount());
         paymentEntity.setPaymentDateTime(LocalDateTime.now());
@@ -43,6 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
         paymentEntity.setPaymentStatus("PENDING");
         paymentEntity.setImpUid(paymentDto.getImpUid());
         paymentEntity.setMerchantUid(paymentDto.getMerchantUid());
+        paymentEntity.setBookEntity(bookEntity); // BookEntity 설정
 
         paymentEntity = paymentRepository.save(paymentEntity);
 
@@ -55,6 +65,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         return paymentRepository.save(paymentEntity);
     }
+
 
     @Override
     public PaymentEntity cancelPayment(String impUid, PaymentDto paymentDto) throws IamportResponseException, IOException {

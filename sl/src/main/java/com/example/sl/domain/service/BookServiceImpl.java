@@ -46,7 +46,6 @@ public class BookServiceImpl implements BookService {
             throw new IllegalArgumentException("Invalid seatId");
         }
         SeatEntity seatEntity = seatEntityOptional.get();
-        seatEntity.setReserved(true);
 
         BookEntity bookEntity = new BookEntity();
         bookEntity.setSeatid(bookDto.getSeatid());
@@ -54,13 +53,31 @@ public class BookServiceImpl implements BookService {
         bookEntity.setName(bookDto.getName());
         bookEntity.setGameinfo(bookDto.getGameinfoId());
         bookEntity.setDate(LocalDateTime.now());
-        bookEntity.setBookstatus("BOOKED");
+        bookEntity.setBookstatus("PENDING"); // 예약 상태를 "PENDING"으로 설정
         bookEntity.setPayid(bookDto.getPayid());
         bookEntity.setPrice(seatEntity.getPrice());
+        bookEntity.setMainZone(bookDto.getMainZone());
+        bookEntity.setZone(bookDto.getZone());
         bookEntity.setImpUid(bookDto.getImpUid());
 
-        seatRepository.save(seatEntity);
         return bookRepository.save(bookEntity);
+    }
+
+    @Override
+    public void confirmBook(Long bookId) {
+        BookEntity bookEntity = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
+
+        bookEntity.setBookstatus("BOOKED");
+
+        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
+        if (seatEntityOptional.isPresent()) {
+            SeatEntity seatEntity = seatEntityOptional.get();
+            seatEntity.setReserved(true);
+            seatRepository.save(seatEntity);
+        }
+
+        bookRepository.save(bookEntity);
     }
 
     @Override
@@ -115,10 +132,12 @@ public class BookServiceImpl implements BookService {
     public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
         return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
     }
+
     @Override
     public List<String> getZonesByMainZone(String mainZone) {
         return seatRepository.findDistinctZonesByMainZone(mainZone);
     }
+
     @Override
     public PaymentEntity savePayment(PaymentDto paymentDto) {
         BookEntity bookEntity = bookRepository.findById(paymentDto.getBookId())
@@ -147,5 +166,35 @@ public class BookServiceImpl implements BookService {
         bookEntity.setImpUid(impUid);
 
         return bookRepository.save(bookEntity);
+    }
+
+    @Override
+    public void checkPendingReservations() {
+        List<BookEntity> pendingBooks = bookRepository.findByBookstatus("PENDING");
+        for (BookEntity book : pendingBooks) {
+            book.setBookstatus("CANCELLED");
+            Optional<SeatEntity> seatEntityOptional = seatRepository.findById(book.getSeatid());
+            if (seatEntityOptional.isPresent()) {
+                SeatEntity seatEntity = seatEntityOptional.get();
+                seatEntity.setReserved(false);
+                seatRepository.save(seatEntity);
+            }
+            bookRepository.save(book);
+        }
+    }
+
+    @Override
+    public void cancelPendingReservation(Long bookId) {
+        BookEntity bookEntity = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
+
+        bookEntity.setBookstatus("CANCELLED");
+        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
+        if (seatEntityOptional.isPresent()) {
+            SeatEntity seatEntity = seatEntityOptional.get();
+            seatEntity.setReserved(false);
+            seatRepository.save(seatEntity);
+        }
+        bookRepository.save(bookEntity);
     }
 }
