@@ -46,7 +46,6 @@ public class BookServiceImpl implements BookService {
             throw new IllegalArgumentException("Invalid seatId");
         }
         SeatEntity seatEntity = seatEntityOptional.get();
-        seatEntity.setReserved(true);
 
         BookEntity bookEntity = new BookEntity();
         bookEntity.setSeatid(bookDto.getSeatid());
@@ -61,7 +60,6 @@ public class BookServiceImpl implements BookService {
         bookEntity.setZone(bookDto.getZone());
         bookEntity.setImpUid(bookDto.getImpUid());
 
-        seatRepository.save(seatEntity);
         return bookRepository.save(bookEntity);
     }
 
@@ -71,6 +69,14 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
 
         bookEntity.setBookstatus("BOOKED");
+
+        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
+        if (seatEntityOptional.isPresent()) {
+            SeatEntity seatEntity = seatEntityOptional.get();
+            seatEntity.setReserved(true);
+            seatRepository.save(seatEntity);
+        }
+
         bookRepository.save(bookEntity);
     }
 
