@@ -239,9 +239,26 @@
     let selectedMainZone = "";
     let selectedZone = "";
     let globalImpUid = null;  // 전역 변수로 impUid를 저장합니다.
+    let currentBookingId = null;  // 현재 예매 ID를 저장합니다.
 
     function closeModal() {
         seatModal.style.display = 'none';
+        if (currentBookingId) {
+            // 예매가 취소되었을 때 서버에 알립니다.
+            fetch(`/book/cancel/${currentBookingId}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('예매가 취소되었습니다.');
+                    currentBookingId = null;
+                } else {
+                    console.error('예매 취소 중 오류 발생:', data);
+                }
+            })
+            .catch(error => console.error('예매 취소 중 오류 발생:', error));
+        }
     }
 
     closeBtn.addEventListener('click', closeModal);
@@ -273,8 +290,7 @@
             console.log(`Selected mainZone: ${selectedMainZone}, zone: ${this.value}`);
             fetch(`/book/seats/${selectedMainZone}/${this.value}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                    if (!response.ok) {                throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
@@ -365,6 +381,7 @@
         })
         .then(data => {
             if (data.bookId) {
+                currentBookingId = data.bookId;
                 initiatePayment(data.bookId, totalPrice, payid);
             } else {
                 alert('예매에 실패했습니다. 다시 시도하세요.');
@@ -415,7 +432,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        bookid: bookid,
+                        bookId: bookid,
                         amount: amount,
                         impUid: resp.imp_uid,
                         merchantUid: merchant_uid,
@@ -440,8 +457,23 @@
                         .then(response => response.json())
                         .then(updateData => {
                             if (updateData.success) {
-                                alert('예매 성공하셨습니다');
-                                location.reload();
+                                fetch(`/book/confirm/${bookid}`, {
+                                    method: 'POST'
+                                })
+                                .then(confirmResponse => confirmResponse.json())
+                                .then(confirmData => {
+                                    if (confirmData.success) {
+                                        alert('예매 성공하셨습니다');
+                                        currentBookingId = null;
+                                        location.reload();
+                                    } else {
+                                        alert('예매 성공했지만 좌석 예약 확정에 실패했습니다. 다시 시도하세요.');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('예약 확정 중 오류 발생:', error);
+                                    alert('예약 확정 중 오류가 발생했습니다. 다시 시도하세요.');
+                                });
                             } else {
                                 alert('예매 성공했지만 업데이트에 실패했습니다. 다시 시도하세요.');
                             }
@@ -464,13 +496,11 @@
         });
     }
 
-    closeBtn.addEventListener('click', () => {
-        seatModal.style.display = 'none';
-    });
+    closeBtn.addEventListener('click', closeModal);
 
     window.onclick = function (event) {
         if (event.target == seatModal) {
-            seatModal.style.display = 'none';
+            closeModal();
         }
     };
 });
@@ -478,3 +508,5 @@
 </script>
 </body>
 </html>
+
+

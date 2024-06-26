@@ -2,7 +2,6 @@ package com.example.sl.controller;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
-import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.domain.service.PaymentService;
 import com.example.sl.entity.BookEntity;
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -58,8 +56,6 @@ public class BookController {
         return bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
     }
 
-
-
     @PostMapping("/make")
     @ResponseBody
     public ResponseEntity<?> makeBook(@RequestBody BookDto bookDto) {
@@ -79,6 +75,20 @@ public class BookController {
         }
     }
 
+    @PostMapping("/confirm/{bookId}")
+    @ResponseBody
+    public ResponseEntity<?> confirmBook(@PathVariable("bookId") Long bookId) {
+        try {
+            bookService.confirmBook(bookId);
+            return ResponseEntity.ok(Collections.singletonMap("success", true));
+        } catch (IllegalArgumentException e) {
+            log.error("Invalid bookId provided: {}", bookId, e);
+            return ResponseEntity.badRequest().body(Collections.singletonMap("success", false));
+        } catch (Exception e) {
+            log.error("예약 확정 중 오류 발생: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
+        }
+    }
 
     @PostMapping("/cancel")
     @ResponseBody
@@ -89,7 +99,7 @@ public class BookController {
                 PaymentDto paymentDto = new PaymentDto();
                 paymentDto.setCancelRequestAmount(cancelledBook.getPrice());
                 paymentService.cancelPayment(cancelledBook.getImpUid(), paymentDto);
-                bookService.deleteById(id); // 예매 취소 후 데이터베이스에서 삭제
+                //bookService.deleteById(id); // 예매 취소 후 데이터베이스에서 삭제 대신 상태 변경
             }
             return ResponseEntity.ok(Collections.singletonMap("success", true));
         } catch (IllegalArgumentException e) {
@@ -128,7 +138,6 @@ public class BookController {
         }
     }
 
-
     @PostMapping("/update-impUid")
     @ResponseBody
     public ResponseEntity<?> updateImpUid(@RequestBody Map<String, String> request) {
@@ -152,9 +161,6 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", "Internal server error."));
         }
     }
-
-
-
 
     @GetMapping("/list")
     public String getAllBooks(Model model) {
