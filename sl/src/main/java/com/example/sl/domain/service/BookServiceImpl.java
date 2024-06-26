@@ -57,11 +57,14 @@ public class BookServiceImpl implements BookService {
         bookEntity.setBookstatus("BOOKED");
         bookEntity.setPayid(bookDto.getPayid());
         bookEntity.setPrice(seatEntity.getPrice());
+        bookEntity.setMainZone(bookDto.getMainZone());
+        bookEntity.setZone(bookDto.getZone());
         bookEntity.setImpUid(bookDto.getImpUid());
 
         seatRepository.save(seatEntity);
         return bookRepository.save(bookEntity);
     }
+
 
     @Override
     public BookEntity cancelBook(String bookId) throws IOException, IamportResponseException {

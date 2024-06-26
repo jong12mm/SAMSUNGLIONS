@@ -79,6 +79,7 @@ public class BookController {
         }
     }
 
+
     @PostMapping("/cancel")
     @ResponseBody
     public ResponseEntity<?> cancelBook(@RequestBody List<Long> ids) {
@@ -113,6 +114,10 @@ public class BookController {
         log.info("Saving payment: {}", paymentDto);
         try {
             PaymentEntity paymentEntity = bookService.savePayment(paymentDto);
+
+            // 결제 저장 후, impUid 업데이트
+            bookService.updateImpUid(paymentDto.getBookId(), paymentDto.getImpUid());
+
             return ResponseEntity.ok(Collections.singletonMap("paymentStatus", "성공"));
         } catch (IllegalArgumentException e) {
             log.error("Invalid bookId provided: {}", paymentDto.getBookId(), e);
@@ -123,21 +128,33 @@ public class BookController {
         }
     }
 
+
     @PostMapping("/update-impUid")
     @ResponseBody
     public ResponseEntity<?> updateImpUid(@RequestBody Map<String, String> request) {
+        String bookIdStr = request.get("bookId");
+        String impUid = request.get("impUid");
+
+        if (bookIdStr == null || bookIdStr.trim().isEmpty() || impUid == null || impUid.trim().isEmpty()) {
+            log.error("Invalid request: bookId or impUid is empty");
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Both bookId and impUid are required."));
+        }
+
         try {
-            Long bookId = Long.parseLong(request.get("bookId"));
-            String impUid = request.get("impUid");
-
+            Long bookId = Long.parseLong(bookIdStr);
             bookService.updateImpUid(bookId, impUid);
-
             return ResponseEntity.ok(Collections.singletonMap("success", true));
+        } catch (NumberFormatException e) {
+            log.error("Error parsing bookId: " + bookIdStr, e);
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Invalid bookId format."));
         } catch (Exception e) {
-            log.error("ImpUid 업데이트 중 오류 발생: ", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
+            log.error("Error updating impUid: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", "Internal server error."));
         }
     }
+
+
+
 
     @GetMapping("/list")
     public String getAllBooks(Model model) {
