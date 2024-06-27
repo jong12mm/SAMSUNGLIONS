@@ -109,24 +109,30 @@
                                             location.reload(); // 페이지 새로고침
                                         },
                                         error: function(paymentError) {
-                                            alert('결제 취소에 실패했습니다: ' + paymentError.responseText);
+                                            alert('결제 취소에 실패했습니다: ' + (paymentError.responseJSON ? paymentError.responseJSON.error : paymentError.responseText));
                                             location.reload(); // 페이지 새로고침
                                         }
                                     });
                                 },
                                 error: function(error) {
-                                    alert('예매 취소에 실패했습니다. 다시 시도해주세요.');
+                                    alert('예매 취소에 실패했습니다. 다시 시도해주세요: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
                                 }
                             });
                         }
                     },
                     error: function(error) {
-                        alert('예매 상태 확인에 실패했습니다. 다시 시도해주세요.');
+                        if (error.status === 404) {
+                            alert('해당 예매를 찾을 수 없습니다.');
+                        } else if (error.status === 409) {
+                            alert('잘못된 예매 ID입니다: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
+                        } else {
+                            alert('예매 상태 확인에 실패했습니다. 다시 시도해주세요: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
+                        }
                     }
                 });
             }
-
         });
+
     </script>
 </div>
 </body>

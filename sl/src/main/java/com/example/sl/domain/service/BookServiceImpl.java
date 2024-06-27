@@ -213,6 +213,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookEntity findById(Long bookId) {
         return bookRepository.findById(bookId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId: " + bookId));
     }
 }
