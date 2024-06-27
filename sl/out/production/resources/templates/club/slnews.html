@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>경기기록( 현재 ) </title>
+    <title>Club News</title>
 
     <!-- Google Icon -->
     <link rel="stylesheet"
@@ -19,11 +19,9 @@
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
 
 </head>
-
 <body>
-
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
             <div class="section-table">
@@ -182,7 +180,7 @@
         </section>
     </main>
     <!--footer-->
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <!--//footer-->
     <script>
         /*header*/

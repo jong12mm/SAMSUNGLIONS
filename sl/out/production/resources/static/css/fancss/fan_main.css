@@ -123,12 +123,23 @@ section {
 
 }
 
-section > div > div > div > a > img {
+section > .fmain_top > div > div > a > img {
     width: 400px;
     height: 300px;
 }
 
-section > div > div > div > a {
+section > .fmain_top > div > div > a {
+    display: block;
+    width: 400px;
+    height: 300px;
+    z-index: 4;
+}
+section > .fmain_bottom > div > div > a > img {
+    width: 400px;
+    height: 300px;
+}
+
+section > .fmain_bottom > div > div > a {
     display: block;
     width: 400px;
     height: 300px;
@@ -172,7 +183,6 @@ span {
     padding-left: 70px;
     padding-right: 70px;
 }
-
 .fmain_board {
     margin-top: 50px;
     display: flex;
@@ -185,17 +195,40 @@ span {
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
 .fmain_board > .board_main > .span {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.fmain_board > .board_main > .board {
+.fmain_board > .board_main > .board-container {
+    width: 100%;
+    position: relative;
+}
+
+.fmain_board > .board_main > .board-container > .board {
     border: 1px solid black;
     height: 300px;
-    width: 1200px;
+    width: 100%;
 }
 
+.fmain_board > .board_main > .board-container > .board-link {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: 0.8rem;
+    color: #1b41ff;
+    text-decoration: none;
+    border: 1px solid #1b41ff;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.fmain_board > .board_main > .board-container > .board-link:hover {
+    background-color: #1b41ff;
+    color: white;
+}

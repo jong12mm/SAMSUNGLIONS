@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fan FAQ</title>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section class="titlebox-faq">
             <div class=titlearea-faq><h1>FAQ</h1></div>
@@ -45,7 +45,7 @@
             </div>
         </section>
     </main>
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <script>
         /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {

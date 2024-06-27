@@ -2,6 +2,7 @@ package com.example.sl.controller;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
+import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.domain.service.PaymentService;
 import com.example.sl.entity.BookEntity;
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -35,11 +37,26 @@ public class BookController {
         this.paymentService = paymentService;
     }
 
+    @GetMapping("/book_real_start")
+    public String book_real_start() {
+        return "book/book_real_start";
+    }
+
+    @GetMapping("/book_finish")
+    public String book_finish() {
+        return "book/book_finish";
+    }
+
+    @GetMapping("/book_game_info")
+    public String book_game_info() {
+        return "book/book_game_info";
+    }
+
     @GetMapping("/book_start")
     public String showBookingPage(Model model) {
         List<String> zones = bookService.getZones();
         model.addAttribute("zones", zones);
-        return "book_start";
+        return "book/book_start";
     }
 
     @GetMapping("/zones/{mainZone}")
@@ -53,7 +70,9 @@ public class BookController {
     @ResponseBody
     public List<SeatEntity> getSeatsByMainZoneAndZone(@PathVariable("mainZone") String mainZone, @PathVariable("zone") String zone) {
         log.info("Fetching seats for mainZone: {} and zone: {}", mainZone, zone);
-        return bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
+        List<SeatEntity> seats = bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
+        log.info("Fetched seats: {}", seats);
+        return seats;
     }
 
     @PostMapping("/make")
@@ -162,7 +181,7 @@ public class BookController {
     public String getAllBooks(Model model) {
         List<BookEntity> bookList = bookService.getAllBooks();
         model.addAttribute("bookList", bookList);
-        return "booklist";
+        return "book/booklist";
     }
 
     @PostMapping("/payment/cancel")

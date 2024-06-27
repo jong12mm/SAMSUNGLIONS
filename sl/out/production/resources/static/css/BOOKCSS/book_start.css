@@ -6,9 +6,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('/font/Pretendard-Thin.woff') format('woff'),
-        url('/font/Pretendard-Thin.woff2') format('woff2'),
-        url('/font/Pretendard-Thin.otf') format('opentype');
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -17,9 +17,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('/font/Pretendard-Light.woff') format('woff'),
-        url('/font/Pretendard-Light.woff2') format('woff2'),
-        url('/font/Pretendard-Light.otf') format('opentype');
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
 }
 
 @font-face {
@@ -28,9 +28,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('/font/Pretendard-Regular.woff') format('woff'),
-        url('/font/Pretendard-Regular.woff2') format('woff2'),
-        url('/font/Pretendard-Regular.otf') format('opentype');
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -39,9 +39,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('/font/Pretendard-Medium.woff') format('woff'),
-        url('/font/Pretendard-Medium.woff2') format('woff2'),
-        url('/font/Pretendard-Medium.otf') format('opentype');
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
 }
 
 @font-face {
@@ -50,9 +50,9 @@
     font-style: normal;
     src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('/font/Pretendard-SemiBold.woff') format('woff'),
-        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('/font/Pretendard-SemiBold.otf') format('opentype');
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
 
 @font-face {
@@ -61,9 +61,9 @@
     font-style: normal;
     src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('/font/Pretendard-ExtraBold.woff') format('woff'),
-        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('/font/Pretendard-ExtraBold.otf') format('opentype');
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
 
@@ -96,13 +96,14 @@ a {
     height : 1000px;
     background-image: url('/img/다운로드.jpg'),url('/img/구자욱.jpg');
     background-repeat: no-repeat;
-    background-size:100% 100%, 100% 100%; 
+    background-size:100% 100%, 100% 100%;
     background-position:0px 0px ,0px 0px; */
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: url('../../img/player/오승환.jpg') left top no-repeat,
-    url('../../img/player/구자욱.jpg') right top no-repeat,
+    background:
+    /*        url('../../img/player/오승환.jpg') left top no-repeat,*/
+    /*url('../../img/player/구자욱.jpg') right top no-repeat,*/
     url('../../img/backgroundex1.jpg');
 
 
@@ -111,7 +112,7 @@ a {
 
     background-size: auto 100%;
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;
     margin-top: 100px;
 
@@ -124,137 +125,140 @@ a {
 
 }
 
-.bookstart{
-    width:800px;
-    height:820px;
-    margin :auto;
 
 
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    padding : 40px 68px 40px;
-    border-radius: 10px;
-    color: rgb(7, 7, 82);
-    background-color: rgb(255, 255, 255,0.7);
-}
-.wrapper>main>section>.bookstart>.bookForm{
-    padding: 10px;
-}
-.wrapper>main>section>.bookstart>.bookForm>div{
-    /*margin-left: 40px;*/
-    margin-bottom: 10px;
-}
-.wrapper>main>section>.bookstart>.bookForm>div input::placeholder{
-    transition: .1s;
-    outline : 0;
-
-}
-.wrapper>main>section>.bookstart>.bookForm>div input:focus::placeholder {
-    opacity: 0;
-    left: 15px;
-    top: 5px;
-    font-size: 0.6rem;
-
-}
-.wrapper>main>section>.bookstart>.bookForm>div>.form-label{
-    margin: 0;
-    display: inline-block;
-    width: 160px;
-    font-family: PreR;
-}
-.wrapper>main>section>.bookstart>.bookForm>div>.form-control{
-    width: 400px;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid #81ecec;
-}
-.wrapper>main>section>.bookstart>.join{
-    text-align:center;
-    font-size: 2rem;
-    margin: 50px;
-}
-.btn{
-    /* border: 2px solid black; */
-    width: 100%;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-
-}
-.btn>.btn1a{
-    width: 300px;
-    height: 200px;
-    background-color: rgba(118, 228, 255, 0.5);
-    font-size :1rem;
-    border-radius: 10px;
-    display: flex;
-    border: 2px solid rgba(18, 205, 252);
-
+.zone-selection {
+    display:flex;
     justify-content: center;
-    align-items: center;
-    box-sizing: border-box; /* 요소의 크기를 보더와 패딩을 포함한 값으로 설정 */
-    /* /* border: 2px solid transparent; */
-    outline: 2px solid transparent;
-    transition: background-color 0.7s ease;
-}
-.btn2a{
-
-    width: 300px;
-    height: 200px;
-    background-color: rgba(118, 138, 255, 0.5);
-    border: 2px solid rgba(0, 38, 255);
-    font-size :1rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box; /* 요소의 크기를 보더와 패딩을 포함한 값으로 설정 */
-    /* border: 2px solid transparent; */
-    outline: 2px solid transparent; /* 아웃라인 초기화 */
-    transition: background-color 0.7s ease;
-}
-.btn1a:hover{
-    background-color: rgba(18, 205, 252, 0.9);
-    border: 2px double white; /* 안쪽 선 */
-    outline: 2px solid rgba(18, 205, 252); /* 바깥쪽 선 */
-    color: white;
-    transition: .7s ease-out;
-
-}
-.btn2a:hover{
-    background-color: rgba(0, 38, 255, 0.9);
-    border: 2px double white; /* 안쪽 선 */
-    outline: 2px solid rgba(0, 38, 255);; /* 바깥쪽 선 */
-    color: white;
-    transition: .7s ease-out;
-
-}
-.btn-text{
     flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.zone-selection select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.zoneSelect{
+    width:300px;
+    height: 50px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.seat-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    max-width: 500px; /* 한 줄에 10개씩 배치하기 위해 전체 너비를 제한 */
+}
+
+.seat {
+    width: 40px; /* 좌석의 가로 길이 고정 */
+    height: 40px; /* 좌석의 세로 길이 고정 */
+    background-color: #6feaf6;
+    margin: 5px; /* 좌석 간의 간격 */
+    cursor: pointer;
+    border-radius: 5px;
+    box-sizing: border-box; /* padding과 border를 포함한 전체 크기를 지정 */
+    display: flex; /* 내부 텍스트 중앙 정렬을 위해 flexbox 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    color: #000000; /* 좌석번호 색상 */
+}
+
+.seat.selected {
+    background-color: rgb(47, 106, 112);
+    color :#ffffff;
+}
+
+.seat.reserved {
+
+    cursor: not-allowed;
+    background-color: red;
+    pointer-events: none;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
-.btn-text>span{
-    margin-top: 5px;
+
+.summary {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
     margin-bottom: 5px;
 }
-.btn-text1a>div{
-    border: 1px solid rgba(18, 205, 252);
-    width: 100px;
-}
-.btn-text2a>div{
-    border: 1px solid rgba(0, 38, 255, 0.9);
-    width: 200px;
-}
-.btn1a:hover .btn-text div {
-    border:1px solid white;
 
-    transition: all 1s;
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-.btn2a:hover .btn-text div {
-    border:1px solid white;
 
-    transition: all 1s;
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
 }

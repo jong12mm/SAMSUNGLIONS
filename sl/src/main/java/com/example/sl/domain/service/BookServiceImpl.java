@@ -135,7 +135,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<SeatEntity> getAvailableSeatsByMainZoneAndZone(String mainZone, String zone) {
-        return seatRepository.findByMainZoneAndZoneAndReservedFalse(mainZone, zone);
+        return seatRepository.findByMainZoneAndZone(mainZone, zone);
     }
 
     @Override

@@ -8,7 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
-    SeatEntity findBySeatNumber(String seat_number);
+
+    SeatEntity findBySeatNumber(String seatNumber);
 
     List<SeatEntity> findByZoneAndReservedFalse(String zone);
 
@@ -18,6 +19,6 @@ public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
     @Query("SELECT DISTINCT s.zone FROM SeatEntity s WHERE s.mainZone = :mainZone")
     List<String> findDistinctZonesByMainZone(@Param("mainZone") String mainZone);
 
-    @Query("SELECT s FROM SeatEntity s WHERE s.mainZone = :mainZone AND s.zone = :zone AND s.reserved = false")
-    List<SeatEntity> findByMainZoneAndZoneAndReservedFalse(@Param("mainZone") String mainZone, @Param("zone") String zone);
+    @Query("SELECT s FROM SeatEntity s WHERE s.mainZone = :mainZone AND s.zone = :zone")
+    List<SeatEntity> findByMainZoneAndZone(@Param("mainZone") String mainZone, @Param("zone") String zone);
 }

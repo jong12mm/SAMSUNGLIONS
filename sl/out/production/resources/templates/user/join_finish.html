@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMSUNG LIONS</title>
+    <title>Join Finish</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <!--css-->
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
             <div class="join">
@@ -57,7 +57,7 @@
         </section>
     </main>
     <!--footer-->
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <!--footer-->
     <script>
         /* header */

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMSUNG LIONS</title>
+    <title>book_finish</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
@@ -22,7 +22,7 @@
 <body>
 
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
             <div class="book-title">
@@ -60,7 +60,7 @@
         </section>
     </main>
     <!--footer-->
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <!--//footer-->
     <script>
         /*header*/

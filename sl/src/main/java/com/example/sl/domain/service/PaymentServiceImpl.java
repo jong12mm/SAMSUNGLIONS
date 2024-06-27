@@ -66,7 +66,6 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentRepository.save(paymentEntity);
     }
 
-
     @Override
     public PaymentEntity cancelPayment(String impUid, PaymentDto paymentDto) throws IamportResponseException, IOException {
         log.info("Attempting to cancel payment with impUid: {}", impUid);
@@ -131,4 +130,3 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentRepository.save(paymentEntity);
     }
 }
- 

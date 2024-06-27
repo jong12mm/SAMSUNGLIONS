@@ -30,29 +30,31 @@ compileJava {
 }
 
 dependencies {
-	// Spring Boot Starter dependencies
+
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'  // HikariCP를 포함한 기본 JDBC 의존성
 
-	// Database dependencies
 	implementation 'mysql:mysql-connector-java:8.0.33'
 
-	// 기타 dependencies
 	implementation 'javax.servlet:jstl:1.2'
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	implementation 'hikari-cp:hikari-cp:3.0.1'
 
-	// Lombok dependencies
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	// 아임포트 라이브러리
-	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
-
-	// Test dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
 
 }
 
