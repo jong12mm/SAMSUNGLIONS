@@ -203,16 +203,19 @@ header {
     display: flex; /* 내부 텍스트 중앙 정렬을 위해 flexbox 사용 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    color: white; /* 좌석번호 색상 */
+    color: #000000; /* 좌석번호 색상 */
 }
 
 .seat.selected {
     background-color: rgb(47, 106, 112);
+    color :#ffffff;
 }
 
 .seat.reserved {
-    background-color: #ccc;
+
     cursor: not-allowed;
+    background-color: red;
+    pointer-events: none;
 }
 
 .modal-content {

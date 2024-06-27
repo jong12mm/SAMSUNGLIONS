@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Start</title>
+    <title>야구 좌석 예매</title>
 
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/bookcss/book_start.css">
@@ -13,15 +13,15 @@
     <!--js-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script> <!-- UUID 생성 라이브러리 -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/6.0.3/big.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
     <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <div class="zone-selection" id="zoneSelection">
-            <img src="/img/좌석전체.png" usemap="#image-map" id="seatImage" width="600" height="600">
+            <img src="/img/좌석전체.png" usemap="#image-map" id="seatImage">
 
             <map name="image-map" id="imageMap">
                 <area target="" alt="sky_top" title="sky_top" href="javascript:void(0);" data-mainzone="sky_top"
@@ -57,7 +57,7 @@
                       coords="376,26,375,42,529,44,744,257,755,246,531,26" shape="poly">
             </map>
         </div>
-        <div class="zoneSelect">
+        <div>
             <select id="zoneSelect">
                 <option value="">구역 선택</option>
                 <th:block th:each="zone : ${zones}">
@@ -75,7 +75,8 @@
                 </div>
                 <form id="bookingForm">
                     <div class="form-group"><label for="name">이름:</label><input type="text" id="name" required></div>
-                    <div class="form-group"><label for="gameinfoId">게임 정보 ID:</label><input type="text" id="gameinfoId" required></div>
+                    <div class="form-group"><label for="gameinfoId">게임 정보 ID:</label><input type="text" id="gameinfoId"
+                                                                                            required></div>
                     <div class="form-group"><label for="payid">결제 방법:</label>
                         <select id="payid" required>
                             <option value="">결제 방법 선택</option>
@@ -93,6 +94,7 @@
 </div>
 
 <script>
+
     /* header */
     document.querySelectorAll('.menu > li').forEach(menuItem => {
         menuItem.addEventListener('mouseenter', () => {
@@ -116,33 +118,35 @@
         const zoneSelection = document.getElementById('zoneSelection');
         let selectedMainZone = "";
         let selectedZone = "";
-        let globalImpUid = null;  // 전역 변수로 impUid를 저장합니다.
-        let currentBookingId = null;  // 현재 예매 ID를 저장합니다.
+        let globalImpUid = null;
+        let currentBookingId = null;
 
-        function resizeMap() {
-            const originalWidth = 836;
-            const originalHeight = 878;
-            const newWidth = 600;
-            const newHeight = 600;
+        // 이미지 맵 크기 조정
+        const originalWidth = 836;
+        const originalHeight = 878;
+        const newWidth = 600;
+        const newHeight = 600;
 
-            const widthRatio = newWidth / originalWidth;
-            const heightRatio = newHeight / originalHeight;
+        const adjustCoords = (coords, originalWidth, originalHeight, newWidth, newHeight) => {
+            const scaleX = newWidth / originalWidth;
+            const scaleY = newHeight / originalHeight;
+            return coords.split(',').map((coord, index) => {
+                return (index % 2 === 0) ? Math.round(coord * scaleX) : Math.round(coord * scaleY);
+            }).join(',');
+        };
 
-            document.querySelectorAll('area').forEach(area => {
-                const coords = area.coords.split(',').map(Number);
-                const newCoords = coords.map((coord, index) => {
-                    return index % 2 === 0 ? Math.round(coord * widthRatio) : Math.round(coord * heightRatio);
-                });
-                area.coords = newCoords.join(',');
-            });
-        }
+        document.querySelectorAll('area').forEach(area => {
+            const originalCoords = area.coords;
+            const newCoords = adjustCoords(originalCoords, originalWidth, originalHeight, newWidth, newHeight);
+            area.coords = newCoords;
+        });
 
-        resizeMap();
+        document.getElementById('seatImage').width = newWidth;
+        document.getElementById('seatImage').height = newHeight;
 
         function closeModal() {
             seatModal.style.display = 'none';
             if (currentBookingId) {
-                // 예매가 취소되었을 때 서버에 알립니다.
                 fetch(`/book/cancel/${currentBookingId}`, {
                     method: 'POST'
                 })
@@ -194,6 +198,7 @@
                         return response.json();
                     })
                     .then(data => {
+                        console.log('Fetched seats:', data); // 좌석 데이터를 콘솔에 출력하여 디버깅
                         seatContainer.innerHTML = '';
                         data.forEach(seat => {
                             const seatDiv = document.createElement('div');
@@ -201,10 +206,10 @@
                             if (seat.reserved) {
                                 seatDiv.classList.add('reserved');
                             }
-                            seatDiv.setAttribute('data-seat', seat.seat_number);
+                            seatDiv.setAttribute('data-seat', seat.seatNumber);
                             seatDiv.setAttribute('data-price', seat.price);
                             seatDiv.setAttribute('data-seatid', seat.seatid);
-                            seatDiv.innerText = seat.seat_number;
+                            seatDiv.innerText = seat.seatNumber;
                             seatContainer.appendChild(seatDiv);
                         });
                         seatModal.style.display = 'block';
@@ -223,7 +228,9 @@
         function updateSelectedSeats() {
             const selectedSeats = document.querySelectorAll('.seat.selected');
             const selectedSeatsArr = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat'));
-            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc + parseFloat(seat.getAttribute('data-price')), 0);
+            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => {
+                return acc.plus(new Big(seat.getAttribute('data-price')));
+            }, new Big(0));
 
             selectedSeatsDisplay.textContent = `선택된 좌석: ${selectedSeatsArr.length > 0 ? selectedSeatsArr.join(', ') : '없음'}`;
             totalPriceDisplay.textContent = `총 가격: ${totalPrice}원`;
@@ -249,7 +256,7 @@
                 return;
             }
 
-            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc + parseFloat(seat.getAttribute('data-price')), 0);
+            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc.plus(new Big(seat.getAttribute('data-price'))), new Big(0));
             const bookingData = {
                 name: name,
                 gameinfoId: gameinfoId,
@@ -258,7 +265,8 @@
                 seatid: selectedSeatIds[0],
                 date: new Date().toISOString(),
                 mainZone: selectedMainZone,
-                zone: selectedZone
+                zone: selectedZone,
+                totalPrice: totalPrice.toString()
             };
 
             console.log('예매 요청 데이터:', bookingData);
@@ -293,18 +301,18 @@
         });
 
         function initiatePayment(bookid, amount, payid) {
-            IMP.init("imp45883616"); // 아임포트 식별코드 사용
+            IMP.init("imp30260072");
 
-            const merchant_uid = 'merchant_' + uuid.v4(); // UUID를 사용하여 고유한 merchant_uid 생성
+            const merchant_uid = 'merchant_' + uuid.v4();
 
-            console.log('결제 요청:', { bookid, amount, payid, merchant_uid });
+            console.log('결제 요청:', {bookid, amount, payid, merchant_uid});
 
             let paymentOptions = {
                 pg: "",
                 pay_method: payid,
                 merchant_uid: merchant_uid,
                 name: "테스트 결제",
-                amount: amount,
+                amount: amount.toString(),
                 buyer_email: "test@example.com",
                 buyer_name: document.getElementById('name').value,
                 buyer_tel: "010-0000-0000",
@@ -321,10 +329,10 @@
                 paymentOptions.pg = 'danal';
             }
 
-            IMP.request_pay(paymentOptions, function(resp) {
+            IMP.request_pay(paymentOptions, function (resp) {
                 console.log('결제 응답:', resp);
                 if (resp.success) {
-                    globalImpUid = resp.imp_uid; // 결제 응답에서 impUid 저장
+                    globalImpUid = resp.imp_uid;
                     fetch('/payment/make', {
                         method: 'POST',
                         headers: {
@@ -332,7 +340,7 @@
                         },
                         body: JSON.stringify({
                             bookId: bookid,
-                            amount: amount,
+                            amount: amount.toString(),
                             impUid: resp.imp_uid,
                             merchantUid: merchant_uid,
                             paymentMethod: payid,

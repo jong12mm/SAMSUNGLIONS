@@ -70,7 +70,9 @@ public class BookController {
     @ResponseBody
     public List<SeatEntity> getSeatsByMainZoneAndZone(@PathVariable("mainZone") String mainZone, @PathVariable("zone") String zone) {
         log.info("Fetching seats for mainZone: {} and zone: {}", mainZone, zone);
-        return bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
+        List<SeatEntity> seats = bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
+        log.info("Fetched seats: {}", seats);
+        return seats;
     }
 
     @PostMapping("/make")
@@ -114,9 +116,8 @@ public class BookController {
             for (Long id : ids) {
                 BookEntity cancelledBook = bookService.cancelBook(id.toString());
                 PaymentDto paymentDto = new PaymentDto();
-                paymentDto.setCancelRequestAmount(cancelledBook.getPrice());
+                paymentDto.setCancelRequestAmount(cancelledBook.getTotalPrice());
                 paymentService.cancelPayment(cancelledBook.getImpUid(), paymentDto);
-                //bookService.deleteById(id); // 예매 취소 후 데이터베이스에서 삭제 대신 상태 변경
             }
             return ResponseEntity.ok(Collections.singletonMap("success", true));
         } catch (IllegalArgumentException e) {
@@ -141,10 +142,7 @@ public class BookController {
         log.info("Saving payment: {}", paymentDto);
         try {
             PaymentEntity paymentEntity = bookService.savePayment(paymentDto);
-
-            // 결제 저장 후, impUid 업데이트
             bookService.updateImpUid(paymentDto.getBookId(), paymentDto.getImpUid());
-
             return ResponseEntity.ok(Collections.singletonMap("paymentStatus", "성공"));
         } catch (IllegalArgumentException e) {
             log.error("Invalid bookId provided: {}", paymentDto.getBookId(), e);
