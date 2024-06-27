@@ -7,9 +7,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script> <!-- UUID 생성 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/6.0.3/big.min.js"></script>
 
-    <!-- CSS -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -238,13 +238,12 @@
         const zoneSelection = document.getElementById('zoneSelection');
         let selectedMainZone = "";
         let selectedZone = "";
-        let globalImpUid = null;  // 전역 변수로 impUid를 저장합니다.
-        let currentBookingId = null;  // 현재 예매 ID를 저장합니다.
+        let globalImpUid = null;
+        let currentBookingId = null;
 
         function closeModal() {
             seatModal.style.display = 'none';
             if (currentBookingId) {
-                // 예매가 취소되었을 때 서버에 알립니다.
                 fetch(`/book/cancel/${currentBookingId}`, {
                     method: 'POST'
                 })
@@ -290,7 +289,8 @@
                 console.log(`Selected mainZone: ${selectedMainZone}, zone: ${this.value}`);
                 fetch(`/book/seats/${selectedMainZone}/${this.value}`)
                     .then(response => {
-                        if (!response.ok) {                throw new Error('Network response was not ok');
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
                         }
                         return response.json();
                     })
@@ -302,10 +302,10 @@
                             if (seat.reserved) {
                                 seatDiv.classList.add('reserved');
                             }
-                            seatDiv.setAttribute('data-seat', seat.seat_number);
+                            seatDiv.setAttribute('data-seat', seat.seatNumber);
                             seatDiv.setAttribute('data-price', seat.price);
                             seatDiv.setAttribute('data-seatid', seat.seatid);
-                            seatDiv.innerText = seat.seat_number;
+                            seatDiv.innerText = seat.seatNumber;
                             seatContainer.appendChild(seatDiv);
                         });
                         seatModal.style.display = 'block';
@@ -324,7 +324,9 @@
         function updateSelectedSeats() {
             const selectedSeats = document.querySelectorAll('.seat.selected');
             const selectedSeatsArr = Array.from(selectedSeats).map(seat => seat.getAttribute('data-seat'));
-            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc + parseFloat(seat.getAttribute('data-price')), 0);
+            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => {
+                return acc.plus(new Big(seat.getAttribute('data-price')));
+            }, new Big(0));
 
             selectedSeatsDisplay.textContent = `선택된 좌석: ${selectedSeatsArr.length > 0 ? selectedSeatsArr.join(', ') : '없음'}`;
             totalPriceDisplay.textContent = `총 가격: ${totalPrice}원`;
@@ -350,7 +352,7 @@
                 return;
             }
 
-            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc + parseFloat(seat.getAttribute('data-price')), 0);
+            const totalPrice = Array.from(selectedSeats).reduce((acc, seat) => acc.plus(new Big(seat.getAttribute('data-price'))), new Big(0));
             const bookingData = {
                 name: name,
                 gameinfoId: gameinfoId,
@@ -359,7 +361,8 @@
                 seatid: selectedSeatIds[0],
                 date: new Date().toISOString(),
                 mainZone: selectedMainZone,
-                zone: selectedZone
+                zone: selectedZone,
+                totalPrice: totalPrice.toString()
             };
 
             console.log('예매 요청 데이터:', bookingData);
@@ -394,9 +397,9 @@
         });
 
         function initiatePayment(bookid, amount, payid) {
-            IMP.init("imp45883616"); // 아임포트 식별코드 사용
+            IMP.init("imp45883616");
 
-            const merchant_uid = 'merchant_' + uuid.v4(); // UUID를 사용하여 고유한 merchant_uid 생성
+            const merchant_uid = 'merchant_' + uuid.v4();
 
             console.log('결제 요청:', { bookid, amount, payid, merchant_uid });
 
@@ -405,7 +408,7 @@
                 pay_method: payid,
                 merchant_uid: merchant_uid,
                 name: "테스트 결제",
-                amount: amount,
+                amount: amount.toString(),
                 buyer_email: "test@example.com",
                 buyer_name: document.getElementById('name').value,
                 buyer_tel: "010-0000-0000",
@@ -425,7 +428,7 @@
             IMP.request_pay(paymentOptions, function(resp) {
                 console.log('결제 응답:', resp);
                 if (resp.success) {
-                    globalImpUid = resp.imp_uid; // 결제 응답에서 impUid 저장
+                    globalImpUid = resp.imp_uid;
                     fetch('/payment/make', {
                         method: 'POST',
                         headers: {
@@ -433,7 +436,7 @@
                         },
                         body: JSON.stringify({
                             bookId: bookid,
-                            amount: amount,
+                            amount: amount.toString(),
                             impUid: resp.imp_uid,
                             merchantUid: merchant_uid,
                             paymentMethod: payid,

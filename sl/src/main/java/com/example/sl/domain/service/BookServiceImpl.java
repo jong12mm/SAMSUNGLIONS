@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService {
         bookEntity.setDate(LocalDateTime.now());
         bookEntity.setBookstatus("PENDING"); // 예약 상태를 "PENDING"으로 설정
         bookEntity.setPayid(bookDto.getPayid());
-        bookEntity.setPrice(seatEntity.getPrice());
+        bookEntity.setTotalPrice(bookDto.getTotalPrice());
         bookEntity.setMainZone(bookDto.getMainZone());
         bookEntity.setZone(bookDto.getZone());
         bookEntity.setImpUid(bookDto.getImpUid());
@@ -70,11 +70,14 @@ public class BookServiceImpl implements BookService {
 
         bookEntity.setBookstatus("BOOKED");
 
-        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
-        if (seatEntityOptional.isPresent()) {
-            SeatEntity seatEntity = seatEntityOptional.get();
-            seatEntity.setReserved(true);
-            seatRepository.save(seatEntity);
+        // 여러 좌석 처리
+        String[] seatNumbers = bookEntity.getSeat().split(", ");
+        for (String seatNumber : seatNumbers) {
+            SeatEntity seatEntity = seatRepository.findBySeatNumber(seatNumber);
+            if (seatEntity != null) {
+                seatEntity.setReserved(true);
+                seatRepository.save(seatEntity);
+            }
         }
 
         bookRepository.save(bookEntity);
@@ -90,15 +93,17 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = bookEntityOptional.get();
         bookEntity.setBookstatus("CANCELLED");
 
-        Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
-        if (seatEntityOptional.isPresent()) {
-            SeatEntity seatEntity = seatEntityOptional.get();
-            seatEntity.setReserved(false);
-            seatRepository.save(seatEntity);
+        String[] seatNumbers = bookEntity.getSeat().split(", ");
+        for (String seatNumber : seatNumbers) {
+            SeatEntity seatEntity = seatRepository.findBySeatNumber(seatNumber);
+            if (seatEntity != null) {
+                seatEntity.setReserved(false);
+                seatRepository.save(seatEntity);
+            }
         }
 
         PaymentDto paymentDto = new PaymentDto();
-        paymentDto.setCancelRequestAmount(bookEntity.getPrice());
+        paymentDto.setCancelRequestAmount(bookEntity.getTotalPrice());
         paymentService.cancelPayment(bookEntity.getImpUid(), paymentDto);
 
         return bookRepository.save(bookEntity);

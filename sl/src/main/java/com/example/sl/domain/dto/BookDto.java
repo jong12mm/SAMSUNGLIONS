@@ -2,6 +2,7 @@ package com.example.sl.domain.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,4 +18,6 @@ public class BookDto {
     private String mainZone;  // 메인존 추가
     private String zone;      // 존 추가
     private String impUid;
+
+    private BigDecimal totalPrice;
 }
