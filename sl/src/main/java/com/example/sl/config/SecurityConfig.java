@@ -63,12 +63,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests((auth)->{
 //            auth.requestMatchers("/favicon.ico").permitAll();
             auth.requestMatchers("/js/**","/css/*","/assets/**","/img/**","/font/**").permitAll();
-            auth.requestMatchers("/**").permitAll();
+//            auth.requestMatchers("/**").permitAll();
 
 
             auth.requestMatchers("/admin").hasRole("ADMIN");
             auth.requestMatchers("/book/**","/book_start","/booklist").hasRole("USER");
-            auth.requestMatchers("/club/**").hasRole("USER");
+            auth.requestMatchers("/club/**").permitAll();
 
             auth.requestMatchers("/samsung","/user/adult_join","/user/child_join","/user/join_start","/user/join_finish","/user/login","/**").permitAll();
 

@@ -15,4 +15,6 @@ public class SeatDto {
     private String zone; // 구역 필드 추가
     private boolean reserved;
     private BigDecimal price;
+    private String mainZone;
+
 }
