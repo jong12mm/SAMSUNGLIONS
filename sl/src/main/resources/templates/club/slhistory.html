@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/css/clubcss/slhistory.css">
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/slick.js"></script>
@@ -24,75 +24,7 @@
 <body>
 
 <div class="wrapper">
-    <header class="navbar" id="navbar">
-        <script type="text/javascript" src="/js/nav.js"></script>
-        <div class="logo header-left">
-            <a href="/samsung"></a>
-            <!-- img src="img/logo.png" alt="LOGO" -->
-        </div>
-        <div class="header-right">
-            <nav>
-                <ul class="menu">
-                    <li>
-                        <a href="">구단</a>
-                        <ul class="submenu">
-                            <li><a href="/club/slintro">구단소개말</a></li>
-                            <li><a href="/club/announcement">공지사항</a></li>
-                            <li><a href="/club/slnews">구단소식</a></li>
-                            <li><a href="/club/slhistory">구단히스토리</a></li>
-                            <li><a href="/club/lionsPark">라이온즈파크</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">선수단</a>
-                        <ul class="submenu">
-                            <li><a href="">코칭스태프</a></li>
-                            <li><a href="">투수</a></li>
-                            <li><a href="">타자</a></li>
-                            <li><a href="">군입대선수</a></li>
-                            <li><a href="">신입단선수</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">기록</a>
-                        <ul class="submenu">
-                            <li><a href="">팀순위</a></li>
-                            <li><a href="">선수기록</a></li>
-                            <li><a href="">역대기록</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">팬</a>
-                        <ul class="submenu">
-                            <li><a href="">라이온즈스토리</a></li>
-                            <li><a href="">갤러리</a></li>
-                            <li><a href="">FAQ</a></li>
-                            <li><a href="">응원단</a></li>
-                            <li><a href="">자유게시판</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">예매</a>
-                        <ul class="submenu">
-                            <li><a href="/book/book_start">예매</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">쇼핑</a>
-                        <ul class="submenu">
-                            <li><a href="https://samsunglionsmall.com/">쇼핑</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul class="rightmenu">
-                    <li><a href="/user/login">로그인</a></li>
-                    <li>|</li>
-                    <li><a href="/user/join_start">회원가입</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="hideback"></div>
-    </header>
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
         <main>
             <section>
                 <!-- <ul class="section-nav">
