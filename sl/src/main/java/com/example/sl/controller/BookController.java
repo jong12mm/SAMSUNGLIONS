@@ -199,4 +199,16 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("결제 취소 중 오류 발생: " + e.getMessage());
         }
     }
+
+    @GetMapping("/status/{bookId}")
+    @ResponseBody
+    public ResponseEntity<?> getBookStatus(@PathVariable Long bookId) {
+        try {
+            BookEntity bookEntity = bookService.findById(bookId);
+            return ResponseEntity.ok(Collections.singletonMap("bookstatus", bookEntity.getBookstatus()));
+        } catch (Exception e) {
+            log.error("Error getting book status for bookId: {}", bookId, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", "Error getting book status"));
+        }
+    }
 }

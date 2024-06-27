@@ -24,4 +24,5 @@ public interface BookService {
     BookEntity updateImpUid(Long bookId, String impUid);
     void checkPendingReservations();
     void cancelPendingReservation(Long bookId); // 추가된 메서드
+    BookEntity findById(Long bookId);
 }

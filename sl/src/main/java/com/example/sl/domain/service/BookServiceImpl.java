@@ -91,6 +91,12 @@ public class BookServiceImpl implements BookService {
         }
 
         BookEntity bookEntity = bookEntityOptional.get();
+
+        // 예매 상태 확인
+        if ("CANCELLED".equalsIgnoreCase(bookEntity.getBookstatus())) {
+            throw new IllegalArgumentException("이미 취소된 예매입니다");
+        }
+
         bookEntity.setBookstatus("CANCELLED");
 
         String[] seatNumbers = bookEntity.getSeat().split(", ");
@@ -108,6 +114,7 @@ public class BookServiceImpl implements BookService {
 
         return bookRepository.save(bookEntity);
     }
+
 
     @Override
     public void deleteById(Long id) {
@@ -201,5 +208,11 @@ public class BookServiceImpl implements BookService {
             seatRepository.save(seatEntity);
         }
         bookRepository.save(bookEntity);
+    }
+
+    @Override
+    public BookEntity findById(Long bookId) {
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
     }
 }
