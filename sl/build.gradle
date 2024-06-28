@@ -40,6 +40,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 	implementation 'org.jsoup:jsoup:1.14.3'
+	 // 이메일 기능 추가
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+
+
 }
 
 tasks.named('test') {

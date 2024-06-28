@@ -170,7 +170,13 @@
             <div class="section-table">
                 <div class="board_list_wrap">
 
-                    <button onclick="saveReq()">글작성</button>
+                    <th:block sec:authorize="not isAuthenticated()">
+                        <button onclick="redirectToLogin()">글작성</button>
+                    </th:block>
+
+                    <th:block sec:authorize="hasRole('ROLE_USER')">
+                        <button onclick="saveReq()">글작성</button>
+                    </th:block>
 
                     <!-- 검색 폼 추가 -->
                     <form th:action="@{/club/board/paging}" method="get">
@@ -269,8 +275,12 @@
         /*//header*/
 
         const saveReq = () => {
-            location.href = "/club/board/save";
+            location.href = "/club/clubnews/save";
         }
+         const redirectToLogin = () => {
+            location.href = "/user/login";
+        }
+
     </script>
 
 </div>

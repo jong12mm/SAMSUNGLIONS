@@ -117,8 +117,10 @@
               </div>
               <div class="content-bottom-btn">
                 <button onclick="listReq()">목록</button>
-                <button onclick="updateReq()">수정</button>
-                <button onclick="deleteReq()">삭제</button>
+                <th:block sec:authorize="hasRole('ROLE_USER')">
+                  <button onclick="updateReq()">수정</button>
+                  <button onclick="deleteReq()">삭제</button>
+                </th:block>
               </div>
             </div>
             <div class="navigation-links">

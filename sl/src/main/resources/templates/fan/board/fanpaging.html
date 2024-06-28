@@ -36,7 +36,14 @@
                 <div class="section-left"></div>
                 <div class="section-mid">
                     <div class="board_list_wrap">
-                        <button onclick="saveReq()">글작성</button>
+
+                        <th:block sec:authorize="not isAuthenticated()">
+                            <button onclick="redirectToLogin()">글작성</button>
+                        </th:block>
+
+                        <th:block sec:authorize="hasRole('ROLE_USER')">
+                            <button onclick="saveReq()">글작성</button>
+                        </th:block>
                         <!-- 검색 폼 추가 -->
                         <form th:action="@{/fan/board/fanpaging}" method="get">
                             <select name="searchField">
@@ -137,6 +144,9 @@
 
     const saveReq = () => {
         location.href = "/fan/board/fansave";
+    }
+    const redirectToLogin = () => {
+            location.href = "/user/login";
     }
 </script>
 </body>

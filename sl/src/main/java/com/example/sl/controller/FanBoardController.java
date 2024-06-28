@@ -1,6 +1,5 @@
 package com.example.sl.controller;
 
-
 import com.example.sl.domain.dto.FanBoardDTO;
 import com.example.sl.domain.dto.FanCommentDTO;
 import com.example.sl.domain.dto.FaqBoardDTO;
@@ -237,9 +236,15 @@ public class FanBoardController {
         return "fan/faqboard/save";
     }
 
-
     @PostMapping("/faqboard/save")
     public String faqSave(@ModelAttribute FaqBoardDTO boardDTO, @RequestParam("file") MultipartFile file) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         faqBoardService.save(boardDTO, file);
         return "redirect:/fan/faqboard/paging";
     }
@@ -286,6 +291,13 @@ public class FanBoardController {
 
     @PostMapping("/faqboard/update")
     public String faqUpdate(@ModelAttribute FaqBoardDTO boardDTO, @RequestParam("file") MultipartFile file, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         FaqBoardDTO updatedBoard = faqBoardService.update(boardDTO, file);
         return "redirect:/fan/faqboard/" + updatedBoard.getId() + "?page=" + currentPage;
     }

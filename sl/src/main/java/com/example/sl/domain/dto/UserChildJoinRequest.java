@@ -30,7 +30,7 @@ public class UserChildJoinRequest {
 
     public void setBirth(String birth) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             this.birth = LocalDate.parse(birth, formatter);
 
         } catch (DateTimeParseException e) {

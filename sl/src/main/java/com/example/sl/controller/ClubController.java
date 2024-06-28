@@ -1,6 +1,5 @@
 package com.example.sl.controller;
 
-
 import com.example.sl.domain.dto.BoardDTO;
 import com.example.sl.domain.dto.ClubNewsDTO;
 import com.example.sl.domain.service.BoardService;
@@ -16,7 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -94,12 +94,22 @@ public class ClubController {
     }
 
     @GetMapping("/board/save")
-    public String saveForm() {
+    public String saveForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         return "club/board/save";
     }
 
     @PostMapping("/board/save")
     public String save(@ModelAttribute BoardDTO boardDTO, @RequestParam("file") MultipartFile file) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         boardService.save(boardDTO, file);
         return "redirect:/club/board/paging";
     }
@@ -129,6 +139,12 @@ public class ClubController {
         if (boardDTO != null) {
             model.addAttribute("boardUpdate", boardDTO);
             model.addAttribute("currentPage", currentPage);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            model.addAttribute("username", username);
+
+             // boardWriter 정보 추가
             return "club/board/update";
         } else {
             return "redirect:/club/board/paging?page=" + currentPage;
@@ -137,6 +153,13 @@ public class ClubController {
 
     @PostMapping("/board/update")
     public String update(@ModelAttribute BoardDTO boardDTO, @RequestParam("file") MultipartFile file, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         BoardDTO updatedBoard = boardService.update(boardDTO, file);
         return "redirect:/club/board/" + updatedBoard.getId() + "?page=" + currentPage;
     }
@@ -201,12 +224,22 @@ public class ClubController {
     }
 
     @GetMapping("/clubnews/save")
-    public String clubNewsSaveForm() {
+    public String clubNewsSaveForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         return "club/clubnews/save";
     }
 
     @PostMapping("/clubnews/save")
     public String clubNewsSave(@ModelAttribute ClubNewsDTO boardDTO, @RequestParam("file") MultipartFile file) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         clubNewsService.save(boardDTO, file);
         return "redirect:/club/clubnews/paging";
     }
@@ -236,6 +269,11 @@ public class ClubController {
         if (boardDTO != null) {
             model.addAttribute("boardUpdate", boardDTO);
             model.addAttribute("currentPage", currentPage);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            model.addAttribute("username", username);
+
             return "club/clubnews/update";
         } else {
             return "redirect:/club/clubnews/paging?page=" + currentPage;
@@ -244,6 +282,13 @@ public class ClubController {
 
     @PostMapping("/clubnews/update")
     public String clubNewsUpdate(@ModelAttribute ClubNewsDTO boardDTO, @RequestParam("file") MultipartFile file, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         ClubNewsDTO updatedBoard = clubNewsService.update(boardDTO, file);
         return "redirect:/club/clubnews/" + updatedBoard.getId() + "?page=" + currentPage;
     }

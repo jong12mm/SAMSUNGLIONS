@@ -101,7 +101,14 @@
             <div class="section-table">
                 <div class="board_list_wrap">
 
+                    <th:block sec:authorize="not isAuthenticated()">
+                        <button onclick="redirectToLogin()">글작성</button>
+                    </th:block>
+
+                    <th:block sec:authorize="hasRole('ROLE_USER')">
                     <button onclick="saveReq()">글작성</button>
+                    </th:block>
+
 
                     <!-- 검색 폼 추가 -->
                     <form th:action="@{/club/board/paging}" method="get">
@@ -113,6 +120,7 @@
                         </select>
                         <input type="text" name="query" placeholder="Search..." th:value="${query}">
                         <button type="submit">검색</button>
+
                     </form>
 
                     <table>
@@ -202,6 +210,12 @@
         const saveReq = () => {
             location.href = "/club/board/save";
         }
+        const redirectToLogin = () => {
+            location.href = "/user/login";
+        }
+
+
+
     </script>
 
 </div>
