@@ -74,15 +74,45 @@ END POINT DOC
 
 DEPENDENCIES LIST
 ---
-|CAT|NAME|DESCRIPTION|LINK|
-|-|-|-|-|
-|BN|Commons Logging|로깅 추상화 레이어|[Commons Logging](https://commons.apache.org/proper/commons-logging/)|
-|BN|HikariCP|고성능 자바 SQL 데이터베이스 커넥션 풀|[HikariCP](https://github.com/brettwooldridge/HikariCP)|
-|BN|JSTL|JSP 태그 라이브러리|[JSTL](https://mvnrepository.com/artifact/javax.servlet/jstl)|
-|BN|Logback Classic|로깅 프레임워크 (SLF4J의 구현체 중 하나)|[Logback](https://mvnrepository.com/artifact/ch.qos.logback/logback-classic)|
-|BN|MySQL Connector/J|MySQL 데이터베이스 연결을 위한 자바 드라이버|[MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)|
-|DB|SLF4J API|간단한 로깅 파사드 for Java (로깅 API 추상화 레이어)|[SLF4J](https://www.slf4j.org/)|
-|SEC|Spring Security Crypto|스프링 시큐리티의 암호화 모듈|[Spring Security Crypto](https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto)|
+## 프로젝트 의존성
+
+### Spring Boot 기본 의존성
+- `org.springframework.boot:spring-boot-starter-web`
+- `org.springframework.boot:spring-boot-starter-security`
+- `org.springframework.boot:spring-boot-starter-oauth2-client`
+
+### JWT (JSON Web Token) 관련 의존성
+- `io.jsonwebtoken:jjwt-api:0.11.2`
+- `io.jsonwebtoken:jjwt-impl:0.11.2` (runtimeOnly)
+- `io.jsonwebtoken:jjwt-jackson:0.11.2` (runtimeOnly)
+
+### Lombok (코드 자동 생성) 관련 의존성
+- `org.projectlombok:lombok` (compileOnly)
+- `org.projectlombok:lombok` (annotationProcessor)
+
+### Thymeleaf 템플릿 엔진 관련 의존성
+- `org.springframework.boot:spring-boot-starter-thymeleaf`
+- `org.thymeleaf.extras:thymeleaf-extras-springsecurity6`
+
+### 데이터베이스 및 커넥션 풀 관련 의존성
+- `org.springframework.boot:spring-boot-starter-data-jpa`
+- `mysql:mysql-connector-java:8.0.33`
+- `hikari-cp:hikari-cp:3.0.1`
+
+### 웹 및 서블릿 관련 의존성
+- `javax.servlet:jstl:1.2`
+
+### 테스트 관련 의존성
+- `org.springframework.boot:spring-boot-starter-test`
+- `org.junit.platform:junit-platform-launcher` (testRuntimeOnly)
+
+### XML 및 HTML 파싱 관련 의존성
+- `javax.xml.bind:jaxb-api:2.3.1`
+- `org.jsoup:jsoup:1.14.3`
+
+### 아임포트 결제 모듈 관련 의존성
+- `com.github.iamport:iamport-rest-client-java:0.2.21`
+
 
 
 ERD[samsungdb]
