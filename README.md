@@ -74,8 +74,6 @@ END POINT DOC
 
 DEPENDENCIES LIST
 ---
-## 프로젝트 의존성
-
 ### Spring Boot 기본 의존성
 - `org.springframework.boot:spring-boot-starter-web`
 - `org.springframework.boot:spring-boot-starter-security`
