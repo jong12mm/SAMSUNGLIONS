@@ -98,16 +98,10 @@ C:.
 │  build.gradle
 │  gradlew
 │  gradlew.bat
-│  HELP.md
 │  settings.gradle
-│
 ├─.gradle
-|
 ├─.idea
-|
 ├─gradle
-│
-├─out
 └─src
     ├─main
     │  ├─generated
@@ -118,16 +112,75 @@ C:.
     │  │              │  SlApplication.java
     │  │              │
     │  │              ├─config
+    │  │              │  │  EncoderConfig.java
+    │  │              │  │  IamportClientConfig.java
+    │  │              │  │  JwtFilter.java
+    │  │              │  │  PrincipalDetails.java
+    │  │              │  │  PrincipalDetailsOauth2Service.java
+    │  │              │  │  PrincipalDetailsService.java
+    │  │              │  │  SecurityConfig.java
+    │  │              │  │  TxConfig.java
     │  │              │  │  WebMvcConfig.java
     │  │              │  │
     │  │              │  └─auth
+    │  │              │      ├─exceptionHandler
+    │  │              │      │      AppException.java
+    │  │              │      │      CustomAccessDeniedHandler.java
+    │  │              │      │      CustomAuthenticationEntryPoint.java
+    │  │              │      │      ErrorCode.java
+    │  │              │      │      ExceptionManager.java
+    │  │              │      │
+    │  │              │      ├─jwt
+    │  │              │      │      JwtAuthenticationFilter.java
+    │  │              │      │      JwtAuthorizationFilter.java
+    │  │              │      │      JwtProperties.java
+    │  │              │      │      JwtTokenProvider.java
+    │  │              │      │      KeyGenerator.java
+    │  │              │      │      TokenInfo.java
+    │  │              │      │
+    │  │              │      ├─loginHandler
+    │  │              │      │      CustomAuthenticationFailureHandler.java
+    │  │              │      │      CustomLoginSuccessHandler.java
+    │  │              │      │      OAuth2JwtLoginSuccessHandler.java
+    │  │              │      │
+    │  │              │      ├─logoutHandler
+    │  │              │      │      CustomLogoutHandler.java
+    │  │              │      │      CustomLogoutSuccessHandler.java
+    │  │              │      │      SessionCookieClearingLogoutHandler.java
+    │  │              │      │
+    │  │              │      └─provider
+    │  │              │              GoogleUserInfo.java
+    │  │              │              KakaoUserInfo.java
+    │  │              │              NaverUserInfo.java
+    │  │              │              OAuth2UserInfo.java
+    │  │              │
     │  │              ├─controller
-    │  │              │      BookController.java
-    │  │              │      ClubController.java
-    │  │              │      HomeController.java
-    │  │              │      LoginController.java
-    │  │              │      PaymentController.java
-    │  │              │      UserController.java
+    │  │              │  │  BookController.java
+    │  │              │  │  ClubController.java
+    │  │              │  │  FanBoardController.java
+    │  │              │  │  FanController.java
+    │  │              │  │  HomeController.java
+    │  │              │  │  ImageController.java
+    │  │              │  │  LoginController.java
+    │  │              │  │  PaymentController.java
+    │  │              │  │  PlayerController.java
+    │  │              │  │  RecordController.java
+    │  │              │  │  testcontroller.java
+    │  │              │  │  UserController.java
+    │  │              │  │
+    │  │              │  ├─detail
+    │  │              │  │  │  CheerDetailController.java
+    │  │              │  │  │  PitcherDetailController.java
+    │  │              │  │  │  StaffDetailController.java
+    │  │              │  │  │
+    │  │              │  │  └─hitter
+    │  │              │  │          CatcherController.java
+    │  │              │  │          InfielderController.java
+    │  │              │  │          OutfielderController.java
+    │  │              │  │
+    │  │              │  └─exception
+    │  │              │          FileUploadExceptionAdvice.java
+    │  │              │          ResourceNotFoundException.java
     │  │              │
     │  │              ├─domain
     │  │              │  ├─dao
@@ -137,28 +190,70 @@ C:.
     │  │              │  │          ConnectionPool_ByHikari.java
     │  │              │  │
     │  │              │  ├─dto
+    │  │              │  │      BoardDTO.java
     │  │              │  │      BookDto.java
+    │  │              │  │      ClubNewsDTO.java
+    │  │              │  │      FanBoardDTO.java
+    │  │              │  │      FanCommentDTO.java
+    │  │              │  │      FaqBoardDTO.java
     │  │              │  │      GameInfoDto.java
+    │  │              │  │      LoginRequest.java
+    │  │              │  │      OAuthUserDto.java
     │  │              │  │      PaymentDto.java
     │  │              │  │      SeatDto.java
+    │  │              │  │      UserAdultJoinRequest.java
+    │  │              │  │      UserChildJoinRequest.java
     │  │              │  │
     │  │              │  └─service
+    │  │              │          BoardService.java
     │  │              │          BookService.java
     │  │              │          BookServiceImpl.java
+    │  │              │          ClubNewsService.java
+    │  │              │          FanBoardService.java
+    │  │              │          FanCommentService.java
+    │  │              │          FaqBoardService.java
+    │  │              │          ImageService.java
     │  │              │          PaymentService.java
     │  │              │          PaymentServiceImpl.java
+    │  │              │          StoryService.java
+    │  │              │          UserService.java
     │  │              │
     │  │              ├─entity
+    │  │              │      BaseEntity.java
+    │  │              │      BoardEntity.java
     │  │              │      BookEntity.java
+    │  │              │      ClubNewsEntity.java
+    │  │              │      FanBaseEntity.java
+    │  │              │      FanBoardEntity.java
+    │  │              │      FanCommentEntity.java
+    │  │              │      FaqBoardEntity.java
     │  │              │      GameInfoEntity.java
+    │  │              │      ImageEntity.java
+    │  │              │      LoginedUser.java
     │  │              │      PaymentEntity.java
     │  │              │      SeatEntity.java
+    │  │              │      Signature.java
+    │  │              │      StoryEntity.java
+    │  │              │      User.java
     │  │              │
-    │  │              └─repository
-    │  │                      BookRepository.java
-    │  │                      GameInfoRepository.java
-    │  │                      PaymentRepository.java
-    │  │                      SeatRepository.java
+    │  │              ├─repository
+    │  │              │      BoardRepository.java
+    │  │              │      BookRepository.java
+    │  │              │      ClubNewsRepository.java
+    │  │              │      FanBoardRepository.java
+    │  │              │      FanCommentRepository.java
+    │  │              │      FaqBoardRepository.java
+    │  │              │      GameInfoRepository.java
+    │  │              │      ImageRepository.java
+    │  │              │      LoginedUserRepository.java
+    │  │              │      PaymentRepository.java
+    │  │              │      SeatRepository.java
+    │  │              │      SignatureRepository.java
+    │  │              │      StoryRepository.java
+    │  │              │      UserRepository.java
+    │  │              │
+    │  │              └─utils
+    │  │                      JwtUtil.java
     │  │
     │  └─resources
     │      │  application.properties
@@ -168,6 +263,8 @@ C:.
     │      │  │  │  footer.css
     │      │  │  │  fullpage.min.css
     │      │  │  │  navbar.css
+    │      │  │  │  navbar2.css
+    │      │  │  │  reset.css
     │      │  │  │  slick-theme.css
     │      │  │  │  slick.css
     │      │  │  │  style.css
@@ -180,24 +277,71 @@ C:.
     │      │  │  │      book_start.css
     │      │  │  │
     │      │  │  ├─clubcss
-    │      │  │  │      announcement.css
-    │      │  │  │      lionsPark.css
-    │      │  │  │      slhistory.css
-    │      │  │  │      slintro.css
-    │      │  │  │      slnews.css
+    │      │  │  │  │  announcement.css
+    │      │  │  │  │  lionsPark.css
+    │      │  │  │  │  slhistory.css
+    │      │  │  │  │  slintro.css
+    │      │  │  │  │  slnews.css
+    │      │  │  │  │
+    │      │  │  │  ├─board
+    │      │  │  │  │      detail.css
+    │      │  │  │  │      paging.css
+    │      │  │  │  │      save.css
+    │      │  │  │  │      update.css
+    │      │  │  │  │
+    │      │  │  │  └─clubnews
+    │      │  │  │          detail.css
+    │      │  │  │          paging.css
+    │      │  │  │          save.css
+    │      │  │  │          update.css
     │      │  │  │
-    │      │  │  └─usercss
+    │      │  │  ├─detailcss
+    │      │  │  │      cheerdetail.css
+    │      │  │  │      playerdetail.css
+    │      │  │  │
+    │      │  │  ├─fan
+    │      │  │  │  ├─board
+    │      │  │  │  │      fandetail.css
+    │      │  │  │  │      fanpaging.css
+    │      │  │  │  │      fansave.css
+    │      │  │  │  │      fanupdate.css
+    │      │  │  │  │
+    │      │  │  │  └─faqboard
+    │      │  │  │          detail.css
+    │      │  │  │          paging.css
+    │      │  │  │          save.css
+    │      │  │  │          update.css
+    │      │  │  │
+    │      │  │  ├─fancss
+    │      │  │  │      fan_cheerdetails.css
+    │      │  │  │      fan_cheermain.css
+    │      │  │  │      fan_faq.css
+    │      │  │  │      fan_free.css
+    │      │  │  │      fan_gallery.css
+    │      │  │  │      fan_gallery_user.css
+    │      │  │  │      fan_main.css
+    │      │  │  │      fan_story.css
+    │      │  │  │
+    │      │  │  ├─playercss
+    │      │  │  │      hittermain.css
+    │      │  │  │      playermain.css
+    │      │  │  │      staffmain.css
+    │      │  │  │
+    │      │  │  ├─record
+    │      │  │  │      teamrank.css
+    │      │  │  │
+    │      │  │  └─USERCSS
     │      │  │          adult_join.css
     │      │  │          children_join.css
     │      │  │          join_finish.css
     │      │  │          join_start.css
     │      │  │          login.css
     │      │  │
+    │      │  ├─data
     │      │  ├─font
-    │      │  │
     │      │  ├─img
-    │      │  │
     │      │  └─js
+    │      │          fan_story.js
     │      │          fullpage.min.js
     │      │          gallery.js
     │      │          jquery-3.7.1.min.js
@@ -209,38 +353,172 @@ C:.
     │      │          slick.min.js
     │      │
     │      └─templates
+    │          │  layout.html
+    │          │  samsung.html
+    │          │
     │          ├─book
+    │          │      booklist.html
     │          │      book_finish.html
     │          │      book_game_info.html
     │          │      book_real_start.html
-    │          │      booklist.html
     │          │      book_start.html
+    │          │      seats_modal.html
     │          │
     │          ├─club
-    │          │      announcement.html
-    │          │      lionsPark.html
-    │          │      slhistory.html
-    │          │      slintro.html
-    │          │      slnews.html
+    │          │  │  announcement.html
+    │          │  │  lionsPark.html
+    │          │  │  slhistory.html
+    │          │  │  slintro.html
+    │          │  │  slnews.html
+    │          │  │
+    │          │  ├─board
+    │          │  │      detail.html
+    │          │  │      paging.html
+    │          │  │      save.html
+    │          │  │      update.html
+    │          │  │
+    │          │  └─clubnews
+    │          │          detail.html
+    │          │          paging.html
+    │          │          save.html
+    │          │          update.html
+    │          │
+    │          ├─detail
+    │          │  ├─cheer
+    │          │  │      ChaHyomin.html
+    │          │  │      JeongYumi.html
+    │          │  │      KimGahyun.html
+    │          │  │      KimHayeon.html
+    │          │  │      KimMiso.html
+    │          │  │      KimSangheon.html
+    │          │  │      KimYujung.html
+    │          │  │      KwonGayoung.html
+    │          │  │      LeeSohyeon.html
+    │          │  │      LeeSujin.html
+    │          │  │      SongYeeun.html
+    │          │  │      SungHyoryun.html
+    │          │  │
+    │          │  ├─hitter
+    │          │  │  ├─catcher
+    │          │  │  │      KangMinho.html
+    │          │  │  │      KimDohwan.html
+    │          │  │  │      KimJaeseong.html
+    │          │  │  │      LeeByungheon.html
+    │          │  │  │
+    │          │  │  ├─infielder
+    │          │  │  │      AhnJoohyung.html
+    │          │  │  │      DavidMacKinnon.html
+    │          │  │  │      JeonByeongwoo.html
+    │          │  │  │      KimDongjin.html
+    │          │  │  │      KimYoungwoong.html
+    │          │  │  │      LeeChangyong.html
+    │          │  │  │      LeeJaehyeon.html
+    │          │  │  │      ParkByungho.html
+    │          │  │  │      RyuJihyuk.html
+    │          │  │  │
+    │          │  │  └─outfielder
+    │          │  │          KimDongyub.html
+    │          │  │          KimHeongon.html
+    │          │  │          KimHyeonjoon.html
+    │          │  │          KimJichan.html
+    │          │  │          KimSeongyoon.html
+    │          │  │          KimTaehoon.html
+    │          │  │          KooJawook.html
+    │          │  │          LeeSunggyu.html
+    │          │  │          YoonJeongbin.html
+    │          │  │
+    │          │  ├─pitcher
+    │          │  │      BaekJunghyun.html
+    │          │  │      ChoiHaneul.html
+    │          │  │      ChoiJigwang.html
+    │          │  │      ChoiSunghoon.html
+    │          │  │      ConnorSeabold.html
+    │          │  │      DenyiReyes.html
+    │          │  │      KimDaewoo.html
+    │          │  │      KimJaeyun.html
+    │          │  │      KimTaehun.html
+    │          │  │      LeeHoseong.html
+    │          │  │      LeeSeungmin.html
+    │          │  │      LeftSeunghyun.html
+    │          │  │      LimChangmin.html
+    │          │  │      OhSeunghwan.html
+    │          │  │      RightSeunghyun.html
+    │          │  │      WonTaein.html
+    │          │  │      YookSunyeop.html
+    │          │  │
+    │          │  └─staff
+    │          │          BaeYeongseop.html
+    │          │          ChoDongchan.html
+    │          │          ChongTaehyon.html
+    │          │          ChungMintae.html
+    │          │          JongHyunwook.html
+    │          │          KangMyunggu.html
+    │          │          KwonOhjun.html
+    │          │          LeeByungkyu.html
+    │          │          LeeJinyoung.html
+    │          │          ParkChando.html
+    │          │          ParkHanyi.html
+    │          │          ParkJinman.html
+    │          │          SonJooin.html
+    │          │
+    │          ├─fan
+    │          │  │  fan_cheerdetails.html
+    │          │  │  fan_cheermain.html
+    │          │  │  fan_faq.html
+    │          │  │  fan_free.html
+    │          │  │  fan_gallery.html
+    │          │  │  fan_gallery_user.html
+    │          │  │  fan_main.html
+    │          │  │  fan_story.html
+    │          │  │
+    │          │  ├─board
+    │          │  │      fandetail.html
+    │          │  │      fanpaging.html
+    │          │  │      fansave.html
+    │          │  │      fanupdate.html
+    │          │  │
+    │          │  └─faqboard
+    │          │          detail.html
+    │          │          paging.html
+    │          │          save.html
+    │          │          update.html
     │          │
     │          ├─fragments
+    │          │      catcher_detail_slider.html
+    │          │      cheer_detail_slider.html
     │          │      footer.html
+    │          │      infielder_detail_slider.html
     │          │      nav.html
+    │          │      outfielder_detail_slider.html
+    │          │      pitcher_detail_slider.html
+    │          │      staff_detail_slider.html
     │          │
-    │          ├─user
-    │          │      adult_join.html
-    │          │      children_join.html
-    │          │      join_finish.html
-    │          │      join_start.html
-    │          │      login.html
+    │          ├─player
+    │          │      army.html
+    │          │      hitter.html
+    │          │      newplayer.html
+    │          │      pitcher.html
+    │          │      player_main.html
+    │          │      staff.html
     │          │
-    │          ├─기록
-    │          │  samsung.html
+    │          ├─record
+    │          │      teamrank.html
     │          │
-    └─ test
-        └─ java
-            └─ com
-                └─ example
-                    └─ sl
-                        └─ SlApplicationTests.java
+    │          ├─seat
+    │          │      seatEx.html
+    │          │
+    │          └─user
+    │                  adult_join.html
+    │                  children_join.html
+    │                  example.html
+    │                  join_finish.html
+    │                  join_start.html
+    │                  login.html
+    │
+    └─test
+        └─java
+            └─com
+                └─example
+                    └─sl
+                            SlApplicationTests.java
 
