@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/usercss/find-username.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="username">
+                <h1>Find Username</h1>
+                <form th:action="@{/user/find_username}" method="post">
+                    <label for="realname">Real Name:</label>
+                    <input type="text" id="realname" name="realname" required><br>
+
+                    <label for="birth">Birth Date (YYYY-MM-DD):</label>
+                    <input type="text" id="birth" name="birth" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <button type="submit">Find Username</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <!--footer-->
+    <script>
+        /* header */
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /* header */
+    </script>
+
+</div>
+</body>
+</html>
