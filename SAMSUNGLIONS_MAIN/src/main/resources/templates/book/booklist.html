@@ -45,7 +45,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="book : ${bookList}">
+                    <tr th:each="book : ${bookPage.content}">
                         <td th:text="${book.bookid}"></td>
                         <td th:text="${book.mainZone}"></td>
                         <td th:text="${book.zone}"></td>
@@ -60,6 +60,20 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <div class="pagination">
+                    <ul>
+                        <li th:if="${currentPage > 0}">
+                            <a th:href="@{/book/list(page=${currentPage - 1})}">이전</a>
+                        </li>
+                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                            <a th:href="@{/book/list(page=${i})}" th:text="${i + 1}">1</a>
+                        </li>
+                        <li th:if="${currentPage < totalPages - 1}">
+                            <a th:href="@{/book/list(page=${currentPage + 1})}">다음</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
     </main>

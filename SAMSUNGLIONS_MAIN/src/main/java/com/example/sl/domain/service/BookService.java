@@ -7,6 +7,8 @@ import com.example.sl.entity.GameInfoEntity;
 import com.example.sl.entity.PaymentEntity;
 import com.example.sl.entity.SeatEntity;
 import com.siot.IamportRestClient.exception.IamportResponseException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +28,8 @@ public interface BookService {
     void checkPendingReservations();
     void cancelPendingReservation(Long bookId);
     BookEntity findById(Long bookId);
-    List<BookEntity> getBookingsByUser(String username);
+
     List<GameInfoEntity> getAllGameInfo();
     GameInfoEntity getGameInfoById(Long gameInfoId);
+    Page<BookEntity> getBookingsByUser(String username, Pageable pageable);
 }

@@ -11,6 +11,10 @@ import com.example.sl.entity.SeatEntity;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -188,13 +192,19 @@ public class BookController {
         }
     }
 
+
     @GetMapping("/list")
-    public String getBookList(Model model, Authentication authentication) {
+    public String getBookList(@RequestParam(defaultValue = "0") int page, Model model, Authentication authentication) {
         String username = authentication.getName();
-        List<BookEntity> bookList = bookService.getBookingsByUser(username);
-        model.addAttribute("bookList", bookList);
+        Pageable pageable = PageRequest.of(page, 5, Sort.by("date").descending());
+        Page<BookEntity> bookPage = bookService.getBookingsByUser(username, pageable);
+
+        model.addAttribute("bookPage", bookPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", bookPage.getTotalPages());
         return "book/booklist";
     }
+
 
     @PostMapping("/payment/cancel")
     @ResponseBody

@@ -9,6 +9,8 @@ import com.example.sl.repository.*;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -248,10 +250,12 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookId: " + bookId));
     }
 
+
     @Override
-    public List<BookEntity> getBookingsByUser(String username) {
+    public Page<BookEntity> getBookingsByUser(String username, Pageable pageable) {
         User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + username));
-        return bookRepository.findByUser(user);
+        return bookRepository.findByUserOrderByDateDesc(user, pageable);
     }
+
 }
