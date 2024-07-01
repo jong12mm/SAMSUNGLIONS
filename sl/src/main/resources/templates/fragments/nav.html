@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <title>Nav Fragment</title>
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
@@ -28,7 +28,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="">선수단</a>
+                    <a href="/player/player_main">선수단</a>
                     <ul class="submenu">
                         <li><a href="/player/staff">코칭스태프</a></li>
                         <li><a href="/player/pitcher">투수</a></li>
@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/fan/fan/fan_main">팬</a>
+                    <a href="/fan/fan_main">팬</a>
                     <ul class="submenu">
                         <li><a href="/fan/fan_story">라이온즈스토리</a></li>
                         <li><a href="/fan/fan_gallery">갤러리</a></li>
@@ -75,11 +75,12 @@
                     <li ><a href="/user/join_start">회원가입</a></li>
                 </th:block>
 
-                <th:block sec:authorize="hasRole('ROLE_USER')">
+                <th:block sec:authorize="isAuthenticated()">
                     <li><a href="/user/logout">로그아웃</a></li>
                     <li>|</li>
-                    <li><a href="/user/join_start">나의정보</a></li>
+                    <li><a href="/user/profile">나의정보</a></li>
                 </th:block>
+
 
 
 

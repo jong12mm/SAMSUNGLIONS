@@ -1,6 +1,5 @@
 package com.example.sl.controller;
 
-
 import com.example.sl.domain.dto.FanBoardDTO;
 import com.example.sl.domain.dto.FanCommentDTO;
 import com.example.sl.domain.dto.FaqBoardDTO;
@@ -19,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -78,7 +79,10 @@ public class FanBoardController {
     }
 
     @GetMapping("/board/fansave")
-    public String fanSaveForm() {
+    public String fanSaveForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         return "fan/board/fansave";
     }
 
@@ -89,27 +93,56 @@ public class FanBoardController {
         return "redirect:/fan/board/fanpaging";
     }
 
-    @GetMapping("/board/fandetail/{id}")
-    public String fanDetail(@PathVariable Long id, Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        logger.debug("Entering fanDetail method with id: {}, page: {}", id, page);
-        boardService.updateHits(id);
-        FanBoardDTO boardDTO = boardService.findById(id);
+//    @GetMapping("/board/fandetail/{id}")
+//    public String fanDetail(@PathVariable("id") Long id, Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+//        logger.debug("Entering fanDetail method with id: {}, page: {}", id, page);
+//        boardService.updateHits(id);
+//        FanBoardDTO boardDTO = boardService.findById(id);
+//
+//        /* 댓글 목록 가져오기 */
+//        List<FanCommentDTO> commentDTOList = commentService.findAll(id);
+//        model.addAttribute("commentList", commentDTOList);
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String username = authentication.getName();
+//        model.addAttribute("username", username);
+//
+//        if (boardDTO != null) {
+//            model.addAttribute("board", boardDTO);
+//            model.addAttribute("currentPage", page);
+//            return "fan/board/fandetail";
+//        } else {
+//            return "redirect:/fan/board/fanpaging?page=" + page;
+//        }
+//    }
+@GetMapping("/board/fandetail/{id}")
+public String fanDetail(@PathVariable("id") Long id, Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    logger.debug("Entering fanDetail method with id: {}, page: {}", id, page);
+    boardService.updateHits(id);
+    FanBoardDTO boardDTO = boardService.findById(id);
 
-        /* 댓글 목록 가져오기 */
-        List<FanCommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
+    /* 댓글 목록 가져오기 */
+    List<FanCommentDTO> commentDTOList = commentService.findAll(id);
+    model.addAttribute("commentList", commentDTOList);
 
-        if (boardDTO != null) {
-            model.addAttribute("board", boardDTO);
-            model.addAttribute("currentPage", page);
-            return "fan/board/fandetail";
-        } else {
-            return "redirect:/fan/board/fanpaging?page=" + page;
-        }
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = authentication.getName();
+    model.addAttribute("username", username);
+
+    // 작성자인지 여부 확인
+    String writer = boardDTO.getBoardWriter();
+
+    if (boardDTO != null) {
+        model.addAttribute("board", boardDTO);
+        model.addAttribute("currentPage", page);
+        return "fan/board/fandetail";
+    } else {
+        return "redirect:/fan/board/fanpaging?page=" + page;
     }
+}
 
     @GetMapping("/board/fanupdate/{id}")
-    public String fanUpdateForm(@PathVariable Long id,
+    public String fanUpdateForm(@PathVariable("id") Long id,
                                 @RequestParam(value = "page", defaultValue = "1") int currentPage,
                                 Model model) {
         logger.debug("Entering fanUpdateForm method with id: {}, currentPage: {}", id, currentPage);
@@ -132,7 +165,7 @@ public class FanBoardController {
     }
 
     @GetMapping("/board/fandelete/{id}")
-    public String fanDelete(@PathVariable Long id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String fanDelete(@PathVariable("id") Long id, @RequestParam(value = "page", defaultValue = "1") int page) {
         logger.debug("Entering fanDelete method with id: {}", id);
         try {
             boardService.delete(id);
@@ -143,7 +176,7 @@ public class FanBoardController {
     }
 
     @GetMapping("/board/fandownload/{fileName:.+}")
-    public ResponseEntity<Resource> fanDownloadFile(@PathVariable String fileName) {
+    public ResponseEntity<Resource> fanDownloadFile(@PathVariable("fileName") String fileName) {
         try {
             Path filePath = Paths.get("C:/uploads/").resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
@@ -174,7 +207,7 @@ public class FanBoardController {
     }
 
     @DeleteMapping("/comment/delete/{id}")
-    public ResponseEntity<?> deleteComment(@PathVariable Long id) {
+    public ResponseEntity<?> deleteComment(@PathVariable("id") Long id) {
         boolean deleteResult = commentService.delete(id);
 
         if (deleteResult) {
@@ -221,22 +254,42 @@ public class FanBoardController {
     }
 
     @GetMapping("/faqboard/save")
-    public String faqSaveForm() {
+    public String faqSaveForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         return "fan/faqboard/save";
     }
 
     @PostMapping("/faqboard/save")
     public String faqSave(@ModelAttribute FaqBoardDTO boardDTO, @RequestParam("file") MultipartFile file) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         faqBoardService.save(boardDTO, file);
         return "redirect:/fan/faqboard/paging";
     }
 
     @GetMapping("/faqboard/{id}")
-    public String faqFindById(@PathVariable Long id, Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String faqFindById(
+            @PathVariable("id") Long id,
+            Model model,
+            @RequestParam(value = "page", defaultValue = "1") int page
+    ) {
         FaqBoardDTO boardDTO = faqBoardService.findById(id);
         if (boardDTO != null) {
             model.addAttribute("board", boardDTO);
             model.addAttribute("currentPage", page);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated()) {
+                String username = authentication.getName();
+                model.addAttribute("username", username);
+            }
 
             Optional<FaqBoardDTO> previousBoard = faqBoardService.findFirstByIdLessThanOrderByIdDesc(id);
             previousBoard.ifPresent(value -> model.addAttribute("previousBoard", value));
@@ -251,11 +304,16 @@ public class FanBoardController {
     }
 
     @GetMapping("/faqboard/update/{id}")
-    public String faqUpdateForm(@PathVariable Long id, @RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
+    public String faqUpdateForm(@PathVariable("id") Long id, @RequestParam(value = "page", defaultValue = "1") int currentPage, Model model) {
         FaqBoardDTO boardDTO = faqBoardService.findById(id);
         if (boardDTO != null) {
             model.addAttribute("boardUpdate", boardDTO);
             model.addAttribute("currentPage", currentPage);
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            model.addAttribute("username", username);
+
             return "fan/faqboard/update";
         } else {
             return "redirect:/fan/faqboard/paging?page=" + currentPage;
@@ -264,18 +322,25 @@ public class FanBoardController {
 
     @PostMapping("/faqboard/update")
     public String faqUpdate(@ModelAttribute FaqBoardDTO boardDTO, @RequestParam("file") MultipartFile file, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage) throws IOException {
+        // 현재 인증된 사용자 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // boardWriter 설정
+        boardDTO.setBoardWriter(username);
+
         FaqBoardDTO updatedBoard = faqBoardService.update(boardDTO, file);
         return "redirect:/fan/faqboard/" + updatedBoard.getId() + "?page=" + currentPage;
     }
 
     @GetMapping("/faqboard/delete/{id}")
-    public String faqDelete(@PathVariable Long id, @RequestParam(value = "page", defaultValue = "1") int page) {
+    public String faqDelete(@PathVariable("id") Long id, @RequestParam(value = "page", defaultValue = "1") int page) {
         faqBoardService.delete(id);
         return "redirect:/fan/faqboard/paging?page=" + page;
     }
 
     @GetMapping("/faqboard/download/{fileName:.+}")
-    public ResponseEntity<Resource> faqDownloadFile(@PathVariable String fileName) {
+    public ResponseEntity<Resource> faqDownloadFile(@PathVariable("fileName") String fileName) {
         try {
             Path filePath = Paths.get("C:/uploads/").resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());

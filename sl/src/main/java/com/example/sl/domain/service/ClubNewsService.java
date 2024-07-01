@@ -2,7 +2,7 @@ package com.example.sl.domain.service;
 
 
 import com.example.sl.domain.dto.ClubNewsDTO;
-import com.example.sl.domain.repository.ClubNewsRepository;
+import com.example.sl.repository.ClubNewsRepository;
 import com.example.sl.entity.ClubNewsEntity;
 
 import jakarta.transaction.Transactional;

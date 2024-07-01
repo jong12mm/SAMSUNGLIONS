@@ -1,7 +1,7 @@
 package com.example.sl.config;
 
 import com.example.sl.domain.dto.OAuthUserDto;
-import com.example.sl.domain.repository.UserRepository;
+import com.example.sl.repository.UserRepository;
 import com.example.sl.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

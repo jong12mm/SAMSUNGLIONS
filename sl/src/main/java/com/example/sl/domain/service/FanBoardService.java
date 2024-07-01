@@ -2,7 +2,7 @@ package com.example.sl.domain.service;
 
 
 import com.example.sl.domain.dto.FanBoardDTO;
-import com.example.sl.domain.repository.FanBoardRepository;
+import com.example.sl.repository.FanBoardRepository;
 import com.example.sl.entity.FanBoardEntity;
 
 import jakarta.transaction.Transactional;

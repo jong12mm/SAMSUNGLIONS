@@ -1,6 +1,6 @@
 package com.example.sl.config.auth.jwt;
 
-import com.example.sl.domain.repository.UserRepository;
+import com.example.sl.repository.UserRepository;
 import com.example.sl.entity.User;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;

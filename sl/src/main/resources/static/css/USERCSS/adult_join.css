@@ -135,27 +135,24 @@ a {
     padding: 10px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > div {
+.wrapper > main > section > .adult_join > .join-block >form> div {
     margin-left: 40px;
     margin-bottom: 10px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > div input::placeholder {
+.wrapper > main > section > .adult_join > .join-block >form> div input::placeholder {
     transition: .1s;
     outline: 0;
 
 }
 
-.wrapper > main > section > .adult_join > .join-block > div input:focus::placeholder {
+.wrapper > main > section > .adult_join > .join-block >form> div input:focus::placeholder {
     opacity: 0;
     left: 15px;
     top: 5px;
     font-size: 0.6rem;
 
 
-}
-
-.wrapper > main > section > .adult_join > .join-block > h2 {
 }
 
 .wrapper > main > section > .adult_join > .join {
@@ -171,21 +168,22 @@ a {
 
 }
 
-.wrapper > main > section > .adult_join > .join-block > div > .form-label {
+.wrapper > main > section > .adult_join > .join-block >form> div > .form-label {
     margin: 0;
     display: inline-block;
     width: 160px;
     font-family: PreR;
 }
 
-.wrapper > main > section > .adult_join > .join-block > div > .form-control {
+.wrapper > main > section > .adult_join > .join-block >form> div > .form-control {
     width: 400px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #81ecec;
+    padding-left: 10px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > .clause {
+.wrapper > main > section > .adult_join > .join-block >form> .clause {
     border: 1px solid #81ecec;
     border-radius: 5px;
     padding: 10px;
@@ -193,19 +191,19 @@ a {
 
 }
 
-.wrapper > main > section > .adult_join > .join-block > .clause > div > div {
+.wrapper > main > section > .adult_join > .join-block >form> .clause > div > div {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > .clause > .clause {
+.wrapper > main > section > .adult_join > .join-block >form> .clause > .clause {
     text-align: center;
     display: inline-block;
     width: 100%;
     margin-bottom: 10px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > div > .btn {
+.wrapper > main > section > .adult_join > .join-block >form> div > .btn {
     display: inline-block;
     position: relative;
     width: 100%;
@@ -223,37 +221,26 @@ a {
     margin-top: 30px;
 }
 
-.wrapper > main > section > .adult_join > .join-block > div > .btn > .btn_text {
+.wrapper > main > section > .adult_join > .join-block >form> div > .btn > .btn_text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.wrapper > main > section > .adult_join > .join-block > .birthday {
+.wrapper > main > section > .adult_join > .join-block >form> .birthday {
 }
 
-.wrapper > main > section > .adult_join > .join-block > .gender > .radio {
+.wrapper > main > section > .adult_join > .join-block >form> .gender > .radio {
     display: flex;
     margin-left: 10px;
 
 
 }
 
-.wrapper > main > section > .adult_join > .join-block > .gender {
+.wrapper > main > section > .adult_join > .join-block >form> .gender {
     display: flex;
 
 
 }
 
-.wrapper > main > section > .adult_join > .join-block > .email {
-}
-
-.wrapper > main > section > .adult_join > .join-block > .phone {
-}
-
-.wrapper > main > section > .adult_join > .join-block > label {
-}
-
-.wrapper > main > section > .adult_join > .join-block > .btn {
-}

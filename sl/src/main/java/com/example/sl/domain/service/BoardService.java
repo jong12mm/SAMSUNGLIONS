@@ -2,7 +2,7 @@ package com.example.sl.domain.service;
 
 
 import com.example.sl.domain.dto.BoardDTO;
-import com.example.sl.domain.repository.BoardRepository;
+import com.example.sl.repository.BoardRepository;
 import com.example.sl.entity.BoardEntity;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

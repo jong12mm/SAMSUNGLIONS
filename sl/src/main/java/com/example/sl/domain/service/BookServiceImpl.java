@@ -5,12 +5,14 @@ import com.example.sl.domain.dto.PaymentDto;
 import com.example.sl.entity.BookEntity;
 import com.example.sl.entity.PaymentEntity;
 import com.example.sl.entity.SeatEntity;
+import com.example.sl.entity.User;
 import com.example.sl.repository.BookRepository;
 import com.example.sl.repository.PaymentRepository;
-
 import com.example.sl.repository.SeatRepository;
+import com.example.sl.repository.UserRepository;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public BookEntity makeBook(BookDto bookDto) {
@@ -92,6 +97,12 @@ public class BookServiceImpl implements BookService {
         }
 
         BookEntity bookEntity = bookEntityOptional.get();
+
+        // 예매 상태 확인
+        if ("CANCELLED".equalsIgnoreCase(bookEntity.getBookstatus())) {
+            throw new IllegalArgumentException("이미 취소된 예매입니다");
+        }
+
         bookEntity.setBookstatus("CANCELLED");
 
         String[] seatNumbers = bookEntity.getSeat().split(", ");
@@ -109,6 +120,7 @@ public class BookServiceImpl implements BookService {
 
         return bookRepository.save(bookEntity);
     }
+
 
     @Override
     public void deleteById(Long id) {
@@ -203,4 +215,18 @@ public class BookServiceImpl implements BookService {
         }
         bookRepository.save(bookEntity);
     }
+
+    @Override
+    public BookEntity findById(Long bookId) {
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bookId: " + bookId));
+    }
+
+    @Override
+    public List<BookEntity> getBookingsByUser(String username) {
+        User user = userRepository.findByUserName(username)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + username));
+        return bookRepository.findByUser(user);
+    }
+
 }

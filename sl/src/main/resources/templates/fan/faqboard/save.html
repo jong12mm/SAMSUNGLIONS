@@ -30,7 +30,7 @@
                     <div class="section-mid-form">
                         <form action="/fan/faqboard/save" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                             <a href="/fan/faqboard/paging"><span class="material-symbols-outlined">close</span></a>
-                            글쓴이: <input type="text" name="boardWriter"> <br>
+                            글쓴이: <input type="text" name="faqWriter" th:value="${username}" readonly> <br>
                             비밀번호: <input type="text" name="boardPass"> <br>
                             제목: <input type="text" name="boardTitle" id="boardTitle"> <br>
                             내용: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>

@@ -24,4 +24,9 @@ public class BookEntity {
     private String zone;      // 존 추가
 
     private BigDecimal totalPrice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
 }

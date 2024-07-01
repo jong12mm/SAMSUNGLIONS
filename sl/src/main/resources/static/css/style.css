@@ -199,25 +199,27 @@ a {
     height: 10px;
 }
 
-.wrapper > header > .header-right > nav > .rightmenu {
+.wrapper>header>.header-right>nav>.rightmenu {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     border: 0;
     height: auto;
     padding-left: 450px;
-    margin: 0;
+    margin:0;
 }
 
-.wrapper > header > .header-right > nav > .rightmenu > li {
-    border: 0;
+.wrapper>header>.header-right>nav>.rightmenu>li {
     position: relative;
     width: auto;
     text-align: center;
-    font-size: 0.8rem;
-    border: 0px solid;
-    color: white;
+    font-size: 1rem;
+    border: 0 solid;
+    color:white;
 
+}
+.wrapper>header>.header-right>nav>.rightmenu>li:last-child::after{
+    display:none;
 }
 
 .wrapper > header > .header-right > nav > .rightmenu > li:nth-child(2) {
@@ -225,8 +227,7 @@ a {
 }
 
 .wrapper > header > .header-right > nav > .rightmenu > li > a {
-    border: 0;
-    border: 0px solid;
+    border: 0 solid;
 }
 
 .hideback {

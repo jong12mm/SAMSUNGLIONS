@@ -5,6 +5,7 @@ import com.example.sl.entity.ImageEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -67,9 +68,26 @@ public class ImageController {
 
     @GetMapping("/image/{id}")
     @ResponseBody
-    public byte[] getImage(@PathVariable("id") Long id) {
+    public ResponseEntity<byte[]> getImage(@PathVariable("id") Long id) {
         ImageEntity image = imageService.getImageById(id);
-        return image.getData();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(getMediaType(image.getExtension()));
+        headers.setContentLength(image.getData().length);
+        return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
+    }
+
+    private MediaType getMediaType(String extension) {
+        switch (extension.toLowerCase()) {
+            case "png":
+                return MediaType.IMAGE_PNG;
+            case "gif":
+                return MediaType.IMAGE_GIF;
+            case "jpg":
+            case "jpeg":
+                return MediaType.IMAGE_JPEG;
+            default:
+                return MediaType.APPLICATION_OCTET_STREAM;
+        }
     }
 
     @GetMapping("/download/{id}")
@@ -96,5 +114,12 @@ public class ImageController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodedFilename + "\"")
                 .contentType(mediaType)
                 .body(image.getData());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseEntity<Void> deleteImage(@PathVariable("id") Long id) {
+        imageService.deleteImageById(id);
+        return ResponseEntity.ok().build();
     }
 }

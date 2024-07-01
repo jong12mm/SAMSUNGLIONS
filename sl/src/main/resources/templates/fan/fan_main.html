@@ -72,7 +72,24 @@
                     </div>
                     <div class="board-container">
                         <a href="/fan/fan_free" class="board-link">더보기 +</a>
-                        <div class="board"></div>
+                        <div class="board">
+                            <table>
+                                <tr>
+                                    <th>No</th> <!-- ID로 표시 -->
+                                    <th>제목</th>
+                                    <th>글쓴이</th>
+                                    <th>작성시간</th>
+                                    <th>조회수</th>
+                                </tr>
+                            <tr th:each="board : ${boardList}">
+                                <td th:text="${board.id}"></td> <!-- ID로 표시 -->
+                                <td><a th:href="@{/fan/board/fandetail/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a></td>
+                                <td th:text="${board.boardWriter}"></td> <!-- writer로 표시 -->
+                                <td th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd ')}"></td>
+                                <td th:text="${board.boardHits}"></td>
+                            </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ package com.example.sl.controller;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
+import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.domain.service.PaymentService;
 import com.example.sl.entity.BookEntity;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -176,8 +179,9 @@ public class BookController {
     }
 
     @GetMapping("/list")
-    public String getAllBooks(Model model) {
-        List<BookEntity> bookList = bookService.getAllBooks();
+    public String getBookList(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        List<BookEntity> bookList = bookService.getBookingsByUser(username);
         model.addAttribute("bookList", bookList);
         return "book/booklist";
     }
@@ -197,4 +201,28 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("결제 취소 중 오류 발생: " + e.getMessage());
         }
     }
+
+    @GetMapping("/status/{bookId}")
+    @ResponseBody
+    public ResponseEntity<?> getBookStatus(@PathVariable("bookId") Long bookId) {
+        try {
+            BookEntity bookEntity = bookService.findById(bookId);
+            if (bookEntity == null) {
+                log.error("Book not found for bookId: {}", bookId);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Collections.singletonMap("error", "Book not found"));
+            }
+            return ResponseEntity.ok(Collections.singletonMap("bookstatus", bookEntity.getBookstatus()));
+        } catch (IllegalArgumentException e) {
+            log.error("Invalid bookId provided: {}", bookId, e);
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Collections.singletonMap("error", e.getMessage()));
+        } catch (Exception e) {
+            log.error("Error getting book status for bookId: {}", bookId, e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Collections.singletonMap("error", "Error getting book status"));
+        }
+    }
+
+
 }

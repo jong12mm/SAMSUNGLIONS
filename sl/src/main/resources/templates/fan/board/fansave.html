@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/fan/board/fansave.css" />
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/slick.js"></script>
@@ -36,10 +36,10 @@
                 <div class="section-left"></div>
                 <div class="section-mid">
                     <div class="section-mid-form">
-                        <form action="/fan/board/fansave" method="post" enctype="multipart/form-data">
+                        <form id="boardForm" action="/fan/board/fansave" method="post" enctype="multipart/form-data">
                             <a href="/fan/board/fanpaging"><span class="material-symbols-outlined">close</span></a>
-                            글쓴이: <input type="text" name="boardWriter"> <br>
-                            비밀번호: <input type="text" name="boardPass"> <br>
+                            글쓴이: <input type="text" name="boardWriter" th:value="${username}" readonly> <br>
+                            게시글 비밀번호 : <input type="text" name="boardPass"> <br>
                             제목: <input type="text" name="boardTitle"> <br>
                             내용: <textarea name="boardContents" cols="70" rows="30"></textarea> <br>
                             <input type="submit" value="글작성">
@@ -88,6 +88,17 @@
       });
     });
     /*//header*/
+
+    document.getElementById('boardForm').addEventListener('submit', function(event) {
+    const boardTitle = document.querySelector('input[name="boardTitle"]').value;
+    if (!boardTitle) {
+        alert('제목을 입력해주세요.');
+        event.preventDefault();
+    }
+    });
+
+
+
 </script>
 </body>
 

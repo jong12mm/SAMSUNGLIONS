@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
     <main>
         <section>
             <div class="join">
@@ -57,8 +57,7 @@
         </section>
     </main>
     <!--footer-->
-    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>    <!--footer-->
     <script>
         /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {

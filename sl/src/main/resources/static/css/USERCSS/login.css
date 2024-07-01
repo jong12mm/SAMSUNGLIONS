@@ -169,6 +169,7 @@ a {
     width: 100%;
     border-radius: 5px;
     border: 1px solid rgb(128, 128, 128, 0.5);
+    padding-left: 15px;
 }
 
 .wrapper > main > section > .login > .login-body > form > div > input::placeholder {
@@ -187,7 +188,7 @@ a {
 
 }
 
-.wrapper > main > section > .login > .login-body > form > div > a {
+.wrapper > main > section > .login > .login-body > form > div >.btn {
     display: inline-block;
     position: relative;
     width: 100%;
@@ -204,7 +205,11 @@ a {
     align-items: center;
 }
 
-.wrapper > main > section > .login > .login-body > form > div > a > span {
+.wrapper > main > section > .login > .login-body > form > div >.btn:hover{
+    cursor: pointer;
+}
+
+.wrapper > main > section > .login > .login-body > form > div > .btn > span {
     position: absolute;
     top: 50%;
     left: 50%;

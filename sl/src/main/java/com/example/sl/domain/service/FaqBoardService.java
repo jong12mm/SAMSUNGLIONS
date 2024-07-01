@@ -1,7 +1,7 @@
 package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.FaqBoardDTO;
-import com.example.sl.domain.repository.FaqBoardRepository;
+import com.example.sl.repository.FaqBoardRepository;
 import com.example.sl.entity.FaqBoardEntity;
 
 import jakarta.transaction.Transactional;

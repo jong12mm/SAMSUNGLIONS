@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/fan/board/fanupdate.css" />
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/slick.js"></script>
@@ -35,8 +35,10 @@
                 <div class="section-left"></div>
                 <div class="section-mid">
                     <div class="section-mid-form">
-                        <form action="/fan/board/fanupdate" method="post" enctype="multipart/form-data">
-                            <a th:href="@{/fan/board/fandetail/{id}(id=${boardUpdate.id}, page=${currentPage})}"><span class="material-symbols-outlined">close</span></a>
+                        <form action="/fan/board/fanupdate" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                            <a th:href="@{/fan/board/fandetail/{id}(id=${boardUpdate.id}, page=${currentPage})}">
+                                <span class="material-symbols-outlined">close</span>
+                            </a>
                             <input type="hidden" name="id" th:value="${boardUpdate.id}">
                             <input type="hidden" name="currentPage" th:value="${currentPage}">
                             글쓴이: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}"> <br>
@@ -117,6 +119,20 @@
             }
         });
     }
+     function validateForm() {
+        const title = document.querySelector("input[name='boardTitle']").value;
+
+        if (!title.trim()) {
+            alert("제목을 입력해 주세요.");
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+
 </script>
 </body>
 

@@ -32,14 +32,14 @@
                 <div class="board_list_wrap">
 
                     <div class="section-mid-form">
-                        <form action="/fan/faqboard/update" method="post" name="updateForm" enctype="multipart/form-data">
+                        <form id="updateForm" action="/fan/faqboard/update" method="post" name="updateForm" enctype="multipart/form-data">
                             <input type="hidden" name="id" th:value="${boardUpdate.id}">
                             <input type="hidden" name="currentPage" th:value="${currentPage}">
-                            <a th:href="@{/fan/faqboard/{id}(id=${boardUpdate.id})}"><span class="material+symbols+outlined">close</span></a>
-                            writer: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
-                            pass: <input type="text" name="boardPass" id="boardPass"> <br>
-                            title: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
-                            contents: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
+                            <a th:href="@{/fan/faqboard/{id}(id=${boardUpdate.id})}"><span class="material-symbols-outlined">close</span></a>
+                            글쓴이: <input type="text" name="faqWriter" th:value="${username}" readonly> <br>
+                            게시글 비밀번호: <input type="text" name="boardPass" id="boardPass"> <br>
+                            제목: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+                            내용: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
                             <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
                             <label for="file" class="file-input-label">파일 첨부</label>
                             <input type="file" name="file" id="file" class="file-input" onchange="displayFileName()">
@@ -95,6 +95,15 @@
             const fileName = document.getElementById('file-name');
             fileName.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : '파일이 선택되지 않았습니다.';
         }
+        const boardUpdate = () => {
+                const boardTitle = document.querySelector('input[name="boardTitle"]').value;
+                if (!boardTitle) {
+                    alert('제목을 입력해주세요.');
+                } else {
+                    document.updateForm.submit();
+                }
+            }
+
     </script>
     <script th:inline="javascript">
         const boardUpdate = () => {

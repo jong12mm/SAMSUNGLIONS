@@ -24,12 +24,5 @@ public class PlayerController {
     public String hitter() {
         return "player/hitter";
     }
-    @GetMapping("/army")
-    public String army() {
-        return "player/army";
-    }
-    @GetMapping("/newplayer")
-    public String newplayer() {
-        return "player/newplayer";
-    }
+
 }

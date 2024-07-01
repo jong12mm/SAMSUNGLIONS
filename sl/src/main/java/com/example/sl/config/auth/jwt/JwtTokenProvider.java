@@ -70,7 +70,7 @@ public class JwtTokenProvider {
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         OAuthUserDto oauserDto = principalDetails.getOauserDto();
         // Access Token 생성
-        Date accessTokenExpiresIn = new Date(now + 60*1000); // 60초후 만료
+        Date accessTokenExpiresIn = new Date(now + 60*1000*24); // 60초후 만료
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim("userName",authentication.getName())             //정보저장

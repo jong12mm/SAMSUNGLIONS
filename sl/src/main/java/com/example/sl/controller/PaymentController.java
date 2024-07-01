@@ -43,7 +43,11 @@ public class PaymentController {
     public ResponseEntity<?> cancelPayment(@PathVariable String impUid, @RequestBody PaymentDto paymentDto) {
         try {
             PaymentEntity cancelledPayment = paymentService.cancelPayment(impUid, paymentDto);
-            return ResponseEntity.ok(cancelledPayment);
+            if ("CANCELLED".equalsIgnoreCase(cancelledPayment.getPaymentStatus())) {
+                return ResponseEntity.ok(Collections.singletonMap("paymentStatus", "성공"));
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("paymentStatus", "실패"));
+            }
         } catch (IllegalArgumentException e) {
             log.error("Invalid impUid provided: {}", impUid, e);
             return ResponseEntity.badRequest().body(Collections.singletonMap("success", false));
@@ -55,5 +59,5 @@ public class PaymentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
         }
     }
-}
 
+}

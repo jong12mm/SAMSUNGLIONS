@@ -48,7 +48,7 @@
                         <td th:text="${book.payid}"></td>
                         <td th:text="${book.date}"></td>
                         <td th:text="${book.impUid}">Imp UID</td>
-                        <td><button class="cancel-btn" th:data-bookid="${book.bookid}" th:data-impuid="${book.impUid}">취소</button></td> <!-- 취소 버튼 추가 -->
+                        <td><button class="cancel-btn" th:data-bookid="${book.bookid}" th:data-impuid="${book.impUid}" th:data-totalprice="${book.totalPrice}">취소</button></td> <!-- 취소 버튼 추가 -->
                     </tr>
                     </tbody>
                 </table>
@@ -73,39 +73,66 @@
         $(document).on('click', '.cancel-btn', function() {
             const bookId = $(this).data('bookid');
             const impUid = $(this).data('impuid');
+            const totalPrice = $(this).data('totalprice');
 
             if (confirm('정말로 이 예매를 취소하시겠습니까?')) {
+                // 예매 상태 확인 요청 보내기
                 $.ajax({
-                    url: '/book/cancel',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify([bookId]), // 변경된 부분: 배열로 bookId 전송
+                    url: '/book/status/' + bookId,
+                    type: 'GET',
                     success: function(response) {
-                        // 예매 취소 성공 시
-                        alert('예매가 취소되었습니다.');
+                        if (response.bookstatus === 'CANCELLED') {
+                            alert('이미 취소된 내역입니다.');
+                        } else {
+                            // 예매 취소 요청 보내기
+                            $.ajax({
+                                url: '/book/cancel',
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify([bookId]), // 변경된 부분: 배열로 bookId 전송
+                                success: function(response) {
+                                    // 예매 취소 성공 시
+                                    alert('예매가 취소되었습니다.');
 
-                        // 결제 취소 요청 보내기
-                        $.ajax({
-                            url: '/payment/cancel/' + impUid,
-                            type: 'POST',
-                            contentType: 'application/json',
-                            success: function(paymentResponse) {
-                                // 결제 취소 성공 시
-                                alert('결제가 취소되었습니다.');
-                                location.reload(); // 페이지 새로고침
-                            },
-                            error: function(paymentError) {
-                                alert('결제 취소에 실패했습니다: ' + paymentError.responseText);
-                                location.reload(); // 페이지 새로고침
-                            }
-                        });
+                                    // 결제 취소 요청 보내기
+                                    $.ajax({
+                                        url: '/payment/cancel/' + impUid,
+                                        type: 'POST',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify({
+                                            cancelRequestAmount: totalPrice,
+                                            reason: '사용자 요청에 의한 취소'
+                                        }),
+                                        success: function(paymentResponse) {
+                                            // 결제 취소 성공 시
+                                            alert('결제가 취소되었습니다.');
+                                            location.reload(); // 페이지 새로고침
+                                        },
+                                        error: function(paymentError) {
+                                            alert('결제 취소에 실패했습니다: ' + (paymentError.responseJSON ? paymentError.responseJSON.error : paymentError.responseText));
+                                            location.reload(); // 페이지 새로고침
+                                        }
+                                    });
+                                },
+                                error: function(error) {
+                                    alert('예매 취소에 실패했습니다. 다시 시도해주세요: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
+                                }
+                            });
+                        }
                     },
                     error: function(error) {
-                        alert('예매 취소에 실패했습니다. 다시 시도해주세요.');
+                        if (error.status === 404) {
+                            alert('해당 예매를 찾을 수 없습니다.');
+                        } else if (error.status === 409) {
+                            alert('잘못된 예매 ID입니다: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
+                        } else {
+                            alert('예매 상태 확인에 실패했습니다. 다시 시도해주세요: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));
+                        }
                     }
                 });
             }
         });
+
     </script>
 </div>
 </body>

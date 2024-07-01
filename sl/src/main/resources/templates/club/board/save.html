@@ -30,8 +30,8 @@
                     <div class="section-mid-form">
                         <form action="/club/board/save" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                             <a href="/club/board/paging"><span class="material-symbols-outlined">close</span></a>
-                            글쓴이: <input type="text" name="boardWriter"> <br>
-                            비밀번호: <input type="text" name="boardPass"> <br>
+                            글쓴이: <input type="text" name="boardWriter" th:value="${username}" readonly> <br>
+                            게시글 비밀번호: <input type="text" name="boardPass"> <br>
                             제목: <input type="text" name="boardTitle" id="boardTitle"> <br>
                             내용: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
                             <label for="boardFile" class="file-input-label">첨부 파일</label>
@@ -39,6 +39,7 @@
                             <span class="file-name" id="file-name">파일이 선택되지 않았습니다.</span>
                             <br>
                             <br>
+
                             <input type="submit" value="글작성">
                         </form>
                     </div>

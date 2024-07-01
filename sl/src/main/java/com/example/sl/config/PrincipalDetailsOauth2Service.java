@@ -5,7 +5,7 @@ import com.example.sl.config.auth.provider.KakaoUserInfo;
 import com.example.sl.config.auth.provider.NaverUserInfo;
 import com.example.sl.config.auth.provider.OAuth2UserInfo;
 import com.example.sl.domain.dto.OAuthUserDto;
-import com.example.sl.domain.repository.UserRepository;
+import com.example.sl.repository.UserRepository;
 import com.example.sl.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

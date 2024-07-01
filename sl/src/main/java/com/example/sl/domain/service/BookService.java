@@ -7,7 +7,6 @@ import com.example.sl.entity.PaymentEntity;
 import com.example.sl.entity.SeatEntity;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -25,4 +24,6 @@ public interface BookService {
     BookEntity updateImpUid(Long bookId, String impUid);
     void checkPendingReservations();
     void cancelPendingReservation(Long bookId); // 추가된 메서드
+    BookEntity findById(Long bookId);
+    List<BookEntity> getBookingsByUser(String username);
 }

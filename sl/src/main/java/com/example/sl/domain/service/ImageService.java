@@ -33,4 +33,8 @@ public class ImageService {
     public long countImages() {
         return imageRepository.count();
     }
+
+    public void deleteImageById(Long id) {
+        imageRepository.deleteById(id);
+    }
 }
