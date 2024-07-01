@@ -42,10 +42,6 @@ public class ClubController {
     @Autowired
     private ClubNewsService clubNewsService;
 
-    @GetMapping("/announcement")
-    public void announcement() {
-        // 기존 announcement 메소드 내용
-    }
 
     @GetMapping("/lionsPark")
     public void lionsPark() {

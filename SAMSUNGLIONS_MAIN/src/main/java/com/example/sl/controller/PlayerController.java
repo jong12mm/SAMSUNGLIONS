@@ -12,14 +12,17 @@ public class PlayerController {
     public String player_main() {
         return "player/player_main";
     }
+
     @GetMapping("/staff")
     public String staff() {
         return "player/staff";
     }
+
     @GetMapping("/pitcher")
     public String pitcher() {
         return "player/pitcher";
     }
+
     @GetMapping("/hitter")
     public String hitter() {
         return "player/hitter";

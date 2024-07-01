@@ -159,12 +159,14 @@ a {
     font-size: 5rem;
     text-align: left;
     color: darkblue;
+    margin-right: 20px;
 }
 .koname {
     font-family: 'PreSB';
     font-size: 3rem;
     text-align: left;
     color: black;
+    width: 250px;
 }
 
 .engname {
