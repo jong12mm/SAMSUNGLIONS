@@ -2,10 +2,10 @@ package com.example.sl.controller;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
-import com.example.sl.domain.dto.SeatDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.domain.service.PaymentService;
 import com.example.sl.entity.BookEntity;
+import com.example.sl.entity.GameInfoEntity;
 import com.example.sl.entity.PaymentEntity;
 import com.example.sl.entity.SeatEntity;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -49,16 +48,29 @@ public class BookController {
     }
 
     @GetMapping("/book_game_info")
-    public String book_game_info() {
+    public String book_game_info(Model model) {
+        List<GameInfoEntity> gameInfoList = bookService.getAllGameInfo();
+        model.addAttribute("gameInfoList", gameInfoList);
         return "book/book_game_info";
     }
 
     @GetMapping("/book_start")
-    public String showBookingPage(Model model) {
+    public String showBookingPage(@RequestParam("gameInfoId") Long gameInfoId, Model model, Authentication authentication) {
+        // 구역 정보 조회
         List<String> zones = bookService.getZones();
         model.addAttribute("zones", zones);
+
+        // 로그인된 사용자의 이름을 모델에 추가
+        String username = authentication.getName();
+        model.addAttribute("username", username);
+
+        // 게임 정보를 모델에 추가
+        GameInfoEntity gameInfo = bookService.getGameInfoById(gameInfoId);
+        model.addAttribute("gameInfo", gameInfo);
+
         return "book/book_start";
     }
+
 
     @GetMapping("/zones/{mainZone}")
     @ResponseBody
@@ -71,9 +83,7 @@ public class BookController {
     @ResponseBody
     public List<SeatEntity> getSeatsByMainZoneAndZone(@PathVariable("mainZone") String mainZone, @PathVariable("zone") String zone) {
         log.info("Fetching seats for mainZone: {} and zone: {}", mainZone, zone);
-        List<SeatEntity> seats = bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
-        log.info("Fetched seats: {}", seats);
-        return seats;
+        return bookService.getAvailableSeatsByMainZoneAndZone(mainZone, zone);
     }
 
     @PostMapping("/make")
@@ -223,6 +233,4 @@ public class BookController {
                     .body(Collections.singletonMap("error", "Error getting book status"));
         }
     }
-
-
 }

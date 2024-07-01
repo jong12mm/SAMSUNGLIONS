@@ -26,5 +26,5 @@ public class SeatEntity {
     @Column(name = "main_zone")
     private String mainZone;
 
-
+    private Long gameInfoId; // 게임 정보 ID 추가
 }

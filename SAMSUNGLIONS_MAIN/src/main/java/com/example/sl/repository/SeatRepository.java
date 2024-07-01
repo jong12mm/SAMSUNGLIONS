@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
 
-    SeatEntity findBySeatNumber(String seatNumber);
+    List<SeatEntity> findBySeatNumber(String seatNumber);
 
     List<SeatEntity> findByZoneAndReservedFalse(String zone);
 

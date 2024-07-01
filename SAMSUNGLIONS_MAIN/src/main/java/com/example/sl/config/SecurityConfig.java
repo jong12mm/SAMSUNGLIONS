@@ -50,12 +50,8 @@ public class SecurityConfig {
     //웹요청 처리
     @Bean
     public SecurityFilterChain config(HttpSecurity http) throws Exception {
-
         //CSRF 비활성화
         http.csrf((config)->{config.disable();});
-
-
-
         //요청 URL별 접근 제한
         http.authorizeHttpRequests((auth)->{
 //            auth.requestMatchers("/favicon.ico").permitAll();

@@ -2,15 +2,12 @@ package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
-import com.example.sl.entity.BookEntity;
-import com.example.sl.entity.PaymentEntity;
-import com.example.sl.entity.SeatEntity;
-import com.example.sl.entity.User;
-import com.example.sl.repository.BookRepository;
-import com.example.sl.repository.PaymentRepository;
-import com.example.sl.repository.SeatRepository;
-import com.example.sl.repository.UserRepository;
+import com.example.sl.domain.service.BookService;
+import com.example.sl.domain.service.PaymentService;
+import com.example.sl.entity.*;
+import com.example.sl.repository.*;
 import com.siot.IamportRestClient.exception.IamportResponseException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -22,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional
 public class BookServiceImpl implements BookService {
@@ -41,6 +39,20 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private GameInfoRepository gameInfoRepository;
+
+    @Override
+    public List<GameInfoEntity> getAllGameInfo() {
+        return gameInfoRepository.findAll();
+    }
+
+    @Override
+    public GameInfoEntity getGameInfoById(Long gameInfoId) {
+        return gameInfoRepository.findById(gameInfoId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gameInfoId: " + gameInfoId));
+    }
+
     @Override
     public BookEntity makeBook(BookDto bookDto) {
         if (bookDto.getSeatid() == null) {
@@ -52,6 +64,9 @@ public class BookServiceImpl implements BookService {
             throw new IllegalArgumentException("Invalid seatId");
         }
         SeatEntity seatEntity = seatEntityOptional.get();
+
+        User user = userRepository.findByUserName(bookDto.getName())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + bookDto.getName()));
 
         BookEntity bookEntity = new BookEntity();
         bookEntity.setSeatid(bookDto.getSeatid());
@@ -65,9 +80,11 @@ public class BookServiceImpl implements BookService {
         bookEntity.setMainZone(bookDto.getMainZone());
         bookEntity.setZone(bookDto.getZone());
         bookEntity.setImpUid(bookDto.getImpUid());
+        bookEntity.setUser(user);
 
         return bookRepository.save(bookEntity);
     }
+
 
     @Override
     public void confirmBook(Long bookId) {
@@ -79,8 +96,8 @@ public class BookServiceImpl implements BookService {
         // 여러 좌석 처리
         String[] seatNumbers = bookEntity.getSeat().split(", ");
         for (String seatNumber : seatNumbers) {
-            SeatEntity seatEntity = seatRepository.findBySeatNumber(seatNumber);
-            if (seatEntity != null) {
+            List<SeatEntity> seatEntities = seatRepository.findBySeatNumber(seatNumber);
+            for (SeatEntity seatEntity : seatEntities) {
                 seatEntity.setReserved(true);
                 seatRepository.save(seatEntity);
             }
@@ -107,10 +124,12 @@ public class BookServiceImpl implements BookService {
 
         String[] seatNumbers = bookEntity.getSeat().split(", ");
         for (String seatNumber : seatNumbers) {
-            SeatEntity seatEntity = seatRepository.findBySeatNumber(seatNumber);
-            if (seatEntity != null) {
-                seatEntity.setReserved(false);
-                seatRepository.save(seatEntity);
+            List<SeatEntity> seatEntities = seatRepository.findBySeatNumber(seatNumber);
+            if (!seatEntities.isEmpty()) {
+                for (SeatEntity seatEntity : seatEntities) {
+                    seatEntity.setReserved(false);
+                    seatRepository.save(seatEntity);
+                }
             }
         }
 
@@ -228,5 +247,4 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + username));
         return bookRepository.findByUser(user);
     }
-
 }

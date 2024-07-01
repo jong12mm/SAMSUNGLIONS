@@ -88,8 +88,8 @@ a {
 
 .wrapper > main {
     padding: 0;
-    background: url('../../img/하늘2.jpg') left top no-repeat,
-    url('../../img/하늘1.jpg') right top no-repeat;
+    background: url('/img/하늘2.jpg') left top no-repeat,
+    url('/img/하늘1.jpg') right top no-repeat;
     /*url('../../img/backgroundex1.jpg') no-repeat;*/
     background-color: rgba(255, 255, 255, 0.7);
     background-size: 220px 100%, 220px 100%, 100% 100%;
@@ -180,7 +180,7 @@ a {
     font-family: 'PreR';
 }
 .info1{
-    width:120px;
+    width:140px;
 }
 
 .birth, .height, .school, .spec, .pay{
