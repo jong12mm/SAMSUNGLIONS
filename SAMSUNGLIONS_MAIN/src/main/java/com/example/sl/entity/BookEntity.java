@@ -16,17 +16,18 @@ public class BookEntity {
     private String seat;
     private String name;
     private String gameinfo;
+    private String gameName;  // 게임 이름 추가
+
     private LocalDateTime date;
     private String bookstatus;
     private String payid;
     private String impUid;
-    private String mainZone;  // 메인존 추가
-    private String zone;      // 존 추가
+    private String mainZone;
+    private String zone;
 
     private BigDecimal totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
 }

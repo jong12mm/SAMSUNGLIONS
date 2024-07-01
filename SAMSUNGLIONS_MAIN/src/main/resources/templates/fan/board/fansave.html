@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer3.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/slick.js"></script>
@@ -46,29 +47,7 @@
                         </form>
                     </div>
                     <!--footer-->
-                    <footer>
-                        <div class="footer-in">
-                            <img src="/img/footer_logo.png" alt="footerlogo" class="footerlogo">
-                            <div class="footer-con">
-                                <div class="footer-left">
-                                    <p>
-                                        대표이사 : 유정근 | 사업자번호 : 504-81-03755 | 전화번호 : 053) 780-3300<br>
-                                        개인정보취급방침관리자 : 삼성라이온즈 | 주소 : 대구광역시 수성구 야구전설로 1<br>
-                                    </p>
-                                    <span>COPYRIGHT(C) SAMSUNG LIONS. ALL RIGHT RESERVED.</span>
-                                </div>
-                                <div class="footer-right">
-                                    <a href="https://www.instagram.com/samsunglions_baseballclub" target="_blank">
-                                        <img src="/img/insta.png" alt="인스타" />
-                                    </a>
-                                    <a href="https://www.youtube.com/channel/UCMWAku3a3h65QpLm63Jf2pw"
-                                       target="_blank"><img src="/img/youtube.png" alt="유튜브" /></a>
-                                    <a href="https://samsunglionsmall.com/" target="_blank"><img
-                                            src="/img/online.png" alt="온라인몰" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+                    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
                     <!--//footer-->
                 </div>
                 <div class="section-right"></div>

@@ -99,9 +99,10 @@ a {
 .section-table{
 
 
-    background-image: url('/img/slnewsbg.jpg');
-
-    height: 1300px;
+    background-image: url('/img/아침훈련배경.jpg');
+    background-size:2000px,1200px;
+    width:2000px;
+    height: 1200px;
 }
 
 
@@ -147,7 +148,7 @@ a {
 .board_list_wrap{
     position: absolute;
     background-color:rgba(255, 255, 255, 0.9);
-    margin-top: 300px;
+    margin-top: 200px;
     margin-left: 220px;
     padding: 50px;
     width: 1500px;

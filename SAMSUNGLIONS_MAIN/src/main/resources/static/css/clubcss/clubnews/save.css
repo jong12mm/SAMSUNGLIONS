@@ -98,9 +98,10 @@ a {
 .section-table{
 
 
-    background-image: url('/img/slnewsbg.jpg');
-
-    height: 1000px;
+    background-image: url('/img/삼성폭죽배경.jpg');
+    background-size:2000px,1200px;
+    width:2000px;
+    height: 1200px;
 }
 
 

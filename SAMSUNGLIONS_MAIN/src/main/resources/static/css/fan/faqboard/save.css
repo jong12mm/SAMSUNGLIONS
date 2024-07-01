@@ -97,9 +97,10 @@ a {
 .section-table{
 
 
-    background-image: url('/img/slnewsbg.jpg');
-
-    height: 1300px;
+    background-image: url('/img/아침훈련배경.jpg');
+    background-size:2000px,1200px;
+    width:2000px;
+    height: 1200px;
 }
 
 

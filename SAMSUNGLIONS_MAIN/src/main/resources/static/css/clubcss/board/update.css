@@ -98,10 +98,10 @@ a {
 
 .section-table{
 
-
-    background-image: url('/img/slnewsbg.jpg');
-
-    height: 1000px;
+    background-image: url('/img/백정현배경화면.jpg');
+    background-size:2000px,1200px;
+    width:2000px;
+    height: 1200px;
 }
 
 
@@ -121,7 +121,7 @@ a {
 
 .wrapper>main>section>.section-nav{
 
-    margin-top: 100px;
+    margin-top: 200px;
     border-bottom: 2px solid;
     display: flex;
     justify-content: center;

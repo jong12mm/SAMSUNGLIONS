@@ -68,13 +68,19 @@ public class BookServiceImpl implements BookService {
         User user = userRepository.findByUserName(bookDto.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + bookDto.getName()));
 
+        GameInfoEntity gameInfo = gameInfoRepository.findById(Long.parseLong(bookDto.getGameinfoId()))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gameinfoId: " + bookDto.getGameinfoId()));
+
         BookEntity bookEntity = new BookEntity();
         bookEntity.setSeatid(bookDto.getSeatid());
         bookEntity.setSeat(bookDto.getSeat());
         bookEntity.setName(bookDto.getName());
         bookEntity.setGameinfo(bookDto.getGameinfoId());
+        bookEntity.setGameName(gameInfo.getGameName());  // 게임 이름 설정
+        bookEntity.setMainZone(bookDto.getMainZone());
+        bookEntity.setZone(bookDto.getZone());
         bookEntity.setDate(LocalDateTime.now());
-        bookEntity.setBookstatus("PENDING"); // 예약 상태를 "PENDING"으로 설정
+        bookEntity.setBookstatus("결제 취소");
         bookEntity.setPayid(bookDto.getPayid());
         bookEntity.setTotalPrice(bookDto.getTotalPrice());
         bookEntity.setMainZone(bookDto.getMainZone());
@@ -86,12 +92,13 @@ public class BookServiceImpl implements BookService {
     }
 
 
+
     @Override
     public void confirmBook(Long bookId) {
         BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
 
-        bookEntity.setBookstatus("BOOKED");
+        bookEntity.setBookstatus("예매 완료");
 
         // 여러 좌석 처리
         String[] seatNumbers = bookEntity.getSeat().split(", ");
@@ -116,11 +123,11 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = bookEntityOptional.get();
 
         // 예매 상태 확인
-        if ("CANCELLED".equalsIgnoreCase(bookEntity.getBookstatus())) {
+        if ("예매 취소 완료".equalsIgnoreCase(bookEntity.getBookstatus())) {
             throw new IllegalArgumentException("이미 취소된 예매입니다");
         }
 
-        bookEntity.setBookstatus("CANCELLED");
+        bookEntity.setBookstatus("예매 취소 완료");
 
         String[] seatNumbers = bookEntity.getSeat().split(", ");
         for (String seatNumber : seatNumbers) {
@@ -207,9 +214,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void checkPendingReservations() {
-        List<BookEntity> pendingBooks = bookRepository.findByBookstatus("PENDING");
+        List<BookEntity> pendingBooks = bookRepository.findByBookstatus("결제 취소");
         for (BookEntity book : pendingBooks) {
-            book.setBookstatus("CANCELLED");
+            book.setBookstatus("예매 취소 완료");
             Optional<SeatEntity> seatEntityOptional = seatRepository.findById(book.getSeatid());
             if (seatEntityOptional.isPresent()) {
                 SeatEntity seatEntity = seatEntityOptional.get();
@@ -225,7 +232,7 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid bookId"));
 
-        bookEntity.setBookstatus("CANCELLED");
+        bookEntity.setBookstatus("예매 취소 완료");
         Optional<SeatEntity> seatEntityOptional = seatRepository.findById(bookEntity.getSeatid());
         if (seatEntityOptional.isPresent()) {
             SeatEntity seatEntity = seatEntityOptional.get();

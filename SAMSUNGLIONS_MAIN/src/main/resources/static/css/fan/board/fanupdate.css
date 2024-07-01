@@ -96,13 +96,13 @@ a {
 }
 
 .section-mid {
-    margin-left: 400px;
+    margin-left: 300px;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .section-mid-form {
     margin-top: 170px; /* Add margin-top to the form container */
-    margin-left: 50px;
+    margin-left: 130px;
 }
 
 .section-mid-form form {
@@ -151,19 +151,20 @@ label {
 /* main-mid */
 .section-left {
     background-image: url(https://blog.kakaocdn.net/dn/bp2MLI/btszdn9fSzu/KuMs8B9ZSPCue4e6B2Iiak/img.jpg);
-    background-size: 350px 865px;
+    background-size: 300px 865px;
     position: fixed;
-    width: 350px;
+
+    width: 300px;
     height: 865px;
     margin-top: 100px;
 }
 
 .section-right {
     background-image: url(https://blog.kakaocdn.net/dn/2XUpS/btszgZMYPp2/jHdHl3DVaeKshFbwDPD0q0/img.jpg);
-    background-size: 450px 865px;
-    margin-left: 1583px;
+    background-size: 300px 865px;
+    margin-left: 1604px;
     position: fixed;
-    width: 450px;
+    width: 300px;
     height: 865px;
     margin-top: 100px;
 }
@@ -181,55 +182,4 @@ label {
     right: 10px;
 }
 
-footer {
-    margin-top: 150px;
-    margin-left:-50px;
-}
 
-.footer-in {
-    width: 1500px;
-    background-color: #ececec;
-    padding: 3rem 0;
-    max-width: 1250px;
-}
-
-.footerlogo {
-    margin-bottom: 1.5rem;
-    margin-left: 80px;
-}
-
-.footer-con {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.footer-left {
-    margin-left: 70px;
-}
-
-.footer-left > p {
-    font-family: 'PreM';
-    font-size: 15px;
-    margin-bottom: 1rem;
-}
-
-.footer-left > span {
-    display: block;
-    font-family: 'PreSB';
-    font-size: 13px;
-    width: 100%;
-    color: #a8a8a8;
-}
-
-.footer-right {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 18%;
-    margin-right: 60px;
-}
-
-.footer-right > img {
-    cursor: pointer;
-}

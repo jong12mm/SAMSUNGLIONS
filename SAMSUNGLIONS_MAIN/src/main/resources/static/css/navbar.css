@@ -19,6 +19,9 @@
     background-size: 100%;
     margin-left: 40px;
 }
+.wrapper>header>.header-left{
+    margin-right: 2rem;
+}
 
 .wrapper>header>.header-right>nav {
     display: flex;
@@ -34,7 +37,7 @@
     align-items: center;
     flex-wrap: wrap;
     border: 0;
-    padding-left : 2rem;
+
 }
 
 .wrapper>header>.header-right>nav>.menu>li {

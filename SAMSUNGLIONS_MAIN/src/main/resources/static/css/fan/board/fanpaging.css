@@ -101,10 +101,9 @@ a {
 .section-mid{
 
 
-
+margin-top:100px;
 margin-left: 300px;
-background-size:1510px 875px;
-margin-top: 100px;
+
 background-color:rgba(255,255,255,0.1);
 
 
@@ -121,7 +120,7 @@ background-color:rgba(255,255,255,0.1);
     position: fixed;
 
     width: 300px;
-    height: 1500px;
+    height: 865px;
     margin-top: 100px;
 
 
@@ -131,10 +130,9 @@ background-color:rgba(255,255,255,0.1);
 
     background-image: url(https://blog.kakaocdn.net/dn/b38Pyo/btszfGUJ89g/x48xB0ShdEYBgXEiCCXnIK/img.jpg);
     background-size: 300px 865px;
-    margin-left: 1600px;
+    margin-left: 1604px;
     position: fixed;
     width: 300px;
-    height: 200px;
     height: 865px;
     margin-top: 100px;
 }
@@ -324,59 +322,7 @@ background-color:rgba(255,255,255,0.1);
 
 
 /* footer */
-footer{
-    margin-top: 1100px;
-}
-.footer-in{
 
-        width: 1500px;
-        background-color: #ececec;
-        padding: 3rem 0;
-        max-width: 1300px;
-        /* 기존에 있던 margin: 0 auto;를 제거 */
-
-}
-.footerlogo{
-    margin-bottom: 1.5rem;
-    margin-left: 80px;
-}
-.footer-con{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-.footer-left{
-
-
-
-    margin-left: 70px;
-}
-
-
-.footer-left>p{
-    font-family: 'PreM';
-    font-size: 15px;
-    margin-bottom: 1rem;
-}
-.footer-left>span{
-    display: block;
-    font-family: 'PreSB';
-    font-size: 13px;
-    width: 100%;
-    color: #a8a8a8;
-}
-.footer-right{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 18%;
-    margin-right: 60px;
-
-}
-.footer-right>img{
-
-    cursor:pointer;
-}
 
 .board_list_wrap{
     position: absolute;

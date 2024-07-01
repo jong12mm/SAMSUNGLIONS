@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/big.js/6.0.3/big.min.js"></script>
 
-
     <!--css-->
     <link rel="stylesheet" type="text/css" href="/css/bookcss/booklist.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
@@ -33,6 +32,8 @@
                     <thead>
                     <tr>
                         <th>예매 ID</th>
+                        <th>메인구역</th>
+                        <th>구역</th>
                         <th>좌석</th>
                         <th>이름</th>
                         <th>게임 정보</th>
@@ -40,31 +41,30 @@
                         <th>결제 ID</th>
                         <th>예매 일시</th>
                         <th>Imp UID</th>
-                        <th>취소</th> <!-- 취소 버튼 추가 -->
+                        <th>취소</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 예약 목록 표시 -->
                     <tr th:each="book : ${bookList}">
                         <td th:text="${book.bookid}"></td>
+                        <td th:text="${book.mainZone}"></td>
+                        <td th:text="${book.zone}"></td>
                         <td th:text="${book.seat}"></td>
                         <td th:text="${book.name}"></td>
-                        <td th:text="${book.gameinfo}"></td>
+                        <td th:text="${book.gameName}"></td>
                         <td th:text="${book.bookstatus}"></td>
                         <td th:text="${book.payid}"></td>
                         <td th:text="${book.date}"></td>
                         <td th:text="${book.impUid}">Imp UID</td>
-                        <td><button class="cancel-btn" th:data-bookid="${book.bookid}" th:data-impuid="${book.impUid}" th:data-totalprice="${book.totalPrice}">취소</button></td> <!-- 취소 버튼 추가 -->
+                        <td><button class="cancel-btn" th:data-bookid="${book.bookid}" th:data-impuid="${book.impUid}" th:data-totalprice="${book.totalPrice}">취소</button></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
-    <!--footer-->
     <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
     <script>
-        /* header */
         document.querySelectorAll('.menu > li').forEach(menuItem => {
             menuItem.addEventListener('mouseenter', () => {
                 document.querySelector('.hideback').classList.add('show-hideback');
@@ -73,16 +73,13 @@
                 document.querySelector('.hideback').classList.remove('show-hideback');
             });
         });
-        /* header */
 
-        // 취소 버튼 이벤트 핸들러
         $(document).on('click', '.cancel-btn', function() {
             const bookId = $(this).data('bookid');
             const impUid = $(this).data('impuid');
             const totalPrice = $(this).data('totalprice');
 
             if (confirm('정말로 이 예매를 취소하시겠습니까?')) {
-                // 예매 상태 확인 요청 보내기
                 $.ajax({
                     url: '/book/status/' + bookId,
                     type: 'GET',
@@ -90,35 +87,14 @@
                         if (response.bookstatus === 'CANCELLED') {
                             alert('이미 취소된 내역입니다.');
                         } else {
-                            // 예매 취소 요청 보내기
                             $.ajax({
                                 url: '/book/cancel',
                                 type: 'POST',
                                 contentType: 'application/json',
-                                data: JSON.stringify([bookId]), // 변경된 부분: 배열로 bookId 전송
+                                data: JSON.stringify([bookId]),
                                 success: function(response) {
-                                    // 예매 취소 성공 시
                                     alert('예매가 취소되었습니다.');
-
-                                    // 결제 취소 요청 보내기
-                                    $.ajax({
-                                        url: '/payment/cancel/' + impUid,
-                                        type: 'POST',
-                                        contentType: 'application/json',
-                                        data: JSON.stringify({
-                                            cancelRequestAmount: totalPrice,
-                                            reason: '사용자 요청에 의한 취소'
-                                        }),
-                                        success: function(paymentResponse) {
-                                            // 결제 취소 성공 시
-                                            alert('결제가 취소되었습니다.');
-                                            location.reload(); // 페이지 새로고침
-                                        },
-                                        error: function(paymentError) {
-                                            alert('결제 취소에 실패했습니다: ' + (paymentError.responseJSON ? paymentError.responseJSON.error : paymentError.responseText));
-                                            location.reload(); // 페이지 새로고침
-                                        }
-                                    });
+                                    location.reload();
                                 },
                                 error: function(error) {
                                     alert('예매 취소에 실패했습니다. 다시 시도해주세요: ' + (error.responseJSON ? error.responseJSON.error : error.responseText));

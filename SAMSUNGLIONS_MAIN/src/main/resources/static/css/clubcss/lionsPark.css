@@ -6,9 +6,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('/font/Pretendard-Thin.woff') format('woff'),
-        url('/font/Pretendard-Thin.woff2') format('woff2'),
-        url('/font/Pretendard-Thin.otf') format('opentype');
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -17,9 +17,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('/font/Pretendard-Light.woff') format('woff'),
-        url('/font/Pretendard-Light.woff2') format('woff2'),
-        url('/font/Pretendard-Light.otf') format('opentype');
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
 }
 
 @font-face {
@@ -28,9 +28,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('/font/Pretendard-Regular.woff') format('woff'),
-        url('/font/Pretendard-Regular.woff2') format('woff2'),
-        url('/font/Pretendard-Regular.otf') format('opentype');
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -39,9 +39,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('/font/Pretendard-Medium.woff') format('woff'),
-        url('/font/Pretendard-Medium.woff2') format('woff2'),
-        url('/font/Pretendard-Medium.otf') format('opentype');
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
 }
 
 @font-face {
@@ -50,9 +50,9 @@
     font-style: normal;
     src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('/font/Pretendard-SemiBold.woff') format('woff'),
-        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('/font/Pretendard-SemiBold.otf') format('opentype');
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
 
 @font-face {
@@ -61,9 +61,9 @@
     font-style: normal;
     src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('/font/Pretendard-ExtraBold.woff') format('woff'),
-        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('/font/Pretendard-ExtraBold.otf') format('opentype');
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
 * {
@@ -99,12 +99,12 @@ a {
 }
 .section-mid{
 
-background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20230418/pngtree-clouds-sky-blue-aesthetic-pastel-image_2403934.jpg);
-/*margin-top: 100px;*/
-margin-left: 400px;
-width: 1200px;
-background-size: 1200px;
-background-color: rgb(255, 255, 255,0.8);
+    background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20230418/pngtree-clouds-sky-blue-aesthetic-pastel-image_2403934.jpg);
+    /*margin-top: 100px;*/
+    margin-left: 400px;
+    width: 1200px;
+    background-size: 1200px;
+    background-color: rgb(255, 255, 255,0.8);
 
 }
 
@@ -348,64 +348,64 @@ background-color: rgb(255, 255, 255,0.8);
 
 }
 
-        /* Modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1; /* Sit on top */
-            left: 50%;
-            top: 50%;
-            width: 700px; /* Full width */
-            height: 700px; /* Full height */
-            transform: translate(-50%, -50%); /* Center the modal */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-            align-items: center;
-            justify-content: center;
-            border-radius: 30px;
-        }
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 50%;
+    top: 50%;
+    width: 700px; /* Full width */
+    height: 700px; /* Full height */
+    transform: translate(-50%, -50%); /* Center the modal */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
 
-        /* Modal content (image) */
-        .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%; /* Max width for the image */
-            max-height: 90%; /* Max height for the image */
-            object-fit: contain; /* Ensure the image fits within the container */
+/* Modal content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%; /* Max width for the image */
+    max-height: 90%; /* Max height for the image */
+    object-fit: contain; /* Ensure the image fits within the container */
 
-            margin-top: 35px;
+    margin-top: 35px;
 
 
-        }
+}
 
-        /* Caption of Modal Image */
-        #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-        }
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}
 
-        /* The close button */
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+/* The close button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
 
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 
@@ -439,7 +439,7 @@ background-color: rgb(255, 255, 255,0.8);
 
 .section2-map{
 
-max-width: 900px;
+    max-width: 900px;
 
 
 }
