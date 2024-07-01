@@ -34,7 +34,6 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 public class SecurityConfig {
 
-
     @Autowired
     private HikariDataSource dataSource;
 
@@ -44,31 +43,18 @@ public class SecurityConfig {
     @Autowired
     private UserRepository userRepository;
 
-
-
-
     //웹요청 처리
     @Bean
     public SecurityFilterChain config(HttpSecurity http) throws Exception {
-
         //CSRF 비활성화
         http.csrf((config)->{config.disable();});
-
-
-
         //요청 URL별 접근 제한
         http.authorizeHttpRequests((auth)->{
-//            auth.requestMatchers("/favicon.ico").permitAll();
             auth.requestMatchers("/js/**","/css/*","/assets/**","/img/**","/font/**").permitAll();
-//            auth.requestMatchers("/**").permitAll();
-
-
             auth.requestMatchers("/admin").hasRole("ADMIN");
             auth.requestMatchers("/book/**","/book_start","/booklist").hasRole("USER");
             auth.requestMatchers("/club/**").permitAll();
-
             auth.requestMatchers("/samsung","/user/adult_join","/user/child_join","/user/join_start","/user/join_finish","/user/login","/**").permitAll();
-
             auth.anyRequest().authenticated();
         });
 
@@ -85,7 +71,6 @@ public class SecurityConfig {
             logout.permitAll();
             logout.logoutUrl("/user/logout");
             logout.addLogoutHandler(customLogoutHandler());
-//            logout.addLogoutHandler(sessionCookieClearingLogoutHandler());
             logout.logoutSuccessHandler(customLogoutSuccessHandler());
             //JWT
             logout.deleteCookies("JSESSIONID", JwtProperties.COOKIE_NAME);
@@ -130,10 +115,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-
-
-
-
     @Bean
     public PersistentTokenRepository tokenRepository(){
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
@@ -141,50 +122,16 @@ public class SecurityConfig {
         return repo;
     }
 
-
-
-
-
-
-
-//    @Bean
-//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder){
-//        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-//        userDetailsManager
-//                    .createUser(User
-//                            .withUsername("user")
-//                            .password(passwordEncoder.encode("1234"))
-//                            .roles("USER")
-//                            .build()
-//                    );
-//        userDetailsManager
-//                .createUser(User
-//                        .withUsername("member")
-//                        .password(passwordEncoder.encode("1234"))
-//                        .roles("MEMBER")
-//                        .build()
-//                );
-//        userDetailsManager
-//                .createUser(User
-//                        .withUsername("admin")
-//                        .password(passwordEncoder.encode("1234"))
-//                        .roles("ADMIN")
-//                        .build()
-//                );
-//        return userDetailsManager;
-//    }
-
-
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
     public CustomLogoutHandler customLogoutHandler(){
         return new CustomLogoutHandler();
     }
+
     @Bean
     public CustomLogoutSuccessHandler customLogoutSuccessHandler(){
         return new CustomLogoutSuccessHandler();
@@ -192,37 +139,3 @@ public class SecurityConfig {
 
 
 }
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig {
-//
-//    @Autowired
-//    private UserService userService;
-//    @Autowired
-//    private String secretKey;
-//
-//    public SecurityConfig(UserService userService,@Value("${jwt.secret}") String secretKey) {
-//        this.userService = userService;
-//        this.secretKey = secretKey;
-//    }
-//
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .httpBasic(httpBasic -> httpBasic.disable())
-//                .csrf(csrf -> csrf.disable())
-//                .cors(cors -> cors.configure(http))
-//                .authorizeHttpRequests(authorizeRequests ->
-//                        authorizeRequests
-//                                .requestMatchers("/book/**").authenticated()
-//                                .anyRequest().permitAll()
-//                )
-//                .sessionManagement(sessionManagement ->
-//                        sessionManagement
-//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                )
-//                .addFilterBefore(new JwtFilter(userService, secretKey), UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-//    }
-//}

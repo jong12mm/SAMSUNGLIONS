@@ -4,6 +4,7 @@ import com.example.sl.domain.dto.UserAdultJoinRequest;
 import com.example.sl.domain.dto.UserChildJoinRequest;
 import com.example.sl.domain.dto.UserProfileUpdateRequest;
 import com.example.sl.entity.User;
+
 import com.example.sl.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,10 +51,10 @@ public class UserService {
         user.setAdultphone(requestDto.getAdultphone());
         user.setAddr(requestDto.getAddr());
         user.setEmail(requestDto.getEmail());
+        user.setGender(requestDto.getGender());
         user.setRole("ROLE_USER");
         user.setIslocked(false);
         user.setMembership("일반");
-        user.setGender(requestDto.getGender()); // gender 추가
 
         userRepository.save(user);
 
@@ -80,10 +81,10 @@ public class UserService {
         user.setAdultphone(requestDto.getAdultphone());
         user.setAddr(requestDto.getAddr());
         user.setEmail(requestDto.getEmail());
+        user.setGender(requestDto.getGender());
         user.setRole("ROLE_USER");
         user.setIslocked(false);
         user.setMembership("일반");
-        user.setGender(requestDto.getGender()); // gender 추가
 
         userRepository.save(user);
 
@@ -158,6 +159,7 @@ public class UserService {
         user.setAddr(request.getAddress());
         user.setRealname(request.getRealName());
         user.setBirth(request.getBirthDate());
+        user.setGender(request.getGender());
 
         userRepository.save(user);
     }

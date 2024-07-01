@@ -14,6 +14,7 @@ public class OAuthUserDto {
     private String password;
     private String role;
 
+    //OAUTH2
     private String provider;
     private String providerId;
 }

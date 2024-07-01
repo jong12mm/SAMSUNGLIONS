@@ -13,4 +13,3 @@ public interface OAuth2UserInfo {
     String getProviderId();
     Map<String,Object> getAttributes();
 }
-

@@ -1,17 +1,11 @@
-package com.example.sl.service;
+package com.example.sl.domain.service;
 
 import com.example.sl.domain.dto.BookDto;
 import com.example.sl.domain.dto.PaymentDto;
 import com.example.sl.domain.service.BookService;
 import com.example.sl.domain.service.PaymentService;
-import com.example.sl.entity.BookEntity;
-import com.example.sl.entity.PaymentEntity;
-import com.example.sl.entity.SeatEntity;
-import com.example.sl.entity.User;
-import com.example.sl.repository.BookRepository;
-import com.example.sl.repository.PaymentRepository;
-import com.example.sl.repository.SeatRepository;
-import com.example.sl.repository.UserRepository;
+import com.example.sl.entity.*;
+import com.example.sl.repository.*;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +38,20 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private GameInfoRepository gameInfoRepository;
+
+    @Override
+    public List<GameInfoEntity> getAllGameInfo() {
+        return gameInfoRepository.findAll();
+    }
+
+    @Override
+    public GameInfoEntity getGameInfoById(Long gameInfoId) {
+        return gameInfoRepository.findById(gameInfoId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gameInfoId: " + gameInfoId));
+    }
 
     @Override
     public BookEntity makeBook(BookDto bookDto) {
@@ -98,7 +106,6 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(bookEntity);
     }
 
-
     @Override
     public BookEntity cancelBook(String bookId) throws IOException, IamportResponseException {
         Optional<BookEntity> bookEntityOptional = bookRepository.findById(Long.parseLong(bookId));
@@ -132,6 +139,7 @@ public class BookServiceImpl implements BookService {
 
         return bookRepository.save(bookEntity);
     }
+
 
     @Override
     public void deleteById(Long id) {
@@ -239,5 +247,4 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username: " + username));
         return bookRepository.findByUser(user);
     }
-
 }

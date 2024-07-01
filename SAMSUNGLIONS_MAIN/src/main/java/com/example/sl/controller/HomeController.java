@@ -22,14 +22,4 @@ public class HomeController {
         return "samsung";
     }
 
-//    @GetMapping("/navbar")
-//    public String navbar() {
-//        log.info("GET /");
-//        return "navbar";
-//    }
-//    @GetMapping("/footer")
-//    public String footer() {
-//        log.info("GET /");
-//        return "footer";
-//    }
 }

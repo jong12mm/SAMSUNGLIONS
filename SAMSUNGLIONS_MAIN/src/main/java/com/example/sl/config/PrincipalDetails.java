@@ -18,28 +18,36 @@ import java.util.Map;
 @Data
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
-    private OAuthUserDto oauserDto;
-    private String accessToken;
-    private Map<String, Object> attributes;
 
-    public PrincipalDetails(OAuthUserDto oauserDto) {
+    private OAuthUserDto oauserDto;
+
+    public PrincipalDetails(OAuthUserDto oauserDto){
         this.oauserDto = oauserDto;
     }
-
+    //-----------------------------------
+    //OAUTH2
+    //-----------------------------------
+    private String accessToken;
+    private Map<String,Object> attributes;
     @Override
     public Map<String, Object> getAttributes() {
         return attributes;
     }
-
     @Override
     public String getName() {
         return oauserDto.getUsername();
     }
+    //-----------------------------------
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collection = new ArrayList<>();
+
+        Collection<GrantedAuthority> collection = new ArrayList();
         collection.add(new SimpleGrantedAuthority(oauserDto.getRole()));
+
         return collection;
     }
 
@@ -72,4 +80,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

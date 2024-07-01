@@ -1,9 +1,12 @@
 package com.example.sl.domain.dto;
 
+
 import lombok.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
 
 @Getter
 @Setter
@@ -26,6 +29,7 @@ public class UserAdultJoinRequest {
             this.birth = LocalDate.parse(birth, formatter);
         } catch (DateTimeParseException e) {
             e.printStackTrace();
+            // 여기서 예외 처리를 추가할 수 있습니다.
         }
     }
 }

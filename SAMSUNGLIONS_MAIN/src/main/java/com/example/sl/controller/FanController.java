@@ -18,6 +18,7 @@ public class FanController {
     public String fancm(){
         return "fan/fan_cheerdetails";
     }
+
     @GetMapping("/fan_cheermain")
     public String fancd(){
         return "fan/fan_cheermain";
@@ -27,15 +28,10 @@ public class FanController {
     public String fanm(){
         return "fan/fan_main";
     }
+
     @GetMapping("/fan_story")
     public String fStory() {
         return "fan/fan_story";
     }
-
-    @GetMapping("/fan_gallery_user")
-    public String fan_gallery_user() {
-        return "fan/fan_gallery_user";
-    }
-
 
 }

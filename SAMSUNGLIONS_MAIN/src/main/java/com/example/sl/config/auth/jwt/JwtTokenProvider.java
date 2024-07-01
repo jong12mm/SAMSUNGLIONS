@@ -25,35 +25,43 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
-    String url = "jdbc:mysql://localhost:3306/samsungdb";
-    String username = "root";
+    String url="jdbc:mysql://localhost:3306/samsungdb";
+    String username ="root";
     String password = "1234";
-    Connection conn;
-    PreparedStatement pstmt;
-    ResultSet rs;
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
 
-    private final Key key;
+
+    //Key 저장
+    private Key key;
 
     public JwtTokenProvider() throws Exception {
+
         Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection(url, username, password);
+        conn = DriverManager.getConnection(url,username,password);
         pstmt = conn.prepareStatement("select * from signature");
         rs = pstmt.executeQuery();
 
-        if (rs.next()) {
+        if(rs.next()){
             byte[] keyBytes = rs.getBytes("signkey");
             this.key = Keys.hmacShaKeyFor(keyBytes);
-        } else {
+        }else{
             byte[] keyBytes = KeyGenerator.getKeygen();
             this.key = Keys.hmacShaKeyFor(keyBytes);
-            pstmt = conn.prepareStatement("insert into signature values(?, now())");
-            pstmt.setBytes(1, keyBytes);
+            //DB INSERT
+            pstmt=conn.prepareStatement("insert into signature values(?,now())");
+            pstmt.setBytes(1,keyBytes);
             pstmt.execute();
         }
-        System.out.println("JwtTokenProvider Constructor Key init: " + key);
+        System.out.println("JwtTokenProvider Constructor  Key init: " + key);
+
+
     }
 
+    // 유저 정보를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public TokenInfo generateToken(Authentication authentication) {
+        // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
@@ -61,22 +69,28 @@ public class JwtTokenProvider {
 
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         OAuthUserDto oauserDto = principalDetails.getOauserDto();
-        Date accessTokenExpiresIn = new Date(now + 60 * 1000); // 60초 후 만료
+        // Access Token 생성
+        Date accessTokenExpiresIn = new Date(now + 60*1000); // 60초후 만료
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
-                .claim("userName", authentication.getName())
-                .claim("password", oauserDto.getPassword())
-                .claim("auth", authorities)
-                .claim("principal", authentication.getPrincipal())
-                .claim("credentials", authentication.getCredentials())
-                .claim("details", authentication.getDetails())
-                .claim("provider", oauserDto.getProvider())
-                .claim("accessToken", principalDetails.getAccessToken())
+                .claim("userName",authentication.getName())             //정보저장
+                .claim("password",oauserDto.getPassword())
+                .claim("auth", authorities)                             //정보저장
+                .claim("principal", authentication.getPrincipal())      //정보저장
+                .claim("credentials", authentication.getCredentials())  //정보저장
+                .claim("details", authentication.getDetails())          //정보저장
+                .claim("provider", oauserDto.getProvider())               //정보저장
+                .claim("accessToken", principalDetails.getAccessToken())//정보저장
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
+        // Refresh Token 생성
         String refreshToken = generateRefreshToken(authentication.getName());
+//        String refreshToken = Jwts.builder()
+//                .setExpiration(new Date(now + 24 * 60 * 60 * 1000))    //1일: 24 * 60 * 60 * 1000 = 86400000
+//                .signWith(key, SignatureAlgorithm.HS256)
+//                .compact();
 
         System.out.println("JwtTokenProvider.generateToken.accessToken : " + accessToken);
         System.out.println("JwtTokenProvider.generateToken.refreshToken : " + refreshToken);
@@ -87,7 +101,7 @@ public class JwtTokenProvider {
                 .refreshToken(refreshToken)
                 .build();
     }
-
+    // Refresh Token 생성
     private String generateRefreshToken(String username) {
         long now = System.currentTimeMillis();
         Date refreshTokenExpiresIn = new Date(now + 24 * 60 * 60 * 1000); // 1일 후 만료
@@ -99,34 +113,46 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+
+    // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
     public Authentication getAuthentication(String accessToken) {
+        // 토큰 복호화
         Claims claims = parseClaims(accessToken);
 
         if (claims.get("auth") == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
-
+        // 클레임에서 권한 정보 가져오기
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get("auth").toString().split(","))
-                        .map(SimpleGrantedAuthority::new)
+                        .map(auth -> new SimpleGrantedAuthority(auth))
                         .collect(Collectors.toList());
 
-        String username = claims.getSubject();
+        String username = claims.getSubject(); //username
 
-        String provider = (String) claims.get("provider");
-        String password = (String) claims.get("password");
-        String auth = (String) claims.get("auth");
-        String oauthAccessToken = (String) claims.get("accessToken");
+        //JWT Added
+//        .out.println("[JWTTOKENPROVIDER] principalDetails  : " + claims.get("principal"));
+
+        String provider =  (String)claims.get("provider");
+        String password = (String)claims.get("password");
+        String auth = (String)claims.get("auth");
+        String oauthAccessToken = (String)claims.get("accessToken");
         OAuthUserDto oauserDto = new OAuthUserDto();
         oauserDto.setProvider(provider);
         oauserDto.setUsername(username);
         oauserDto.setPassword(password);
         oauserDto.setRole(auth);
 
-        PrincipalDetails principalDetails = new PrincipalDetails(oauserDto);
-        principalDetails.setAccessToken(oauthAccessToken);
+        PrincipalDetails principalDetails = new PrincipalDetails();
+        principalDetails.setOauserDto(oauserDto);
+        principalDetails.setAccessToken(oauthAccessToken);   //Oauth AccessToken
+//        .out.println("[JWTTOKENPROVIDER] getAuthentication() principalDetails  : " + principalDetails);
 
-        return new UsernamePasswordAuthenticationToken(principalDetails, claims.get("credentials"), authorities);
+        //JWT + NO REMEMBERME
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                new UsernamePasswordAuthenticationToken(principalDetails, claims.get("credentials"), authorities);
+        return usernamePasswordAuthenticationToken;
+
     }
 
     private Claims parseClaims(String accessToken) {
@@ -137,12 +163,17 @@ public class JwtTokenProvider {
         }
     }
 
+    // 토큰 정보를 검증하는 메서드
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.info("Invalid JWT Token", e);
+//        }
+//        catch (ExpiredJwtException e) {
+//            log.info("Expired JWT Token", e);
+
         } catch (UnsupportedJwtException e) {
             log.info("Unsupported JWT Token", e);
         } catch (IllegalArgumentException e) {
@@ -150,7 +181,7 @@ public class JwtTokenProvider {
         }
         return false;
     }
-
+    // Refresh Token의 유효성 검사 메서드
     public boolean validateRefreshToken(String refreshToken) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(refreshToken);
@@ -163,15 +194,20 @@ public class JwtTokenProvider {
         return false;
     }
 
+    // Refresh Token을 사용하여 새로운 Access Token을 생성하는 메서드
     public String generateAccessTokenFromRefreshToken(String refreshToken) {
         Claims claims = parseClaims(refreshToken);
         String username = claims.getSubject();
+
+        // Access Token 생성
         Date accessTokenExpiresIn = new Date(System.currentTimeMillis() + 60 * 1000); // 60초 후 만료
-        return Jwts.builder()
+        String newAccessToken = Jwts.builder()
                 .setSubject(username)
                 .claim("userName", username)
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
+
+        return newAccessToken;
     }
 }

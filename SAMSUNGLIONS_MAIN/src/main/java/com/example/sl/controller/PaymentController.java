@@ -57,6 +57,9 @@ public class PaymentController {
         } catch (IamportResponseException e) {
             log.error("Iamport response error: ", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
+        } catch (Exception e) {
+            log.error("Unexpected error during payment cancellation: ", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("success", false));
         }
     }
 
