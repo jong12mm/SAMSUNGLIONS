@@ -13,6 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/fan")
 public class FanController {
@@ -45,7 +49,11 @@ public class FanController {
         } else {
             boardList = boardService.paging(pageable);
         }
-        model.addAttribute("boardList", boardList);
+        List<FanBoardDTO> latestFanBoard = boardList.stream()
+                .sorted(Comparator.comparing(FanBoardDTO::getBoardCreatedTime).reversed())
+                .limit(5)
+                .collect(Collectors.toList());
+        model.addAttribute("boardList", latestFanBoard);
         model.addAttribute("query", query);
         model.addAttribute("searchField", searchField);
         model.addAttribute("currentPage", page);

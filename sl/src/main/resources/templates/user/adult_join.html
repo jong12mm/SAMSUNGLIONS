@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<!--    주소 api      -->
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -53,6 +55,7 @@
                         </div>
                         <div>
                             <label class="form-label text-label">주소</label>
+                            <button type="button" onclick="openAddressSearch()">버튼</button>
                             <input type="text" name="addr" placeholder="  도로명주소 입력" class="form-control" required>
                         </div>
                         <div>

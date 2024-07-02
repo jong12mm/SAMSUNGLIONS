@@ -46,7 +46,9 @@
             <div class="gallery">
                 <div th:each="image : ${images}" class="gallery-item">
                     <div class="gallery-item-inner">
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                         <button class="delete-button" th:onclick="'deleteImage(' + ${image.id} + ')'">X</button>
+                        </th:block>
                         <h2 th:text="${image.title}"></h2>
                         <img th:src="@{/fan/fan_gallery/image/{id}(id=${image.id})}" alt="Image">
                         <a th:href="@{/fan/fan_gallery/download/{id}(id=${image.id})}" class="download-button">Download</a>

@@ -435,7 +435,7 @@
                 <div class="news-left">
                     <h2>구단소식</h2>
                     <ul class="news-list">
-                        <li th:each="board, iterStat : ${boardList2}" th:if="${iterStat.index < 7}">
+                        <li th:each="board : ${latestClubNews}">
                             <a th:href="@{/club/clubnews/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
                             <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd ')}"></span>
                         </li>
@@ -447,9 +447,9 @@
                     <div class="news-ritop">
                         <h2>자유게시판</h2>
                         <ul class="board">
-                            <li th:each="board, iterStat : ${boardList}" th:if="${iterStat.index < 3}">
-                                <a th:href="@{/fan/board/fandetail/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
-                                <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></span>
+                            <li th:each="board : ${latestFanBoard}">
+                                <a th:href="@{/club/clubnews/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
+                                <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd ')}"></span>
                             </li>
                         </ul>
                     </div>
@@ -485,34 +485,8 @@
 
                 <div class="gallerycon">
 
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
+                    <div th:each="image : ${latestimages}" class="gallerybox">
+                        <img th:src="@{'data:image/png;base64,'+${image.image64Based}}" th:alt="${image.title}">
                     </div>
 
                 </div>
