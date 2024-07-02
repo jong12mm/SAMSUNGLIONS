@@ -3,6 +3,8 @@ package com.example.sl.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -24,4 +26,7 @@ public class ImageEntity {
 
     @Column(name = "extension")
     private String extension;
+
+
+
 }

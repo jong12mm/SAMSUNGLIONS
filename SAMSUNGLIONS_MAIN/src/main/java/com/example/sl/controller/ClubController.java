@@ -114,6 +114,7 @@ public class ClubController {
 
     @GetMapping("/board/{id}")
     public String findById(@PathVariable("id") Long id, Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        boardService.updateHits(id); // 조회수 증가 메소드 호출
         BoardDTO boardDTO = boardService.findById(id);
         if (boardDTO != null) {
             model.addAttribute("board", boardDTO);
@@ -267,6 +268,8 @@ public class ClubController {
             Model model,
             @RequestParam(value = "page", defaultValue = "1") int page
     ) {
+
+        clubNewsService.updateHits(id); // 조회수 증가 메소드 호출
         ClubNewsDTO boardDTO = clubNewsService.findById(id);
         if (boardDTO != null) {
             model.addAttribute("board", boardDTO);

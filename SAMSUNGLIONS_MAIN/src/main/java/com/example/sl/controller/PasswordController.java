@@ -39,9 +39,9 @@ public class PasswordController {
     }
 
     @PostMapping("/update-password")
-    public String updatePassword(@RequestParam String currentPassword,
-                                 @RequestParam String newPassword,
-                                 @RequestParam String confirmPassword,
+    public String updatePassword(@RequestParam("currentPassword") String currentPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("confirmPassword") String confirmPassword,
                                  Authentication authentication,
                                  Model model) {
         String username = authentication.getName();

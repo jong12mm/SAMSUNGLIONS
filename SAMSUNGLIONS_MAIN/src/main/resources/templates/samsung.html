@@ -395,8 +395,8 @@
                     <div class="news-ribot">
                         <h2>FAQ</h2>
                         <ul class="board">
-                            <li th:each="board, iterStat : ${boardList3}" th:if="${iterStat.index < 3}">
-                                <a th:href="@{/fan/faqboard/detail/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
+                            <li th:each="board, iterStat : ${latestFaqBoard}">
+                                <a th:href="@{/fan/faqboard/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
                                 <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></span>
                             </li>
                         </ul>
@@ -416,33 +416,8 @@
 
                 <div class="gallerycon">
 
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
-                        <h3>김영웅, 데뷔 첫 타석 홈런</h3>
-                    </div>
-
-                    <div class="gallerybox">
-                        <img src="/img/player/hero.jpg" alt="김영웅">
+                    <div th:each="image : ${latestimages}" class="gallerybox">
+                        <img th:src="@{'data:image/png;base64,'+${image.image64Based}}" th:alt="${image.title}">
                         <h3>김영웅, 데뷔 첫 타석 홈런</h3>
                     </div>
 

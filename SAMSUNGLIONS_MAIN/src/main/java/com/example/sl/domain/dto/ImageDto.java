@@ -1,28 +1,31 @@
 package com.example.sl.domain.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import com.example.sl.entity.ImageEntity;
+import lombok.*;
 
-@Slf4j
-@Data
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class ImageDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "data", columnDefinition = "LONGBLOB")
     private byte[] data;
-
-    @Column(name = "extension")
     private String extension;
+
+    private String image64Based;
+    public static ImageDto toDto(ImageEntity entity) {
+        ImageDto dto = new ImageDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setTitle(entity.getTitle());
+        dto.setData(entity.getData());
+        dto.setExtension(entity.getExtension());
+        return dto;
+    }
+
 }

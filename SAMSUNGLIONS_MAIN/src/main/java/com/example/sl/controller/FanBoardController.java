@@ -255,6 +255,8 @@ public class FanBoardController {
             Model model,
             @RequestParam(value = "page", defaultValue = "1") int page
     ) {
+        faqBoardService.updateHits(id); // 조회수 증가 메소드 호출
+
         FaqBoardDTO boardDTO = faqBoardService.findById(id);
         if (boardDTO != null) {
             model.addAttribute("board", boardDTO);
