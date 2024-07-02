@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
-    <link rel="stylesheet" type="text/css" href="/css/footer3.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
@@ -50,14 +50,15 @@
                             <input type="submit" value="글수정">
                         </form>
                     </div>
-                    <!--footer-->
-                    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-                    <!--//footer-->
+
                 </div>
                 <div class="section-right"></div>
             </div>
         </section>
     </main>
+    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <!--//footer-->
 </div>
 <script>
     /*header*/

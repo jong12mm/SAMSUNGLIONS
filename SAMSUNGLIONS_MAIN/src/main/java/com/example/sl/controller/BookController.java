@@ -196,7 +196,7 @@ public class BookController {
     @GetMapping("/list")
     public String getBookList(@RequestParam(defaultValue = "0") int page, Model model, Authentication authentication) {
         String username = authentication.getName();
-        Pageable pageable = PageRequest.of(page, 5, Sort.by("date").descending());
+        Pageable pageable = PageRequest.of(page, 7, Sort.by("date").descending());
         Page<BookEntity> bookPage = bookService.getBookingsByUser(username, pageable);
 
         model.addAttribute("bookPage", bookPage);

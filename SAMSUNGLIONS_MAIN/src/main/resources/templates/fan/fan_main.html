@@ -71,8 +71,29 @@
                         <span class="subtext">자유롭게 얘기하세요! (욕설 및 선수 관련 비방글은 관리자에 의해 삭제조치 될 수 있습니다.)</span>
                     </div>
                     <div class="board-container">
-                        <a href="/fan/fan_free" class="board-link">더보기 +</a>
-                        <div class="board"></div>
+                        <a href="/fan/board/fanpaging" class="board-link">더보기 +</a>
+                        <div class="board">
+                            <table>
+                                <tr>
+                                    <!-- ID로 표시 -->
+                                    <th>제목</th>
+                                    <th>글쓴이</th>
+                                    <th>작성시간</th>
+                                    <th>조회수</th>
+                                </tr>
+
+                                <tr th:each="board, iterStat : ${boardList}">
+
+                                    <td th:if="${iterStat.index < 5}">
+                                        <a th:href="@{/fan/board/fandetail/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
+                                    </td>
+                                    <td th:if="${iterStat.index < 5}" th:text="${board.boardWriter}"></td>
+                                    <td th:if="${iterStat.index < 5}" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></td>
+                                    <td th:if="${iterStat.index < 5}" th:text="${board.boardHits}"></td>
+                                </tr>
+
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -21,10 +21,6 @@
     <script type="text/javascript" src="/js/slick.min.js"></script>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-        }
         button {
             background-color: #007bff;
             color: white;
@@ -101,7 +97,9 @@
         <section>
             <div class="section-table">
                 <div class="board_list_wrap">
-
+                    <div class="title">
+                        <h2>구단 소식</h2>
+                    </div>
 
 
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">

@@ -6,9 +6,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Thin.eot');
     src: local('��'),
-        url('/font/Pretendard-Thin.woff') format('woff'),
-        url('/font/Pretendard-Thin.woff2') format('woff2'),
-        url('/font/Pretendard-Thin.otf') format('opentype');
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
 }
 
 @font-face {
@@ -17,9 +17,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Light.eot');
     src: local('��'),
-        url('/font/Pretendard-Light.woff') format('woff'),
-        url('/font/Pretendard-Light.woff2') format('woff2'),
-        url('/font/Pretendard-Light.otf') format('opentype');
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
 }
 
 @font-face {
@@ -28,9 +28,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Regular.eot');
     src: local('��'),
-        url('/font/Pretendard-Regular.woff') format('woff'),
-        url('/font/Pretendard-Regular.woff2') format('woff2'),
-        url('/font/Pretendard-Regular.otf') format('opentype');
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -39,9 +39,9 @@
     font-style: normal;
     src: url('/font/Pretendard-Medium.eot');
     src: local('��'),
-        url('/font/Pretendard-Medium.woff') format('woff'),
-        url('/font/Pretendard-Medium.woff2') format('woff2'),
-        url('/font/Pretendard-Medium.otf') format('opentype');
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
 }
 
 @font-face {
@@ -50,9 +50,9 @@
     font-style: normal;
     src: url('/font/Pretendard-SemiBold.eot');
     src: local('��'),
-        url('/font/Pretendard-SemiBold.woff') format('woff'),
-        url('/font/Pretendard-SemiBold.woff2') format('woff2'),
-        url('/font/Pretendard-SemiBold.otf') format('opentype');
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
 }
 
 @font-face {
@@ -61,9 +61,9 @@
     font-style: normal;
     src: url('/font/Pretendard-ExtraBold.eot');
     src: local('��'),
-        url('/font/Pretendard-ExtraBold.woff') format('woff'),
-        url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
-        url('/font/Pretendard-ExtraBold.otf') format('opentype');
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
 }
 
 * {
@@ -89,78 +89,55 @@ a {
 }
 
 
-
 /* main */
-.section-main{
+.section-main {
 
     display: flex;
-
-
+    background-color: #f4f4f4;
 
 }
-.section-mid{
+
+.section-mid {
 
 
-margin-top:100px;
-margin-left: 300px;
+    background-color: #f4f4f4;
 
-background-color:rgba(255,255,255,0.1);
 
 
 }
 
 /* main-mid */
+.title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.title>h2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 
 
-.section-left{
-
-
-    background-image: url(https://blog.kakaocdn.net/dn/dXIF5i/btszfY18g2w/kV872BclzJEf62y475AFiK/img.jpg);
-    background-size: 300px 865px;
-    position: fixed;
-
-    width: 300px;
-    height: 865px;
-    margin-top: 100px;
-
+.section-left {
+    background-color: #f4f4f4; /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1000px; /* 부모 요소의 높이를 참조 */
+    margin-top: 100px; /* 상단 여백 설정 */
 
 }
 
-.section-right{
-
-    background-image: url(https://blog.kakaocdn.net/dn/b38Pyo/btszfGUJ89g/x48xB0ShdEYBgXEiCCXnIK/img.jpg);
-    background-size: 300px 865px;
-    margin-left: 1604px;
-    position: fixed;
-    width: 300px;
-    height: 865px;
+.section-right {
+    background-color: #f4f4f4; /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1000px; /* 고정 높이 설정 */
     margin-top: 100px;
+    margin-left: 1400px;
+
 }
 
 /* 게시판 디자인 */
-
-
-/* 기본 컨테이너 스타일 */
-.container {
-    width: 90%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-
-}
-.container>a{
-
-        margin-left:1020px;
-
-}
-
-.container>a:hover{
-
-        color:red;
-
-}
 
 
 /* 섹션 스타일 */
@@ -285,12 +262,14 @@ background-color:rgba(255,255,255,0.1);
 .content-bottom-btn > button:hover {
     background-color: #0056b3;
 }
-.material-icons-outlined delete-button{
 
-    margin-bottom:100px;
+.material-icons-outlined delete-button {
+
+    margin-bottom: 100px;
 
 
 }
+
 .comment-item {
     position: relative;
     padding: 10px;
@@ -298,44 +277,47 @@ background-color:rgba(255,255,255,0.1);
     margin-bottom: 10px;
     border-radius: 5px;
     overflow: hidden;
-  }
-  .delete-button {
+}
+
+.delete-button {
     cursor: pointer;
     color: red;
     font-size: 24px;
     position: absolute;
     top: 10px;
     right: 10px;
-  }
-  .comment-meta {
+}
+
+.comment-meta {
     margin-top: 50px;
     font-size: 14px;
     color: #555;
-  }
-  .comment-content {
+}
+
+.comment-content {
     padding-right: 45px;
     word-wrap: break-word;
 }
 
 
-
-
-
 /* footer */
 
 
-.board_list_wrap{
+.board_list_wrap {
+
+    margin-top: 180px;
     position: absolute;
-    background-color:rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 50px;
     width: 1300px;
     border-radius: 15px;
     height: 750px;
-
+    margin-left: 50px;
 
 
 }
-.board_list_wrap>.board_list{
+
+.board_list_wrap > .board_list {
 
     width: 1200px;
     height: 300px;
@@ -343,91 +325,108 @@ background-color:rgba(255,255,255,0.1);
 
 
 }
-.board_list_wrap>.board_list th ,.board_list td{
+
+.board_list_wrap > .board_list th, .board_list td {
 
     padding: 10px;
     font-size: 14px;
 
 
 }
-.board_list_wrap>.board_list td{
+
+.board_list_wrap > .board_list td {
 
     text-align: center;
 
 }
-.board_list_wrap>.board_list tr {
+
+.board_list_wrap > .board_list tr {
     border-bottom: 1px solid #ccc;
 }
-.board_list_wrap>.board_list tbody tr td:nth-child(2):hover {
+
+.board_list_wrap > .board_list tbody tr td:nth-child(2):hover {
 
     text-decoration: underline;
 
 }
+
 button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        select, input[type="text"], button[type="submit"] {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="text"] {
-            width: 300px; /* 검색창 길이를 늘림 */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        tr>td>a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        tr>td>a:hover {
-            text-decoration: underline;
-        }
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 
-        /* Pagination styles */
+button:hover {
+    background-color: #0056b3;
+}
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        /* 페이지 번호 */
-        .pagination>span>span {
-            margin-right: 10px;
-            margin-top: 30px;
-            font-size: 19px; /* 글자 크기를 20px로 설정 */
-        }
-        /* >> 이랑 > CSS */
-        .pagination>a {
-            margin-right: 10px;
-        }
+form {
+    margin-bottom: 20px;
+}
+
+select, input[type="text"], button[type="submit"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    width: 300px; /* 검색창 길이를 늘림 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+tr > td > a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+tr > td > a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styles */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 페이지 번호 */
+.pagination > span > span {
+    margin-right: 10px;
+    margin-top: 30px;
+    font-size: 19px; /* 글자 크기를 20px로 설정 */
+}
+
+/* >> 이랑 > CSS */
+.pagination > a {
+    margin-right: 10px;
+}

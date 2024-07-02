@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,94 +18,22 @@
     <script type="text/javascript" src="/js/slick.js"></script>
     <script type="text/javascript" src="/js/slick.min.js"></script>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        select, input[type="text"], button[type="submit"] {
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="text"] {
-            width: 300px; /* 검색창 길이를 늘림 */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        td>a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        td>a:hover {
-            text-decoration: underline;
-        }
-
-        /* Pagination styles */
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        /* 페이지 번호 */
-        .pagination>span>span {
-            margin-right: 10px;
-            margin-top: 30px;
-            font-size: 19px; /* 글자 크기를 20px로 설정 */
-        }
-        /* >> 이랑 > CSS */
-        .pagination>a {
-            margin-right: 10px;
-        }
-    </style>
 </head>
 <body>
 <div class="wrapper">
     <th:block th:replace="fragments/nav :: navFragment"></th:block>
     <main>
         <section>
+
             <div class="section-table">
+
                 <div class="board_list_wrap">
-
-
+                    <div class="title">
+                        <h2>FAQ</h2>
+                    </div>
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                         <button onclick="saveReq()">글작성</button>
                     </th:block>
-
                     <!-- 검색 폼 추가 -->
                     <form th:action="@{/fan/faqboard/paging}" method="get">
                         <select name="searchField">

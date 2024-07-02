@@ -66,7 +66,7 @@
                         <li th:if="${currentPage > 0}">
                             <a th:href="@{/book/list(page=${currentPage - 1})}">이전</a>
                         </li>
-                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:class="${currentPage == i} ? 'active' : ''">
                             <a th:href="@{/book/list(page=${i})}" th:text="${i + 1}">1</a>
                         </li>
                         <li th:if="${currentPage < totalPages - 1}">
@@ -74,6 +74,7 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
         </section>
     </main>

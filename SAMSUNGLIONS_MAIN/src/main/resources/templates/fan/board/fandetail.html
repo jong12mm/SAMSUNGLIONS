@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
   <link rel="stylesheet" type="text/css" href="/css/slick.css">
   <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
-  <link rel="stylesheet" type="text/css" href="/css/footer3.css">
+  <link rel="stylesheet" type="text/css" href="/css/footer.css">
 
   <!--js-->
   <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
@@ -25,6 +25,17 @@
   <script type="text/javascript" src="/js/slick.min.js"></script>
   <script type="text/javascript" src="/js/LionsPark.js"></script>
   <script src="script.js"></script>
+  <style>
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 20
+  }
+  </style>
+
+
 
 </head>
 
@@ -38,8 +49,16 @@
       <div class="section-main">
         <div class="section-left"></div>
         <div class="section-mid">
+
           <div class="container">
-            <a th:href="@{/fan/board/fanpaging(page=${currentPage})}"><span class="material-symbols-outlined">close</span></a>
+            <h1>자유 게시판</h1>
+            <div class="tittle">
+              <a href="/samsung"><span class="material-symbols-outlined">home</span></a>
+              <span class="material-symbols-outlined">chevron_right</span>
+              <a href="/fan/fan_main">팬</a>
+              <span class="material-symbols-outlined">chevron_right</span>
+              <a href="/fan/board/fanpaging">자유 게시판</a>
+            </div>
             <div class="board-details">
               <h2 th:text="${board.boardTitle}">제목 부분</h2>
               <div class="board-line1">
@@ -47,14 +66,14 @@
                 <div>작성일: <span th:text="${board.formattedBoardCreatedTime}"></span></div>
                 <div>조회수: <span th:text="${board.boardHits}"></span></div>
               </div>
-              <div><textarea readonly th:text="${board.boardContents}"></textarea></div>
+              <div class="contents"><textarea readonly th:text="${board.boardContents}"></textarea></div>
 
               <div class="content-bottom-btn">
                 <button onclick="listReq()">목록</button>
-              <th:block th:if="${board.boardWriter == username}">
-                <button onclick="updateReq()">수정</button>
-                <button onclick="deleteReq()">삭제</button>
-              </th:block>
+                <th:block th:if="${board.boardWriter == username}">
+                  <button onclick="updateReq()">수정</button>
+                  <button onclick="deleteReq()">삭제</button>
+                </th:block>
 
                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                   <button onclick="updateReq()">수정</button>
@@ -64,7 +83,7 @@
 
             </div>
 
-          <!-- 로그인 상태에서만 댓글 보여주기    -->
+            <!-- 로그인 상태에서만 댓글 보여주기    -->
             <th:block sec:authorize="hasRole('ROLE_USER')">
               <div class="comment-form">
                 <h4>댓글 작성</h4>
@@ -90,15 +109,15 @@
               </div>
             </div>
           </div>
-
-          <!--footer-->
-          <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-          <!--//footer-->
         </div>
         <div class="section-right"></div>
       </div>
     </section>
+
   </main>
+  <!--footer-->
+  <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+  <!--//footer-->
 </div>
 <script>
   /*header*/

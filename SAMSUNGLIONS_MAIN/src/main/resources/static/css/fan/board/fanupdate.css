@@ -96,13 +96,18 @@ a {
 }
 
 .section-mid {
-    margin-left: 300px;
+
+
     background-color: rgba(255, 255, 255, 0.8);
 }
 
 .section-mid-form {
-    margin-top: 170px; /* Add margin-top to the form container */
-    margin-left: 130px;
+
+        margin-top: 230px;
+        width: 1100px;
+        margin-left: 155px;
+        margin-right: 157px;
+
 }
 
 .section-mid-form form {
@@ -110,9 +115,9 @@ a {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
+
     width: 100%;
-    margin: 20px;
+
     position: relative;
 }
 
@@ -150,23 +155,19 @@ label {
 
 /* main-mid */
 .section-left {
-    background-image: url(https://blog.kakaocdn.net/dn/bp2MLI/btszdn9fSzu/KuMs8B9ZSPCue4e6B2Iiak/img.jpg);
-    background-size: 300px 865px;
-    position: fixed;
+    background-color: rgba(171, 213, 253, 0.3); /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1300px; /* 부모 요소의 높이를 참조 */
+    margin-top: 100px; /* 상단 여백 설정 */
 
-    width: 300px;
-    height: 865px;
-    margin-top: 100px;
 }
 
 .section-right {
-    background-image: url(https://blog.kakaocdn.net/dn/2XUpS/btszgZMYPp2/jHdHl3DVaeKshFbwDPD0q0/img.jpg);
-    background-size: 300px 865px;
-    margin-left: 1604px;
-    position: fixed;
-    width: 300px;
-    height: 865px;
+    background-color: rgba(171, 213, 253, 0.3); /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1300px; /* 고정 높이 설정 */
     margin-top: 100px;
+
 }
 
 /* 게시판 디자인 */

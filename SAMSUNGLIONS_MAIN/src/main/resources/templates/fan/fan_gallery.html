@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head>
     <title>Admin Fan Gallery</title>
     <!--css-->
@@ -21,22 +21,24 @@
             <div class="gallerytitle">
                 <div class="gallerytitle-inner">
                     <h2>갤러리</h2>
-                    <form action="/fan/fan_gallery/add" method="post" enctype="multipart/form-data"
-                          onsubmit="return validateUpload(this)" class="form1">
-                        <div>
-                            <label for="name">이름 :</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div>
-                            <label for="title">제목 :</label>
-                            <input type="text" id="title" name="title" required>
-                        </div>
-                        <div>
-                            <label for="file">사진등록 :</label>
-                            <input type="file" id="file" name="file" required onchange="validateFileSize(this)">
-                            <button type="submit">등록하기</button>
-                        </div>
-                    </form>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <form action="/fan/fan_gallery/add" method="post" enctype="multipart/form-data"
+                              onsubmit="return validateUpload(this)" class="form1">
+                            <div>
+                                <label for="name">이름 :</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="title">제목 :</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+                            <div>
+                                <label for="file">사진등록 :</label>
+                                <input type="file" id="file" name="file" required onchange="validateFileSize(this)">
+                                <button type="submit">등록하기</button>
+                            </div>
+                        </form>
+                    </th:block>
                 </div>
             </div>
 
@@ -44,7 +46,9 @@
             <div class="gallery">
                 <div th:each="image : ${images}" class="gallery-item">
                     <div class="gallery-item-inner">
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                         <button class="delete-button" th:onclick="'deleteImage(' + ${image.id} + ')'">X</button>
+                        </th:block>
                         <h2 th:text="${image.title}"></h2>
                         <img th:src="@{/fan/fan_gallery/image/{id}(id=${image.id})}" alt="Image">
                         <a th:href="@{/fan/fan_gallery/download/{id}(id=${image.id})}" class="download-button">Download</a>

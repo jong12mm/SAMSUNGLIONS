@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/css/slick.css">
     <link rel="stylesheet" type="text/css" href="/css/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar2.css">
-    <link rel="stylesheet" type="text/css" href="/css/footer2.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
     <!--js-->
     <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/slick.js"></script>
@@ -36,7 +36,11 @@
             <div class="section-main">
                 <div class="section-left"></div>
                 <div class="section-mid">
+
                     <div class="board_list_wrap">
+                        <div class="title">
+                            <h2>자유게시판</h2>
+                        </div>
 
                         <th:block sec:authorize="not isAuthenticated()">
                             <button onclick="redirectToLogin()">글작성</button>
@@ -84,13 +88,13 @@
                             <!-- 페이지 번호 링크(현재 페이지는 숫자만)
                                 for(int page=startPage; page<=endPage; page++)-->
                             <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
-                <!-- 현재페이지는 링크 없이 숫자만 -->
-                <span th:if="${page == boardList.number + 1}" th:text="${page}" class="current-page"></span>
+                            <!-- 현재페이지는 링크 없이 숫자만 -->
+                            <span th:if="${page == boardList.number + 1}" th:text="${page}" class="current-page"></span>
                                 <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
-                <span th:unless="${page == boardList.number + 1}">
-                  <a th:href="@{/fan/board/fanpaging(page=${page})}" th:text="${page}"></a>
-                </span>
-              </span>
+                            <span th:unless="${page == boardList.number + 1}">
+                              <a th:href="@{/fan/board/fanpaging(page=${page})}" th:text="${page}"></a>
+                            </span>
+                          </span>
 
                             <!-- 다음 링크 활성화 비활성화
                                 사용자: 2페이지, getNumber: 1, 3페이지-->
@@ -99,14 +103,18 @@
                             <a th:href="@{/fan/board/fanpaging(page=${boardList.totalPages})}"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></a>
                         </div>
                     </div>
-                    <!--footer-->
-                    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-                    <!--//footer-->
+
+
+
+
                 </div>
                 <div class="section-right"></div>
             </div>
         </section>
     </main>
+    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <!--//footer-->
 </div>
 <script>
     /*header*/

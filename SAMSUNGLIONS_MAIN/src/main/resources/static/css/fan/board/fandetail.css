@@ -97,30 +97,26 @@ a {
 
 
 }
+section{
+    display:flex;
+
+}
+/* main-mid */
 .section-mid{
 
 
 
-    margin-left: 300px;
-
-    background-color: rgba(171, 213, 253, 0.1);
-
-
 }
-
-/* main-mid */
-
 
 .section-left{
 
 
     /*background-image: url(https://blog.kakaocdn.net/dn/emQZXh/btszfJKHmYJ/AxQAyRiLO9PYiDDepNFzy1/img.jpg);*/
     background-color: rgba(171, 213, 253, 0.3);
-    background-size: 300px 865px;
-    position: fixed;
+
 
     width: 300px;
-    height: 865px;
+    height:100%;
     margin-top: 100px;
 
 
@@ -130,11 +126,8 @@ a {
 
    /* background-image: url(https://blog.kakaocdn.net/dn/2aEOP/btszhuMLmvR/lKHKMleoSqXkCX4YGdDjRk/img.jpg);*/
     background-color: rgba(171, 213, 253, 0.3);
-    background-size: 300px 865px;
-    margin-left: 1604px;
-    position: fixed;
     width: 300px;
-    height: 865px;
+    height: 100%;
     margin-top: 100px;
 }
 
@@ -143,25 +136,54 @@ a {
 
 /* 기본 컨테이너 스타일 */
 .container {
-
-    margin-top: 250px;
-    background-color: rgba(171, 213, 253, 0.1);
+    width: 1100px;
+    margin-top: 150px;
+    margin-left:100px;
     border-radius: 15px;
-    width: 90%;
+    margin-right:105px;
     background: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
     border-radius: 10px;
-    margin-left:65px;
+
 
 }
 .container>a{
 
-        margin-left:1105px;
+
 
 }
+.tittle{
 
-.container>a:hover{
+    display: flex;
+    justify-content: flex-end;
+    margin-right:20px;
+    margin-bottom:-20px;
+
+}
+.tittle>p{
+
+    font-size:10px;
+}
+.tittle>a{
+
+    font-size:20px;
+    margin-top:-2px;
+    margin-right:3px;
+}
+a>.material-symbols-outlined{
+
+margin-top:-6px;
+font-size:14px;
+}
+
+.container>.tittle>a>span{
+
+    font-size: 35px;
+
+
+}
+.container>.tittle>a:hover{
 
         color:red;
 
@@ -174,7 +196,15 @@ a {
     padding: 10px;
     border-radius: 15px;
 
-    box-shadow: 0 0 10px rgb(1, 37, 241,0.6);
+
+
+}
+h1{
+
+    font-size: 2.5rem;
+    margin-left: 40px;
+    margin-top: 30px;
+
 
 }
 
@@ -184,6 +214,7 @@ a {
     border: 0px solid #ccc;
     padding: 10px;
     border-radius: 15px;
+    margin-left: 40px;
 
 
 
@@ -191,6 +222,9 @@ a {
 }
 
 .board-details h2 {
+    padding: 20px;
+    border-bottom: 2px solid rgb(0 102 179);
+    border-top:2px solid rgb(0 102 179);
     margin-bottom: 30px;
     margin-left:30px;
     color:rgb(0 102 179);
@@ -221,15 +255,27 @@ a {
     width: 95%;
     height: 200px;
     resize: none;
+    border: none;
     margin-bottom: 20px;
 
     padding: 10px;
-    margin-left: 10px;
-    box-shadow: 0 0 10px rgba(7, 69, 240, 0.1);
+
+
     border-radius:30px;
 
+}
+.contents{
+
+    border-bottom: 2px solid;
+    margin-bottom: 25px;
+    width: 97%;
+    margin-left: 35px;
 
 
+}
+
+textarea[readonly] {
+    pointer-events: none;
 }
 
 /* 댓글 작성 폼 스타일 */
@@ -362,6 +408,15 @@ h4{
     padding-right: 45px;
     word-wrap: break-word;
 }
+footer{
+
+margin-top:100px;
+
+}
+
+
+
+
 
 
 

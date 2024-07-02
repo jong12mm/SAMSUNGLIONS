@@ -99,11 +99,14 @@ a {
 
 .section-table{
 
-    
-     background-image: url('/img/삼성폭죽배경.jpg');
-     background-size:2000px,1200px;
-     width:2000px;
-     height: 1200px;
+
+    background-color: #1f5cae;
+    background-size:100%,100vh;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -118,6 +121,17 @@ a {
     margin-top: 100px;
     
     
+}
+.title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.title>h2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -149,8 +163,6 @@ a {
 .board_list_wrap{
     position: absolute;
     background-color:rgba(255, 255, 255, 0.9);
-    margin-top: 200px;
-    margin-left: 220px;
     padding: 50px;
     width: 1500px;
     border-radius: 15px;

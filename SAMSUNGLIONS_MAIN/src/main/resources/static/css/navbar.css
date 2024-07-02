@@ -38,6 +38,7 @@
     flex-wrap: wrap;
     border: 0;
 
+
 }
 
 .wrapper>header>.header-right>nav>.menu>li {
@@ -138,7 +139,7 @@ display:none;
     top: 100px;
     left: 0;
     width: 100vw;
-    height: 270px;
+    height: 205px;
     background-color: #fff;
     z-index: 1;
     display: none;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -31,9 +31,14 @@
       <div class="section-table">
         <div class="board_list_wrap">
           <div class="container">
-            <a th:href="@{/fan/faqboard/paging(page=${currentPage})}">
-              <span class="material-symbols-outlined">close</span>
-            </a>
+            <h1>FAQ</h1>
+                <div class="tittle">
+                    <a href="/samsung"><span class="material-symbols-outlined">home</span></a>
+                    <span class="material-symbols-outlined">chevron_right</span>
+                    <a href="/fan/fan_main">팬</a>
+                    <span class="material-symbols-outlined">chevron_right</span>
+                    <a href="/fan/faqboard/paging">FAQ</a>
+                </div>
             <div class="board-details">
               <h2 th:text="${board.boardTitle}">제목 부분</h2>
               <div class="board-line1">

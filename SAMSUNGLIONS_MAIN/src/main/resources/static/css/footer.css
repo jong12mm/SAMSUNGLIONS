@@ -3,6 +3,7 @@ footer {
     width: 100%;
     background-color: #ececec;;
     padding: 3rem 0 3rem 0;
+    z-index: 999;
 }
 .footer-in{
     max-width: 1200px;
