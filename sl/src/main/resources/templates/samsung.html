@@ -435,29 +435,9 @@
                 <div class="news-left">
                     <h2>구단소식</h2>
                     <ul class="news-list">
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
-                        </li>
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
-                        </li>
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
-                        </li>
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
-                        </li>
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
-                        </li>
-                        <li>
-                            <h4>삼성라이온즈, 선수단에 최고급 태블릿PC 지급</h4>
-                            <p>2024.05.18</p>
+                        <li th:each="board, iterStat : ${boardList2}" th:if="${iterStat.index < 7}">
+                            <a th:href="@{/club/clubnews/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
+                            <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd ')}"></span>
                         </li>
                     </ul>
                 </div>
@@ -467,17 +447,9 @@
                     <div class="news-ritop">
                         <h2>자유게시판</h2>
                         <ul class="board">
-                            <li>
-                                <h4>5월 18일 한화경기 제발요ㅠㅠ</h4>
-                                <p>2024.05.18</p>
-                            </li>
-                            <li>
-                                <h4>5월 22일 KT경기 이기자</h4>
-                                <p>2024.05.22</p>
-                            </li>
-                            <li>
-                                <h4>오늘 롯데경기 제발!!</h4>
-                                <p>2024.05.24</p>
+                            <li th:each="board, iterStat : ${boardList}" th:if="${iterStat.index < 3}">
+                                <a th:href="@{/fan/board/fandetail/{id}(id=${board.id})}" th:text="${board.boardTitle}"></a>
+                                <span class="date" th:text="${#temporals.format(board.boardCreatedTime, 'yyyy-MM-dd')}"></span>
                             </li>
                         </ul>
                     </div>
