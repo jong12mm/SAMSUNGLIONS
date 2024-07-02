@@ -124,6 +124,18 @@ background-position:0px 0px ,0px 0px; */
 
 
 }
+.title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.title>h2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
 
 .total {
     background-color: #fff;
@@ -175,6 +187,7 @@ background-position:0px 0px ,0px 0px; */
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 #zoneSelect {
