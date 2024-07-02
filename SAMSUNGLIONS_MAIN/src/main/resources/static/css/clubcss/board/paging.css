@@ -244,3 +244,71 @@ footer {
 
 
 
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+form {
+    margin-bottom: 20px;
+}
+select, input[type="text"], button[type="submit"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="text"] {
+    width: 300px; /* 검색창 길이를 늘림 */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #007bff;
+    color: white;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+td>a {
+    color: #007bff;
+    text-decoration: none;
+}
+td>a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styles */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+/* 페이지 번호 */
+.pagination>span>span {
+    margin-right: 10px;
+    margin-top: 30px;
+    font-size: 19px; /* 글자 크기를 20px로 설정 */
+}
+/* >> 이랑 > CSS */
+.pagination>a {
+    margin-right: 10px;
+}
