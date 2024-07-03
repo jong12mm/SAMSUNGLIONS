@@ -70,7 +70,7 @@ END POINT DOC
 |/image/add|POST|id : Long<br>name : String<br>title : String<br>data : byte[]<br>extension : String|JSON|갤러리 이미지 추가|
 |/image/search|GET|---|JSON|이미지 검색|
 |/image/download/{id}|GET|id : Long|JSON|이미지 다운로드|
-|/user/add|POST|username : String<br>password : String|JSON|새로운 사용자 추가|
+|/user/add|POST|role : String<br>islocked : boolean<br>addr : String<br>adultphone : String<br>childphone : String<br>birth : LocalDate<br>email : String<br>gender : char<br>membership : String<br>realname : String<br>provider : String<br>providerId : String|JSON|새로운 사용자 추가|
 |/user/read|GET|---|JSON|사용자 상세 정보 조회|
 |/user/update|POST|---|JSON|사용자 정보 업데이트|
 |/user/delete|POST|---|JSON|사용자 삭제|
