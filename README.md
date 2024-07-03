@@ -3,14 +3,14 @@
 DEVELOPMENT MOTIVATION
 ---
 > 삼성라이온즈 홈페이지
-> > 야구 티켓 예매를 하려면 티켓링크라는 사이트에 따로 들어가서 예매를 해야하는 불편함이 있는데, 이를 하나의 플랫폼에서 예매할 수 있는 서비스를 개발하고 싶었습니다.
-> > 이런 서비스는 사용자가 다양한 서비스를 즐기며 예매도 같이하는데 도움을 줄 것입니다.
-> > 또, 사용자들의 편의를 위해 티켓 예매 과정을 간편하고 효율적으로 만들고, 다양한 옵션과 혜택을 제공하여 사용자들에게 더 나은 서비스를 제공할 것입니다.<br> 
+> > 기존의 삼성라이온즈 홈페이지에는 팬들과의 소통창구도 없고 티켓 예매를 하려면 티켓링크라는 사이트에 따로 들어가서 예매를 해야하는 불편함이 있습니다. 그래서 이를 하나의 플랫폼에서 예매하고 팬들과 소통할 수 있는 서비스를 개발하고 싶었습니다.
+> > 이런 서비스는 사용자가 다양한 서비스를 즐기는데 도움을 줄 것입니다.
+> > 또, 사용자들의 편의를 위해 티켓 예매 과정을 간편하고 효율적으로 만들고, 다양한 옵션과 혜택을 제공하여 사용자들에게 더 나은 서비스를 제공할 것입니다.<br>
  
 
 BRANCH
 ---
-[이종일](http://github.com/jong12mm/SAMSUNGLIONS/tree/이종일) | [정대민](http://github.com/jong12mm/SAMSUNGLIONS/tree/정대민) | [강현우](http://github.com/jong12mm/SAMSUNGLIONS/tree/강현우) | [이건무](http://github.com/jong12mm/SAMSUNGLIONS/tree/이건무) | 
+[이종일](http://github.com/jong12mm/SAMSUNGLIONS/tree/이종일) | [정대민](http://github.com/jong12mm/SAMSUNGLIONS/tree/daemin) | [강현우](http://github.com/jong12mm/SAMSUNGLIONS/tree/강현우) | [이건무](http://github.com/jong12mm/SAMSUNGLIONS/tree/이건무) | 
 
 
 PLANS
