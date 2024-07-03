@@ -133,9 +133,13 @@ C:.
 │  gradlew
 │  gradlew.bat
 │  settings.gradle
+│
 ├─.gradle
+│
 ├─.idea
+│
 ├─gradle
+│
 └─src
     ├─main
     │  ├─generated
@@ -146,9 +150,7 @@ C:.
     │  │              │  SlApplication.java
     │  │              │
     │  │              ├─config
-    │  │              │  │  EncoderConfig.java
     │  │              │  │  IamportClientConfig.java
-    │  │              │  │  JwtFilter.java
     │  │              │  │  PrincipalDetails.java
     │  │              │  │  PrincipalDetailsOauth2Service.java
     │  │              │  │  PrincipalDetailsService.java
@@ -195,11 +197,11 @@ C:.
     │  │              │  │  FanController.java
     │  │              │  │  HomeController.java
     │  │              │  │  ImageController.java
-    │  │              │  │  LoginController.java
+    │  │              │  │  PasswordController.java
     │  │              │  │  PaymentController.java
     │  │              │  │  PlayerController.java
+    │  │              │  │  ProfileController.java
     │  │              │  │  RecordController.java
-    │  │              │  │  testcontroller.java
     │  │              │  │  UserController.java
     │  │              │  │
     │  │              │  ├─detail
@@ -231,18 +233,22 @@ C:.
     │  │              │  │      FanCommentDTO.java
     │  │              │  │      FaqBoardDTO.java
     │  │              │  │      GameInfoDto.java
+    │  │              │  │      ImageDto.java
     │  │              │  │      LoginRequest.java
     │  │              │  │      OAuthUserDto.java
     │  │              │  │      PaymentDto.java
     │  │              │  │      SeatDto.java
     │  │              │  │      UserAdultJoinRequest.java
     │  │              │  │      UserChildJoinRequest.java
+    │  │              │  │      UserProfileUpdateRequest.java
     │  │              │  │
     │  │              │  └─service
     │  │              │          BoardService.java
     │  │              │          BookService.java
     │  │              │          BookServiceImpl.java
     │  │              │          ClubNewsService.java
+    │  │              │          EmailService.java
+    │  │              │          EmailServiceImpl.java
     │  │              │          FanBoardService.java
     │  │              │          FanCommentService.java
     │  │              │          FaqBoardService.java
@@ -270,124 +276,33 @@ C:.
     │  │              │      StoryEntity.java
     │  │              │      User.java
     │  │              │
-    │  │              ├─repository
-    │  │              │      BoardRepository.java
-    │  │              │      BookRepository.java
-    │  │              │      ClubNewsRepository.java
-    │  │              │      FanBoardRepository.java
-    │  │              │      FanCommentRepository.java
-    │  │              │      FaqBoardRepository.java
-    │  │              │      GameInfoRepository.java
-    │  │              │      ImageRepository.java
-    │  │              │      LoginedUserRepository.java
-    │  │              │      PaymentRepository.java
-    │  │              │      SeatRepository.java
-    │  │              │      SignatureRepository.java
-    │  │              │      StoryRepository.java
-    │  │              │      UserRepository.java
-    │  │              │
-    │  │              └─utils
-    │  │                      JwtUtil.java
+    │  │              └─repository
+    │  │                      BoardRepository.java
+    │  │                      BookRepository.java
+    │  │                      ClubNewsRepository.java
+    │  │                      FanBoardRepository.java
+    │  │                      FanCommentRepository.java
+    │  │                      FaqBoardRepository.java
+    │  │                      GameInfoRepository.java
+    │  │                      ImageRepository.java
+    │  │                      LoginedUserRepository.java
+    │  │                      PaymentRepository.java
+    │  │                      SeatRepository.java
+    │  │                      SignatureRepository.java
+    │  │                      StoryRepository.java
+    │  │                      UserRepository.java
     │  │
     │  └─resources
     │      │  application.properties
     │      │
     │      ├─static
     │      │  ├─css
-    │      │  │  │  footer.css
-    │      │  │  │  fullpage.min.css
-    │      │  │  │  navbar.css
-    │      │  │  │  navbar2.css
-    │      │  │  │  reset.css
-    │      │  │  │  slick-theme.css
-    │      │  │  │  slick.css
-    │      │  │  │  style.css
-    │      │  │  │
-    │      │  │  ├─bookcss
-    │      │  │  │      booklist.css
-    │      │  │  │      book_finish.css
-    │      │  │  │      book_game_info.css
-    │      │  │  │      book_real_start.css
-    │      │  │  │      book_start.css
-    │      │  │  │
-    │      │  │  ├─clubcss
-    │      │  │  │  │  announcement.css
-    │      │  │  │  │  lionsPark.css
-    │      │  │  │  │  slhistory.css
-    │      │  │  │  │  slintro.css
-    │      │  │  │  │  slnews.css
-    │      │  │  │  │
-    │      │  │  │  ├─board
-    │      │  │  │  │      detail.css
-    │      │  │  │  │      paging.css
-    │      │  │  │  │      save.css
-    │      │  │  │  │      update.css
-    │      │  │  │  │
-    │      │  │  │  └─clubnews
-    │      │  │  │          detail.css
-    │      │  │  │          paging.css
-    │      │  │  │          save.css
-    │      │  │  │          update.css
-    │      │  │  │
-    │      │  │  ├─detailcss
-    │      │  │  │      cheerdetail.css
-    │      │  │  │      playerdetail.css
-    │      │  │  │
-    │      │  │  ├─fan
-    │      │  │  │  ├─board
-    │      │  │  │  │      fandetail.css
-    │      │  │  │  │      fanpaging.css
-    │      │  │  │  │      fansave.css
-    │      │  │  │  │      fanupdate.css
-    │      │  │  │  │
-    │      │  │  │  └─faqboard
-    │      │  │  │          detail.css
-    │      │  │  │          paging.css
-    │      │  │  │          save.css
-    │      │  │  │          update.css
-    │      │  │  │
-    │      │  │  ├─fancss
-    │      │  │  │      fan_cheerdetails.css
-    │      │  │  │      fan_cheermain.css
-    │      │  │  │      fan_faq.css
-    │      │  │  │      fan_free.css
-    │      │  │  │      fan_gallery.css
-    │      │  │  │      fan_gallery_user.css
-    │      │  │  │      fan_main.css
-    │      │  │  │      fan_story.css
-    │      │  │  │
-    │      │  │  ├─playercss
-    │      │  │  │      hittermain.css
-    │      │  │  │      playermain.css
-    │      │  │  │      staffmain.css
-    │      │  │  │
-    │      │  │  ├─record
-    │      │  │  │      teamrank.css
-    │      │  │  │
-    │      │  │  └─USERCSS
-    │      │  │          adult_join.css
-    │      │  │          children_join.css
-    │      │  │          join_finish.css
-    │      │  │          join_start.css
-    │      │  │          login.css
-    │      │  │
     │      │  ├─data
     │      │  ├─font
     │      │  ├─img
     │      │  └─js
-    │      │          fan_story.js
-    │      │          fullpage.min.js
-    │      │          gallery.js
-    │      │          jquery-3.7.1.min.js
-    │      │          LionsPark.js
-    │      │          nav.js
-    │      │          schedule.js
-    │      │          scroll.js
-    │      │          slick.js
-    │      │          slick.min.js
     │      │
     │      └─templates
-    │          │  layout.html
     │          │  samsung.html
     │          │
     │          ├─book
@@ -399,11 +314,9 @@ C:.
     │          │      seats_modal.html
     │          │
     │          ├─club
-    │          │  │  announcement.html
     │          │  │  lionsPark.html
     │          │  │  slhistory.html
     │          │  │  slintro.html
-    │          │  │  slnews.html
     │          │  │
     │          │  ├─board
     │          │  │      detail.html
@@ -498,10 +411,7 @@ C:.
     │          ├─fan
     │          │  │  fan_cheerdetails.html
     │          │  │  fan_cheermain.html
-    │          │  │  fan_faq.html
-    │          │  │  fan_free.html
     │          │  │  fan_gallery.html
-    │          │  │  fan_gallery_user.html
     │          │  │  fan_main.html
     │          │  │  fan_story.html
     │          │  │
@@ -528,9 +438,7 @@ C:.
     │          │      staff_detail_slider.html
     │          │
     │          ├─player
-    │          │      army.html
     │          │      hitter.html
-    │          │      newplayer.html
     │          │      pitcher.html
     │          │      player_main.html
     │          │      staff.html
@@ -538,16 +446,18 @@ C:.
     │          ├─record
     │          │      teamrank.html
     │          │
-    │          ├─seat
-    │          │      seatEx.html
-    │          │
     │          └─user
     │                  adult_join.html
     │                  children_join.html
-    │                  example.html
+    │                  find_username.html
+    │                  find_username_result.html
+    │                  forgot-password.html
     │                  join_finish.html
     │                  join_start.html
     │                  login.html
+    │                  profile.html
+    │                  update-password.html
+    │                  update-profile.html
     │
     └─test
         └─java
