@@ -28,10 +28,10 @@ MEMBERERS
 |NAME|ROLE|DETAILS|DESCRIPTION| 
 |---|---|---|---|
 |Together|---| FrontController / Document 관리 / Dependencies  관리 |---|
-|이종일|조장| USER - 회원가입 / 회원탈퇴 / 예매 C.U.|---|
-|정대민|조원| USER - 회원가입 / 회원탈퇴 / 예매 R.D.|---|
-|강현우|조원| 유저공통 - 로그인 / 로그아웃|---|
-|이건무|조원| MANAGER 회원가입 회원탈퇴|---|
+|이종일|조장| 예매 C.R.U.D., 갤러리 C.R.U.D.|---|
+|정대민|조원| LOGIN/LOGOUT관련|---|
+|강현우|조원| 결제 C.R.U.D.|---|
+|이건무|조원| 게시판 총괄, 웹 크롤링|---|
 
 SKILLS
 ---
