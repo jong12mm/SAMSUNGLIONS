@@ -60,11 +60,15 @@ END POINT DOC
 ---
 |URI|REQUEST METHOD|REQUEST PARAMETER TYPE|RESPONSE VALUE TYPE|DESCRIPTION|
 |---|---|---|---|---|
-|/book/add|POST|bookid : Long<br>bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 추가|
+|/book/add|POST|bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 추가|
 |/book/list|GET|type : String<br>keyword : String<br>pageNo : String|JSON|예매 목록 조회|
 |/book/read|GET|---|JSON|예매 상세 정보 조회|
 |/book/update|POST|updateIdStr :  Long<br>bookid : Long<br>seatid : String<br>name : String<br>gameinfoId : LocalDateTime<br>date : String<br>bookstatus : String<br>payid : String|JSON|예매 정보 업데이트|
 |/book/delete|POST|type : String<br>keyword : String<br>pageNo : String<br>deleteIdStr : String|JSON|예매 삭제|
+|/payment/make|POST|paymentId : Long<br>amount : BigDecimal<br>cancelAmount : BigDecimal<br>paymentDateTime : LocalDateTime<br>paymentMethod : String<br>paymentStatus : String<br>impUid : String<br>merchantUid : String|JSON|결제 시작|
+|/image/add|POST| : id : Long<br>name : String<br>title : String<br>data : byte[]<br>extension : String|JSON|갤러리 이미지 추가|
+|/image/search|GET|---|JSON|이미지 검색|
+|/image/download/{id}|GET|id : Long|JSON|이미지 다운로드|
 |/user/add|POST|username : String<br>password : String|JSON|새로운 사용자 추가|
 |/user/read|GET|---|JSON|사용자 상세 정보 조회|
 |/user/update|POST|---|JSON|사용자 정보 업데이트|
