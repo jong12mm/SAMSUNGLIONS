@@ -115,7 +115,8 @@ DEPENDENCIES LIST
 
 ERD[samsungdb]
 ---
-![20240425155554](https://github.com/jong12mm/SAMSUNGLIONS/blob/%EC%9D%B4%EC%A2%85%EC%9D%BC/samsungerd.png)
+![20240425155554](https://github.com/jong12mm/SAMSUNGLIONS/blob/%EC%9D%B4%EC%A2%85%EC%9D%BC/sql%ED%8C%8C%EC%9D%BC.png?raw=true)
+
 
 
 FILE TREES[SPRING BOOT]
