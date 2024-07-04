@@ -28,10 +28,10 @@ MEMBERERS
 |NAME|ROLE|DETAILS|DESCRIPTION| 
 |---|---|---|---|
 |Together|---| FrontController / Document 관리 / Dependencies  관리 |---|
-|이종일|조장| 예매 C.R.U.D., 갤러리 C.R.U.D.|---|
-|정대민|조원| LOGIN/LOGOUT관련|---|
-|강현우|조원| 결제 C.R.U.D.|---|
-|이건무|조원| 게시판 총괄, 웹 크롤링|---|
+|이종일|조장| 예매 C.R.U.D., 갤러리 C.R.U.D., 전반적인 프론트엔드|---|
+|정대민|조원| LOGIN/LOGOUT관련, 토큰 및 쿠키|---|
+|강현우|조원| 결제 C.R.U.D., 메인 페이지 제작|---|
+|이건무|조원| 게시판 총괄(프론트엔드 포함), 웹 크롤링|---|
 
 SKILLS
 ---
